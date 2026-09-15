@@ -1,0 +1,253 @@
+[
+  {
+    "id": "sozel-vokal-yakinlik-azligi",
+    "ad": "Sözel/vokal yakınlığın azalması (mesafeli, dolaylı anlatım)",
+    "kanal": "sozel",
+    "betimlemeler": [
+      "Anlatımı bir anda mesafeli ve dolaylı bir hal aldı; sanki başkasının hikâyesini aktarıyordu.",
+      "Kendinden çok 'insan', 'kişi' gibi genel öznelerle konuşmaya başladı.",
+      "Cümleleri kısaldı, ses tonu düzleşti; anlattığı şeyle arasına mesafe koyuyor gibiydi.",
+      "Sizinle değil, masanın üstündeki bir noktayla konuşuyormuş gibi soğuk ve edilgen anlattı."
+    ],
+    "etkiBuyuklugu": -0.55,
+    "yon": "yalanda_azalir",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003"],
+    "not": "DePaulo 2003'teki en büyük etki (d=-.55) ama yine de olasılıksal; utangaç ya da resmî konuşan kişilerde temel çizgi budur. Hartwig & Bond 2011: insanlar zaten 'mesafeli/beceriksiz' izlenimini yalanla ilişkilendirir."
+  },
+  {
+    "id": "detay-azligi",
+    "ad": "Anlatımda ayrıntı azlığı",
+    "kanal": "sozel",
+    "betimlemeler": [
+      "O akşamı iki cümleyle geçiştirdi; ayrıntı isteyince aynı iki cümleyi tekrarladı.",
+      "Diğer konularda ayrıntıya boğarken bu konuda anlatım birden inceldi.",
+      "Yer, saat, kim ne dedi gibi somut ayrıntılar yerine genel ifadeler kullandı.",
+      "Hikâyede renk yok: koku, ses, sıra, küçük aksaklık… hiçbiri anlatılmadı."
+    ],
+    "etkiBuyuklugu": -0.30,
+    "yon": "yalanda_azalir",
+    "kosullar": { "etkilesim": -0.33 },
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003", "Hartwig & Bond 2011"],
+    "not": "Konuya göre değişir: sıkıcı bir olay dürüst anlatılsa da kısa olur. 'Karşılaştırılabilir doğru' gerekir (aynı görüşme, benzer konu)."
+  },
+  {
+    "id": "tutarsizlik-ambivalans",
+    "ad": "İç tutarsızlık ve kararsızlık izlenimi",
+    "kanal": "genel",
+    "betimlemeler": [
+      "Aynı konuda önce bir şey söyledi, iki cümle sonra tersini ima etti.",
+      "Anlatırken ikide bir durup 'yani… şey…' diye kendi kendine düzeltir gibi oldu, ama netleşmedi.",
+      "Söyledikleriyle ses tonu uyuşmuyordu: 'çok üzüldüm' derken sesi düz ve ilgisizdi.",
+      "Kararsız bir anlatım: bazen emin, bazen 'sanırım', 'galiba' ile geri adım."
+    ],
+    "etkiBuyuklugu": 0.34,
+    "yon": "yalanda_artar",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003", "Hartwig & Bond 2011"],
+    "not": "Gerçek kararsızlık (ambivalans) da aynı görünür: yakınını kaybetmiş biri gerçekten karışık duygular içindedir."
+  },
+  {
+    "id": "goz-bebegi-buyume",
+    "ad": "Göz bebeği büyümesi",
+    "kanal": "fizyolojik",
+    "betimlemeler": [
+      "Soru gelince göz bebekleri belirgin biçimde büyüdü.",
+      "Loş odada bile göz bebeklerinin genişlediği fark ediliyordu.",
+      "Gözleri kararır gibi oldu: göz bebekleri açıldı."
+    ],
+    "etkiBuyuklugu": 0.39,
+    "yon": "yalanda_artar",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003"],
+    "not": "Bilişsel çaba ve uyarılma göstergesi; ışık, ilaç, ilgi ve korku da büyütür. Çıplak gözle güvenilir gözlenmesi zordur; oyunda 'kayıt inceleme' aracıyla görülür."
+  },
+  {
+    "id": "ses-perdesi-yukselme",
+    "ad": "Ses perdesinin yükselmesi",
+    "kanal": "vokal",
+    "betimlemeler": [
+      "Cevap verirken sesi inceldi, bir perde yukarı çıktı.",
+      "Konuşmasının ortasında sesi tizleşti; sonra kendini toparlayıp normale döndü.",
+      "'Hayır' derken sesi normalden daha ince ve gergin çıktı."
+    ],
+    "etkiBuyuklugu": 0.21,
+    "yon": "yalanda_artar",
+    "kosullar": { "motivasyon": 0.67, "etkilesim": 0.35 },
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003", "Ekman & O'Sullivan 1991"],
+    "not": "Kimlik/itibar motivasyonu yüksekken belirginleşir (d=.67). Heyecan, öfke ve korku da perdeyi yükseltir (Othello hatası)."
+  },
+  {
+    "id": "kendiliginden-duzeltme",
+    "ad": "Kendiliğinden düzeltme",
+    "kanal": "sozel",
+    "betimlemeler": [
+      "'Saat üçtü… yok, pardon, üç buçuk olmalı, haberler bitmişti' diye kendini düzeltti.",
+      "Anlatırken durup 'Aslında önce fırına uğradım, sonra markete' diye sırayı düzeltti.",
+      "Bir ayrıntıyı söyledikten sonra 'Dur, yanlış söyledim' deyip yeniden anlattı."
+    ],
+    "etkiBuyuklugu": -0.29,
+    "yon": "yalanda_azalir",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003", "Derren Brown"],
+    "not": "Doğru söyleyenler anılarını 'düzeltir'; hazırlanmış yalan fazla pürüzsüzdür. Ama CBCA'yı öğrenen yalancı bunu taklit edebilir (Vrij & Verschuere 2014)."
+  },
+  {
+    "id": "hatirlamiyorum-kabulu",
+    "ad": "Hatırlamadığını kabul etme",
+    "kanal": "sozel",
+    "betimlemeler": [
+      "'Kapıyı kim açtı, hatırlamıyorum açıkçası' dedi ve konuyu geçiştirmeye çalışmadı.",
+      "Bazı ayrıntılarda 'Bunu hatırlamıyorum' demekten çekinmedi.",
+      "Emin olmadığı yerde uydurmak yerine 'Bilmiyorum, dikkat etmemişim' dedi."
+    ],
+    "etkiBuyuklugu": -0.42,
+    "yon": "yalanda_azalir",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["DePaulo 2003"],
+    "not": "Doğrudan suç sorusuna 'hatırlamıyorum' demek farklıdır (Symptom Validity Test ile sınanabilir). Buradaki bulgu, ikincil ayrıntılarda hatırlamamayı kabul etmedir."
+  },
+  {
+    "id": "isbirligi-azligi",
+    "ad": "İş birliğine isteksizlik",
+    "kanal": "genel",
+    "betimlemeler": [
+      "Sorulara kısa, isteksiz cevaplar verdi; soruyu tekrar ettirmek gerekti.",
+      "Görüşmeyi bir an önce bitirmek istiyor gibiydi, açılım yapmadı.",
+      "Yardımcı olmaya çalışmıyor, sadece sorulanı en dar biçimde cevaplıyordu."
+    ],
+    "etkiBuyuklugu": -0.66,
+    "yon": "yalanda_azalir",
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["DePaulo 2003"],
+    "not": "Az sayıda çalışmaya dayanır (DePaulo 2003). Avukatının uyarısıyla susan masum ya da polise güvenmeyen kişi de iş birliği yapmaz."
+  },
+  {
+    "id": "genel-gerginlik",
+    "ad": "Genel gerginlik izlenimi",
+    "kanal": "genel",
+    "betimlemeler": [
+      "Omuzları kasıldı, ellerini birbirine kilitledi.",
+      "Sandalyede sürekli pozisyon değiştirdi, yerinde duramadı.",
+      "Sesi gergin, cümleleri kesik kesikti.",
+      "Yüzünde gergin bir ifade belirdi, çenesini sıktı."
+    ],
+    "etkiBuyuklugu": 0.27,
+    "yon": "yalanda_artar",
+    "kosullar": { "ihlal": 0.51 },
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["DePaulo 2003", "Ekman — Emotions Revealed", "Vrij 2010 PSPI"],
+    "not": "Othello hatasının ana kaynağı: masum ama inanılmamaktan korkan kişi de gerilir (Ekman). Gerginlik 'yalan' değil 'hangi konu rahatsız ediyor' bilgisi verir (Navarro)."
+  },
+  {
+    "id": "illustrator-azalmasi",
+    "ad": "El-kol vurgu hareketlerinin azalması",
+    "kanal": "beden",
+    "betimlemeler": [
+      "Normalde konuşurken elleriyle çizen biri, bu konuda ellerini kucağında tuttu.",
+      "Anlatımın vurgusu kayboldu; eller masanın altına çekildi.",
+      "Diğer sorularda canlı jestler yapıyordu; burada hareketsizleşti."
+    ],
+    "etkiBuyuklugu": -0.14,
+    "yon": "yalanda_azalir",
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["DePaulo 2003", "Vrij 2010 PSPI", "Ekman & Friesen 1969"],
+    "not": "Reid ipuçları arasında geçerli olan tek sözsüz ipucu (Vrij 2010). Etki küçük; temel çizgi şart. Kontrol çabası ('donma') ile ilgili; masum da kendini kontrol eder."
+  },
+  {
+    "id": "sahte-gulumseme",
+    "ad": "Sahte (Duchenne olmayan) gülümseme",
+    "kanal": "yuz",
+    "betimlemeler": [
+      "Gülümsedi ama gözleri katılmadı; dudak köşeleri yana gerildi, göz çevresi düz kaldı.",
+      "Gülümsemesi biraz uzun sürdü ve aniden söndü.",
+      "Zorlama bir gülümseme: ağız gülüyor, bakış aynı kalıyor."
+    ],
+    "etkiBuyuklugu": 0.31,
+    "yon": "yalanda_artar",
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["DePaulo 2003", "Ekman & O'Sullivan 1991", "Zloteanu 2020"],
+    "not": "Az örnek (DePaulo 2003). Duchenne gülümsemesi istemli de yapılabilir; nezaket gülümsemesi kültürel norm (Barrett 2019, Zloteanu 2020). Kibar gülümseme ≠ yalan."
+  },
+  {
+    "id": "goz-temasi",
+    "ad": "Göz temasından kaçınma",
+    "kanal": "yuz",
+    "betimlemeler": [
+      "Cevap verirken gözlerini kaçırdı, masaya baktı.",
+      "Bakışlarını pencereye çevirdi, sizinle göz göze gelmedi.",
+      "Yere bakarak konuştu."
+    ],
+    "etkiBuyuklugu": 0.01,
+    "yon": "iliskisiz",
+    "kosullar": { "motivasyon": -0.15 },
+    "kanitDuzeyi": "mit",
+    "kaynak": ["DePaulo 2003", "Bond & DePaulo 2006", "Vrij 2010 PSPI"],
+    "not": "32 tahminde d=.01: işe yaramaz. Motive yalancı göz temasını KORUR. Kültür ve utangaçlık temel çizgiyi belirler; bazı kültürlerde aşağı bakmak saygıdır. En yaygın halk inancı → Mitler Müzesi."
+  },
+  {
+    "id": "duraksama",
+    "ad": "Konuşmada duraksama ve dolgu sesleri",
+    "kanal": "vokal",
+    "betimlemeler": [
+      "Cevaptan önce kısa bir sessizlik oldu.",
+      "'Iıı… şey…' diye başladı.",
+      "Cümlenin ortasında durdu, sonra devam etti."
+    ],
+    "etkiBuyuklugu": 0.0,
+    "yon": "iliskisiz",
+    "kosullar": { "plansiz": 0.38, "motivasyon": 0.38 },
+    "kanitDuzeyi": "mit",
+    "kaynak": ["DePaulo 2003"],
+    "not": "Genelde ~.00; sadece plansız ve kimlik-motivasyonlu yalanlarda sessiz duraksama artar (+.38). Düşünen dürüst kişi de duraksar."
+  },
+  {
+    "id": "cevap-gecikmesi",
+    "ad": "Cevap gecikmesi (tepki süresi)",
+    "kanal": "vokal",
+    "betimlemeler": [
+      "Soru ile cevap arasında bir-iki saniyelik boşluk oldu.",
+      "Cevabı hemen vermedi; soruyu tartar gibi bekledi.",
+      "Bu soruda diğerlerine göre daha geç cevap verdi."
+    ],
+    "etkiBuyuklugu": 0.02,
+    "yon": "iliskisiz",
+    "kosullar": { "motivasyon": 0.36, "ihlal": 0.27 },
+    "kanitDuzeyi": "mit",
+    "kaynak": ["DePaulo 2003", "Vrij & Verschuere 2014"],
+    "not": "'1.7 saniye gecikme = yalan' türü kurallar meta-analizle uyuşmaz (genel d=.02). Sadece motivasyonlu/ihlal yalanlarında artar; planlı yalanda cevap hızlı gelir."
+  },
+  {
+    "id": "ayak-el-kipirdanma",
+    "ad": "El ve ayak kıpırdanması",
+    "kanal": "beden",
+    "betimlemeler": [
+      "Ayağını masanın altında salladı.",
+      "Parmaklarıyla masaya tıklattı.",
+      "Ayaklarını sandalyenin altına çekti, sonra tekrar uzattı."
+    ],
+    "etkiBuyuklugu": -0.09,
+    "yon": "iliskisiz",
+    "kosullar": { "ihlal": -0.24 },
+    "kanitDuzeyi": "mit",
+    "kaynak": ["DePaulo 2003", "Navarro", "Vrij 2010 PSPI"],
+    "not": "El .00, ayak -.09: net ilişki yok. Navarro 'ayaklar en dürüst' der; bilimsel desteği sınırlı. İhlal yalanlarında ayak hareketi AZALIR (donma), artmaz."
+  },
+  {
+    "id": "mikroifade",
+    "ad": "Mikroifade (kısa süreli yüz sızıntısı)",
+    "kanal": "yuz",
+    "betimlemeler": [
+      "Yüzünden bir anlık, yakalanması güç bir ifade geçti ve kayboldu.",
+      "Göz kırpma süresi kadar kısa bir kaş çatma belirip söndü.",
+      "Dudakları bir an bastırıldı, sonra yüz yeniden nötrleşti."
+    ],
+    "etkiBuyuklugu": 0.0,
+    "yon": "iliskisiz",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["Zloteanu 2020", "Vrij 2010 PSPI", "Barrett 2019"],
+    "not": "Sızıntı gerçek ama nadir; doğru anlatımlarda da olur (Porter & ten Brinke: olayların ~%2'si). Mikroifade eğitimi tanımayı artırır, yalan tespitini artırdığına dair nedensel kanıt yok. 'Mikroifade = yalan' → Mitler Müzesi. Oyunda yüz ipuçları daima bağlam + temel çizgi ile."
+  }
+]

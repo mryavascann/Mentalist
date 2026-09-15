@@ -39,3 +39,36 @@
 **Geliştirme fikirleri:**
 - İçerik testinde `kaynak` alanını `NOTLAR.md` başlıklarına karşı otomatik doğrula (K-004'ü test altına al).
 - Örüntü denetçisini baştan tasarla: vaka üreticisi yazılırken her özellik için "fail ile korelasyon ≈ 0" testi eş zamanlı gelsin.
+
+## [2026-09-16 01:05] Ajan #1 — Kullanıcı kararları, LLM araştırması, RNG ve içerik şemaları
+**Görev:** Kullanıcının kararlarını işlemek (ad, mekân, LLM, platform), zip'i silmek, commit atmak ve Aşama 0'ın son maddesi + Aşama 1'in ilk tuğlasıyla devam etmek.
+
+**Yapılanlar:**
+- Kararlar K-007…K-012'ye yazıldı; TASARIM §19 güncellendi; proje adı "The Mentalist" (surum.ts, package.json, index.html).
+- LLM sorusu araştırıldı (WebLLM gereksinimleri, Tracery/gramer yaklaşımı) → runtime'da LLM yok, seedli şablon-gramer motoru (K-009).
+- `vite-plugin-singlefile` eklendi; `npm run build` tek `dist/index.html` üretiyor (K-010). `docs/mentaldocs.zip` silindi.
+- Aşama 0 commit'i atıldı (2136a51).
+- TDD ile: `tests/ortak/rastgele.test.ts` (14 test) → `src/ortak/rastgele.ts`; `tests/icerik/semalar.test.ts` (16 test) → `src/icerik/{tipler,dogrula,index}.ts` + 6 JSON kütüğü. Önce kırmızı görüldü, sonra yeşil.
+- İçerik: 36 kaynak kaydı (NOTLAR başlık anahtarlarıyla), 16 ipucu (DePaulo 2003 d değerleri, koşullar, 3+ betimleme varyantı), 15 ifade türü, 12 teknik (etkiler = tasarım parametresi), 29 Kılavuz maddesi, 18 hata etiketi (Funder RAM katmanlı).
+
+**Değişen dosyalar:** docs/{KARARLAR,TASARIM,DURUM,YOL_HARITASI,brand,00_BASLA_BURADAN}.md, vite.config.ts, package.json, index.html, src/ortak/{surum,rastgele}.ts, src/icerik/*, tests/ortak/rastgele.test.ts, tests/icerik/semalar.test.ts.
+
+**Testler:** 32 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dosya.
+
+**Alınan kararlar:** K-007…K-012.
+
+**Sorunlar / riskler:**
+- "The Mentalist" adı tescilli; kullanıcı uyarıyı bilerek seçti (K-007).
+- `etkiler` sayıları (teknikler.json) kaynaktan gelen ölçüm değil, tasarım parametresi; denge botları ile ayarlanacak. Bu ayrım tipler.ts yorumunda belirtildi.
+- Doğrulayıcı `iliskisiz` eşiği |d| ≤ 0.1 (DePaulo'daki .01–.09 aralığına göre); ileride tartışılabilir.
+
+**Yarım kalanlar:** Aşama 1 ilk tuğlası (çekirdek tipler + doğruluk grafiği) bu kayıttan sonra başlıyor; tamamlanmazsa DURUM.md "Sıradaki 3 iş" geçerli.
+
+**Sıradaki ajan için:**
+1) `src/motor/tipler.ts` + `src/motor/gerceklik.ts` (mekân, kişiler, ilişki/borç grafiği, olay, zaman çizelgesi, fail) — önce test.
+2) İlk örüntü denetimi testini hemen yaz: 500 seed'de failin indeks/özellik dağılımı düzgün mü.
+3) Bilgi dağılımı ve sırlar katmanı.
+
+**Geliştirme fikirleri:**
+- İpucu kataloğunu Navarro'nun "yatıştırıcı davranış" kümesiyle (kanitDuzeyi: zayif, kaynak: Navarro) genişlet; hepsi "hangi konu" sinyali olarak modellenir.
+- Kılavuz'a "Bellek ve Tanıklık" ile "Soğuk Okuma" bölümleri (içerik NOTLAR'da hazır).

@@ -1,40 +1,36 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 01:05, Ajan #1.
 
 ## Aktif aşama
-**Aşama 0 — Kurulum** (büyük ölçüde tamam; iki madde açık, bkz. YOL_HARITASI.md)
+**Aşama 1 — Motor** başladı. Aşama 0 tamamlandı (kurulum + içerik şemaları).
 
 ## Biten işler
-- Klasör yapısı, kaynaklar (`docs/kaynaklar/mentaldocs/`: 7 kitap + 59 makale) ve kaynak indeksi.
-- Belge seti: 00_BASLA_BURADAN, DURUM, AJAN_GUNLUGU, KARARLAR (K-001…K-006), YOL_HARITASI, brand.md, TASARIM.md (tohumdan), AJAN_PROMPTU.md.
-- TypeScript 7 + Vite 8 + React 19 + Vitest 5 kurulu; `npm test`, `npm run typecheck`, `npm run build` yeşil.
-- `src/ortak/surum.ts` + `tests/duman.test.ts` (2 test).
+- Kurulum: klasörler, kaynaklar (7 kitap + 59 makale, git dışı), belge seti, TS 7 + Vite 8 + React 19 + Vitest 5, tek dosya derleme (K-010).
+- Kullanıcı kararları işlendi: K-007…K-012 (ad, mekân, LLM yok, tek HTML, kayıt, Kılavuz açık).
+- `src/ortak/rastgele.ts`: seedli RNG (mulberry32 + FNV-1a), tamsayi/sec/karistir/agirlikliSec/sans/normal/altUret. 14 test.
+- `src/icerik/`: tipler, doğrulayıcı, yükleyici + 6 JSON kütüğü: 36 kaynak, 16 ipucu (DePaulo 2003 d değerleriyle), 15 ifade türü, 12 teknik, 29 Kılavuz maddesi (5 bölüm: yalan-tespitinin-bilimi, sorgulama-teknikleri, bilissel-yanliliklar, kisilik-okuma, mitler-muzesi), 18 hata etiketi. 16 içerik testi (K-004 NOTLAR eşleşmesi dahil).
 
 ## Sıradaki 3 iş
-1. **İçerik şemaları** (Aşama 0 son maddesi): `src/ortak/tipler.ts` içinde İpucuKaydı, İfadeTürü, SoruTürü, KılavuzMaddesi tipleri; `src/icerik/` altına her biri için 2–3 örnek JSON; içerik testi (her kaydın `kaynak` alanı NOTLAR.md başlıklarından biriyle eşleşiyor mu, kanıt düzeyi geçerli mi).
-2. **Seedli rastgelelik** (Aşama 1 ilk tuğla): `src/ortak/rastgele.ts` — aynı seed aynı dizi; `sec`, `karistir`, `agirlikliSec`, `normal` yardımcıları; testleri.
-3. **Çekirdek tipler ve doğruluk grafiği** (Aşama 1): Kişi, İlişki/Borç grafiği, Zaman çizelgesi, Olay, Delil, İfade; "önce gerçek" üreticisinin ilk sürümü + tutarlılık testi.
+1. **Çekirdek tipler + doğruluk grafiği v0** (`src/motor/tipler.ts`, `src/motor/gerceklik.ts`): mekân, isim havuzu, 5–8 kişi, ilişki/borç grafiği, olay çekirdeği, gerçek zaman çizelgesi, fail seçimi. Testler: aynı seed aynı vaka; zaman çizelgesi tutarlı (kimse aynı anda iki yerde değil); fail dağılımı düzgün (ilk örüntü denetimi).
+2. **Bilgi dağılımı + sırlar**: kim neyi nasıl biliyor (gördü/duydu/dedikodu); suçla ilgili ve ilgisiz sırlar; koruma ilişkileri (borç grafiğinden).
+3. **NPC konuşma stratejisi + yalan defteri**: her soru için doğru/yalan/gizleme/kaçamak kararı; tutarlılık testi (yalanı kendi defteriyle çelişmez; doğru dediği gerçekle eşleşir).
 
 ## Açık kararlar (kullanıcıya sorulacak)
-1. Oyun adı ve kahramanın adı (çalışma adı: Soğuk Okuma; alternatifler: Temel Çizgi, Sızıntı, Kanepe).
-2. Mekân: Türkiye'de kurgusal şehir mi, yurtdışı mı?
-3. Runtime'da LLM kullanılacak mı (yalnızca diyalog üslubu için)? Hangi sınırlarla?
-4. Platform: tarayıcı (öneri) / masaüstü paketi.
-5. Kılavuz maddeleri baştan mı açık, karşılaşıldıkça mı?
-6. Kayıt: tarayıcı depolaması mı, dosya dışa aktarma mı?
-7. Kaynak PDF'ler git'e alınmasın kararı (K-002) uygun mu?
-8. `docs/mentaldocs.zip` (120 MB) açıldı; artık silinebilir — kullanıcı onayı bekleniyor.
+1. Vaka başına hedef oyun süresi (öneri 20–40 dk).
+2. "Cam arkası" modu için ikinci oyuncu (sorgucu) düşünülsün mü? (Şimdilik tek oyuncu varsayımı.)
+3. "The Mentalist" adının telif riski uyarısı verildi (K-007); ticari plan olursa yeniden konuşulacak.
 
 ## Bilinen hatalar
 - Yok.
 
 ## Test durumu
-- `npm test`: 1 dosya, 2 test geçti (2026-09-16 00:36).
+- `npm test`: 3 dosya, 32 test geçti (2026-09-16 01:03).
 - `npm run typecheck`: temiz.
-- `npm run build`: temiz (219 KB JS, 69 KB gzip).
+- `npm run build`: tek `dist/index.html`, harici script yok.
 
 ## Notlar
 - Wiseman ve Rowland kitapları Bookey özeti (K-006).
 - Bu makinede `pdftotext` var; PDF'leri sayfa aralığıyla oku.
-- Henüz commit atılmadı; ilk commit kullanıcı onayıyla.
+- Uzun Markdown/JSON dosyalarını Bash heredoc yerine doğrudan dosya yazma aracıyla yaz (kaçış hatası yaşandı).
+- `dist/index.html`'in `file://` altında gerçekten açıldığı henüz tarayıcıda elle doğrulanmadı; Aşama 2'de Playwright ile otomatikleştirilecek.

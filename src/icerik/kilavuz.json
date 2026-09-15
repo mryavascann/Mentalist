@@ -1,0 +1,314 @@
+[
+  {
+    "id": "dogruluk-yuzde-54",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "İnsanlar yalanı ne kadar yakalar? Yaklaşık %54",
+    "ozet": "206 çalışma, 24 binden fazla yargıç: ortalama doğruluk %54 (şans %50). Polis, hâkim, gümrükçü gibi 'uzmanlar' öğrencilerden iyi değil, sadece daha şüpheci.",
+    "nasilKullanilir": "Kendi sezgine güvenme; yöntem kullan. Sadece görüntüye bakmak doğruluğu düşürür; sözü dinlemek (ses/transkript) daha iyidir.",
+    "sinirlari": "Laboratuvar yalanları düşük riskli; yüksek riskli gerçek yalanlar farklı olabilir. Yine de gerçek hayatta yalanların %2'den azı yalnızca davranıştan yakalanır (Park et al. 2002).",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Bond & DePaulo 2006", "Vrij 2010 PSPI"]
+  },
+  {
+    "id": "dogruluk-yanliligi",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Doğruluk yanlılığı ve yalan yanlılığı",
+    "ozet": "İnsanlar ifadelerin ~%56'sına 'doğru' der; doğruların %61'i, yalanların %47'si doğru sınıflanır. Sadece görüntü izleyen polisler ise tersine 'yalan' demeye eğilimlidir.",
+    "nasilKullanilir": "Tanıdığına daha çok inanırsın; yakın ilişki doğruluğu düşürür. Bir kişiye 'doğru' dediğinde bunun varsayılan olduğunu hatırla ve delil ara.",
+    "sinirlari": "Yalan taban oranı yüksek ortamda (sorgu odası) doğruluk yanlılığı azalır ama doğruluk artmaz.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Bond & DePaulo 2006", "Vrij 2010 PSPI"]
+  },
+  {
+    "id": "ipuclari-zayiftir",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Pinokyo'nun burnu yok: davranış ipuçları zayıftır",
+    "ozet": "158 ipucunun dörtte üçü yalanla ilişkisiz; ilişkili olanların ortalama etkisi küçük (d≈.25). İnsanlar yanlış ipucuna değil, zayıf ipucuna bakıyor.",
+    "nasilKullanilir": "Tek bir davranışı kanıt sayma. İpucu = 'bu konuyu kurcala' sinyali (hotspot). Kesinlik delil, çelişki ve doğrulamayla gelir. Sözel ipuçları sözsüzden daha tanılayıcıdır.",
+    "sinirlari": "Yalancı ile doğrucu arasındaki farkı BÜYÜTEN yöntemler (bilişsel yük, SUE, beklenmedik soru) olmadan ipuçları neredeyse işe yaramaz.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["DePaulo 2003", "Hartwig & Bond 2011", "Vrij 2010 PSPI"],
+    "iliskiliTeknikler": ["acik-uclu-anlatim", "temel-cizgi"]
+  },
+  {
+    "id": "othello-hatasi",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Othello hatası: gergin masum",
+    "ozet": "Duyguyu doğru okuyup kaynağını yanlış bağlamak. Suçlunun yakalanma korkusu ile masumun inanılmama korkusu aynı görünür. Desdemona masumdu.",
+    "nasilKullanilir": "Bir kişi gerildiğinde sor: 'Masum biri de bu durumda gerilir miydi?' Alternatif nedenleri listele: inanılmama korkusu, alakasız sır, kişisel tetikleyici, utangaçlık, kültür.",
+    "sinirlari": "Motivasyonlu kişi (inanılmak isteyen) yalan söylese de söylemese de daha yalancı görünür. Suçlayıcı ton bu hatayı büyütür.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Ekman — Emotions Revealed", "Vrij 2010 PSPI", "Bond & DePaulo 2006"]
+  },
+  {
+    "id": "guven-dogruluk-iliskisi",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Emin olmak doğru olmak değildir",
+    "ozet": "Yalan tespitinde güven ile doğruluk arasındaki ilişki yok denecek kadar küçük (r≈.04). Deneyim ve bilgi arttıkça güven artar, doğruluk artmaz.",
+    "nasilKullanilir": "Her suçlamada güven yüzdesi beyan et; oyun kalibrasyon grafiğini tutar. '%90 eminim' dediğin vakaların gerçekten %90'ını doğru bildin mi?",
+    "sinirlari": "Kalibrasyonu kendi başına keşfedemezsin; olayları verdiğin olasılığa göre gruplamazsın. Dış kayıt şart.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Ekman & O'Sullivan 1991", "Vrij 2010 PSPI", "Tversky & Kahneman 1974"]
+  },
+  {
+    "id": "temel-cizgi",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Temel çizgi ve 'hangi soruda?'",
+    "ozet": "Sapma, kişinin kendi normaline göre ölçülür. Navarro'nun bilimle uyumlu en değerli kısmı: temel çizgi, kümeler, değişim ve stresin HANGİ konuya bağlandığı.",
+    "nasilKullanilir": "Tarafsız sohbetle normali öğren; sonra aynı soruyu farklı biçimlerde sorup tepkinin konuya bağlı olup olmadığını haritalandır (stres ısı haritası).",
+    "sinirlari": "Küçük sohbet temel çizgisi ≠ suç sorusu temel çizgisi ('karşılaştırılabilir doğru'). Bekçi yangın sorusunda gerildi ama kundakçı değildi; kız arkadaşındaydı.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij 2010 PSPI", "Navarro"],
+    "iliskiliTeknikler": ["temel-cizgi"]
+  },
+  {
+    "id": "sorgu-heuristikleri",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Sorgucunun kısayolları (heuristikler)",
+    "ozet": "Sorgulayıp iz bulamayınca daha çok inanmak (sorgulama), tutarlı olanı doğru sanmak (tutarlılık), tuhaf davranışı yalan sanmak (beklenti ihlali), 'tipik suçlu'ya benzeyeni suçlamak (temsil).",
+    "nasilKullanilir": "Kararından önce hangi kısayola dayandığını adlandır. Tutarlı hikâye prova edilmiş olabilir; tuhaf davranış kişilik olabilir.",
+    "sinirlari": "Kısayollar çoğu zaman işe yarar; sorun tek ipucuna ve stres altında dayanmaktır.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij 2010 PSPI", "Cialdini"]
+  },
+  {
+    "id": "ram-dort-katman",
+    "bolum": "kisilik-okuma",
+    "baslik": "Bir okuma neden yanlış çıkar? Dört halka (Funder RAM)",
+    "ozet": "Doğruluk = İlgililik × Erişilebilirlik × Fark etme × Kullanma. Çarpımsal: her halka %90 olsa doğruluk %66. Biri sıfırsa okuma sıfır.",
+    "nasilKullanilir": "Vaka sonu analizinde hatanı dört katmandan biriyle etiketle: (1) ipucu ilgisizdi, (2) ipucu önünde değildi, (3) fark etmedin, (4) yanlış yorumladın. Her katmanın ilacı farklıdır.",
+    "sinirlari": "Kişilik yargısı için geliştirildi; yalan tespitine uyarlanması bizim tasarım tercihimiz.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Funder 1995"]
+  },
+  {
+    "id": "sue",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Stratejik delil kullanımı (SUE)",
+    "ozet": "Delili sona sakla. Suçlu 'kaçınma/inkâr' stratejisiyle delile değmemeye çalışır; delil açılınca hikâyesiyle çelişir. Eğitimsiz %56 → SUE ile %85 doğruluk.",
+    "nasilKullanilir": "Serbest anlatım → delilin konusuyla ilgili soru (delili açmadan) → delili aç, çelişkiyi sor. Masum 'masumiyetim görünür' diye açık konuşur.",
+    "sinirlari": "Delil olmadan işlemez. Delil zayıfsa (sızmış bilgi, belirsiz görüntü) çelişki masumda da çıkabilir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Vrij 2010 PSPI"],
+    "iliskiliTeknikler": ["sue"]
+  },
+  {
+    "id": "bilissel-yuk",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Bilişsel yük: yalanı zorlaştır",
+    "ozet": "Yalan söylemek doğru söylemekten zordur; yük eklenince (ters sıra, göz temasını sürdürme, ikinci görev) fark büyür. Ters sırada anlattırma tespiti %42'den %60'a çıkardı.",
+    "nasilKullanilir": "İlk serbest anlatımdan sonra ters sırayla anlattır; ayrıntı kaybı, duraksama ve çelişkileri karşılaştır.",
+    "sinirlari": "Herkes zorlanır; temel çizgi ve karşılaştırma şart. Prova edilmiş, senaryo yalanlarda etki azalır.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij 2010 PSPI"],
+    "iliskiliTeknikler": ["bilissel-yuk-ters-sira"]
+  },
+  {
+    "id": "beklenmedik-soru",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Beklenmedik soru ve çizim",
+    "ozet": "Yalancı beklenen soruları prova eder; mekânsal ('en yakın masa'), zamansal ('kim önce çıktı') ve çizim isteği prova dışıdır. Yalancı çiftler %80 ayırt edildi.",
+    "nasilKullanilir": "Grup alibisinde kişileri ayrı ayrı sorgula; aynı beklenmedik soruyu sor; cevapları ve çizimleri karşılaştır.",
+    "sinirlari": "Doğrucu da ayrıntı unutabilir; 'bilmiyorum' demesi normal. Yalancı çocuklar imkânsız sorulara bile cevap uydurur.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij 2010 PSPI"],
+    "iliskiliTeknikler": ["beklenmedik-soru"]
+  },
+  {
+    "id": "gizli-bilgi-testi",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Gizli bilgi testi (CIT)",
+    "ozet": "Sadece failin bilebileceği ayrıntıyı benzer seçenekler arasında sun; tanıma tepkisi (kalp hızında düşüş, dikkat) fail lehine kanıttır. Yanlış suçlama nadir, ama kullanılabilir ayrıntı her vakada yoktur.",
+    "nasilKullanilir": "Ayrıntının sızıp sızmadığını kontrol et (basın, tanıklar, dedikodu). Seçenekleri eşit inandırıcı yap. Buz kıracağı sorusu: gerçek silah geçince göz kapakları uzun süre kapandı.",
+    "sinirlari": "Sızmış ayrıntı testi geçersiz kılar; fail ayrıntıyı fark etmemiş olabilir. 'Sadece failin bilebileceği' varsayımı hot reading ile çöker.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij & Verschuere 2014", "Navarro"],
+    "iliskiliTeknikler": ["gizli-bilgi-testi"]
+  },
+  {
+    "id": "symptom-validity-test",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Zorunlu seçim: şans altı skor",
+    "ozet": "Gerçekten hatırlamayan iki seçenekli sorularda ~%50 tutturur. Doğruyu bilip 'hatırlamıyorum' diyen kaçınır ve şans ALTINDA kalır. Amnezi taklidi yapanların %40'ı böyle yakalandı.",
+    "nasilKullanilir": "10–15 iki seçenekli soru; şans altı kümelenme = kasıtlı kaçınma. Yalancılar ilk yarıda doğru seçenekten özellikle kaçınır.",
+    "sinirlari": "Az soru şansa açık. İkincil ayrıntıları hatırlamamak normaldir; test doğrudan olay bilgisi için.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij & Verschuere 2014"],
+    "iliskiliTeknikler": ["zorunlu-iki-secenek"]
+  },
+  {
+    "id": "yonlendirici-soru-riski",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Yönlendirici soru anıyı değiştirir",
+    "ozet": "'Arabalar çarpıştığında' diye soranlar daha yüksek hız tahmini verdi ve bir hafta sonra olmayan kırık camı 'hatırladı'. Tekrar tekrar sorgulanan tanık 'hatırlamaya' başlar.",
+    "nasilKullanilir": "Açık uçlu sor, sonra daraltarak ilerle. Tanığın söylediği her ayrıntı için 'bunu ilk kim söyledi?' kaydını tut. Aynı tanığı gereksiz tekrar sorgulama.",
+    "sinirlari": "Tamamen yönlendirmesiz soru yoktur; amaç kontaminasyonu asgariye indirmek ve kaydını tutmaktır.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Loftus & Pickrell 1995", "French 2024", "Konnikova"],
+    "iliskiliTeknikler": ["yonlendirici-soru"]
+  },
+  {
+    "id": "saskinlik-testi",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Şaşkınlık testi",
+    "ozet": "Şaşkınlık en kısa duygudur ve ancak ani, beklenmedik bilgiye verilir. Bildiğini iddia ettiği şeye şaşıran yalan söylüyordur; bilmemesi gerekene şaşırmayan zaten biliyordur.",
+    "nasilKullanilir": "Bilgiyi hazırlıksız yakalayacak biçimde ver; ilk tepkiyi izle, sonra gelen düzeltilmiş ifadeyi değil.",
+    "sinirlari": "Ekman'ın gözlemi, kontrollü çalışması az. Şaşkınlık bastırılabilir ve taklit edilebilir; irkilme ise refleks, bilgiyle ilgisiz.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["Ekman — Emotions Revealed"],
+    "iliskiliTeknikler": ["saskinlik-testi"]
+  },
+  {
+    "id": "sahte-bilgi-yemi",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Sahte bilgi yemi",
+    "ozet": "Medyumlara karşı kullanılan 'psychic baiting': uydurma bir ayrıntı ver, onaylayıp büyüteni ifşa et. Derren Brown'un uydurma ölü kadını için Ouija 'mesajlar' üretti.",
+    "nasilKullanilir": "Sadece uydurduğunu bilebileceğin bir ayrıntı sor. Onaylayan ve süsleyen kişinin anlatısına güvenme.",
+    "sinirlari": "Etik ve kontaminasyon riski: masumun anısına sahte ayrıntı yerleştirebilirsin; telkine yatkın kişi samimiyetle 'hatırlar'. Bulgu sihir/medyum bağlamından; adli kanıtı yok.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["Rowland", "Derren Brown"],
+    "iliskiliTeknikler": ["sahte-bilgi-yemi"]
+  },
+  {
+    "id": "seytanin-avukati",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Şeytanın avukatı sorusu",
+    "ozet": "Gerçek görüş sahibinin lehte argümanı uzun ve zengin, aleyhte argümanı kısa olur; yalancıda fark küçüktür (%86 vs %79 sınıflama).",
+    "nasilKullanilir": "Görüş ve niyet ifadelerinde uygula: 'Neden böyle düşünüyorsun?' sonra 'Şimdi karşı tarafı savun.'",
+    "sinirlari": "Olay anlatımı için değil, görüş/niyet için. Sözel beceri farkları etkiyi bozar.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": ["Vrij 2010 PSPI"],
+    "iliskiliTeknikler": ["seytanin-avukati"]
+  },
+  {
+    "id": "suclayici-ton",
+    "bolum": "sorgulama-teknikleri",
+    "baslik": "Bilgi toplama tarzı vs suçlayıcı tarz",
+    "ozet": "Suçlayıcı tarz hem masumu hem yalancıyı gerer; yalancıya 'bana inanmıyorsunuz, konuşmam' kaçışı verir. Açık soru ve rahat ortam daha çok bilgi ve daha iyi ayrım verir.",
+    "nasilKullanilir": "Önce rahatlık kur (temel çizgi için de gerekir). 'Anlamadım, tekrar anlatır mısın?' gibi açık isteklerle ayrıntı al. Makineli soru sorma.",
+    "sinirlari": "Baskı bazen bilgi de getirir; ama sahte itiraf ve kirlenmiş ifade maliyeti yüksektir.",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Vrij 2010 PSPI", "Navarro"],
+    "iliskiliTeknikler": ["suclayici-ton"]
+  },
+  {
+    "id": "capalama",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Çapalama: ilk rakam yapışır",
+    "ozet": "Çarkta 10 çıkanlar Afrika ülkelerini %25, 65 çıkanlar %45 tahmin etti. Saçma çapalar bile çalışır. Mekanizma: çapaya uyan bilgiyi hatırlarsın.",
+    "nasilKullanilir": "Tanığa 'gece ikiden önce mi sonra mı?' sorusu çapa koyar. Kendi ilk şüphelin de çapadır: 'Karşıt hipotezi yaz' düğmesini kullan.",
+    "sinirlari": "Kişi çapalamayı kendi ürettiği için fark etmez; düzeltmek için alternatif hipotez üretmek gerekir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Tversky & Kahneman 1974", "Strack & Mussweiler 1997"]
+  },
+  {
+    "id": "dogrulama-yanliligi",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Doğrulama yanlılığı ve tünel görüşü",
+    "ozet": "Bir fikri benimseyince onu destekleyen her şeyi görürsün. Polis Edalji'ye karşı delil aradı, suçluyu değil. Wason kart görevi: insanlar doğrulayan kartı çevirir, çürüteni değil.",
+    "nasilKullanilir": "Her hipotez için 'hangi bulgu bunu çürütür?' sorusunu yaz. Fiziksel imkânsızlık kontrolü yap (görme, boy, zaman).",
+    "sinirlari": "Şüphecilik de bir inançtır; çürütmeyi seven kişi karşı kanıtı da aşırı titiz inceleyebilir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Konnikova", "Derren Brown", "French 2024"]
+  },
+  {
+    "id": "hale-etkisi",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Hale etkisi: çekici, sempatik, zengin",
+    "ozet": "Çekici sanıklar iki kat daha az hapis alır; 'sıcak' tek kelimesi tüm izlenimi değiştirir. Watson Mary Morstan'ı görünüşünden 'saf ve hassas' okudu; Holmes: 'En çekici kadın üç çocuğunu zehirledi.'",
+    "nasilKullanilir": "'Bu kişiyi beklediğimden fazla mı sevdim?' diye sor; kişiyi ifadeden ayır. Kişi kartındaki ilk sıfatın seni yönlendirdiğini bil.",
+    "sinirlari": "Olumlu özellikler gerçekten birlikte bulunabilir; haleyi tamamen silmek yargıyı kötüleştirebilir (Funder). Amaç fark etmek.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Cialdini", "Konnikova", "Funder 1995"]
+  },
+  {
+    "id": "sosyal-kanit",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Sosyal kanıt ve çoğulcu cehalet",
+    "ozet": "Belirsizlikte başkalarına bakarız. 38 tanık kimse aramadı: sorumluluk dağılımı + herkes sakin görünüyor. Takımının çoğunluk görüşü seni yanlış şüpheliye itebilir.",
+    "nasilKullanilir": "Takım görüşünü duymadan önce kendi tahminini yaz. Tanıkların pasifliğini suç ortaklığı sanma. Sahte sosyal kanıtı (kayıtlı gülme, sahte kuyruk) tanı.",
+    "sinirlari": "Sosyal kanıt çoğu zaman işe yarar; sorun belirsizlik ve benzerlik altında körce uymaktır.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Cialdini", "Cialdini & Goldstein 2004"]
+  },
+  {
+    "id": "asiri-ozguven",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Aşırı özgüven ve 'çok bilgi' tuzağı",
+    "ozet": "Bilgi arttıkça güven artar, doğruluk artmaz: klinik psikologlar dosya büyüdükçe %33'ten %53'e emin oldu, doğruluk %28'de kaldı. %98 güven aralıklarının %30'u ıskalar.",
+    "nasilKullanilir": "Topladığın ipucu sayısı güvenini yükseltir; kalibrasyon grafiğine bak. Zor vakada aşırı, kolayda düşük güven duyarsın.",
+    "sinirlari": "Kalibrasyon ancak dış kayıtla (karar günlüğü) görülür.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": ["Tversky & Kahneman 1974", "Konnikova", "Ekman & O'Sullivan 1991"]
+  },
+  {
+    "id": "ic-masalci",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "İç masalcı: tutarsızlığı açıklamayla kapatmak",
+    "ozet": "Beyin nedensellik ister; bir tutarsızlık görünce test etmeden akla yatkın bir hikâye uydurur. Watson tortulu tek kadehi 'son doldurulan' diye açıkladı; gerçek: sahnelenmiş suç, iki kadeh.",
+    "nasilKullanilir": "Bir tutarsızlığa açıklama bulduğunda sor: 'Bunu test ettim mi, yoksa sadece akla yatkın mı?' Gözlemi çıkarımdan ayır (iki sütun).",
+    "sinirlari": "Konfabulasyon herkeste; tanıkların 'neden' açıklamaları da güvenilmezdir (Nisbett & Wilson).",
+    "kanitDuzeyi": "orta",
+    "kaynak": ["Konnikova", "Nisbett & Wilson 1977"]
+  },
+  {
+    "id": "mit-goz-temasi",
+    "bolum": "mitler-muzesi",
+    "baslik": "MİT: Göze bakamayan yalancıdır",
+    "ozet": "32 tahmin, d=.01. Göz teması yalanla ilişkisiz. Motive yalancı göz temasını korur; Makyavelist kişiler daha çok bakar. Kültür ve utangaçlık aşağı bakmayı belirler.",
+    "nasilKullanilir": "Göz kaçırmayı kanıt sayma. Olsa olsa temel çizgiden sapma ve 'hangi konuda' bilgisi verir.",
+    "sinirlari": "Öznel 'göz teması' izlenimi (-.28) nesnel sayımdan farklı; insanlar yine de sezgisel bir şey yakalıyor olabilir, ama bu göz değil genel beceriksizlik izlenimidir.",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["DePaulo 2003", "Bond & DePaulo 2006", "Vrij 2010 PSPI", "Derren Brown"]
+  },
+  {
+    "id": "mit-nlp-goz-hareketleri",
+    "bolum": "mitler-muzesi",
+    "baslik": "MİT: Sağ yukarı bakan uyduruyor (NLP)",
+    "ozet": "Üç çalışma: göz yönü ile yalan arasında ilişki yok; NLP eğitimi alanlar daha doğru değil. NLP araştırma tabanında test edilen önermelerin çoğu desteklenmedi.",
+    "nasilKullanilir": "'NLP uzmanı' danışman karakterin okumalarına güvenme. Göz yönünden yalan okuma iddiası hata raporunda 'mit' olarak işaretlenir.",
+    "sinirlari": "Bazı bireylerde tutarlı örüntü olabilir ama genel kural yoktur; gözlemci beklentisiyle görür.",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["Wiseman 2012", "Witkowski 2010 & 2012", "Derren Brown"]
+  },
+  {
+    "id": "mit-mikroifade-yalan",
+    "bolum": "mitler-muzesi",
+    "baslik": "MİT: Mikroifade = yalan (Lie to Me yanılgısı)",
+    "ozet": "Mikroifadeler nadir, kısmi, çoğu 0.5 saniyeden uzun ve doğru anlatımlarda da görülür. Yüz ifadesi → duygu çıkarımı zayıf güvenilirlikte (beklenen yüz ortalama %19 görülür). Otomatik yüz okuma sistemleri bilimsel olarak çürük.",
+    "nasilKullanilir": "Yüz ipuçlarını daima bağlam, temel çizgi ve sesle birlikte, olasılıksal oku. 'Kaş çattı = öfkeli' deme; kaş çatma konsantrasyon, şaşkınlık, ışık da olabilir.",
+    "sinirlari": "Sızıntı gerçek bir olgudur; sorun 'sızıntı = yalan' ve 'yüz = duygu' teşhis kesinliğidir.",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["Zloteanu 2020", "Barrett 2019", "Vrij 2010 PSPI"]
+  },
+  {
+    "id": "mit-reid-ipuclari",
+    "bolum": "mitler-muzesi",
+    "baslik": "MİT: Reid ipuçları (göz kaçırma, kaşınma, kıpırdanma)",
+    "ozet": "Reid manueli ipuçlarıyla eğitilenler eğitimsizlerden DAHA KÖTÜ tespit yaptı; listedeki tek geçerli ipucu illüstratör azalması. Reid davranış analizi görüşmesi laboratuvarda tersine çıktı.",
+    "nasilKullanilir": "Kaşınma, ellerini sürtme, kıpırdanma → kanıt değil. Navarro'nun yatıştırıcı davranışları en fazla 'hangi konu rahatsız etti' sinyalidir.",
+    "sinirlari": "Bazı sorgucular saha deneyimiyle iyi olabilir; ama genelleştirilebilir kural yoktur.",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["Vrij 2010 PSPI", "Vrij & Verschuere 2014", "DePaulo 2003"]
+  },
+  {
+    "id": "mit-ses-stres-analizi",
+    "bolum": "mitler-muzesi",
+    "baslik": "MİT: Ses stres analizi ve 'beyin parmak izi'",
+    "ozet": "Ses stres analizörleri (VSA/LVA) şans düzeyinde; üretici eleştirel makaleyi dava tehdidiyle kaldırttı. fMRI yalan dedektörleri ve beyin parmak izi abartılı, karşı önlemlerle çöküyor (parmak kıpırdatmak doğruluğu %100'den %33'e düşürdü).",
+    "nasilKullanilir": "'Makine yalanı ölçtü' diyen raporu kaynak ve yöntemiyle sorgula. Sahte teknoloji blöfü (sahte poligraf) itiraf alabilir ama gerçek mi?",
+    "sinirlari": "Gizli bilgi testi (CIT) ile ölçülen tanıma tepkisi farklıdır ve kısmen geçerlidir.",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["Vrij & Verschuere 2014"]
+  },
+  {
+    "id": "mit-cevap-gecikmesi",
+    "bolum": "mitler-muzesi",
+    "baslik": "MİT: Geç cevap veren yalan söylüyor",
+    "ozet": "Cevap gecikmesi genel etkisi d=.02, cevap uzunluğu -.03, konuşma hızı .07: hepsi neredeyse sıfır. Yalnızca plansız ve kimlik-motivasyonlu yalanlarda gecikme artar; planlı yalanda cevap hızlı gelir.",
+    "nasilKullanilir": "'1.7 saniye kuralı' gibi sabit eşikleri unut. Gecikme ancak temel çizgiyle ve soru türüyle (beklenmedik mi?) birlikte anlam taşır.",
+    "sinirlari": "Beklenmedik soruya gecikme, bilişsel yük tekniklerinin parçası olarak bilgi verebilir.",
+    "kanitDuzeyi": "mit",
+    "kaynak": ["DePaulo 2003", "Vrij & Verschuere 2014"]
+  }
+]
