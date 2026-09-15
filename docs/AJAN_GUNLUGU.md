@@ -72,3 +72,32 @@
 **Geliştirme fikirleri:**
 - İpucu kataloğunu Navarro'nun "yatıştırıcı davranış" kümesiyle (kanitDuzeyi: zayif, kaynak: Navarro) genişlet; hepsi "hangi konu" sinyali olarak modellenir.
 - Kılavuz'a "Bellek ve Tanıklık" ile "Soğuk Okuma" bölümleri (içerik NOTLAR'da hazır).
+
+## [2026-09-16 01:20] Ajan #1 — Doğruluk grafiği v0 (Aşama 1 ilk tuğla)
+**Görev:** Çekirdek motor tipleri ve "önce gerçek" üreticisi; ilk örüntü denetimi.
+
+**Yapılanlar:**
+- `tests/motor/gerceklik.test.ts` önce yazıldı (18 test; tekrar üretilebilirlik, yapısal tutarlılık, 600 seed örüntü denetimi), kırmızı görüldü.
+- `src/motor/tipler.ts` (Mekan, Kisi, Kisilik, Iliski, Borc, OlayCekirdegi, Konum, Vaka), `src/motor/havuzlar.ts` (isim havuzları TR/yurtdışı, 8 mekân şablonu, eylemler, ilişki/olay/motivasyon şablonları), `src/motor/gerceklik.ts` (`vakaUret`, `DILIM_SAYISI`).
+- Tasarım tercihleri: fail kurban dışı adaylardan düzgün dağılımla; kişilik failden bağımsız; olay türü ağırlıkları cinayet 55 / hırsızlık 20 / sabotaj 15 / kaza 10 (kaza = suçsuz vaka); tek "eş" kuralı; herkesin kurbanla bir ilişkisi var; her katman ayrı alt akış.
+
+**Değişen dosyalar:** src/motor/{tipler,havuzlar,gerceklik}.ts, tests/motor/gerceklik.test.ts, docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 50 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Yeni numaralı karar yok; tasarım tercihleri modül başı yorumlarında.
+
+**Sorunlar / riskler:**
+- Örüntü denetimi şimdilik kaba (kova payı 0.15–0.35, kaygı farkı < .05). Tam denetçi (korelasyon matrisi, çok özellik) Aşama 1 sonunda yazılacak.
+- Zaman çizelgesinde failin olay sonrası davranışı (uzaklaşma, iz silme) henüz modellenmedi; delil katmanıyla gelecek.
+
+**Yarım kalanlar:** Yok; katman kapalı.
+
+**Sıradaki ajan için:**
+1) Bilgi dağılımı + algı modeli (`src/motor/bilgi.ts`): zaman çizelgesinden "kim neyi gördü/duydu" türet; dikkat boşluğu (Simons & Chabris) olasılığı; medya sızıntısı bayrağı (CIT geçerliliği için).
+2) Sırlar (`src/motor/sirlar.ts`): suçla ilgisiz sırlar + koruma ilişkileri (borç grafiğinden).
+3) Sonra strateji + yalan defteri.
+
+**Geliştirme fikirleri:**
+- Mekân şablonuna "mekâna özgü delil türleri" eklemek (hastane: ilaç kayıt defteri; motel: resepsiyon defteri).
+- Vaka arketip havuzunu (TASARIM §15) olay şablonlarına bağlamak; şimdilik dört genel tür var.

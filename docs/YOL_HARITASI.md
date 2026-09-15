@@ -12,8 +12,9 @@
 
 ## Aşama 1 — Motor (UI yok, tamamı testli)
 - [x] `ortak/rastgele`: seedli RNG + dağılım yardımcıları + alt akışlar, 14 test (2026-09-16, Ajan #1)
-- [ ] Tipler: Kişi, İlişki grafiği, Borç grafiği, Zaman çizelgesi, Olay, Delil, İfade (gizli etiketli), Vaka
-- [ ] Doğruluk grafiği: "önce gerçek" — olay çekirdeği, gerçek zaman çizelgesi, algı modeli, bilgi dağılımı
+- [x] Tipler v0: Kişi, İlişki, Borç, Zaman çizelgesi, Olay, Vaka (2026-09-16, Ajan #1) — Delil ve İfade tipleri sonraki katmanlarda
+- [x] Doğruluk grafiği v0: mekân, kişiler, ilişki/borç grafiği, olay çekirdeği, gerçek zaman çizelgesi, 18 test (2026-09-16, Ajan #1)
+- [ ] Algı modeli + bilgi dağılımı (kim neyi nasıl biliyor)
 - [ ] Sırlar ve motivasyonlar (suçla ilgili / ilgisiz)
 - [ ] NPC konuşma stratejisi + yalan defteri (tutarlılık testi)
 - [ ] İpucu kataloğu (DePaulo 2003 ağırlıkları, kanıt düzeyi) + olasılıksal ipucu üretimi (masumlar da üretir)
