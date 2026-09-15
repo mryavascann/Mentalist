@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { depo, useOyun } from '../oyun/kullan';
 import type { PanoTuru } from '../oyun/depo';
+import { ifadeCizelgesi } from '../oyun/cizelge';
 
 const SUTUNLAR: { tur: PanoTuru; baslik: string; ipucu: string }[] = [
   { tur: 'gozlem', baslik: 'Gözlem (ham)', ipucu: 'Ne gördün, ne duydun; yorum katma.' },
@@ -40,6 +41,35 @@ export function Pano() {
       <div className="mantar izgara">
         {SUTUNLAR.map((s) => <Sutun key={s.tur} {...s} />)}
       </div>
+      {d.takimNotlari.length > 0 && (
+        <section className="dosya">
+          <h2>Takım notları (kanepe molaları)</h2>
+          <ul className="liste-temiz">{d.takimNotlari.map((n, i) => <li key={i}><span>{n.metin}</span><span className="soluk">{n.zaman.toFixed(1)} s</span></li>)}</ul>
+        </section>
+      )}
+      {d.sorgu && (() => {
+        const c = ifadeCizelgesi(d.sorgu);
+        const sorulmus = [...c.hucreler.values()].some((s) => s.some((h) => h !== null));
+        if (!sorulmus) return null;
+        return (
+          <section className="dosya">
+            <h2>İfade çizelgesi (söylenenler; gerçek değil)</h2>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ borderCollapse: 'collapse', fontSize: 12, fontFamily: 'var(--daktilo)' }}>
+                <thead><tr><th style={{ textAlign: 'left', padding: 4 }}>Kişi</th>{c.dilimler.map((s) => <th key={s} style={{ padding: 4 }}>{s}</th>)}</tr></thead>
+                <tbody>
+                  {c.kisiler.map((k) => (
+                    <tr key={k.id} style={{ borderTop: '1px dotted var(--cizgi)' }}>
+                      <td style={{ padding: 4 }}>{k.ad.split(' ')[0]}</td>
+                      {c.hucreler.get(k.id)!.map((h, i) => <td key={i} style={{ padding: 4, color: h === null ? 'var(--cizgi)' : h === 'bilmiyor' ? 'var(--murekkep-soluk)' : 'inherit' }}>{h === null ? '·' : h}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
+      })()}
       <div className="dugmeler" style={{ marginTop: 10 }}>
         <button disabled={!dolu} onClick={() => depo.watsonBasla()} title="Pano maddelerini sorgucuya adım adım anlat">Watson'a anlat</button>
         <span className="soluk">Vakayı bir takım arkadaşına anlat; her maddede "gözlem mi çıkarım mı, test ettin mi?" sorulur.</span>

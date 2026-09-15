@@ -15,6 +15,7 @@ import type { Kisi, KisiId, Vaka, Zorluk } from '@motor/tipler';
 import { ICERIK } from '@icerik/index';
 import { bulunma } from '@ortak/turkce';
 import { PROJE } from '@ortak/surum';
+import { Rastgele } from '@ortak/rastgele';
 import { FORER } from '@icerik/forer';
 import { MINI_OYUNLAR, sogukOkumaPuanla } from '@icerik/mini_oyunlar';
 import { soruMetni, teknikSonucMetni } from './metinler';
@@ -60,6 +61,9 @@ export interface IfadeKarsilastirma {
   soruldu: boolean;
 }
 
+/** Kanepe molasında takımın getirdiği not (TASARIM §3 adım 5). */
+export interface TakimNotu { tur: 'delil' | 'dedikodu' | 'bos'; metin: string; zaman: number }
+
 export interface VakaGecmisi { seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number }
 
 export interface OyunDurumu {
@@ -90,6 +94,8 @@ export interface OyunDurumu {
   takimAcik: boolean;
   /** "Watson'a anlat" akışı (oturumluk; kayıtla taşınmaz). */
   watson: WatsonDurumu;
+  /** Kanepe molalarında biriken takım notları. */
+  takimNotlari: TakimNotu[];
   /** Sonraki vakaların zorluğu (kullanıcı seçer; varsayılan orta). */
   zorluk: Zorluk;
   surum: number;
@@ -106,7 +112,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, hedefler: [], brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, watson: { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] }, zorluk: 'orta', surum: 0,
+    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, watson: { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] }, takimNotlari: [], zorluk: 'orta', surum: 0,
   };
 }
 
@@ -182,6 +188,40 @@ export class OyunDeposu {
     this.bildir();
   }
 
+  /**
+   * Kanepe molası (TASARIM §3 adım 5): zaman 1 saat ilerler, takım yeni bir not getirir.
+   * Not, oyuncunun henüz "fark etmediği" bir delil (yokluk/belge) ya da bilgi katmanından bir dedikodudur;
+   * dedikodu yanlış olabilir (bellek uyumu) ve bu söylenmez. Gizli etiket sızmaz.
+   */
+  kanepeMolasi(): boolean {
+    const { sorgu, puan } = this.durum;
+    if (!sorgu || puan) return false;
+    sorgu.zaman += 1;
+    const r = new Rastgele(`${sorgu.durum.vaka.seed}/kanepe/${this.durum.takimNotlari.length}`);
+    const vaka = sorgu.durum.vaka;
+    const anlatilan = new Set(this.durum.takimNotlari.map((n) => n.metin));
+    const delilAdaylari = sorgu.deliller.filter((d) => (d.tur === 'olmayan' || d.tur === 'belge' || d.tur === 'dijital') && !anlatilan.has(`Takım olay yerinde şunu not etmiş: ${d.aciklama}`));
+    const dedikodular = sorgu.durum.dagilim.bilgiler.filter((b) => b.kaynak === 'dedikodu' && b.konu === 'konum');
+    let not_: TakimNotu;
+    if (delilAdaylari.length > 0 && (dedikodular.length === 0 || r.sans(0.6))) {
+      const d = r.sec(delilAdaylari);
+      not_ = { tur: 'delil', metin: `Takım olay yerinde şunu not etmiş: ${d.aciklama}`, zaman: sorgu.zaman };
+    } else if (dedikodular.length > 0) {
+      const b = r.sec(dedikodular);
+      const kim = vaka.kisiler.find((k) => k.id === b.kisi)!.ad.split(' ')[0];
+      const hedef = vaka.kisiler.find((k) => k.id === b.hedefKisi)!.ad.split(' ')[0];
+      const oda = vaka.mekan.odalar.find((o) => o.id === b.icerik)!.ad;
+      const saat = vaka.dilimler[b.hedefDilim!]!.baslangic;
+      not_ = { tur: 'dedikodu', metin: `Koridorda konuşulan: ${kim}, ${hedef} için "${saat} civarı ${oda} tarafındaydı" demiş. Duyum; doğrula.`, zaman: sorgu.zaman };
+    } else {
+      not_ = { tur: 'bos', metin: 'Takım yeni bir şey getirmedi. Panoyu dağıt, hipotezleri yeniden sırala.', zaman: sorgu.zaman };
+    }
+    this.durum.takimNotlari = [...this.durum.takimNotlari, not_];
+    this.durum.zaman = sorgu.zaman;
+    this.bildir();
+    return true;
+  }
+
   takimAcKapat(acik: boolean) {
     this.durum.takimAcik = acik;
     this.bildir();
@@ -210,7 +250,7 @@ export class OyunDeposu {
     this.durum = {
       ...this.durum, sorgu, rapor, brifing: vakaBrifingi(vaka),
       kisiKartlari: vaka.kisiler.map((k) => ({ id: k.id, metin: kisiKarti(vaka, k.id) })),
-      seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), kilavuzMaddesi: null,
+      seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), takimNotlari: [], kilavuzMaddesi: null,
     };
   }
 
@@ -478,7 +518,7 @@ export class OyunDeposu {
     return JSON.stringify({
       kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk, takimAcik: d.takimAcik, tatbikat: { aktif: null, sonuclar: d.tatbikat.sonuclar },
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
-      konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], gecmis: d.gecmis,
+      konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], takimNotlari: d.takimNotlari, gecmis: d.gecmis,
       sorgu: s ? {
         defter: [...s.durum.defter.entries()], gosterilen: [...s.gosterilen.entries()].map(([k, v]) => [k, [...v]]),
         kontaminasyon: s.kontaminasyon, stres: [...s.stres.entries()], zaman: s.zaman, gecmis: s.gecmis,
@@ -507,6 +547,7 @@ export class OyunDeposu {
         this.durum.gercekAnlatimi = v.gercekAnlatimi ?? '';
         this.durum.ifadeKarsilastirma = v.ifadeKarsilastirma ?? [];
         this.durum.temelCizgiNotlari = new Map(v.temelCizgiNotlari ?? []);
+        this.durum.takimNotlari = v.takimNotlari ?? [];
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }

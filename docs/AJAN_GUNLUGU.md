@@ -506,3 +506,24 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** kalan tatbikatlar, takım hikâyesi + Ayna, oynanış cilası (DURUM.md).
+
+## [2026-09-16 11:40] Ajan #1 — Kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri
+**Görev:** TASARIM §3 adım 5 (kanepe molası), §9 (zaman çizelgesi, kalibrasyon grafiği) ve AJAN_PROMPTU §4 (regresyon seed'leri).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `depo.kanepeMolasi()`: zaman +1; `TakimNotu` (delil/dedikodu/boş); dedikodular bilgi katmanından, doğruluk etiketi sızmaz; kayıtla taşınır; suçlama sonrası kapalı. Kabuk'ta "☕ Kanepe molası".
+- `src/arayuz/oyun/cizelge.ts`: `ifadeCizelgesi(sorgu)` (defterden kişi × dilim iddiaları) → Pano'da tablo; `kalibrasyonOzeti(gecmis)` (Brier'dan güven geri türetilir, üç kova) → Analiz'de karar günlüğü tablosu (beyan > doğruluk +15 puan ise kırmızı).
+- `tests/regresyon/seedler.test.ts`: 6 seed anlık görüntü.
+- Testler: `tests/arayuz/cila3.test.ts` (4) + regresyon (6).
+
+**Değişen dosyalar:** src/arayuz/oyun/{depo,cizelge}.ts, src/arayuz/ekranlar/{Kabuk,Pano,Analiz}.tsx, tests/arayuz/cila3.test.ts, tests/regresyon/seedler.test.ts, docs.
+
+**Testler:** 253 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Regresyon anlık görüntüleri üretim bilerek değiştiğinde güncellenir; kural olarak günlüğe "anlık görüntü yenilendi" notu düşülür.
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** kalan tatbikatlar, takım hikâyesi + Ayna taslağı, diğer araçlar (DURUM.md).

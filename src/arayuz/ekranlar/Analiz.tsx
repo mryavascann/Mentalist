@@ -3,6 +3,7 @@
 import { ICERIK } from '@icerik/index';
 import { depo, useOyun } from '../oyun/kullan';
 import { ARKETIPLER } from '@motor/arketipler';
+import { kalibrasyonOzeti } from '../oyun/cizelge';
 
 const ETIKETLER = new Map(ICERIK.hataEtiketleri.map((h) => [h.id, h]));
 const KILAVUZ = new Map(ICERIK.kilavuz.map((m) => [m.id, m]));
@@ -83,6 +84,23 @@ export function Analiz() {
 
       {d.hedefler.length > 0 && (
         <p className="soluk">Bu vaka, önceki hatalarına göre özellikle şunları çalıştırmak için üretildi: {d.hedefler.map((h) => HEDEF_ADI[h] ?? h).join(', ')}.</p>
+      )}
+      {d.gecmis.length >= 2 && (
+        <section className="dosya">
+          <h2>Karar günlüğü · kalibrasyon</h2>
+          <p className="soluk">Beyan ettiğin güven (kova) ile gerçek doğruluk oranın. İyi kalibrasyon: ikisi yakın. (Ekman & O'Sullivan 1991; Tversky & Kahneman 1974)</p>
+          <table style={{ borderCollapse: 'collapse', fontSize: 14 }}>
+            <thead><tr><th style={{ textAlign: 'left', padding: 4 }}>Güven kovası</th><th style={{ padding: 4 }}>Vaka</th><th style={{ padding: 4 }}>Ort. beyan</th><th style={{ padding: 4 }}>Gerçek doğruluk</th></tr></thead>
+            <tbody>
+              {kalibrasyonOzeti(d.gecmis).map((k) => (
+                <tr key={k.kova} style={{ borderTop: '1px dotted var(--cizgi)' }}>
+                  <td style={{ padding: 4 }}>{k.kova}</td><td style={{ padding: 4, textAlign: 'center' }}>{k.sayi}</td><td style={{ padding: 4, textAlign: 'center' }}>{Math.round(k.beyanOrt * 100)}%</td>
+                  <td style={{ padding: 4, textAlign: 'center', color: k.dogrulukOrani + 0.15 < k.beyanOrt ? 'var(--kirmizi)' : 'inherit' }}>{Math.round(k.dogrulukOrani * 100)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
       )}
       {korNoktalar.length > 0 && (
         <section className="dosya">
