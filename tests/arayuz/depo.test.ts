@@ -112,6 +112,31 @@ describe('OyunDeposu — akış', () => {
     expect(depo.durum.puan?.dogru).toBe(true);
     expect(depo.durum.gercekAnlatimi).toContain(depo.durum.sorgu!.durum.vaka.kisiler.find((k) => k.id === fail)!.ad);
     expect(depo.durum.gercekAnlatimi).toContain(depo.durum.sorgu!.durum.vaka.olay.motivasyon);
+    // İfade-gerçek tablosu: herkes listede; sorulmayanlar işaretli; fail sorulmuşsa etiketi doğru
+    const tablo = depo.durum.ifadeKarsilastirma;
+    expect(tablo.length).toBe(depo.gorusulebilirler().length);
+    expect(tablo.every((r) => !r.soruldu && r.etiket === 'sorulmadı')).toBe(true);
+  });
+
+  it('ifade-gerçek tablosu: sorulan kişi için söylenen oda ve ifade türü adı; temel çizgi notu kişi başına saklanır', () => {
+    // Suçlu (fail'li) bir vaka bul; bazı seed'ler kaza üretir.
+    let depo = hazirOyun('depo-tablo-0');
+    for (let i = 1; !depo.durum.sorgu!.durum.vaka.olay.fail && i < 20; i++) depo = hazirOyun(`depo-tablo-${i}`);
+    const f = depo.durum.sorgu!.durum.vaka.olay.fail!;
+    expect(f).toBeTruthy();
+    depo.kisiSec(f);
+    depo.sor({ tur: 'konum', hedef: f, dilim: depo.durum.sorgu!.durum.vaka.olay.dilim });
+    depo.teknik('temel-cizgi');
+    expect(depo.durum.temelCizgiNotlari.get(f)).toMatch(/^Normali:/);
+    depo.suclamaYap({ fail: f, guven: 0.8 });
+    const satir = depo.durum.ifadeKarsilastirma.find((r) => r.kisi === f)!;
+    expect(satir.soruldu).toBe(true);
+    expect(['Gömülü yalan', 'Kaçamak / teknik olarak doğru']).toContain(satir.etiket);
+    const json = depo.disaAktar();
+    const yeni = new OyunDeposu();
+    yeni.iceAktar(json);
+    expect(yeni.durum.ifadeKarsilastirma.length).toBe(depo.durum.ifadeKarsilastirma.length);
+    expect(yeni.durum.temelCizgiNotlari.get(f)).toBe(depo.durum.temelCizgiNotlari.get(f));
   });
 
   it('suçlamadan sonra soru sorulamaz; yeni vaka her şeyi sıfırlar', () => {

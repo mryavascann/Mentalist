@@ -323,3 +323,24 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** 1) cila (analizde ifade-gerçek tablosu, temel çizgi notu), 2) Kılavuz bölümleri + Navarro ipuçları, 3) mini oyunlar (DURUM.md).
+
+## [2026-09-16 07:10] Ajan #1 — Cila: ifade-gerçek tablosu, temel çizgi notu, delil gösterildi işareti
+**Görev:** Vaka sonu analizini öğretici kılmak; sorgu odasında temel çizgiyi kalıcı göstermek.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `depo.ts`: `IfadeKarsilastirma` (kişi, söylediği oda, gerçek oda, ifade türü adı, soruldu mu) suçlamada hesaplanır; `temelCizgiNotlari` (kişi başına "Normali: …") temel çizgi tekniğinde yazılır; ikisi de kayıtla taşınır.
+- `Analiz.tsx`: "Olay anı: söylenen ve gerçek" tablosu (sorulmayan kişi = RAM 2. halka notu).
+- `SorguOdasi.tsx`: temel çizgi notu görüşme başlığının altında; delil listesinde gösterilenler "✓".
+- Test düzeltmesi: `depo-tablo` seed'i kaza üretiyordu; test suçlu vaka bulan döngüyle yazıldı (kod hatası değildi).
+
+**Değişen dosyalar:** src/arayuz/oyun/depo.ts, src/arayuz/ekranlar/{Analiz,SorguOdasi}.tsx, tests/arayuz/depo.test.ts, docs.
+
+**Testler:** 212 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Yok.
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** Kılavuz bölümleri (bellek, dikkat, ikna) + Navarro ipuçları; sonra mini oyunlar.

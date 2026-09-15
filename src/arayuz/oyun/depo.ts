@@ -35,6 +35,18 @@ export interface PanoDurumu { gozlem: string[]; cikarim: string[]; hipotez: stri
 
 export interface ForerDurumu { tamamlandi: boolean; puan: number | null; asama: 'sorular' | 'profil' | 'ifsa' }
 
+/** Analiz tablosu: her kişinin olay anı için söylediği vs gerçek (ifade türü adıyla). */
+export interface IfadeKarsilastirma {
+  kisi: KisiId;
+  ad: string;
+  /** Oyuncuya söylediği oda adı; sorulmadıysa null. */
+  ifade: string | null;
+  gercek: string;
+  /** src/icerik ifade türü adı (ör. "Gömülü yalan"); sorulmadıysa "sorulmadı". */
+  etiket: string;
+  soruldu: boolean;
+}
+
 export interface VakaGecmisi { seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number }
 
 export interface OyunDurumu {
@@ -52,6 +64,9 @@ export interface OyunDurumu {
   suclama: Suclama | null;
   puan: PuanRaporu | null;
   gercekAnlatimi: string;
+  ifadeKarsilastirma: IfadeKarsilastirma[];
+  /** Temel çizgi tekniğinin kişi başına kalıcı notu (kişi kartında görünür). */
+  temelCizgiNotlari: Map<KisiId, string>;
   gecmis: VakaGecmisi[];
   kilavuzMaddesi: string | null;
   forer: ForerDurumu;
@@ -71,7 +86,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: 'orta', surum: 0,
+    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: 'orta', surum: 0,
   };
 }
 
@@ -131,7 +146,7 @@ export class OyunDeposu {
     this.durum = {
       ...this.durum, sorgu, rapor, brifing: vakaBrifingi(vaka),
       kisiKartlari: vaka.kisiler.map((k) => ({ id: k.id, metin: kisiKarti(vaka, k.id) })),
-      seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', kilavuzMaddesi: null,
+      seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), kilavuzMaddesi: null,
     };
   }
 
@@ -219,6 +234,7 @@ export class OyunDeposu {
       kayit.gozlemler = hepsi.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
     } else if (sonuc.teknik === 'temel-cizgi') {
       kayit.gozlemler = sonuc.gozlemler.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
+      this.durum.temelCizgiNotlari.set(seciliKisi, sonuc.gozlemler.length === 0 ? 'Normali: sakin, akıcı.' : `Normali: ${sonuc.gozlemler.map((g) => g.betimleme).join(' ')}`);
     } else if (sonuc.teknik === 'yonlendirici-soru') {
       kayit.cevap = `${cevapMetni(vaka, sonuc.sonuc.cevap, this.usluplar.get(seciliKisi)!, this.bellek)} — ${kayit.cevap}`;
       kayit.betimleme = betimlemeMetni(sonuc.sonuc.ipuclari);
@@ -259,6 +275,7 @@ export class OyunDeposu {
     this.durum.suclama = suclama;
     this.durum.puan = puan;
     this.durum.gercekAnlatimi = this.gercegiAnlat();
+    this.durum.ifadeKarsilastirma = this.ifadeleriKarsilastir();
     this.durum.gecmis.push({ seed: sorgu.durum.vaka.seed, dogru: puan.dogru, puan: puan.puan, hataEtiketleri: puan.hataEtiketleri, brier: puan.kalibrasyon.brier });
     this.durum.ekran = 'analiz';
     this.bildir();
@@ -292,6 +309,24 @@ export class OyunDeposu {
     }
     if (sorgu.kontaminasyon.length) parcalar.push(`Kirlettiğin ifadeler: ${sorgu.kontaminasyon.map((c) => `${vaka.kisiler.find((k) => k.id === c.kisi)!.ad.split(' ')[0]} (${c.teknik})`).join(', ')}.`);
     return parcalar.join('\n');
+  }
+
+  /** Olay anı için herkesin söylediği vs gerçek; ifade türü adıyla (anlatım abartısı / bellek uyumu / gömülü yalan dersi). */
+  private ifadeleriKarsilastir(): IfadeKarsilastirma[] {
+    const sorgu = this.durum.sorgu!;
+    const { vaka } = sorgu.durum;
+    const { olay } = vaka;
+    const odaAdi = (id: string | null) => (id ? vaka.mekan.odalar.find((o) => o.id === id)?.ad ?? id : null);
+    const turAdi = (id: string) => ICERIK.ifadeTurleri.find((t) => t.id === id)?.ad ?? id;
+    return vaka.kisiler
+      .filter((k) => k.hayatta && k.id !== olay.kurban)
+      .map((k) => {
+        const cevap = sorgu.durum.defter.get(`${k.id}|konum:${k.id}:${olay.dilim}`);
+        const gercek = odaAdi(vaka.zamanCizelgesi.find((z) => z.kisi === k.id && z.dilim === olay.dilim)!.oda)!;
+        return cevap
+          ? { kisi: k.id, ad: k.ad, ifade: odaAdi(cevap.icerik), gercek, etiket: turAdi(cevap.ifadeTuru), soruldu: true }
+          : { kisi: k.id, ad: k.ad, ifade: null, gercek, etiket: 'sorulmadı', soruldu: false };
+      });
   }
 
   /** Kör nokta profili: geçmiş vakalarda biriken hata etiketleri (sayıya göre). */
@@ -338,7 +373,7 @@ export class OyunDeposu {
     return JSON.stringify({
       kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk,
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
-      konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, gecmis: d.gecmis,
+      konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], gecmis: d.gecmis,
       sorgu: s ? {
         defter: [...s.durum.defter.entries()], gosterilen: [...s.gosterilen.entries()].map(([k, v]) => [k, [...v]]),
         kontaminasyon: s.kontaminasyon, stres: [...s.stres.entries()], zaman: s.zaman, gecmis: s.gecmis,
@@ -365,6 +400,8 @@ export class OyunDeposu {
         this.durum.suclama = v.suclama ?? null;
         this.durum.puan = v.puan ?? null;
         this.durum.gercekAnlatimi = v.gercekAnlatimi ?? '';
+        this.durum.ifadeKarsilastirma = v.ifadeKarsilastirma ?? [];
+        this.durum.temelCizgiNotlari = new Map(v.temelCizgiNotlari ?? []);
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }

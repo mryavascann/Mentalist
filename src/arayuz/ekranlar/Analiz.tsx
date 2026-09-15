@@ -38,6 +38,26 @@ export function Analiz() {
         })}
       </section>
 
+      {d.ifadeKarsilastirma.length > 0 && (
+        <section className="dosya">
+          <h2>Olay anı: söylenen ve gerçek</h2>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+            <thead><tr><th style={{ textAlign: 'left' }}>Kişi</th><th style={{ textAlign: 'left' }}>Sana söylediği</th><th style={{ textAlign: 'left' }}>Gerçek</th><th style={{ textAlign: 'left' }}>İfade türü</th></tr></thead>
+            <tbody>
+              {d.ifadeKarsilastirma.map((r) => (
+                <tr key={r.kisi} style={{ borderTop: '1px dotted var(--cizgi)' }}>
+                  <td>{r.ad}</td>
+                  <td>{r.soruldu ? r.ifade ?? '"hatırlamıyorum"' : <span className="soluk">sorulmadı</span>}</td>
+                  <td>{r.gercek}</td>
+                  <td className={r.soruldu && r.ifade !== r.gercek ? 'soluk' : ''}>{r.etiket}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="soluk">Sormadığın kişi: ipucu önünde değildi (Funder RAM 2. halka). Doğru oda ama "gizleme": yerini söyledi, ne yaptığını sakladı.</p>
+        </section>
+      )}
+
       <section className="dosya">
         <h2>Aslında ne oldu</h2>
         <p className="daktilo">{d.gercekAnlatimi}</p>

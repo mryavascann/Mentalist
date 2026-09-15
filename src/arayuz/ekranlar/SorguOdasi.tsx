@@ -37,6 +37,7 @@ export function SorguOdasi() {
       <main className="dosya">
         <h2>{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
+        {secili && d.temelCizgiNotlari.get(secili.id) && <p className="soluk" style={{ borderLeft: '3px solid var(--mantar)', paddingLeft: 8 }}>{d.temelCizgiNotlari.get(secili.id)}</p>}
         {acikIpucu && <IpucuKarti id={acikIpucu} kapat={() => setAcikIpucu(null)} />}
         <div className="akis">
           {konusma.length === 0 && secili && <p className="soluk">Henüz soru sormadın. Önce tarafsız sohbetle temel çizgi kur (Kılavuz: Temel çizgi).</p>}
@@ -118,7 +119,7 @@ export function SorguOdasi() {
             <div className="satirici">
               <select value={delilId} onChange={(e) => setDelilId(e.target.value)}>
                 <option value="">delil…</option>
-                {d.sorgu.deliller.map((x) => <option key={x.id} value={x.id}>{x.id} · {x.aciklama.slice(0, 40)}…</option>)}
+                {d.sorgu.deliller.map((x) => <option key={x.id} value={x.id}>{d.sorgu!.gosterilen.get(secili.id)?.has(x.id) ? '✓ ' : ''}{x.id} · {x.aciklama.slice(0, 40)}…</option>)}
               </select>
             </div>
             <div className="dugmeler">
