@@ -18,9 +18,12 @@ import { PROJE } from '@ortak/surum';
 import { FORER } from '@icerik/forer';
 import { MINI_OYUNLAR, sogukOkumaPuanla } from '@icerik/mini_oyunlar';
 import { soruMetni, teknikSonucMetni } from './metinler';
-import { takimYorumu, type TakimYorumu } from './takim';
+import { takimYorumu, watsonSorusu, type TakimYorumu } from './takim';
 
-export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'suclama' | 'analiz' | 'kilavuz';
+export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'watson' | 'suclama' | 'analiz' | 'kilavuz';
+
+export interface WatsonAdimi { tur: PanoTuru; metin: string; soru: string; cevap?: { sinif: 'gozlem' | 'cikarim' | 'hipotez'; testEdildi: boolean } }
+export interface WatsonDurumu { adimlar: WatsonAdimi[]; indeks: number; bitti: boolean; celiskiler: string[]; testEdilmemisCikarim: string[] }
 export type TatbikatId = 'kor-secim' | 'soguk-okuma' | 'taban-orani';
 
 export interface TatbikatSonucu { tamamlandi: boolean; puan: number | null; secim?: string }
@@ -85,6 +88,8 @@ export interface OyunDurumu {
   tatbikat: TatbikatDurumu;
   /** Takım yorumları açık mı (oyuncu kapatabilir). */
   takimAcik: boolean;
+  /** "Watson'a anlat" akışı (oturumluk; kayıtla taşınmaz). */
+  watson: WatsonDurumu;
   /** Sonraki vakaların zorluğu (kullanıcı seçer; varsayılan orta). */
   zorluk: Zorluk;
   surum: number;
@@ -101,7 +106,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, hedefler: [], brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, zorluk: 'orta', surum: 0,
+    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, watson: { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] }, zorluk: 'orta', surum: 0,
   };
 }
 
@@ -141,6 +146,42 @@ export class OyunDeposu {
   }
 
   /** Yeni (çözülebilir) vaka kurar; seed verilmezse zaman damgasından üretir. */
+  // ---------------------------------------------------------------------------------------------
+  // "Watson'a anlat" (TASARIM §9): pano maddelerini sorgucuya adım adım anlat; sınıflamanı panoyla kıyasla.
+
+  watsonBasla(): boolean {
+    const { pano } = this.durum;
+    const turler: PanoTuru[] = ['gozlem', 'cikarim', 'hipotez', 'olmayan'];
+    const adimlar: WatsonAdimi[] = [];
+    for (const tur of turler) pano[tur].forEach((metin, i) => adimlar.push({ tur, metin, soru: watsonSorusu(tur, metin, i) }));
+    if (adimlar.length === 0) return false;
+    this.durum.watson = { adimlar, indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] };
+    this.durum.ekran = 'watson';
+    this.bildir();
+    return true;
+  }
+
+  watsonCevapla(cevap: { sinif: 'gozlem' | 'cikarim' | 'hipotez'; testEdildi: boolean }) {
+    const w = this.durum.watson;
+    const adim = w.adimlar[w.indeks];
+    if (!adim || w.bitti) return;
+    adim.cevap = cevap;
+    // Pano sütunu ile oyuncunun sınıflaması: "olmayan" gözlem sayılır. Çıkarımı gözlem sanmak = Priory Okulu hatası.
+    const beklenen = adim.tur === 'olmayan' ? 'gozlem' : adim.tur;
+    if (cevap.sinif !== beklenen) w.celiskiler.push(adim.metin);
+    if (adim.tur === 'cikarim' && !cevap.testEdildi) w.testEdilmemisCikarim.push(adim.metin);
+    w.indeks++;
+    if (w.indeks >= w.adimlar.length) w.bitti = true;
+    this.durum.watson = { ...w };
+    this.bildir();
+  }
+
+  watsonKapat() {
+    this.durum.watson = { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] };
+    this.durum.ekran = 'pano';
+    this.bildir();
+  }
+
   takimAcKapat(acik: boolean) {
     this.durum.takimAcik = acik;
     this.bildir();
@@ -469,7 +510,7 @@ export class OyunDeposu {
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }
-      this.durum.ekran = v.ekran === 'forer' || v.ekran === 'tatbikat' ? 'baslik' : ((v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik'));
+      this.durum.ekran = v.ekran === 'forer' || v.ekran === 'tatbikat' ? 'baslik' : v.ekran === 'watson' ? 'pano' : ((v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik'));
       this.bildir();
       return true;
     } catch {

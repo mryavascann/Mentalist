@@ -54,3 +54,18 @@ export function takimYorumu(sorgu: Sorgu, kisiId: KisiId, sonuc: SorSonucu): Tak
       return { rol: 'sorgucu', ad: uye.ad, hukum: 'yok', metin: r.sec([`Delili henüz gösterme. Önce anlattır.`, `Aynı soruyu başka biçimde sor. Beklemediği yerden.`, `Temel çizgi kurdun mu? Kurmadıysan bu ipuçları boş.`]) };
   }
 }
+
+/**
+ * "Watson'a anlat" (TASARIM §9): sorgucu (Cemal Ilgaz) her pano maddesinde bilerek basit sorular sorar.
+ * Öğreterek öğrenme: oyuncu maddeyi sınıflandırıp test edip etmediğini söyler.
+ */
+export function watsonSorusu(tur: 'gozlem' | 'cikarim' | 'hipotez' | 'olmayan', metin: string, indeks: number): string {
+  const r = new Rastgele(`watson/${tur}/${metin}/${indeks}`);
+  const sorular: Record<typeof tur, string[]> = {
+    gozlem: [`"${metin}." Bunu gördün mü, yoksa öyle olduğunu mu düşünüyorsun?`, `"${metin}." Kaynağı ne: kendi gözün mü, biri mi söyledi?`, `"${metin}." Bunu bir yabancıya kanıtlayabilir misin?`],
+    cikarim: [`"${metin}." Bu bir gözlem mi, yoksa senin yorumun mu?`, `"${metin}." Hangi gözlemden çıkardın? Test ettin mi?`, `"${metin}." Bunun tersi de gözlemlerle uyuşur mu?`],
+    hipotez: [`"${metin}." Bunu çürütecek bir şey aradın mı?`, `"${metin}." Karşıt hipotezin ne?`, `"${metin}." Şu ana kadar bunu destekleyen mi, çürüten mi bulgu daha çok?`],
+    olmayan: [`"${metin}." Beklenen ama olmayan; bunu gerçekten kontrol ettin mi, yoksa varsayım mı?`, `"${metin}." Yokluk delili: başka açıklaması olabilir mi?`],
+  };
+  return r.sec(sorular[tur]);
+}

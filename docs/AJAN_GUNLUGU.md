@@ -465,3 +465,23 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** kalan tatbikatlar, "Watson'a anlat", takım hikâyesi + Ayna taslağı (DURUM.md).
+
+## [2026-09-16 10:30] Ajan #1 — "Watson'a anlat" akışı
+**Görev:** TASARIM §9 "sesli anlatım / öğreterek öğrenme" mekaniğini kurmak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `takim.ts watsonSorusu(tur, metin, indeks)`: pano türüne göre sorgucunun basit sorusu (deterministik).
+- Depo: `WatsonDurumu` (adımlar, indeks, bitti, çelişkiler, test edilmemiş çıkarımlar); `watsonBasla` (pano boşsa false), `watsonCevapla` ("olmayan" gözlem sayılır; sütunla çelişen sınıflama işaretlenir), `watsonKapat`; oturumluk (kayıtla taşınmaz; içe aktarımda panoya düşer).
+- `Watson.tsx` ekranı; Pano'da "Watson'a anlat" düğmesi. Test: `tests/arayuz/watson.test.ts` (3).
+
+**Değişen dosyalar:** src/arayuz/oyun/{takim,depo}.ts, src/arayuz/ekranlar/{Watson,Pano}.tsx, src/arayuz/App.tsx, tests/arayuz/watson.test.ts, docs.
+
+**Testler:** 238 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Yok.
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** kalan tatbikatlar, takım hikâyesi + Ayna taslağı, vaka arketip havuzu (DURUM.md).

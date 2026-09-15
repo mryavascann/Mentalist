@@ -33,9 +33,17 @@ function Sutun({ tur, baslik, ipucu }: { tur: PanoTuru; baslik: string; ipucu: s
 }
 
 export function Pano() {
+  const d = useOyun();
+  const dolu = d.pano.gozlem.length + d.pano.cikarim.length + d.pano.hipotez.length + d.pano.olmayan.length > 0;
   return (
-    <div className="mantar izgara">
-      {SUTUNLAR.map((s) => <Sutun key={s.tur} {...s} />)}
+    <div>
+      <div className="mantar izgara">
+        {SUTUNLAR.map((s) => <Sutun key={s.tur} {...s} />)}
+      </div>
+      <div className="dugmeler" style={{ marginTop: 10 }}>
+        <button disabled={!dolu} onClick={() => depo.watsonBasla()} title="Pano maddelerini sorgucuya adım adım anlat">Watson'a anlat</button>
+        <span className="soluk">Vakayı bir takım arkadaşına anlat; her maddede "gözlem mi çıkarım mı, test ettin mi?" sorulur.</span>
+      </div>
     </div>
   );
 }

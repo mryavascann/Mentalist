@@ -11,6 +11,7 @@ import { Analiz } from './ekranlar/Analiz';
 import { Kilavuz } from './ekranlar/Kilavuz';
 import { Forer } from './ekranlar/Forer';
 import { Tatbikat } from './ekranlar/Tatbikat';
+import { Watson } from './ekranlar/Watson';
 
 export function App() {
   const d = useOyun();
@@ -27,6 +28,7 @@ export function App() {
     case 'vaka-acilis': ekran = <VakaAcilis />; break;
     case 'sorgu': ekran = <SorguOdasi />; break;
     case 'pano': ekran = <Pano />; break;
+    case 'watson': ekran = <Watson />; break;
     case 'suclama': ekran = <Suclama />; break;
     case 'analiz': ekran = <Analiz />; break;
     case 'kilavuz': ekran = <Kilavuz />; break;
