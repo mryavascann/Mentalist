@@ -18,11 +18,11 @@
 - [x] Sırlar ve korumalar: 6 sır türü, borç/aile/ortak-sır korumaları, 11 test (2026-09-16, Ajan #1)
 - [x] NPC konuşma stratejisi + yalan defteri: 8 ifade türü, 18 test (2026-09-16, Ajan #1)
 - [x] İpucu kataloğu + olasılıksal ipucu üretimi (masumlar da üretir; mit ipuçları kaymaz; ipucu botu şansa yakın), 11 test (2026-09-16, Ajan #1)
-- [ ] Delil üretimi (fiziksel, dijital, "beklenen ama olmayan")
+- [x] Delil üretimi: fail izi, yöntem delili, "beklenen ama olmayan", gürültü izleri, çelişki hesabı, 12 test (2026-09-16, Ajan #1)
 - [ ] Kırmızı ringa üretici (gergin masum, sahte anı, bellek uyumu, çoğulcu cehalet)
 - [ ] Çözülebilirlik denetçisi (tek çözüm, zorluk puanı)
 - [ ] Örüntü denetçisi (binlerce seed; failin yüzeysel özelliklerle korelasyonu ≈ 0)
-- [ ] Soru/teknik motoru: temel çizgi, açık uçlu, yönlendirici (kontaminasyon kaydı), SUE, bilişsel yük, beklenmedik soru, CIT, SVT, şaşkınlık testi, sahte bilgi yemi
+- [x] Soru/teknik motoru: 12 teknik (SUE sırası, bilişsel yük, beklenmedik soru, CIT, SVT, yönlendirici + kontaminasyon, suçlayıcı ton + sahte itiraf…), 19 test (2026-09-16, Ajan #1)
 - [ ] Puanlama + güven kalibrasyonu
 - [ ] Denge botları (sadece beden dili / yöntem / hepsine inanan / herkese yalancı) → yöntem botu belirgin şekilde üstün olmalı
 

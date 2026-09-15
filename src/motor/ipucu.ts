@@ -76,16 +76,29 @@ function sucSorusuMu(durum: VakaDurumu, cevap: Cevap): boolean {
   return cevap.soru.tur === 'olay-bilgisi' || cevap.soru.dilim === durum.vaka.olay.dilim;
 }
 
-/** Cevaba eşlik eden gözlemler; aynı (kişi, soru) için deterministik. */
-export function ipucuUret(durum: VakaDurumu, cevap: Cevap): IpucuGozlemi[] {
+/** Teknik motorunun ipucu üretimine müdahale kanalları. */
+export interface IpucuSecenekleri {
+  /** Bilişsel yük: yalan kaymasını çarpar (1 = normal, 1.6 = ters sıra anlatım). */
+  kaymaCarpani?: number;
+  /** Suçlayıcı tonla biriken stres: gerginlik ipuçlarına doğrudan eklenir (herkeste; Othello). */
+  ekGerginlik?: number;
+  /** RNG akışını ayırmak için etiket (aynı soru farklı teknikle sorulunca farklı gözlem). */
+  etiket?: string;
+}
+
+/** Cevaba eşlik eden gözlemler; aynı (kişi, soru, etiket) için deterministik. */
+export function ipucuUret(durum: VakaDurumu, cevap: Cevap, secenekler: IpucuSecenekleri = {}): IpucuGozlemi[] {
   const kisi = durum.vaka.kisiler.find((k) => k.id === cevap.kisi)!;
-  const r = new Rastgele(`${durum.vaka.seed}/ipucu/${cevap.kisi}|${soruAnahtari(cevap.soru)}`);
+  const r = new Rastgele(`${durum.vaka.seed}/ipucu/${cevap.kisi}|${soruAnahtari(cevap.soru)}${secenekler.etiket ? `|${secenekler.etiket}` : ''}`);
   const sucSorusu = sucSorusuMu(durum, cevap);
+  const kaymaCarpani = secenekler.kaymaCarpani ?? 1;
+  const ekGerginlik = secenekler.ekGerginlik ?? 0;
   const gozlemler: IpucuGozlemi[] = [];
   for (const ipucu of ICERIK.ipuclari) {
     let mu = KISILIK_TEMELI[ipucu.id]?.(kisi.kisilik) ?? 0;
-    mu += etkinKayma(ipucu, durum, cevap, kisi.yalanBecerisi);
+    mu += etkinKayma(ipucu, durum, cevap, kisi.yalanBecerisi) * kaymaCarpani;
     if (sucSorusu && GERGINLIK_IPUCLARI.has(ipucu.id)) mu += SUC_SORUSU_GERGINLIK * kisi.kisilik.kaygi;
+    if (ekGerginlik > 0 && GERGINLIK_IPUCLARI.has(ipucu.id)) mu += ekGerginlik;
     const z = r.normal(mu, 1);
     const betimleme = r.sec(ipucu.betimlemeler); // her ipucu için çekilir ki akış sabit kalsın
     if (z > ESIK) gozlemler.push({ ipucuId: ipucu.id, kanal: ipucu.kanal, betimleme });

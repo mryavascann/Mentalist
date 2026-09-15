@@ -158,3 +158,31 @@
 **Geliştirme fikirleri:**
 - Betimleme seçiminde "son kullanılanları tekrar etme" belleği (dil katmanında).
 - Navarro yatıştırıcı davranışları (boyun dokunma vb.) kataloğa `zayif` düzeyde, kişiye özgü temel çizgiyle.
+
+## [2026-09-16 02:50] Ajan #1 — Delil üretimi ve teknik motoru
+**Görev:** Delilleri gerçekten türetmek; oyuncunun 12 aracını motor üstünde kaynağa sadık biçimde çalıştırmak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/motor/delil.ts`: `delilUret(vaka, dagilim)` → fail olay yerinde en az bir iz (çözülebilirlik tohumu, %30 komşu dilimde ikinci iz), yöntem delili (`sizmis` bilgi katmanıyla uyumlu), cinayette "beklenen ama olmayan" (kapı zorlanmamış; malikâne/çiftlik/sahilde köpek havlamamış; zehir/ilaçta boğuşma izi yok), 5–10 gürültü izi (kameralı odalarda dijital .95, telefon kaydı .85, belge .7, fiziksel .5–.85). `celisenDeliller(deliller, cevap)`. v0'da sahnelenmiş delil yok (her delil gerçekle uyumlu).
+- `src/motor/ipucu.ts`: `IpucuSecenekleri` (kaymaCarpani, ekGerginlik, etiket); etiket yokken RNG anahtarı değişmedi.
+- `src/motor/teknik.ts`: `Sorgu`, `sorguBaslat`, `sor`, `delilGoster`, `teknikUygula`. Ölçülen davranışlar: SUE geç → gömülü yalan çelişkisi %100, erken → kaçamak; bilişsel yük altında oda yalancılarının %15–80'i defterden sapar, doğrucular hiç; CIT sızmamışta fail >%70 tanır, bilmeyen masum <%20; sızmışta medyadan bilen masum >%60 tanır (geçersiz test masumu yakar); SVT'de saklayan fail >%70 şans altı, bilmeyen masum <%15; suçlayıcı ton sonrası masumun doğru cevabında gerginlik +%10'dan fazla artar.
+- İki düzeltme: yük çelişkisi yalnızca oda yalanlarında (gizleme/kaçamak doğru odayı söyler); yönlendirici soru testinde koruyanlar kapsam dışı (koruma yalanı öneriyi bastırır).
+
+**Değişen dosyalar:** src/motor/{delil,teknik,ipucu}.ts, tests/motor/{delil,teknik}.test.ts, docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 132 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Numaralı karar yok. Teknik sabitleri (`YUK_CARPANI`, `STRES_ADIMI`, SVT parametreleri) `teknik.ts` başında.
+
+**Sorunlar / riskler:**
+- Şeytanın avukatı v0'da uygulanamaz (görüş/niyet soruları yok). Soru türleri genişleyince eklenecek.
+- Suçlayıcı tonla failin itirafı (beceri < .3, stres ≥ 1.5) oyunu kolaylaştırabilir; puanlama sahte itiraf riskini cezalandırmalı, çözülebilirlik denetçisi "itiraf = kanıt değil" ilkesini korumalı.
+- Yönlendirici soru şu an yalnız başkasının konumunda kontaminasyon üretir; kendi konumu için de (telkine yatkın, sır yok) uygulanabilir.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) çözülebilirlik + zorluk + tam örüntü denetçisi, 2) puanlama + hata etiketleri, 3) denge botları (DURUM.md).
+
+**Geliştirme fikirleri:**
+- Sahnelenmiş delil (`sahnelenmis: true`, failin olay sonrası dilimde yerleştirdiği) → Norwood şablonu; tek fiziksel tutarsızlıkla çöker.
+- Kontaminasyon kaydı puanlamada "bu ayrıntıyı ilk kim söyledi?" olarak oyuncuya gösterilir.
