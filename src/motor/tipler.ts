@@ -132,6 +132,8 @@ export const ZORLUK_PARAMETRELERI: Record<Zorluk, {
 export interface Vaka {
   seed: string;
   ayar: VakaAyari;
+  /** Vaka arketipi (src/motor/arketipler.ts). Renk verir; çözüm anahtarı değildir. */
+  arketip: string;
   mekan: Mekan;
   kisiler: Kisi[];
   iliskiler: Iliski[];

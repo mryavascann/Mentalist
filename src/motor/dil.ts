@@ -14,6 +14,7 @@ import { basHarfBuyut, belirtme, bulunma } from '@ortak/turkce';
 import type { IpucuGozlemi } from './ipucu';
 import { soruAnahtari, type Cevap } from './strateji';
 import type { KisiId, Vaka } from './tipler';
+import { ARKETIPLER } from './arketipler';
 
 export interface KisiUslubu {
   /** Dedektife hitap; resmî kişilerde "Dedektif", diğerlerinde boş. */
@@ -249,7 +250,9 @@ export function vakaBrifingi(vaka: Vaka): string {
   const ilk = vaka.dilimler[0]!.baslangic;
   const son = vaka.dilimler[vaka.dilimler.length - 1]!.baslangic;
   const gorusulebilir = vaka.kisiler.filter((k) => k.hayatta && k.id !== kurban.id).length;
-  return `${vaka.mekan.ad}. Akşam ${ilk}–${son} arası. ${kurban.ad} ${OLAY_METNI[vaka.olay.tur]}; olay yeri ${bulunma(oda)}, saat ${saat} civarı. ${gorusulebilir} kişiyle görüşülebilir. Herkes o akşam oradaydı.`;
+  const arketip = ARKETIPLER.find((a) => a.id === vaka.arketip);
+  const ek = arketip ? ` ${arketip.brifingEki}` : '';
+  return `${vaka.mekan.ad}. Akşam ${ilk}–${son} arası. ${kurban.ad} ${OLAY_METNI[vaka.olay.tur]}; olay yeri ${bulunma(oda)}, saat ${saat} civarı.${ek} ${gorusulebilir} kişiyle görüşülebilir. Herkes o akşam oradaydı.`;
 }
 
 /** Kişi kartı metni (oyuncuya görünen kısım; gizli parametreler yok). */

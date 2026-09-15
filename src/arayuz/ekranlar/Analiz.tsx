@@ -2,6 +2,7 @@
 // Dil: gelişim zihniyeti ("şunu öğrendin"), TASARIM §11.
 import { ICERIK } from '@icerik/index';
 import { depo, useOyun } from '../oyun/kullan';
+import { ARKETIPLER } from '@motor/arketipler';
 
 const ETIKETLER = new Map(ICERIK.hataEtiketleri.map((h) => [h.id, h]));
 const KILAVUZ = new Map(ICERIK.kilavuz.map((m) => [m.id, m]));
@@ -72,6 +73,12 @@ export function Analiz() {
         {d.rapor && (
           <p className="soluk">Zorluk {Math.round(d.rapor.zorluk * 100)}/100. {d.rapor.notlar.join(' ')}</p>
         )}
+        {(() => {
+          const a = ARKETIPLER.find((x) => x.id === d.sorgu!.durum.vaka.arketip);
+          if (!a) return null;
+          const m = a.kilavuzMaddesi ? KILAVUZ.get(a.kilavuzMaddesi) : null;
+          return <p className="soluk">Vaka arketipi: <b>{a.ad}</b>.{m && <> Bu vakanın dersi: <button className="etiket" onClick={() => depo.kilavuzAc(m.id)}>{m.baslik}</button></>}</p>;
+        })()}
       </section>
 
       {d.hedefler.length > 0 && (

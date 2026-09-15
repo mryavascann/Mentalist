@@ -18,8 +18,8 @@ const KATALOG = new Map(ICERIK.ipuclari.map((i) => [i.id, i]));
 
 interface Ornek { durum: VakaDurumu; cevap: Cevap; gozlemler: IpucuGozlemi[]; kaygi: number; beceri: number }
 
-/** 150 vaka × hayatta kişiler × 8 dilim kendi-konum sorusu → geniş örneklem. */
-function ornekTopla(n = 150): Ornek[] {
+/** 250 vaka × hayatta kişiler × 8 dilim kendi-konum sorusu → geniş örneklem (zayıf ipuçları için SE ~0.01). */
+function ornekTopla(n = 250): Ornek[] {
   const sonuc: Ornek[] = [];
   for (let i = 0; i < n; i++) {
     const durum = vakaDurumuKur(vakaUret(`ipucu-${i}`));
@@ -76,7 +76,7 @@ describe('ipucuUret — bilimsel sadakat', () => {
     for (const ipucu of ICERIK.ipuclari) {
       const fark = oran(yalanlar, ipucu.id) - oran(dogrular, ipucu.id);
       // Eşik gerekçesi: taban oran ~%16 ve beceri söndürmesiyle d=.30 teorik olarak ~0.05 fark üretir;
-      // 750 yalanlık örneklemde standart hata ~0.013 → güçlü ipuçları için 0.03 tabanı, zayıflar için yalnızca yön.
+      // ~1200 yalanlık örneklemde standart hata ~0.01 → güçlü ipuçları için 0.03 tabanı, zayıflar için yalnızca yön.
       const guclu = Math.abs(ipucu.etkiBuyuklugu) >= 0.3;
       if (ipucu.betimlemeYonu === 'artar') {
         expect(fark, `${ipucu.id} artmalı`).toBeGreaterThan(guclu ? 0.03 : 0.005);

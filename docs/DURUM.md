@@ -1,9 +1,9 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 10:30, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 11:00, Ajan #1.
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Kılavuz 12 bölüm / 60 madde tamam; Higgsfield prompt listesi ve portre yer tutucusu hazır. Takım NPC'leri, şablon havuzu (kategori başına ≥5) ve mekâna özgü belgeler tamam. "Watson'a anlat" akışı tamam. Sıradaki: kalan tatbikatlar, takım hikâyesi ve Ayna taslağı, vaka arketip havuzu.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Kılavuz 12 bölüm / 60 madde tamam; Higgsfield prompt listesi ve portre yer tutucusu hazır. Takım NPC'leri, şablon havuzu (kategori başına ≥5) ve mekâna özgü belgeler tamam. Vaka arketip havuzu (14 arketip, mekâna bağlı) tamam. Sıradaki: kalan tatbikatlar, takım hikâyesi ve Ayna taslağı, oynanış cilası.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar (11 test), cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
@@ -15,12 +15,13 @@
 - **Takım NPC'leri** (`src/arayuz/oyun/takim.ts`, TASARIM §14): Komiser Sevda Oral (lider: kanıt ister), Cemal Ilgaz (sorgucu: tekniğe yönlendirir), Analist Defne Yurt (inanan: ipucunu abartır), Ajan Ozan Kaya (saha: hızlı hüküm, çoğunluk). Satır başına ~%55 olasılıkla yorum; deterministik; gizli etiket ve fail adı sızmaz. Ölçüm: saha ajanının 'şüpheli' hükmü <%45 isabetli (sosyal kanıt tuzağı). Oyuncu yorumları kapatabilir; suçlamada 'takımın çoğunluk görüşü' dayanağı seçilip yanılırsa `sosyal-kanit` etiketi.
 - **Şablon ve mekân genişletme:** `dil.ts` 20 kategori × ≥5 varyant (`SABLON_KATEGORILERI`, `sablonSayisi`); `delil.ts` `MEKAN_BELGELERI` (8 mekân × 3 belge: ilaç kayıt defteri, resepsiyon defteri, kart geçiş kaydı…). 3 test.
 - **"Watson'a anlat"** (`Watson.tsx`, depo `watsonBasla/watsonCevapla/watsonKapat`, `takim.ts watsonSorusu`): pano maddeleri sorgucuya adım adım anlatılır; oyuncu gözlem/çıkarım/hipotez sınıflar ve test edip etmediğini söyler; panoyla çelişen sınıflamalar ve test edilmemiş çıkarımlar raporlanır (Priory Okulu). Oturumluk; kayıtla taşınmaz. 3 test.
+- **Vaka arketip havuzu** (`src/motor/arketipler.ts`, TASARIM §15): 14 arketip (miras kavgası, sahte medyum, tarikat içi ölüm, hastane dozu/kaza, zimmet, ofis sabotajı, romantik dolandırıcılık, motelde sahnelenmiş olay, karnaval el çabukluğu/kaza, kıskançlık üçgeni, sahilde kaza, çiftlikte sabotaj); mekâna uygun ağırlıklı seçim; olay türü ve yöntem arketipten, motivasyon = ilişki + tema; brifinge arketip cümlesi; analizde "bu vakanın dersi" Kılavuz bağı. `Vaka.arketip`. 5 test.
 - **İpucu kataloğu:** Navarro saha ipuçları `zayif` düzeyde: yatıştırıcı dokunma (d=.12, suç sorusunda kaygıyla artar → "hangi konu" sinyali), ayakların çıkışa dönmesi (ilişkisiz), vurgu kaybı (d=.14). 19 ipucu. İçerik testi: her bölümde ≥3 madde, ≥9 bölüm, ≥45 madde.
 
 ## Sıradaki 3 iş
 1. **Kalan tatbikatlar:** Linda tuzağı (birleşim yanılgısı), kaybolan top / off-beat, ince dilim, çift kör test tasarla.
 2. **Aşama 4 devamı:** takım arka plan hikâyesi (vakalar arası kısa diyaloglar); Ayna ark taslağı (kör nokta verisinden oyuncunun şüphesini tahmin eden düşman; imza notu).
-3. **Vaka arketip havuzu (TASARIM §15):** olay şablonlarını arketiplere bağla (sahte medyum dolandırıcılığı, tarikat, hastane dozu, romantik dolandırıcılık…); motivasyon ve delil türlerini arketipten türet.
+3. **Oynanış cilası:** kanepe molası (zaman ilerler, takım yeni bilgi getirir), zaman çizelgesi görünümü, karar günlüğü (vakalar arası kalibrasyon grafiği).
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
@@ -32,7 +33,7 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 26 dosya, 238 test geçti (2026-09-16 10:30). Süre ~80 sn.
+- `npm test`: 27 dosya, 243 test geçti (2026-09-16 11:00). Süre ~90 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`. file:// kontrolü hata 0.
 
 ## Notlar

@@ -13,9 +13,10 @@ import { Rastgele } from '@ortak/rastgele';
 import { tamlayan } from '@ortak/turkce';
 import type { Borc, Iliski, IliskiTuru, Kisi, Konum, Mekan, OlayCekirdegi, Vaka, VakaAyari, ZamanDilimi } from './tipler';
 import {
-  EYLEMLER, ILISKI_SABLONLARI, MEKAN_SABLONLARI, MOTIVASYONLAR, OLAY_SABLONLARI,
+  EYLEMLER, ILISKI_SABLONLARI, MEKAN_SABLONLARI, MOTIVASYONLAR,
   TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI,
 } from './havuzlar';
+import { mekanaUygunArketipler, type Arketip } from './arketipler';
 
 /** Akşam 19:00'dan itibaren 30 dakikalık 8 dilim (19:00–23:00). */
 export const DILIM_SAYISI = 8;
@@ -115,16 +116,17 @@ function sicaklikUret(r: Rastgele, tur: IliskiTuru): number {
   return Math.min(1, Math.max(-1, r.normal(ort, 0.4)));
 }
 
-/** Olay çekirdeği: tür, kurban, fail (kaza ise yok), yer, zaman, yöntem, motivasyon. */
-function olayUret(r: Rastgele, kisiler: Kisi[], iliskiler: Iliski[], mekan: Mekan, kurban: Kisi): OlayCekirdegi {
-  const sablon = r.agirlikliSec(OLAY_SABLONLARI.map((s) => ({ deger: s, agirlik: s.agirlik })));
+/** Olay çekirdeği: tür, kurban, fail (kaza ise yok), yer, zaman, yöntem, motivasyon. Tür ve yöntem arketipten. */
+function olayUret(r: Rastgele, kisiler: Kisi[], iliskiler: Iliski[], mekan: Mekan, kurban: Kisi, arketip: Arketip): OlayCekirdegi {
+  const sablon = { tur: arketip.olayTuru, yontemler: arketip.yontemler };
   const adaylar = kisiler.filter((k) => k.id !== kurban.id);
   // DÜZGÜN dağılım: kalıp kırıcı ilkenin kalbi.
   const fail = sablon.tur === 'kaza' ? null : r.sec(adaylar);
   let motivasyon = '';
   if (fail) {
     const iliski = iliskiler.find((i) => i.a === fail.id && i.b === kurban.id)!;
-    motivasyon = r.sec(MOTIVASYONLAR[iliski.tur]);
+    // İlişki motivasyonu + arketip teması: "aldatılma öfkesi; vasiyetin değiştirilme tehdidi"
+    motivasyon = `${r.sec(MOTIVASYONLAR[iliski.tur])}; ${r.sec(arketip.motivasyonlar)}`;
   }
   return {
     tur: sablon.tur,
@@ -174,12 +176,16 @@ export function vakaUret(seed: number | string, ayar: VakaAyari = { zorluk: 'ort
   const kurban = kok.altUret('kurban').sec(kisiler);
   kurban.rol = 'kurban';
   const { iliskiler, borclar } = iliskileriUret(kok.altUret('iliskiler'), kisiler, kurban);
-  const olay = olayUret(kok.altUret('olay'), kisiler, iliskiler, mekan, kurban);
+  // Arketip mekâna göre, ağırlıklı ve düzgün karıştırılır; olay türü/yöntemi buradan gelir (TASARIM §15).
+  const arketipR = kok.altUret('arketip');
+  const arketip = arketipR.agirlikliSec(mekanaUygunArketipler(mekan.tur).map((a) => ({ deger: a, agirlik: a.agirlik })));
+  const olay = olayUret(kok.altUret('olay'), kisiler, iliskiler, mekan, kurban, arketip);
   if (olay.tur === 'cinayet') kurban.hayatta = false;
   const zamanCizelgesi = zamanCizelgesiUret(kok.altUret('zaman'), kisiler, mekan, olay);
   return {
     seed: String(seed),
     ayar: { ...ayar },
+    arketip: arketip.id,
     mekan,
     kisiler,
     iliskiler,

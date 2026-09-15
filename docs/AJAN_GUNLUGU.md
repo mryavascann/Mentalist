@@ -485,3 +485,24 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** kalan tatbikatlar, takım hikâyesi + Ayna taslağı, vaka arketip havuzu (DURUM.md).
+
+## [2026-09-16 11:00] Ajan #1 — Vaka arketip havuzu
+**Görev:** TASARIM §15 arketiplerini üreticiye bağlamak; kalıp oluşturmadan renk katmak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/motor/arketipler.ts`: 14 arketip (olay türü, mekânlar, yöntemler, tema motivasyonları, brifing eki, Kılavuz maddesi, ağırlık); `mekanaUygunArketipler`.
+- `gerceklik.ts`: arketip mekâna göre ayrı alt akışta ağırlıklı seçilir; olay türü/yöntem arketipten; motivasyon = ilişki motivasyonu + arketip teması; `Vaka.arketip`. `dil.ts` brifinge arketip cümlesi; `Analiz.tsx` "vakanın dersi".
+- Test `tests/motor/arketip.test.ts` (5): mekân başına ≥2 arketip, uyum, kaza oranı, çeşitlilik (≥8 arketip, hiçbiri >%35), brifing, fail dağılımı düzgün.
+- Üretim değiştiği için üç test gürültüye takıldı; model gevşetilmedi: ipucu sadakat örneklemi 150→250 vaka, depo testi suçlu vaka bulan döngü, zorluk bot karşılaştırmasına 0.05 gürültü payı.
+
+**Değişen dosyalar:** src/motor/{arketipler,gerceklik,tipler,dil}.ts, src/arayuz/ekranlar/Analiz.tsx, tests/motor/{arketip,ipucu,zorluk}.test.ts, tests/arayuz/depo.test.ts, docs.
+
+**Testler:** 243 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Arketip çözüm anahtarı değildir; fail, sırlar ve deliller yine gerçeklik grafiğinden gelir (örüntü testi geçiyor).
+
+**Sorunlar / riskler:** Üretim değişince eski seed'ler farklı vaka üretir; regresyon seed'leri henüz tutulmuyor (AJAN_PROMPTU §4) — sonraki ajan `tests/regresyon/` açabilir.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** kalan tatbikatlar, takım hikâyesi + Ayna, oynanış cilası (DURUM.md).

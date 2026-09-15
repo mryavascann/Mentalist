@@ -105,8 +105,10 @@ describe('OyunDeposu — akış', () => {
   });
 
   it('suçlama: puan raporu üretir, analiz ekranına geçer, gerçeğin anlatımı fail ve motivasyonu içerir', () => {
-    const depo = hazirOyun('depo-suclama');
+    let depo = hazirOyun('depo-suclama-0');
+    for (let i = 1; !depo.durum.sorgu!.durum.vaka.olay.fail && i < 20; i++) depo = hazirOyun(`depo-suclama-${i}`);
     const fail = depo.durum.sorgu!.durum.vaka.olay.fail!;
+    expect(fail).toBeTruthy();
     depo.suclamaYap({ fail, guven: 0.8, gerekce: ['delil:d1'] });
     expect(depo.durum.ekran).toBe('analiz');
     expect(depo.durum.puan?.dogru).toBe(true);
