@@ -20,6 +20,16 @@ describe('App duman testi', () => {
     fireEvent.change(screen.getByPlaceholderText(/örn\./), { target: { value: 'duman-1' } });
     fireEvent.click(screen.getByText('Yeni vaka'));
 
+    // İlk vakadan önce Forer dersi: sorular → profil → puan → ifşa
+    expect(depo.durum.ekran).toBe('forer');
+    fireEvent.click(screen.getByText('Analizimi hazırla'));
+    expect(screen.getByText(/Kişilik analizin/)).toBeTruthy();
+    fireEvent.click(screen.getByText('Puanla'));
+    expect(screen.getByText('İfşa')).toBeTruthy();
+    expect(depo.durum.forer.tamamlandi).toBe(true);
+    fireEvent.click(screen.getByText('Anladım, dosyaya geç'));
+    expect(depo.durum.ekran).toBe('vaka-acilis');
+
     // Vaka açılışı: brifing ve kişi kartları
     const vaka = depo.durum.sorgu!.durum.vaka;
     expect(screen.getAllByText(new RegExp(vaka.mekan.ad)).length).toBeGreaterThan(0);
@@ -66,6 +76,9 @@ describe('App duman testi', () => {
     render(<App />);
     fireEvent.change(screen.getByPlaceholderText(/örn\./), { target: { value: 'duman-kayit' } });
     fireEvent.click(screen.getByText('Yeni vaka'));
+    fireEvent.click(screen.getByText('Analizimi hazırla'));
+    fireEvent.click(screen.getByText('Puanla'));
+    fireEvent.click(screen.getByText('Anladım, dosyaya geç'));
     const seed = depo.durum.sorgu!.durum.vaka.seed;
     const json = localStorage.getItem('the-mentalist:kayit');
     expect(json).toBeTruthy();

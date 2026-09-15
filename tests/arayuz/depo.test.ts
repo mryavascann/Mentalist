@@ -59,6 +59,8 @@ describe('OyunDeposu — akış', () => {
     expect(k[0]!.cevap.length).toBeGreaterThan(3);
     expect(typeof k[0]!.betimleme).toBe('string');
     expect(k[0]!.tur).toBe('soru');
+    expect(k[0]!.gozlemler.length).toBe(k[0]!.ipucuIdler.length);
+    for (const g of k[0]!.gozlemler) expect(k[0]!.betimleme).toContain(g.betimleme);
   });
 
   it('aynı soru tekrar sorulunca aynı cevap metni gelir (yalan defteri arayüze kadar tutarlı)', () => {

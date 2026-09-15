@@ -7,7 +7,10 @@
     "nasilKullanilir": "Kendi sezgine güvenme; yöntem kullan. Sadece görüntüye bakmak doğruluğu düşürür; sözü dinlemek (ses/transkript) daha iyidir.",
     "sinirlari": "Laboratuvar yalanları düşük riskli; yüksek riskli gerçek yalanlar farklı olabilir. Yine de gerçek hayatta yalanların %2'den azı yalnızca davranıştan yakalanır (Park et al. 2002).",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Bond & DePaulo 2006", "Vrij 2010 PSPI"]
+    "kaynak": [
+      "Bond & DePaulo 2006",
+      "Vrij 2010 PSPI"
+    ]
   },
   {
     "id": "dogruluk-yanliligi",
@@ -17,7 +20,10 @@
     "nasilKullanilir": "Tanıdığına daha çok inanırsın; yakın ilişki doğruluğu düşürür. Bir kişiye 'doğru' dediğinde bunun varsayılan olduğunu hatırla ve delil ara.",
     "sinirlari": "Yalan taban oranı yüksek ortamda (sorgu odası) doğruluk yanlılığı azalır ama doğruluk artmaz.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Bond & DePaulo 2006", "Vrij 2010 PSPI"]
+    "kaynak": [
+      "Bond & DePaulo 2006",
+      "Vrij 2010 PSPI"
+    ]
   },
   {
     "id": "ipuclari-zayiftir",
@@ -27,8 +33,15 @@
     "nasilKullanilir": "Tek bir davranışı kanıt sayma. İpucu = 'bu konuyu kurcala' sinyali (hotspot). Kesinlik delil, çelişki ve doğrulamayla gelir. Sözel ipuçları sözsüzden daha tanılayıcıdır.",
     "sinirlari": "Yalancı ile doğrucu arasındaki farkı BÜYÜTEN yöntemler (bilişsel yük, SUE, beklenmedik soru) olmadan ipuçları neredeyse işe yaramaz.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["DePaulo 2003", "Hartwig & Bond 2011", "Vrij 2010 PSPI"],
-    "iliskiliTeknikler": ["acik-uclu-anlatim", "temel-cizgi"]
+    "kaynak": [
+      "DePaulo 2003",
+      "Hartwig & Bond 2011",
+      "Vrij 2010 PSPI"
+    ],
+    "iliskiliTeknikler": [
+      "acik-uclu-anlatim",
+      "temel-cizgi"
+    ]
   },
   {
     "id": "othello-hatasi",
@@ -38,7 +51,11 @@
     "nasilKullanilir": "Bir kişi gerildiğinde sor: 'Masum biri de bu durumda gerilir miydi?' Alternatif nedenleri listele: inanılmama korkusu, alakasız sır, kişisel tetikleyici, utangaçlık, kültür.",
     "sinirlari": "Motivasyonlu kişi (inanılmak isteyen) yalan söylese de söylemese de daha yalancı görünür. Suçlayıcı ton bu hatayı büyütür.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Ekman — Emotions Revealed", "Vrij 2010 PSPI", "Bond & DePaulo 2006"]
+    "kaynak": [
+      "Ekman — Emotions Revealed",
+      "Vrij 2010 PSPI",
+      "Bond & DePaulo 2006"
+    ]
   },
   {
     "id": "guven-dogruluk-iliskisi",
@@ -48,7 +65,11 @@
     "nasilKullanilir": "Her suçlamada güven yüzdesi beyan et; oyun kalibrasyon grafiğini tutar. '%90 eminim' dediğin vakaların gerçekten %90'ını doğru bildin mi?",
     "sinirlari": "Kalibrasyonu kendi başına keşfedemezsin; olayları verdiğin olasılığa göre gruplamazsın. Dış kayıt şart.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Ekman & O'Sullivan 1991", "Vrij 2010 PSPI", "Tversky & Kahneman 1974"]
+    "kaynak": [
+      "Ekman & O'Sullivan 1991",
+      "Vrij 2010 PSPI",
+      "Tversky & Kahneman 1974"
+    ]
   },
   {
     "id": "temel-cizgi",
@@ -58,8 +79,13 @@
     "nasilKullanilir": "Tarafsız sohbetle normali öğren; sonra aynı soruyu farklı biçimlerde sorup tepkinin konuya bağlı olup olmadığını haritalandır (stres ısı haritası).",
     "sinirlari": "Küçük sohbet temel çizgisi ≠ suç sorusu temel çizgisi ('karşılaştırılabilir doğru'). Bekçi yangın sorusunda gerildi ama kundakçı değildi; kız arkadaşındaydı.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij 2010 PSPI", "Navarro"],
-    "iliskiliTeknikler": ["temel-cizgi"]
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Navarro"
+    ],
+    "iliskiliTeknikler": [
+      "temel-cizgi"
+    ]
   },
   {
     "id": "sorgu-heuristikleri",
@@ -69,7 +95,10 @@
     "nasilKullanilir": "Kararından önce hangi kısayola dayandığını adlandır. Tutarlı hikâye prova edilmiş olabilir; tuhaf davranış kişilik olabilir.",
     "sinirlari": "Kısayollar çoğu zaman işe yarar; sorun tek ipucuna ve stres altında dayanmaktır.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij 2010 PSPI", "Cialdini"]
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Cialdini"
+    ]
   },
   {
     "id": "ram-dort-katman",
@@ -79,7 +108,9 @@
     "nasilKullanilir": "Vaka sonu analizinde hatanı dört katmandan biriyle etiketle: (1) ipucu ilgisizdi, (2) ipucu önünde değildi, (3) fark etmedin, (4) yanlış yorumladın. Her katmanın ilacı farklıdır.",
     "sinirlari": "Kişilik yargısı için geliştirildi; yalan tespitine uyarlanması bizim tasarım tercihimiz.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Funder 1995"]
+    "kaynak": [
+      "Funder 1995"
+    ]
   },
   {
     "id": "sue",
@@ -89,8 +120,12 @@
     "nasilKullanilir": "Serbest anlatım → delilin konusuyla ilgili soru (delili açmadan) → delili aç, çelişkiyi sor. Masum 'masumiyetim görünür' diye açık konuşur.",
     "sinirlari": "Delil olmadan işlemez. Delil zayıfsa (sızmış bilgi, belirsiz görüntü) çelişki masumda da çıkabilir.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "iliskiliTeknikler": ["sue"]
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "iliskiliTeknikler": [
+      "sue"
+    ]
   },
   {
     "id": "bilissel-yuk",
@@ -100,8 +135,12 @@
     "nasilKullanilir": "İlk serbest anlatımdan sonra ters sırayla anlattır; ayrıntı kaybı, duraksama ve çelişkileri karşılaştır.",
     "sinirlari": "Herkes zorlanır; temel çizgi ve karşılaştırma şart. Prova edilmiş, senaryo yalanlarda etki azalır.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "iliskiliTeknikler": ["bilissel-yuk-ters-sira"]
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "iliskiliTeknikler": [
+      "bilissel-yuk-ters-sira"
+    ]
   },
   {
     "id": "beklenmedik-soru",
@@ -111,8 +150,12 @@
     "nasilKullanilir": "Grup alibisinde kişileri ayrı ayrı sorgula; aynı beklenmedik soruyu sor; cevapları ve çizimleri karşılaştır.",
     "sinirlari": "Doğrucu da ayrıntı unutabilir; 'bilmiyorum' demesi normal. Yalancı çocuklar imkânsız sorulara bile cevap uydurur.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "iliskiliTeknikler": ["beklenmedik-soru"]
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "iliskiliTeknikler": [
+      "beklenmedik-soru"
+    ]
   },
   {
     "id": "gizli-bilgi-testi",
@@ -122,8 +165,13 @@
     "nasilKullanilir": "Ayrıntının sızıp sızmadığını kontrol et (basın, tanıklar, dedikodu). Seçenekleri eşit inandırıcı yap. Buz kıracağı sorusu: gerçek silah geçince göz kapakları uzun süre kapandı.",
     "sinirlari": "Sızmış ayrıntı testi geçersiz kılar; fail ayrıntıyı fark etmemiş olabilir. 'Sadece failin bilebileceği' varsayımı hot reading ile çöker.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij & Verschuere 2014", "Navarro"],
-    "iliskiliTeknikler": ["gizli-bilgi-testi"]
+    "kaynak": [
+      "Vrij & Verschuere 2014",
+      "Navarro"
+    ],
+    "iliskiliTeknikler": [
+      "gizli-bilgi-testi"
+    ]
   },
   {
     "id": "symptom-validity-test",
@@ -133,8 +181,12 @@
     "nasilKullanilir": "10–15 iki seçenekli soru; şans altı kümelenme = kasıtlı kaçınma. Yalancılar ilk yarıda doğru seçenekten özellikle kaçınır.",
     "sinirlari": "Az soru şansa açık. İkincil ayrıntıları hatırlamamak normaldir; test doğrudan olay bilgisi için.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij & Verschuere 2014"],
-    "iliskiliTeknikler": ["zorunlu-iki-secenek"]
+    "kaynak": [
+      "Vrij & Verschuere 2014"
+    ],
+    "iliskiliTeknikler": [
+      "zorunlu-iki-secenek"
+    ]
   },
   {
     "id": "yonlendirici-soru-riski",
@@ -144,8 +196,14 @@
     "nasilKullanilir": "Açık uçlu sor, sonra daraltarak ilerle. Tanığın söylediği her ayrıntı için 'bunu ilk kim söyledi?' kaydını tut. Aynı tanığı gereksiz tekrar sorgulama.",
     "sinirlari": "Tamamen yönlendirmesiz soru yoktur; amaç kontaminasyonu asgariye indirmek ve kaydını tutmaktır.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Loftus & Pickrell 1995", "French 2024", "Konnikova"],
-    "iliskiliTeknikler": ["yonlendirici-soru"]
+    "kaynak": [
+      "Loftus & Pickrell 1995",
+      "French 2024",
+      "Konnikova"
+    ],
+    "iliskiliTeknikler": [
+      "yonlendirici-soru"
+    ]
   },
   {
     "id": "saskinlik-testi",
@@ -155,8 +213,12 @@
     "nasilKullanilir": "Bilgiyi hazırlıksız yakalayacak biçimde ver; ilk tepkiyi izle, sonra gelen düzeltilmiş ifadeyi değil.",
     "sinirlari": "Ekman'ın gözlemi, kontrollü çalışması az. Şaşkınlık bastırılabilir ve taklit edilebilir; irkilme ise refleks, bilgiyle ilgisiz.",
     "kanitDuzeyi": "zayif",
-    "kaynak": ["Ekman — Emotions Revealed"],
-    "iliskiliTeknikler": ["saskinlik-testi"]
+    "kaynak": [
+      "Ekman — Emotions Revealed"
+    ],
+    "iliskiliTeknikler": [
+      "saskinlik-testi"
+    ]
   },
   {
     "id": "sahte-bilgi-yemi",
@@ -166,8 +228,13 @@
     "nasilKullanilir": "Sadece uydurduğunu bilebileceğin bir ayrıntı sor. Onaylayan ve süsleyen kişinin anlatısına güvenme.",
     "sinirlari": "Etik ve kontaminasyon riski: masumun anısına sahte ayrıntı yerleştirebilirsin; telkine yatkın kişi samimiyetle 'hatırlar'. Bulgu sihir/medyum bağlamından; adli kanıtı yok.",
     "kanitDuzeyi": "zayif",
-    "kaynak": ["Rowland", "Derren Brown"],
-    "iliskiliTeknikler": ["sahte-bilgi-yemi"]
+    "kaynak": [
+      "Rowland",
+      "Derren Brown"
+    ],
+    "iliskiliTeknikler": [
+      "sahte-bilgi-yemi"
+    ]
   },
   {
     "id": "seytanin-avukati",
@@ -177,8 +244,12 @@
     "nasilKullanilir": "Görüş ve niyet ifadelerinde uygula: 'Neden böyle düşünüyorsun?' sonra 'Şimdi karşı tarafı savun.'",
     "sinirlari": "Olay anlatımı için değil, görüş/niyet için. Sözel beceri farkları etkiyi bozar.",
     "kanitDuzeyi": "zayif",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "iliskiliTeknikler": ["seytanin-avukati"]
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "iliskiliTeknikler": [
+      "seytanin-avukati"
+    ]
   },
   {
     "id": "suclayici-ton",
@@ -188,8 +259,13 @@
     "nasilKullanilir": "Önce rahatlık kur (temel çizgi için de gerekir). 'Anlamadım, tekrar anlatır mısın?' gibi açık isteklerle ayrıntı al. Makineli soru sorma.",
     "sinirlari": "Baskı bazen bilgi de getirir; ama sahte itiraf ve kirlenmiş ifade maliyeti yüksektir.",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Vrij 2010 PSPI", "Navarro"],
-    "iliskiliTeknikler": ["suclayici-ton"]
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Navarro"
+    ],
+    "iliskiliTeknikler": [
+      "suclayici-ton"
+    ]
   },
   {
     "id": "capalama",
@@ -199,7 +275,10 @@
     "nasilKullanilir": "Tanığa 'gece ikiden önce mi sonra mı?' sorusu çapa koyar. Kendi ilk şüphelin de çapadır: 'Karşıt hipotezi yaz' düğmesini kullan.",
     "sinirlari": "Kişi çapalamayı kendi ürettiği için fark etmez; düzeltmek için alternatif hipotez üretmek gerekir.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Tversky & Kahneman 1974", "Strack & Mussweiler 1997"]
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Strack & Mussweiler 1997"
+    ]
   },
   {
     "id": "dogrulama-yanliligi",
@@ -209,7 +288,11 @@
     "nasilKullanilir": "Her hipotez için 'hangi bulgu bunu çürütür?' sorusunu yaz. Fiziksel imkânsızlık kontrolü yap (görme, boy, zaman).",
     "sinirlari": "Şüphecilik de bir inançtır; çürütmeyi seven kişi karşı kanıtı da aşırı titiz inceleyebilir.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Konnikova", "Derren Brown", "French 2024"]
+    "kaynak": [
+      "Konnikova",
+      "Derren Brown",
+      "French 2024"
+    ]
   },
   {
     "id": "hale-etkisi",
@@ -219,7 +302,11 @@
     "nasilKullanilir": "'Bu kişiyi beklediğimden fazla mı sevdim?' diye sor; kişiyi ifadeden ayır. Kişi kartındaki ilk sıfatın seni yönlendirdiğini bil.",
     "sinirlari": "Olumlu özellikler gerçekten birlikte bulunabilir; haleyi tamamen silmek yargıyı kötüleştirebilir (Funder). Amaç fark etmek.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Cialdini", "Konnikova", "Funder 1995"]
+    "kaynak": [
+      "Cialdini",
+      "Konnikova",
+      "Funder 1995"
+    ]
   },
   {
     "id": "sosyal-kanit",
@@ -229,7 +316,10 @@
     "nasilKullanilir": "Takım görüşünü duymadan önce kendi tahminini yaz. Tanıkların pasifliğini suç ortaklığı sanma. Sahte sosyal kanıtı (kayıtlı gülme, sahte kuyruk) tanı.",
     "sinirlari": "Sosyal kanıt çoğu zaman işe yarar; sorun belirsizlik ve benzerlik altında körce uymaktır.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Cialdini", "Cialdini & Goldstein 2004"]
+    "kaynak": [
+      "Cialdini",
+      "Cialdini & Goldstein 2004"
+    ]
   },
   {
     "id": "asiri-ozguven",
@@ -239,7 +329,11 @@
     "nasilKullanilir": "Topladığın ipucu sayısı güvenini yükseltir; kalibrasyon grafiğine bak. Zor vakada aşırı, kolayda düşük güven duyarsın.",
     "sinirlari": "Kalibrasyon ancak dış kayıtla (karar günlüğü) görülür.",
     "kanitDuzeyi": "guclu",
-    "kaynak": ["Tversky & Kahneman 1974", "Konnikova", "Ekman & O'Sullivan 1991"]
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Konnikova",
+      "Ekman & O'Sullivan 1991"
+    ]
   },
   {
     "id": "ic-masalci",
@@ -249,7 +343,10 @@
     "nasilKullanilir": "Bir tutarsızlığa açıklama bulduğunda sor: 'Bunu test ettim mi, yoksa sadece akla yatkın mı?' Gözlemi çıkarımdan ayır (iki sütun).",
     "sinirlari": "Konfabulasyon herkeste; tanıkların 'neden' açıklamaları da güvenilmezdir (Nisbett & Wilson).",
     "kanitDuzeyi": "orta",
-    "kaynak": ["Konnikova", "Nisbett & Wilson 1977"]
+    "kaynak": [
+      "Konnikova",
+      "Nisbett & Wilson 1977"
+    ]
   },
   {
     "id": "mit-goz-temasi",
@@ -259,7 +356,12 @@
     "nasilKullanilir": "Göz kaçırmayı kanıt sayma. Olsa olsa temel çizgiden sapma ve 'hangi konuda' bilgisi verir.",
     "sinirlari": "Öznel 'göz teması' izlenimi (-.28) nesnel sayımdan farklı; insanlar yine de sezgisel bir şey yakalıyor olabilir, ama bu göz değil genel beceriksizlik izlenimidir.",
     "kanitDuzeyi": "mit",
-    "kaynak": ["DePaulo 2003", "Bond & DePaulo 2006", "Vrij 2010 PSPI", "Derren Brown"]
+    "kaynak": [
+      "DePaulo 2003",
+      "Bond & DePaulo 2006",
+      "Vrij 2010 PSPI",
+      "Derren Brown"
+    ]
   },
   {
     "id": "mit-nlp-goz-hareketleri",
@@ -269,7 +371,11 @@
     "nasilKullanilir": "'NLP uzmanı' danışman karakterin okumalarına güvenme. Göz yönünden yalan okuma iddiası hata raporunda 'mit' olarak işaretlenir.",
     "sinirlari": "Bazı bireylerde tutarlı örüntü olabilir ama genel kural yoktur; gözlemci beklentisiyle görür.",
     "kanitDuzeyi": "mit",
-    "kaynak": ["Wiseman 2012", "Witkowski 2010 & 2012", "Derren Brown"]
+    "kaynak": [
+      "Wiseman 2012",
+      "Witkowski 2010 & 2012",
+      "Derren Brown"
+    ]
   },
   {
     "id": "mit-mikroifade-yalan",
@@ -279,7 +385,11 @@
     "nasilKullanilir": "Yüz ipuçlarını daima bağlam, temel çizgi ve sesle birlikte, olasılıksal oku. 'Kaş çattı = öfkeli' deme; kaş çatma konsantrasyon, şaşkınlık, ışık da olabilir.",
     "sinirlari": "Sızıntı gerçek bir olgudur; sorun 'sızıntı = yalan' ve 'yüz = duygu' teşhis kesinliğidir.",
     "kanitDuzeyi": "mit",
-    "kaynak": ["Zloteanu 2020", "Barrett 2019", "Vrij 2010 PSPI"]
+    "kaynak": [
+      "Zloteanu 2020",
+      "Barrett 2019",
+      "Vrij 2010 PSPI"
+    ]
   },
   {
     "id": "mit-reid-ipuclari",
@@ -289,7 +399,11 @@
     "nasilKullanilir": "Kaşınma, ellerini sürtme, kıpırdanma → kanıt değil. Navarro'nun yatıştırıcı davranışları en fazla 'hangi konu rahatsız etti' sinyalidir.",
     "sinirlari": "Bazı sorgucular saha deneyimiyle iyi olabilir; ama genelleştirilebilir kural yoktur.",
     "kanitDuzeyi": "mit",
-    "kaynak": ["Vrij 2010 PSPI", "Vrij & Verschuere 2014", "DePaulo 2003"]
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Vrij & Verschuere 2014",
+      "DePaulo 2003"
+    ]
   },
   {
     "id": "mit-ses-stres-analizi",
@@ -299,7 +413,9 @@
     "nasilKullanilir": "'Makine yalanı ölçtü' diyen raporu kaynak ve yöntemiyle sorgula. Sahte teknoloji blöfü (sahte poligraf) itiraf alabilir ama gerçek mi?",
     "sinirlari": "Gizli bilgi testi (CIT) ile ölçülen tanıma tepkisi farklıdır ve kısmen geçerlidir.",
     "kanitDuzeyi": "mit",
-    "kaynak": ["Vrij & Verschuere 2014"]
+    "kaynak": [
+      "Vrij & Verschuere 2014"
+    ]
   },
   {
     "id": "mit-cevap-gecikmesi",
@@ -309,6 +425,51 @@
     "nasilKullanilir": "'1.7 saniye kuralı' gibi sabit eşikleri unut. Gecikme ancak temel çizgiyle ve soru türüyle (beklenmedik mi?) birlikte anlam taşır.",
     "sinirlari": "Beklenmedik soruya gecikme, bilişsel yük tekniklerinin parçası olarak bilgi verebilir.",
     "kanitDuzeyi": "mit",
-    "kaynak": ["DePaulo 2003", "Vrij & Verschuere 2014"]
+    "kaynak": [
+      "DePaulo 2003",
+      "Vrij & Verschuere 2014"
+    ]
+  },
+  {
+    "id": "forer-barnum",
+    "bolum": "soguk-okuma",
+    "baslik": "Forer/Barnum etkisi: herkese uyan 'sana özel' profil",
+    "ozet": "Forer 1949: aynı 13 maddelik gazete astrolojisi profilini alan 39 öğrenci ortalama 4.26/5 'isabet' verdi. Kanizsa 1953'te tamamen zıt profil de 23 kişiden 19'unca kabul edildi. Kabul, teste inanç gücüyle artar.",
+    "nasilKullanilir": "Bir okuma sana 'tam isabet' geliyorsa sor: Bu cümle kaç kişiye uymaz? İki başlı ('bazen dışadönük bazen içe dönük') ve iltifat eden ifadeler bilgi taşımaz. Kör seçim testi: profilleri anonimleştir, kendini bul.",
+    "sinirlari": "Barnum kabulü kısmen rasyoneldir: maddeler gerçekten çoğu insan için doğrudur. Sorun, bunun 'okuyucunun seni bildiği' kanıtı sanılmasıdır.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Forer 1949",
+      "Hyman 1977",
+      "Poškus 2014"
+    ]
+  },
+  {
+    "id": "soguk-okuma-teknikleri",
+    "bolum": "soguk-okuma",
+    "baslik": "Soğuk okumanın öğeleri",
+    "ozet": "Hyman'ın 13 kuralı ve Rowland'ın öğeleri: gökkuşağı hilesi (zıt özellikleri birlikte söyle), olta atma (ifadeyi soru gibi söyle, onaylanınca iddiaya çevir), çatallama, yüksek olasılıklı tahmin (sırt ağrısı, kutuda eski fotoğraflar), sorumluluğu danışana atma ('sen kendi hayatına uyarla'), iltifat, söylediğinden fazlasını biliyormuş gibi davranma.",
+    "nasilKullanilir": "Bir medyum, manipülatör ya da şüpheli kaydını dinlerken her cümleyi etiketle: Barnum mı, olta mı, çatal mı, geleceğe erteleme mi? 'Nasıl bildi?' yerine 'hangi kanaldan öğrenmiş olabilir?' diye sor (sıcak okuma: önceden bilgi toplama).",
+    "sinirlari": "Okuyucu bilinçli sahtekâr olmayabilir (shut-eye): kendisi de inanır. Teknik bilgisi kişiyi kötü niyetli yapmaz.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Hyman 1977",
+      "Rowland",
+      "Wiseman",
+      "Derren Brown"
+    ]
+  },
+  {
+    "id": "bloklama-kurallari",
+    "bolum": "soguk-okuma",
+    "baslik": "Soğuk okumayı bloklamak: beş kural",
+    "ozet": "Rowland'ın savunması: (1) sakin ve makul kal, (2) soruyu soru olarak adlandırt, (3) sorulara cevap verme, (4) geri bildirim verme ('devam edin, sonra değerlendireceğim'), (5) öğeleri sabote et: genellemeyi somutlaştırt, gökkuşağı hilesine 'hangisi?' diye sor.",
+    "nasilKullanilir": "Seni okumaya çalışan kişiye (sahte otorite, manipülatör tanık) veri verme: yüzün, onayın, düzeltmen onun malzemesidir. Kaydı sen al.",
+    "sinirlari": "Sohbet normlarına aykırıdır; kabalık gibi görünebilir. Hedef, kişiyi ezmek değil yapıyı görünür kılmaktır.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Rowland",
+      "Derren Brown"
+    ]
   }
 ]

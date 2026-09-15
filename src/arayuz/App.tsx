@@ -9,6 +9,7 @@ import { Pano } from './ekranlar/Pano';
 import { Suclama } from './ekranlar/Suclama';
 import { Analiz } from './ekranlar/Analiz';
 import { Kilavuz } from './ekranlar/Kilavuz';
+import { Forer } from './ekranlar/Forer';
 
 export function App() {
   const d = useOyun();
@@ -20,6 +21,7 @@ export function App() {
   let ekran;
   switch (d.ekran) {
     case 'baslik': ekran = <Baslik />; break;
+    case 'forer': ekran = <Forer />; break;
     case 'vaka-acilis': ekran = <VakaAcilis />; break;
     case 'sorgu': ekran = <SorguOdasi />; break;
     case 'pano': ekran = <Pano />; break;

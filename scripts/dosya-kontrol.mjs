@@ -16,6 +16,10 @@ await page.goto(url);
 await page.fill('input[placeholder^="Adını"]', 'Deniz');
 await page.fill('input[placeholder^="örn."]', 'dosya-kontrol');
 await page.getByRole('button', { name: 'Yeni vaka' }).click();
+// İlk vakadan önce Forer dersi
+await page.getByRole('button', { name: 'Analizimi hazırla' }).click();
+await page.getByRole('button', { name: 'Puanla' }).click();
+await page.getByRole('button', { name: 'Anladım, dosyaya geç' }).click();
 await page.waitForSelector('text=Olay yeri delilleri');
 await page.getByRole('button', { name: 'Görüş' }).first().click();
 await page.waitForSelector('text=Neredeydin?');

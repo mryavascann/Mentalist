@@ -31,9 +31,9 @@
 - [x] Vaka: motor üretir (5–8 kişi, 4 olay türü, 8 mekân) — tek tip yerine üreticinin tamamı dikey dilimde (2026-09-16, Ajan #1)
 - [x] Ekranlar: başlık, vaka açılışı, sorgu odası, pano, suçlama + güven, vaka sonu analizi, Kılavuz; depo 12 test + jsdom 2 test (2026-09-16, Ajan #1)
 - [x] Kılavuz ekranı: 29 madde, 5 bölüm, rozetler, "karşılaştın" (2026-09-16, Ajan #1)
-- [ ] Forer testi tutorial'ı
+- [x] Forer testi tutorial'ı: 8 soru → 13 madde → puan → ifşa; ilk vakadan önce; Kılavuz'a soğuk okuma bölümü (3 madde), 4 test (2026-09-16, Ajan #1)
 - [x] jsdom duman testi (bir vaka baştan sona) + `scripts/dosya-kontrol.mjs` yerel Chrome ile file:// doğrulaması (2026-09-16, Ajan #1)
-- [ ] Kayıt: localStorage + JSON dışa/içe aktarma — YAPILDI (K-011), Forer ile birlikte kapatılacak
+- [x] Kayıt: localStorage + JSON dışa/içe aktarma (K-011) (2026-09-16, Ajan #1)
 
 ## Aşama 3 — Genişleme
 - [ ] Diğer araçlar ve arketipler

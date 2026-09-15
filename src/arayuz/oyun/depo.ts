@@ -14,9 +14,10 @@ import type { Kisi, KisiId, Vaka } from '@motor/tipler';
 import { ICERIK } from '@icerik/index';
 import { bulunma } from '@ortak/turkce';
 import { PROJE } from '@ortak/surum';
+import { FORER } from '@icerik/forer';
 import { soruMetni, teknikSonucMetni } from './metinler';
 
-export type Ekran = 'baslik' | 'vaka-acilis' | 'sorgu' | 'pano' | 'suclama' | 'analiz' | 'kilavuz';
+export type Ekran = 'baslik' | 'forer' | 'vaka-acilis' | 'sorgu' | 'pano' | 'suclama' | 'analiz' | 'kilavuz';
 export type PanoTuru = 'gozlem' | 'cikarim' | 'hipotez' | 'olmayan';
 
 export interface KonusmaKaydi {
@@ -25,10 +26,14 @@ export interface KonusmaKaydi {
   cevap: string;
   betimleme: string;
   ipucuIdler: string[];
+  /** Tıklanabilir betimlemeler: her biri katalogdaki bir ipucuya bağlanır (İpucu kartı). */
+  gozlemler: { ipucuId: string; betimleme: string }[];
   teknikId?: string;
 }
 
 export interface PanoDurumu { gozlem: string[]; cikarim: string[]; hipotez: string[]; olmayan: string[] }
+
+export interface ForerDurumu { tamamlandi: boolean; puan: number | null; asama: 'sorular' | 'profil' | 'ifsa' }
 
 export interface VakaGecmisi { seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number }
 
@@ -49,6 +54,7 @@ export interface OyunDurumu {
   gercekAnlatimi: string;
   gecmis: VakaGecmisi[];
   kilavuzMaddesi: string | null;
+  forer: ForerDurumu;
   surum: number;
 }
 
@@ -63,7 +69,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', gecmis: [], kilavuzMaddesi: null, surum: 0,
+    gercekAnlatimi: '', gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, surum: 0,
   };
 }
 
@@ -161,6 +167,7 @@ export class OyunDeposu {
       cevap: metin,
       betimleme: betimlemeMetni(ipuclari as never),
       ipucuIdler: ipuclari.map((g) => g.ipucuId),
+      gozlemler: ipuclari.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme })),
     };
   }
 
@@ -182,7 +189,7 @@ export class OyunDeposu {
     if (!sorgu || !seciliKisi) return;
     motorDelilGoster(sorgu, seciliKisi, delilId);
     const delil = sorgu.deliller.find((d) => d.id === delilId)!;
-    this.kayitEkle(seciliKisi, { tur: 'teknik', teknikId: 'delil-goster', soru: 'Delili gösterdin.', cevap: delil.aciklama, betimleme: '', ipucuIdler: [] });
+    this.kayitEkle(seciliKisi, { tur: 'teknik', teknikId: 'delil-goster', soru: 'Delili gösterdin.', cevap: delil.aciklama, betimleme: '', ipucuIdler: [], gozlemler: [] });
     this.bildir();
   }
 
@@ -194,19 +201,25 @@ export class OyunDeposu {
     const teknik = ICERIK.teknikler.find((t) => t.id === teknikId);
     if (!teknik) return null;
     const sonuc = teknikUygula(sorgu, seciliKisi, teknikId, p);
-    const kayit: KonusmaKaydi = { tur: 'teknik', teknikId, soru: teknik.ad, cevap: teknikSonucMetni(sonuc, vaka), betimleme: '', ipucuIdler: [] };
+    const kayit: KonusmaKaydi = { tur: 'teknik', teknikId, soru: teknik.ad, cevap: teknikSonucMetni(sonuc, vaka), betimleme: '', ipucuIdler: [], gozlemler: [] };
     // Anlatım içeren teknikler cevap satırlarını da döker.
     if (sonuc.teknik === 'acik-uclu-anlatim' || sonuc.teknik === 'bilissel-yuk-ters-sira') {
       const satirlar = sonuc.anlatim.map((a) => `[${vaka.dilimler[(a.cevap.soru as { dilim: number }).dilim]!.baslangic}] ${cevapMetni(vaka, a.cevap, this.usluplar.get(seciliKisi)!, this.bellek)}`);
       kayit.cevap = `${kayit.cevap} ${satirlar.join(' ')}`;
-      kayit.betimleme = betimlemeMetni(sonuc.anlatim.flatMap((a) => a.ipuclari));
-      kayit.ipucuIdler = sonuc.anlatim.flatMap((a) => a.ipuclari.map((g) => g.ipucuId));
+      const hepsi = sonuc.anlatim.flatMap((a) => a.ipuclari);
+      kayit.betimleme = betimlemeMetni(hepsi);
+      kayit.ipucuIdler = hepsi.map((g) => g.ipucuId);
+      kayit.gozlemler = hepsi.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
+    } else if (sonuc.teknik === 'temel-cizgi') {
+      kayit.gozlemler = sonuc.gozlemler.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
     } else if (sonuc.teknik === 'yonlendirici-soru') {
       kayit.cevap = `${cevapMetni(vaka, sonuc.sonuc.cevap, this.usluplar.get(seciliKisi)!, this.bellek)} — ${kayit.cevap}`;
       kayit.betimleme = betimlemeMetni(sonuc.sonuc.ipuclari);
+      kayit.gozlemler = sonuc.sonuc.ipuclari.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
     } else if (sonuc.teknik === 'sue') {
       kayit.cevap = `Önce anlattı: "${cevapMetni(vaka, sonuc.once.cevap, this.usluplar.get(seciliKisi)!, this.bellek)}" ${kayit.cevap}`;
       kayit.betimleme = betimlemeMetni(sonuc.once.ipuclari);
+      kayit.gozlemler = sonuc.once.ipuclari.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
     }
     this.kayitEkle(seciliKisi, kayit);
     this.durum.zaman = sorgu.zaman;
@@ -282,13 +295,41 @@ export class OyunDeposu {
   }
 
   // ---------------------------------------------------------------------------------------------
+  // Forer tutorial'ı (TASARIM §13): cevaplar ne olursa olsun herkes aynı profili alır; ders ifşada.
+
+  forerBasla() {
+    this.durum.forer = { ...this.durum.forer, asama: 'sorular' };
+    this.durum.ekran = 'forer';
+    this.bildir();
+  }
+
+  /** "Analiz" üretir: cevaplardan bağımsız, Forer'in 13 maddesi. Cevaplar kasıtlı olarak kullanılmaz. */
+  forerCevapla(_cevaplar: string[]): string[] {
+    this.durum.forer = { ...this.durum.forer, asama: 'profil' };
+    this.bildir();
+    return [...FORER.profil];
+  }
+
+  forerPuanla(puan: number) {
+    const kirpik = Math.max(1, Math.min(5, Math.round(puan)));
+    this.durum.forer = { tamamlandi: true, puan: kirpik, asama: 'ifsa' };
+    this.bildir();
+  }
+
+  forerBitir() {
+    this.durum.forer = { ...this.durum.forer, tamamlandi: true };
+    this.durum.ekran = this.durum.sorgu ? 'vaka-acilis' : 'baslik';
+    this.bildir();
+  }
+
+  // ---------------------------------------------------------------------------------------------
   // Kayıt (K-011)
 
   disaAktar(): string {
     const d = this.durum;
     const s = d.sorgu;
     return JSON.stringify({
-      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi,
+      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer,
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
       konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, gecmis: d.gecmis,
       sorgu: s ? {
@@ -302,7 +343,7 @@ export class OyunDeposu {
     try {
       const v = JSON.parse(json);
       if (!v || v.kayitSurumu !== KAYIT_SURUMU) return false;
-      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [] };
+      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' } };
       if (v.seed && v.sorgu) {
         const sorgu = sorguBaslat(vakaUret(v.seed));
         sorgu.durum.defter = new Map(v.sorgu.defter);
@@ -312,7 +353,7 @@ export class OyunDeposu {
         sorgu.zaman = Number(v.sorgu.zaman ?? 0);
         sorgu.gecmis = v.sorgu.gecmis ?? [];
         this.kur(sorgu, null);
-        this.durum.konusmalar = new Map(v.konusmalar ?? []);
+        this.durum.konusmalar = new Map(((v.konusmalar ?? []) as [string, KonusmaKaydi[]][]).map(([k, liste]) => [k, liste.map((x) => ({ ...x, gozlemler: x.gozlemler ?? [] }))]));
         this.durum.pano = { ...bosPano(), ...(v.pano ?? {}) };
         this.durum.suclama = v.suclama ?? null;
         this.durum.puan = v.puan ?? null;
@@ -320,7 +361,7 @@ export class OyunDeposu {
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }
-      this.durum.ekran = (v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik');
+      this.durum.ekran = v.ekran === 'forer' ? 'baslik' : ((v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik'));
       this.bildir();
       return true;
     } catch {

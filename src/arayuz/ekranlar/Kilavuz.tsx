@@ -8,6 +8,7 @@ const BOLUM_ADLARI: Record<string, string> = {
   'sorgulama-teknikleri': 'Sorgulama Teknikleri',
   'bilissel-yanliliklar': 'Bilişsel Yanlılıklar',
   'kisilik-okuma': 'Kişilik Okuma',
+  'soguk-okuma': 'Soğuk ve Sıcak Okuma',
   'mitler-muzesi': 'Mitler Müzesi',
 };
 const ROZET_ADI: Record<string, string> = { guclu: 'Güçlü', orta: 'Orta', zayif: 'Zayıf', mit: 'Mit' };

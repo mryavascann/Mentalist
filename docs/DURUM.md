@@ -1,41 +1,37 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 05:10, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 06:00, Ajan #1.
 
 ## Aktif aşama
-**Aşama 2 — Dikey dilim.** Oynanabilir ilk sürüm hazır: dil katmanı + React ekranları + kayıt. Sıradaki: Forer tutorial'ı, cilalama, Playwright.
+**Aşama 2 — Dikey dilim TAMAMLANDI** (oynanabilir, tek dosya, Forer dersi, Kılavuz, kayıt). Sıradaki: Aşama 3 başlangıcı (denge/zorlaştırıcı, cila, içerik genişletme).
 
 ## Biten işler
-- Aşama 0 + Aşama 1 (motor, 161 test). Dil katmanı (19 test).
-- `src/arayuz/oyun/depo.ts` (12 test): React'ten bağımsız oyun deposu — ekran akışı, kişi seçimi, soru/teknik/delil gösterme, konuşma kayıtları (soru metni + cevap metni + betimleme), pano (4 sütun, hipotez limiti 7), suçlama → `puanla`, gerçeğin anlatımı, kör nokta geçmişi, JSON dışa/içe aktarma (defter ve sorgu kayıtları dahil), `sifirla`.
-- `src/arayuz/oyun/metinler.ts`: soru cümleleri, teknik sonuç özetleri (gizli bilgi sızdırmaz).
-- `src/arayuz/oyun/kullan.ts`: tek depo + `useSyncExternalStore`; localStorage otomatik kayıt (try/catch).
-- Ekranlar (`src/arayuz/ekranlar/`): Kabuk (sekmeler, zaman bütçesi), Baslik (kahraman adı, vaka kodu, kayıt dışa/içe, sıfırla), VakaAcilis (brifing, kişi kartları, deliller + sızıntı rozeti), SorguOdasi (kişiler | akış | sorular+teknikler+deliller), Pano (mantar pano), Suclama (kişi/suç yok, güven, dayanaklar, kontrol listesi), Analiz (puan, kalibrasyon, cezalar, hata etiketleri → Kılavuz, gerçeğin anlatımı, kör noktalar), Kilavuz (5 bölüm, rozetler, "karşılaştın").
-- `src/arayuz/stil.css`: brand.md dili, yalnızca sistem fontları (çevrimdışı).
-- `tests/arayuz/App.test.tsx` (jsdom, 2 test): bir vaka baştan sona + tarayıcı kaydı.
-- `scripts/dosya-kontrol.mjs`: `dist/index.html`'i yerel Chrome/Edge ile `file://` altında açıp bir akışı doğrular (Playwright; tarayıcı indirmez).
+- Aşama 0 + 1 (motor, 161 test), dil katmanı (19), depo (12), ekranlar + jsdom (4), Forer (4).
+- Forer tutorial'ı (`src/icerik/forer.json`, `Forer.tsx`, depo `forerBasla/forerCevapla/forerPuanla/forerBitir`): ilk vakadan önce otomatik; Başlık'ta "Açılış dersi" düğmesi; kayıtla taşınır.
+- Kılavuz'a "Soğuk ve Sıcak Okuma" bölümü: Forer/Barnum, soğuk okuma öğeleri, bloklama kuralları (32 madde, 6 bölüm). Kaynak kütüğüne Poškus 2014 eklendi (37 kaynak).
+- İpucu kartı (`IpucuKarti.tsx`): sorgu odasında her davranış betimlemesi tıklanabilir → katalog kaydı (rozet, d, not, kaynak, "kanıt değil" uyarısı). Konuşma kayıtları `gozlemler` alanı taşır.
+- `scripts/dosya-kontrol.mjs` Forer akışını da geçer.
 
 ## Sıradaki 3 iş
-1. **Forer tutorial'ı** (TASARIM §13): ilk açılışta kısa "kişilik testi" → herkese aynı 13 madde → puanlat → ifşa; Kılavuz'a "Soğuk Okuma / Barnum" maddesi.
-2. **Cila:** sorgu odasında ipucu betimlemelerinin katalog id'siyle Kılavuz'a bağlanması (tıkla → madde), delil gösterildi rozeti, hipotez sayacı, mobil düzen kontrolü, analizde "ilk ifade vs son ifade" özeti.
-3. **Zorlaştırıcı ve denge** (kullanıcı kararı bekliyor): kaçamak oranı, korkuyla susan tanık, sahnelenmiş delil.
+1. **Denge/zorlaştırıcı** (kullanıcı kararı bekliyor ama öneri hazır): (a) fail kaçamak oranını beceriye göre değil vaka zorluğuna göre ayarla, (b) görgü tanığı "korku" koruması (fail tehditkâr → tanık susar), (c) sahnelenmiş delil bayrağı (Norwood şablonu) + fizik kontrolü, (d) sızıntı oranı 0.35 → zorluk seviyesine bağlı. Zorluk seçici: `vakaUretCozulebilir(seed, { hedefZorluk })`.
+2. **Cila:** analizde her kişi için "ilk ifade vs son ifade" özeti; kişi kartına temel çizgi notu; mobil sorgu düzeninde akış yüksekliği; klavye erişilebilirliği.
+3. **İçerik genişletme:** Kılavuz "Bellek ve Tanıklık", "Dikkat ve Sihir", "İkna ve Manipülasyon" bölümleri (NOTLAR'da hazır); Navarro yatıştırıcı davranışları ipucu kataloğuna (`zayif`); şablon havuzunu büyüt.
 
 ## Açık kararlar (kullanıcıya sorulacak)
-1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12; soru 0.5 saat, teknikler 0.5–2 saat).
-2. Denge: metodik oyuncu için oyun kolay; zorlaştırıcılar.
+1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
+2. Zorlaştırıcılar (yukarıdaki a–d) ve zorluk seviyeleri (kolay/orta/zor) oyuncuya seçtirilsin mi?
 3. "The Mentalist" adının telif riski (K-007).
 
 ## Bilinen hatalar
 - Yok.
 
 ## Test durumu
-- `npm test`: 17 dosya, 194 test geçti (2026-09-16 05:05).
-- `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (~356 KB).
-- `node scripts/dosya-kontrol.mjs`: yerel tarayıcı varsa `file://` doğrulaması (sonucu günlükte).
+- `npm test`: 19 dosya, 200 test geçti (2026-09-16 05:55).
+- `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`.
+- `node scripts/dosya-kontrol.mjs`: yerel Chrome ile file:// akışı (Forer dahil).
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
-- Wiseman ve Rowland kitapları Bookey özeti (K-006).
-- Uzun dosyaları doğrudan dosya yazma aracıyla yaz; Python yamalarında regex kaçışlarına dikkat.
+- Bash heredoc içinde uzun Python/Markdown yazmak bu ortamda kırılıyor (kesme işaretleri); yamaları scratchpad'e `.py` olarak yaz, `python dosya.py` ile çalıştır.
 - Depo tekildir (`kullan.ts`); testler `depo.sifirla()` ile izole edilir.
-- Şablon havuzu `dil.ts` içinde; büyüyünce JSON'a taşınabilir.
+- Playwright `text=` seçicisi alt dize eşleştirir; rol tabanlı seçici kullan.

@@ -86,3 +86,6 @@ select, input[type="text"], textarea { border: 1px solid var(--cizgi); backgroun
 .baslik-ekrani h1 { font-family: var(--daktilo); letter-spacing: .2em; font-size: 34px; }
 .baslik-ekrani p { color: var(--murekkep-soluk); }
 .uyari { border-left: 3px solid var(--kirmizi); padding: 6px 10px; background: #fff3f2; margin: 8px 0; font-size: 14px; }
+
+.ipucu-etiket { background: transparent; border: none; border-bottom: 1px dotted var(--murekkep-soluk); border-radius: 0; padding: 0 2px; font-style: italic; color: var(--murekkep-soluk); text-align: left; }
+.ipucu-etiket:hover { background: #fff; color: var(--murekkep); }

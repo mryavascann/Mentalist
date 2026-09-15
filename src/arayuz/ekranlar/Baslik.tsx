@@ -11,6 +11,7 @@ export function Baslik() {
   const basla = () => {
     depo.basla(ad);
     depo.yeniVaka(seed.trim() || undefined);
+    if (!d.forer.tamamlandi) depo.forerBasla(); // ilk vakadan önce açılış dersi (TASARIM §13)
   };
 
   const disaAktar = () => {
@@ -46,6 +47,7 @@ export function Baslik() {
         </label>
         <div className="dugmeler" style={{ marginTop: 12 }}>
           <button className="birincil" onClick={basla}>Yeni vaka</button>
+          <button onClick={() => { depo.basla(ad); depo.forerBasla(); }}>Açılış dersi (2 dk)</button>
           {d.sorgu && <button onClick={() => depo.ekranaGit(d.puan ? 'analiz' : 'vaka-acilis')}>Devam et</button>}
           <button onClick={disaAktar} disabled={!d.sorgu && d.gecmis.length === 0}>Kaydı dışa aktar</button>
           <button onClick={() => dosya.current?.click()}>Kaydı içe aktar</button>

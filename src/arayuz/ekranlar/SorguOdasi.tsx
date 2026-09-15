@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { ICERIK } from '@icerik/index';
 import { depo, useOyun } from '../oyun/kullan';
+import { IpucuKarti } from './IpucuKarti';
 
 export function SorguOdasi() {
   const d = useOyun();
@@ -10,6 +11,7 @@ export function SorguOdasi() {
   const [delilId, setDelilId] = useState('');
   const [oneriOda, setOneriOda] = useState('');
   const [uydurmaAd, setUydurmaAd] = useState('Cemil Aktaş');
+  const [acikIpucu, setAcikIpucu] = useState<string | null>(null);
   if (!d.sorgu) return null;
   const vaka = d.sorgu.durum.vaka;
   const kisiler = depo.gorusulebilirler();
@@ -35,13 +37,20 @@ export function SorguOdasi() {
       <main className="dosya">
         <h2>{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
+        {acikIpucu && <IpucuKarti id={acikIpucu} kapat={() => setAcikIpucu(null)} />}
         <div className="akis">
           {konusma.length === 0 && secili && <p className="soluk">Henüz soru sormadın. Önce tarafsız sohbetle temel çizgi kur (Kılavuz: Temel çizgi).</p>}
           {konusma.map((k, i) => (
             <div className={`satir ${k.tur}`} key={i}>
               <div className="soru">{k.tur === 'teknik' ? `▸ ${k.soru}` : `Sen: ${k.soru}`}</div>
               <div className="cevap">{k.cevap}</div>
-              {k.betimleme && <div className="betimleme">{k.betimleme}</div>}
+              {k.gozlemler.length > 0 && (
+                <div className="betimleme">
+                  {k.gozlemler.map((g, j) => (
+                    <button key={j} className="ipucu-etiket" title="İpucu kartını aç" onClick={() => setAcikIpucu(g.ipucuId)}>{g.betimleme}</button>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

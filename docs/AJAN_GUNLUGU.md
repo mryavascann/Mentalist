@@ -272,3 +272,30 @@
 **Geliştirme fikirleri:**
 - Sorgu odasında "temel çizgi" sonuçlarını kişi kartına kalıcı not olarak yazmak (oyuncu karşılaştırsın).
 - Analizde her kişinin ilk ve son ifadesini yan yana göstermek (anlatım abartısı / bellek uyumu dersi).
+
+## [2026-09-16 06:00] Ajan #1 — Forer dersi, soğuk okuma bölümü, ipucu kartı → Aşama 2 kapandı
+**Görev:** Açılış tutorial'ı (Forer), Kılavuz'a soğuk okuma bölümü, davranış betimlemelerini kataloğa bağlamak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/icerik/forer.json` + `forer.ts`: 8 soru, Forer 1949'un 13 maddesi (Türkçe), ifşa metni, 4.26 ortalaması. Depo: `forerBasla/forerCevapla/forerPuanla/forerBitir`; cevaplar kasıtlı olarak kullanılmaz. `Forer.tsx` ekranı; Başlık'ta ilk vakadan önce otomatik + "Açılış dersi" düğmesi; kayıtla taşınır; içe aktarımda `forer` ekranı başlığa düşer.
+- `kilavuz.json`: `soguk-okuma` bölümü (forer-barnum, soguk-okuma-teknikleri, bloklama-kurallari). `kaynaklar.json`: Poškus 2014 (içerik testi yakaladı).
+- `IpucuKarti.tsx` + `KonusmaKaydi.gozlemler`: betimlemeler tıklanabilir; kart rozet, d, not, kaynak ve "kanıt değil" uyarısı gösterir. Eski kayıtlar içe aktarımda `gozlemler: []` ile tamamlanır.
+- App duman testi Forer akışını kapsar; `scripts/dosya-kontrol.mjs` de.
+
+**Değişen dosyalar:** src/icerik/{forer.json,forer.ts,kilavuz.json,kaynaklar.json}, src/arayuz/ekranlar/{Forer,IpucuKarti,SorguOdasi,Baslik,Kilavuz}.tsx, src/arayuz/App.tsx, src/arayuz/oyun/depo.ts, src/arayuz/stil.css, tests/arayuz/{forer.test.ts,IpucuKarti.test.tsx,App.test.tsx,depo.test.ts}, scripts/dosya-kontrol.mjs, docs.
+
+**Testler:** 200 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dosya.
+
+**Alınan kararlar:** Numaralı karar yok.
+
+**Sorunlar / riskler:**
+- Bash heredoc'ta uzun Python betikleri (kesme işaretli Türkçe) kırılıyor; çözüm scratchpad `.py` dosyası. Sonraki ajanlar için DURUM.md'ye not düşüldü.
+- Forer dersi her yeni tarayıcı kaydında bir kez; "Sıfırla" sonrası yeniden görünür (bilinçli).
+
+**Yarım kalanlar:** Yok. Aşama 2 kapalı.
+
+**Sıradaki ajan için:** Aşama 3 — 1) denge/zorlaştırıcı + zorluk seçici, 2) cila (ilk/son ifade özeti, temel çizgi notu), 3) Kılavuz bölümleri ve ipucu kataloğu genişletme (DURUM.md).
+
+**Geliştirme fikirleri:**
+- Kör seçim (Beyerstein) mini oyunu: Forer'in devamı olarak anonim profillerden kendini bulma.
+- Soğuk okuma dedektörü mini oyunu: medyum kaydında cümle etiketleme (Rowland öğeleri).

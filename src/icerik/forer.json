@@ -1,0 +1,31 @@
+{
+  "kaynak": ["Forer 1949", "Hyman 1977"],
+  "aciklama": "Forer 1949: 39 öğrenciye kişilik testi verildi; herkes gazete astroloji kitabından derlenmiş AYNI 13 maddelik profili aldı ve 'sana özel' sanıp ortalama 4.26/5 isabet puanı verdi. Soğuk okumanın çekirdeği budur: herkese uyan ifadeler, sana özelmiş gibi.",
+  "sorular": [
+    "Kalabalık bir odada kendini nasıl hissedersin?",
+    "Bir karar verirken daha çok neye güvenirsin: sezgi mi, liste mi?",
+    "Eleştiri aldığında ilk tepkin ne olur?",
+    "Boş bir hafta sonunda ne yaparsın?",
+    "Yakın arkadaş sayın: az ama derin mi, çok ama yüzeysel mi?",
+    "Bir planın bozulunca ne hissedersin?",
+    "Çocukken en çok neyle vakit geçirirdin?",
+    "Seni en iyi tanımlayan tek kelime?"
+  ],
+  "profil": [
+    "Başkalarının seni sevmesine ve takdir etmesine büyük ihtiyaç duyuyorsun.",
+    "Kendine karşı eleştirel olma eğilimindesin.",
+    "Henüz kullanmadığın, lehine çevirmediğin büyük bir kapasiten var.",
+    "Kişiliğinde bazı zayıflıklar olsa da genellikle onları telafi edebiliyorsun.",
+    "Dışarıdan disiplinli ve kendine hâkim görünsen de içinde endişeli ve güvensiz olduğun anlar var.",
+    "Zaman zaman doğru kararı verip vermediğinden ya da doğru şeyi yapıp yapmadığından ciddi biçimde şüphe ediyorsun.",
+    "Belli bir ölçüde değişiklik ve çeşitlilik seviyor, kısıtlanıp sınırlandığında sıkılıyorsun.",
+    "Bağımsız düşünen biri olmakla övünüyor, başkalarının iddialarını yeterli kanıt olmadan kabul etmiyorsun.",
+    "Kendini başkalarına fazla açmanın akıllıca olmadığını öğrendin.",
+    "Bazen dışadönük, cana yakın ve sosyalsin; bazen içe dönük, temkinli ve mesafeli.",
+    "Bazı hayallerin epey gerçekçi değil.",
+    "Güvende olmak hayatındaki ana hedeflerden biri.",
+    "Cinsel uyum konusunda bazı zorluklar yaşadın."
+  ],
+  "ifsa": "Bu profil sana özel değildi. 1949'dan beri herkes aynı 13 maddeyi okuyor ve ortalama 4.26/5 veriyor. Maddeler herkese uyan, iki başlı (\"bazen dışadönük, bazen içe dönük\") ve iltifat eden ifadelerdir. Bir medyum, bir manipülatör ya da bir şüpheli sana böyle konuştuğunda hatırla: isabet hissi, doğruluğun kanıtı değildir.",
+  "ortalama1949": 4.26
+}
