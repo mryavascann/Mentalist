@@ -37,7 +37,8 @@
 
 ## Aşama 3 — Genişleme
 - [x] Zorluk seçici + zorlaştırıcılar: sızıntı, kaçamak eşiği, korkuyla susan tanık, sahnelenmiş delil (Norwood), 11 test (2026-09-16, Ajan #1)
-- [ ] Diğer araçlar ve arketipler
+- [x] Şablon havuzu (20 kategori × ≥5) ve mekâna özgü belge delilleri (2026-09-16, Ajan #1)
+- [ ] Diğer araçlar ve arketipler (TASARIM §15 vaka arketip havuzu)
 - [x] Kör nokta profili + adaptif vaka üretimi: etiket → yapısal hedef (gergin masum, gömülü yalan, sızıntı, telkine yatkın tanık, sahnelenmiş delil, suç var); vaka sonunda açıklanır; Kılavuz'da 'Senin kör noktan' (2026-09-16, Ajan #1)
 - [x] Mini oyunlar: kör seçim (Beyerstein), soğuk okuma dedektörü (Rowland öğeleri, çoklu etiket puanı), taban oranı bulmacası; 3 test (2026-09-16, Ajan #1)
 - [ ] Kalan tatbikatlar: Linda tuzağı, kaybolan top / off-beat, ince dilim, çift kör test tasarla

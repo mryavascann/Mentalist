@@ -1,9 +1,9 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 09:30, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 10:00, Ajan #1.
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Kılavuz 12 bölüm / 60 madde tamam; Higgsfield prompt listesi ve portre yer tutucusu hazır. Takım NPC'leri sorgu odasında. Sıradaki: şablon/mekân genişletme, kalan tatbikatlar, takım hikâyesi ve Ayna taslağı.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Kılavuz 12 bölüm / 60 madde tamam; Higgsfield prompt listesi ve portre yer tutucusu hazır. Takım NPC'leri, şablon havuzu (kategori başına ≥5) ve mekâna özgü belgeler tamam. Sıradaki: kalan tatbikatlar, "Watson'a anlat", takım hikâyesi ve Ayna taslağı.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar (11 test), cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
@@ -13,12 +13,12 @@
 - **Kılavuz tamam (TASARIM §12):** 12 bölüm, 60 madde; Duygular (yüz-bağlam, refrakter/Othello, gösterim kuralları, ifade süresi), İnanç/Paranormal (anomalistik, tarikat/dogmatizm, ideomotor), Holmes (gözlem≠çıkarım, olmayan ipucu, üç pipoluk mola), Senin Kör Noktan dinamik.
 - **Görsel:** `assets/HIGGSFIELD_PROMPTLAR.md` (24 portre, 4 takım, 8 mekân, ana görsel, sorgu odası; ortak stil eki, boyut/format kuralı) ve `Portre.tsx` deterministik SVG siluet (vaka açılışı ve sorgu odasında).
 - **Takım NPC'leri** (`src/arayuz/oyun/takim.ts`, TASARIM §14): Komiser Sevda Oral (lider: kanıt ister), Cemal Ilgaz (sorgucu: tekniğe yönlendirir), Analist Defne Yurt (inanan: ipucunu abartır), Ajan Ozan Kaya (saha: hızlı hüküm, çoğunluk). Satır başına ~%55 olasılıkla yorum; deterministik; gizli etiket ve fail adı sızmaz. Ölçüm: saha ajanının 'şüpheli' hükmü <%45 isabetli (sosyal kanıt tuzağı). Oyuncu yorumları kapatabilir; suçlamada 'takımın çoğunluk görüşü' dayanağı seçilip yanılırsa `sosyal-kanit` etiketi.
+- **Şablon ve mekân genişletme:** `dil.ts` 20 kategori × ≥5 varyant (`SABLON_KATEGORILERI`, `sablonSayisi`); `delil.ts` `MEKAN_BELGELERI` (8 mekân × 3 belge: ilaç kayıt defteri, resepsiyon defteri, kart geçiş kaydı…). 3 test.
 - **İpucu kataloğu:** Navarro saha ipuçları `zayif` düzeyde: yatıştırıcı dokunma (d=.12, suç sorusunda kaygıyla artar → "hangi konu" sinyali), ayakların çıkışa dönmesi (ilişkisiz), vurgu kaybı (d=.14). 19 ipucu. İçerik testi: her bölümde ≥3 madde, ≥9 bölüm, ≥45 madde.
 
 ## Sıradaki 3 iş
-1. **Şablon havuzu ve mekân genişletme:** dil şablonlarını JSON'a taşı ve büyüt; mekân şablonlarına mekâna özgü delil türleri (hastane ilaç defteri, motel resepsiyon defteri).
-2. **Kalan tatbikatlar:** Linda tuzağı (birleşim yanılgısı), kaybolan top / off-beat, ince dilim, çift kör test tasarla.
-3. **Aşama 4 devamı:** "Watson'a anlat" akışı (pano maddelerini adım adım anlatma; sorgucu 'gözlem mi çıkarım mı?' sorar); takım arka plan hikâyesi; Ayna ark taslağı (kör nokta verisinden oyuncunun şüphesini tahmin eden düşman).
+1. **Kalan tatbikatlar:** Linda tuzağı (birleşim yanılgısı), kaybolan top / off-beat, ince dilim, çift kör test tasarla.
+2. **Aşama 4 devamı:** "Watson'a anlat" akışı (pano maddelerini adım adım anlatma; sorgucu 'gözlem mi çıkarım mı?' sorar); takım arka plan hikâyesi; Ayna ark taslağı (kör nokta verisinden oyuncunun şüphesini tahmin eden düşman).
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
@@ -30,7 +30,7 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 24 dosya, 232 test geçti (2026-09-16 09:30). Süre ~80 sn.
+- `npm test`: 25 dosya, 235 test geçti (2026-09-16 10:00). Süre ~80 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`. file:// kontrolü hata 0.
 
 ## Notlar

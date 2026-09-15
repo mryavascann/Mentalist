@@ -11,7 +11,7 @@
 //      yokluk delilleri (Konnikova, Gümüş Şimşek). Kazada suç iması taşıyan yokluk delili üretilmez.
 import { Rastgele } from '@ortak/rastgele';
 import type { BilgiDagilimi } from './bilgi';
-import { ZORLUK_PARAMETRELERI, type KisiId, type OdaId, type Vaka } from './tipler';
+import { ZORLUK_PARAMETRELERI, type KisiId, type MekanTuru, type OdaId, type Vaka } from './tipler';
 import type { Cevap } from './strateji';
 
 export type DelilTuru = 'fiziksel' | 'dijital' | 'belge' | 'olmayan';
@@ -42,7 +42,17 @@ const FIZIKSEL_IZLER = [
   'parmak izi taşıyan bir bardak', 'yarım kalmış bir sigara izmariti', 'düşürülmüş bir düğme', 'ıslak bir ayak izi',
   'unutulmuş bir kalem', 'çay lekesi olan bir peçete', 'bir saç teli', 'kırışmış bir fiş',
 ];
-const BELGE_IZLERI = ['imzalı bir teslimat fişi', 'tarihli bir not', 'elle yazılmış bir liste'];
+/** Mekâna özgü belge izleri: her mekân türünün kendi kayıt sistemi vardır. */
+export const MEKAN_BELGELERI: Record<MekanTuru, string[]> = {
+  malikane: ['misafir defterine düşülmüş imza', 'hizmetli çizelgesinde işaret', 'kilerden alınan şarabın kayıt fişi'],
+  ofis: ['kart geçiş kaydı', 'toplantı odası rezervasyon çıktısı', 'yazıcı kuyruğunda adına belge'],
+  'sahil-evi': ['iskele kayık defterine yazılmış saat', 'marketten alınan fişin arkasındaki not', 'jeneratör yakıt kaydı'],
+  ciftlik: ['topluluk görev çizelgesinde imza', 'sera sulama kayıt defterinde saat', 'bağış makbuzu'],
+  hastane: ['ilaç kayıt defterinde paraf', 'hemşire nöbet çizelgesinde saat', 'eczane teslim fişi'],
+  motel: ['resepsiyon defterinde giriş saati', 'çamaşırhane jeton fişi', 'oda servisi fişi'],
+  karnaval: ['bilet gişesi kasa fişi', 'jeneratör bakım kaydında paraf', 'karavan alanı yer kaydı'],
+  apartman: ['posta kutusuna bırakılmış imzalı teslimat', 'kapıcı defterinde not', 'aidat makbuzu'],
+};
 
 /** Odada kamera var mı? Mekân şablonundaki oda adından türetilir. */
 function kamerali(vaka: Vaka, oda: OdaId): boolean {
@@ -78,7 +88,7 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
         : `${ad}'ın telefonu ${saat} civarında ${yer} bölgesindeki kablosuz ağa bağlanmış.`;
       gucu = kamera ? 0.95 : 0.85;
     } else if (tur === 'belge') {
-      aciklama = `${yer}: ${ad}'a ait ${r.sec(BELGE_IZLERI)} (${saat}).`;
+      aciklama = `${yer}: ${ad}'a ait ${r.sec(MEKAN_BELGELERI[vaka.mekan.tur])} (${saat}).`;
       gucu = 0.7;
     } else {
       aciklama = `${yer}: ${ad}'a ait ${r.sec(FIZIKSEL_IZLER)}.`;

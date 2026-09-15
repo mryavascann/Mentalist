@@ -445,3 +445,23 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** şablon/mekân genişletme, kalan tatbikatlar, "Watson'a anlat" + Ayna taslağı (DURUM.md).
+
+## [2026-09-16 10:00] Ajan #1 — Şablon havuzu ve mekâna özgü belgeler
+**Görev:** Tekrar hissini azaltmak ve delilleri mekâna bağlamak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `dil.ts`: her kategoriye 2 varyant (20 kategori × ≥5); `SABLON_KATEGORILERI`, `sablonSayisi` dışa aktarıldı; uzun üslup ekleri +2.
+- `delil.ts`: `MEKAN_BELGELERI` (8 mekân türü × 3 belge); belge delilleri mekânın listesinden.
+- Test: `tests/motor/genisletme.test.ts` (3). `dil.test.ts` eylem eşleşmesi harf duyarsız yapıldı (yeni şablonlar eylemi cümle başında büyütüyor; davranış doğru, test kırılgandı).
+
+**Değişen dosyalar:** src/motor/{dil,delil}.ts, tests/motor/{genisletme,dil}.test.ts, docs.
+
+**Testler:** 235 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Şablonlar şimdilik `dil.ts` içinde (JSON'a taşıma ertelendi; içerik testi kategorileri denetliyor).
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** kalan tatbikatlar, "Watson'a anlat", takım hikâyesi + Ayna taslağı (DURUM.md).

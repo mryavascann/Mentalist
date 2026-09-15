@@ -112,7 +112,7 @@ describe('cevapMetni', () => {
         if (s.cevap.ifadeTuru === 'dogru' && s.cevap.icerik) {
           const eylem = q.durum.vaka.zamanCizelgesi.find((z) => z.kisi === k.id && z.dilim === 0)!.eylem;
           const m = cevapMetni(q.durum.vaka, s.cevap, uslup, new VaryantBellegi());
-          if (m.includes(eylem.split(' ')[0]!)) eylemli++;
+          if (m.toLocaleLowerCase('tr').includes(eylem.split(' ')[0]!.toLocaleLowerCase('tr'))) eylemli++;
         }
         const y = sor(q, k.id, { tur: 'olay-bilgisi', konu: 'olay-yontemi' });
         if (y.cevap.icerik) { yontemli++; expect(cevapMetni(q.durum.vaka, y.cevap, uslup, new VaryantBellegi())).toContain(y.cevap.icerik); }
