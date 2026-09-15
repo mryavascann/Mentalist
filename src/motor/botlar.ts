@@ -5,6 +5,7 @@
 import { Rastgele } from '@ortak/rastgele';
 import { ICERIK } from '@icerik/index';
 import { citGecerliMi } from './bilgi';
+import { sahnelenmisMi } from './delil';
 import type { Suclama } from './puan';
 import { delilGoster, sor, teknikUygula, type Sorgu } from './teknik';
 import type { KisiId } from './tipler';
@@ -44,8 +45,10 @@ export const yontemBotu: Bot = (sorgu) => {
   const citGecerli = citGecerliMi(vaka, dagilim, 'olay-yontemi');
   for (const s of supheliler) {
     const konum = sor(sorgu, s, { tur: 'konum', hedef: s, dilim: olay.dilim }); // delili göstermeden
-    if (konum.celisenDeliller.length > 0) arttir(s, 3, `delil:${konum.celisenDeliller[0]!.id}`);
-    for (const d of konum.celisenDeliller) delilGoster(sorgu, s, d.id);
+    // Fizik kontrolü: aynı kişi-dilim için iki farklı oda gösteren deliller güvenilmez (biri sahnelenmiş olabilir).
+    const guvenilir = konum.celisenDeliller.filter((d) => !sahnelenmisMi(sorgu.deliller, d.id));
+    if (guvenilir.length > 0) arttir(s, 3, `delil:${guvenilir[0]!.id}`);
+    for (const d of guvenilir) delilGoster(sorgu, s, d.id);
     if (citGecerli) {
       const cit = teknikUygula(sorgu, s, 'gizli-bilgi-testi', { konu: 'olay-yontemi' });
       if (cit.teknik === 'gizli-bilgi-testi' && cit.tepki === 'tanima') arttir(s, 2, 'teknik:gizli-bilgi-testi');

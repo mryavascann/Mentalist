@@ -299,3 +299,27 @@
 **Geliştirme fikirleri:**
 - Kör seçim (Beyerstein) mini oyunu: Forer'in devamı olarak anonim profillerden kendini bulma.
 - Soğuk okuma dedektörü mini oyunu: medyum kaydında cümle etiketleme (Rowland öğeleri).
+
+## [2026-09-16 06:40] Ajan #1 — Zorluk seçici ve zorlaştırıcılar (Aşama 3 ilk tuğla)
+**Görev:** Metodik oyuncu için oyunu zorlaştırmak; zorluk seviyelerini tek yerden ayarlanabilir kılmak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `tipler.ts`: `Zorluk`, `VakaAyari`, `ZORLUK_PARAMETRELERI` (tek ayar noktası). `vakaUret(seed, ayar)`; `Vaka.ayar` gerçeğin parçası (determinizm: aynı seed + aynı ayar).
+- `bilgi.ts` sızma olasılığı, `strateji.ts` kaçamak eşiği, `sirlar.ts` korku koruması (olay odasındaki görgü tanığı susar), `delil.ts` sahnelenmiş delil (`sahnelenmis`, `sahnelenmisMi` fizik tutarsızlığı), `cozulebilirlik.ts` (şüpheli delilleri sinyal dışı bırakır, zorluk +.15/+.10, `vakaUretCozulebilir(seed, n, ayar)`), `botlar.ts` (yöntem botu fizik kontrolü yapar), `puan.ts` (`delil-sorgulanmadi` etiketi), `kilavuz.json` (`sahnelenmis-suc`), depo/Başlık (zorluk seçici, kayıtla taşınır).
+- Testler: `tests/motor/zorluk.test.ts` (11): parametre sıralaması, sahnelenmiş delilin masumun gerçek iziyle çift oluşturması, çözülebilirliğin korunması, botların zorda hâlâ makul olması, tuzak etiketi. Eski testler sahnelenmiş delili hariç tutacak şekilde güncellendi (delil, teknik, sırlar).
+
+**Ölçümler:** DURUM.md "Biten işler".
+
+**Değişen dosyalar:** src/motor/{tipler,gerceklik,bilgi,strateji,sirlar,delil,cozulebilirlik,botlar,puan}.ts, src/icerik/{hata_etiketleri,kilavuz}.json, src/arayuz/oyun/depo.ts, src/arayuz/ekranlar/Baslik.tsx, tests/motor/{zorluk,delil,teknik,sirlar}.test.ts, docs.
+
+**Testler:** 211 geçti / 0 kaldı (komut: `npm test`, ~60 sn). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Zorluk parametreleri tek yerde (`ZORLUK_PARAMETRELERI`); sahnelenmiş delil oyuncuya bayrakla gösterilmez.
+
+**Sorunlar / riskler:**
+- Yöntem botu zorda .97: bot fizik kontrolünü biliyor. İnsan için zorluk, Kılavuz'daki "sahnelenmiş suç" maddesini öğrenmeye bağlı; beklenen davranış. Daha sert istenirse parametreler tek yerden.
+- Test süresi 60 sn'ye çıktı; `tests/denge` ve `zorluk` ayrı komuta alınabilir.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) cila (analizde ifade-gerçek tablosu, temel çizgi notu), 2) Kılavuz bölümleri + Navarro ipuçları, 3) mini oyunlar (DURUM.md).

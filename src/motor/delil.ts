@@ -11,7 +11,7 @@
 //      yokluk delilleri (Konnikova, Gümüş Şimşek). Kazada suç iması taşıyan yokluk delili üretilmez.
 import { Rastgele } from '@ortak/rastgele';
 import type { BilgiDagilimi } from './bilgi';
-import type { KisiId, OdaId, Vaka } from './tipler';
+import { ZORLUK_PARAMETRELERI, type KisiId, type OdaId, type Vaka } from './tipler';
 import type { Cevap } from './strateji';
 
 export type DelilTuru = 'fiziksel' | 'dijital' | 'belge' | 'olmayan';
@@ -32,6 +32,8 @@ export interface Delil {
   gucu: number;
   /** Basına sızmış mı (CIT geçerliliği). */
   sizmis: boolean;
+  /** Fail tarafından yerleştirilmiş mi (Norwood şablonu). Oyuncuya gösterilmez; fizik tutarsızlığıyla bulunur. */
+  sahnelenmis: boolean;
 }
 
 const KAMERALI_ODA = /Lobi|Otopark|Resepsiyon|Koridor|Bilet|Merdiven|Garaj|Acil/i;
@@ -82,7 +84,7 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
       aciklama = `${yer}: ${ad}'a ait ${r.sec(FIZIKSEL_IZLER)}.`;
       gucu = 0.5 + r.sayi() * 0.35;
     }
-    return { id: yeniId(), tur, oda, aciklama, gosterir: { tur: 'konum', kisi, dilim, oda }, gucu: Math.round(gucu * 100) / 100, sizmis: false };
+    return { id: yeniId(), tur, oda, aciklama, gosterir: { tur: 'konum', kisi, dilim, oda }, gucu: Math.round(gucu * 100) / 100, sizmis: false, sahnelenmis: false };
   };
   const zatenVar = (kisi: KisiId, dilim: number) => deliller.some((d) => d.gosterir.tur === 'konum' && d.gosterir.kisi === kisi && d.gosterir.dilim === dilim);
 
@@ -121,6 +123,7 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
       aciklama: `${odaAdi(vaka, olay.oda)}: olayın "${olay.yontem}" ile gerçekleştiğini gösteren iz.`,
       gosterir: { tur: 'yontem', yontem: olay.yontem }, gucu: 0.8,
       sizmis: dagilim.medyayaSizanKonular.includes('olay-yontemi'),
+      sahnelenmis: false,
     });
   }
 
@@ -132,7 +135,27 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
     if (['malikane', 'ciftlik', 'sahil-evi'].includes(vaka.mekan.tur)) yokluklar.push({ beklenen: 'köpeğin havlaması', ima: 'köpek geleni tanıyordu' });
     if (['zehir', 'ilaç dozu'].includes(olay.yontem)) yokluklar.push({ beklenen: 'boğuşma izi', ima: 'kurban tehlikeyi fark etmedi' });
     for (const y of yokluklar) {
-      deliller.push({ id: yeniId(), tur: 'olmayan', oda: olay.oda, aciklama: `Beklenen ama olmayan: ${y.beklenen} yok.`, gosterir: { tur: 'olmayan', beklenen: y.beklenen, ima: y.ima }, gucu: 0.6, sizmis: false });
+      deliller.push({ id: yeniId(), tur: 'olmayan', oda: olay.oda, aciklama: `Beklenen ama olmayan: ${y.beklenen} yok.`, gosterir: { tur: 'olmayan', beklenen: y.beklenen, ima: y.ima }, gucu: 0.6, sizmis: false, sahnelenmis: false });
+    }
+  }
+
+  // 3b) Sahnelenmiş delil (Norwood şablonu; zorluğa bağlı): fail, olay anında BAŞKA yerde olan bir masuma ait
+  //     fiziksel bir izi olay odasına yerleştirir. Masumun gerçek izi de üretilir → aynı kişi, aynı dilim, iki oda:
+  //     fizik tutarsızlığı. Oyuncu "bu delili kim üretmiş olabilir?" diye sormalı (Konnikova, Cottingley/Norwood).
+  if (olay.fail && r.sans(ZORLUK_PARAMETRELERI[vaka.ayar.zorluk].sahnelemeOlasiligi)) {
+    const kurbanlar = vaka.kisiler.filter((k) => k.hayatta && k.id !== olay.kurban && k.id !== olay.fail
+      && vaka.zamanCizelgesi.find((z) => z.kisi === k.id && z.dilim === olay.dilim)!.oda !== olay.oda);
+    if (kurbanlar.length > 0) {
+      const gunahKecisi = r.sec(kurbanlar);
+      const gercekOda = vaka.zamanCizelgesi.find((z) => z.kisi === gunahKecisi.id && z.dilim === olay.dilim)!.oda;
+      const sahte = konumDelili(gunahKecisi.id, olay.dilim, olay.oda, 'fiziksel');
+      sahte.gosterir = { tur: 'konum', kisi: gunahKecisi.id, dilim: olay.dilim, oda: olay.oda };
+      sahte.sahnelenmis = true;
+      sahte.gucu = Math.min(sahte.gucu, 0.6);
+      deliller.push(sahte);
+      if (!zatenVar(gunahKecisi.id, olay.dilim) || !deliller.some((d) => d.gosterir.tur === 'konum' && d.gosterir.kisi === gunahKecisi.id && d.gosterir.dilim === olay.dilim && !d.sahnelenmis)) {
+        deliller.push(konumDelili(gunahKecisi.id, olay.dilim, gercekOda));
+      }
     }
   }
 
@@ -146,6 +169,17 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
   }
 
   return deliller.slice(0, 20);
+}
+
+/**
+ * Fizik tutarsızlığı: aynı kişi, aynı dilim, farklı oda gösteren iki konum delili varsa ikisi de "şüpheli"dir
+ * (biri sahnelenmiş olmalı). Oyuncuya sahnelenmiş bayrağı gösterilmez; bu kontrol onun yapabileceği tek şeydir.
+ */
+export function sahnelenmisMi(deliller: Delil[], delilId: string): boolean {
+  const d = deliller.find((x) => x.id === delilId);
+  if (!d || d.gosterir.tur !== 'konum') return false;
+  const g = d.gosterir;
+  return deliller.some((x) => x.id !== d.id && x.gosterir.tur === 'konum' && x.gosterir.kisi === g.kisi && x.gosterir.dilim === g.dilim && x.gosterir.oda !== g.oda);
 }
 
 /** Cevap kişinin KENDİ konumu hakkındaysa ve bir oda iddia ediyorsa, aynı kişi-dilim için farklı oda gösteren deliller. */

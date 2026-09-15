@@ -8,10 +8,11 @@
 // Örüntü denetçisi: binlerce vakada failin yüzeysel özelliklerle (sıra, kişilik, yaş, cinsiyet, ilişki
 // sayısı, sır…) korelasyonu ≈ 0 olmalı; aksi halde oyuncu kalıbı öğrenir ve bilim yerine meta-tahmin kazanır.
 import { vakaUret } from './gerceklik';
+import { sahnelenmisMi } from './delil';
 import { citGecerliMi } from './bilgi';
 import { sirlarUret } from './sirlar';
 import { sor, sorguBaslat, teknikUygula, type Sorgu } from './teknik';
-import type { KisiId, Vaka } from './tipler';
+import type { KisiId, Vaka, VakaAyari } from './tipler';
 
 export type SinyalTuru = 'delil-celiskisi' | 'gecerli-cit' | 'gorgu-tanigi' | 'beklenmedik-soru' | 'svt';
 
@@ -59,7 +60,9 @@ export function cozulebilirlikDenetle(orijinal: Sorgu): CozulebilirlikRaporu {
   for (const s of supheliler) {
     // 1) Delil çelişkisi: delili göstermeden konum sor (SUE sırası).
     const konum = sor(sorgu, s, { tur: 'konum', hedef: s, dilim: olay.dilim });
-    if (konum.celisenDeliller.length > 0) ekle('delil-celiskisi', s, `${s} olay anı için "${konum.cevap.icerik}" dedi; delil ${konum.celisenDeliller[0]!.id} olay odasını gösteriyor`);
+    // Fizik tutarsızlığı olan (aynı kişi-dilim, iki oda) deliller güvenilmez: sinyal olarak kullanılmaz.
+    const guvenilirCelisenler = konum.celisenDeliller.filter((d) => !sahnelenmisMi(sorgu.deliller, d.id));
+    if (guvenilirCelisenler.length > 0) ekle('delil-celiskisi', s, `${s} olay anı için "${konum.cevap.icerik}" dedi; delil ${guvenilirCelisenler[0]!.id} olay odasını gösteriyor`);
     // 2) Geçerli CIT.
     if (citGecerli) {
       const cit = teknikUygula(sorgu, s, 'gizli-bilgi-testi', { konu: 'olay-yontemi' });
@@ -98,6 +101,8 @@ export function cozulebilirlikDenetle(orijinal: Sorgu): CozulebilirlikRaporu {
   if (sinyaller.some((s) => s.tur === 'gorgu-tanigi')) { zorluk -= 0.2; notlar.push('Koruması olmayan görgü tanığı var.'); }
   if (supheliler.length > 1) { zorluk += 0.1; notlar.push(`Olay odasında izi olan ${supheliler.length} kişi var.`); }
   if (fail.yalanBecerisi > 0.7) zorluk += 0.1;
+  if (sorgu.deliller.some((d) => d.sahnelenmis)) { zorluk += 0.15; notlar.push('Olay yerinde sahnelenmiş bir delil var (fizik tutarsızlığı ile bulunur).'); }
+  if (sorgu.durum.sirKatmani.korumalar.some((c) => c.neden === 'korku')) { zorluk += 0.1; notlar.push('Bir görgü tanığı korkudan susuyor.'); }
   if (sorgu.deliller.some((d) => d.tur === 'dijital' && d.gosterir.tur === 'konum' && d.gosterir.kisi === olay.fail && d.gosterir.dilim === olay.dilim)) zorluk -= 0.1;
   zorluk = Math.min(0.95, Math.max(0.05, Math.round(zorluk * 100) / 100));
 
@@ -105,10 +110,10 @@ export function cozulebilirlikDenetle(orijinal: Sorgu): CozulebilirlikRaporu {
 }
 
 /** Seed'den çözülebilir vaka üretir; gerekirse `${seed}#n` türevlerini dener (deterministik). */
-export function vakaUretCozulebilir(seed: string | number, enFazlaDeneme = 10): { vaka: Vaka; rapor: CozulebilirlikRaporu; deneme: number } {
+export function vakaUretCozulebilir(seed: string | number, enFazlaDeneme = 10, ayar: VakaAyari = { zorluk: 'orta' }): { vaka: Vaka; rapor: CozulebilirlikRaporu; deneme: number } {
   let son: { vaka: Vaka; rapor: CozulebilirlikRaporu; deneme: number } | null = null;
   for (let i = 1; i <= enFazlaDeneme; i++) {
-    const vaka = vakaUret(i === 1 ? seed : `${seed}#${i}`);
+    const vaka = vakaUret(i === 1 ? seed : `${seed}#${i}`, ayar);
     const rapor = cozulebilirlikDenetle(sorguBaslat(vaka));
     son = { vaka, rapor, deneme: i };
     if (rapor.cozulebilir) return son;

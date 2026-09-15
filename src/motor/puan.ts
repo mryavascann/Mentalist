@@ -6,6 +6,7 @@
 // güven ≠ doğruluk). Hata etiketleri src/icerik/hata_etiketleri.json'dan gelir ve her biri bir Kılavuz
 // maddesine bağlıdır; vaka sonu analizi "şunu çalış" derken bu listeyi kullanır.
 import { ICERIK } from '@icerik/index';
+import { sahnelenmisMi } from './delil';
 import { soruAnahtari } from './strateji';
 import type { Sorgu } from './teknik';
 import type { KisiId } from './tipler';
@@ -64,6 +65,9 @@ export function puanla(sorgu: Sorgu, suclama: Suclama, secenekler: PuanSecenekle
     const m = vaka.kisiler.find((k) => k.id === suclama.fail);
     const sirli = sirKatmani.sirlar.some((s) => s.kisi === suclama.fail);
     if (m && (m.kisilik.kaygi > 0.65 || sirli)) etiket('othello-hatasi');
+    // Sahnelenmiş delil tuzağı: suçlanan masuma ait, fizik tutarsızlığı taşıyan delil vardı ve oyuncu sorgulamadı.
+    const tuzakDelil = sorgu.deliller.some((d) => d.gosterir.tur === 'konum' && d.gosterir.kisi === suclama.fail && d.gosterir.dilim === olay.dilim && sahnelenmisMi(sorgu.deliller, d.id));
+    if (tuzakDelil) etiket('delil-sorgulanmadi');
     // Sahte itiraf kabulü: suçlanan masumun defterinde sahte itiraf var
     const itiraf = defter.get(`${suclama.fail}|${soruAnahtari({ tur: 'olay-bilgisi', konu: 'fail-kimligi' })}`);
     if (itiraf?.ifadeTuru === 'sahte-itiraf') { etiket('sahte-itiraf-kabulu'); cezalar.push({ neden: 'sahte-itiraf-kabulu', miktar: -40, aciklama: 'Baskı altında verilen itirafı doğrulamadan kabul ettin.' }); }

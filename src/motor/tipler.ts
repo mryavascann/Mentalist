@@ -105,9 +105,33 @@ export interface ZamanDilimi {
   baslangic: string;
 }
 
+/** Zorluk seviyesi: sızıntı oranı, kaçamak eşiği, korkuyla susan tanık, sahnelenmiş delil buna bağlı. */
+export type Zorluk = 'kolay' | 'orta' | 'zor';
+
+export interface VakaAyari {
+  zorluk: Zorluk;
+}
+
+/** Zorluk seviyesine göre üretim parametreleri (tek yerde; katmanlar buradan okur). */
+export const ZORLUK_PARAMETRELERI: Record<Zorluk, {
+  /** Yöntemin basına sızma olasılığı (CIT'i geçersiz kılar). */
+  sizmaOlasiligi: number;
+  /** Failin olay yerinde olduğunu kabul edip eylemi saklama (kaçamak) eşiği: yalanBecerisi bu değerin üstündeyse. */
+  kacamakEsigi: number;
+  /** Görgü tanığının failden korkup susma olasılığı. */
+  korkuOlasiligi: number;
+  /** Failin masuma sahnelenmiş delil yerleştirme olasılığı. */
+  sahnelemeOlasiligi: number;
+}> = {
+  kolay: { sizmaOlasiligi: 0.15, kacamakEsigi: 0.85, korkuOlasiligi: 0, sahnelemeOlasiligi: 0 },
+  orta: { sizmaOlasiligi: 0.35, kacamakEsigi: 0.7, korkuOlasiligi: 0.2, sahnelemeOlasiligi: 0.2 },
+  zor: { sizmaOlasiligi: 0.55, kacamakEsigi: 0.45, korkuOlasiligi: 0.6, sahnelemeOlasiligi: 0.6 },
+};
+
 /** Vakanın gerçeği. İfadeler ve ipuçları bunun üstüne sonraki katmanlarda eklenir. */
 export interface Vaka {
   seed: string;
+  ayar: VakaAyari;
   mekan: Mekan;
   kisiler: Kisi[];
   iliskiler: Iliski[];

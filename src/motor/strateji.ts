@@ -10,7 +10,7 @@
 import { Rastgele } from '@ortak/rastgele';
 import { bilgiDagit, type BilgiDagilimi } from './bilgi';
 import { odaYalaniGerektirir, sirlarUret, type SirKatmani } from './sirlar';
-import type { KisiId, Vaka } from './tipler';
+import { ZORLUK_PARAMETRELERI, type KisiId, type Vaka } from './tipler';
 
 export type Soru =
   | { tur: 'konum'; hedef: KisiId; dilim: number }
@@ -46,8 +46,6 @@ export function soruAnahtari(soru: Soru): string {
   return soru.tur === 'konum' ? `konum:${soru.hedef}:${soru.dilim}` : `olay:${soru.konu}`;
 }
 
-/** Kaçamak cevap eşiği: bu becerinin üstündeki yalancı yeri kabul edip eylemi gizler (Vrij 2010 "iyi yalancı"). */
-const KACAMAK_BECERI_ESIGI = 0.7;
 
 export function cevapla(durum: VakaDurumu, kisi: KisiId, soru: Soru): Cevap {
   const anahtar = `${kisi}|${soruAnahtari(soru)}`;
@@ -95,7 +93,8 @@ function konumCevabi(durum: VakaDurumu, kisi: KisiId, soru: Extract<Soru, { tur:
     if (kisi === olay.fail && soru.dilim === olay.dilim) {
       const beceri = vaka.kisiler.find((k) => k.id === kisi)!.yalanBecerisi;
       const bulundugu = [...new Set(vaka.zamanCizelgesi.filter((z) => z.kisi === kisi && z.oda !== olay.oda).map((z) => z.oda))];
-      if (beceri > KACAMAK_BECERI_ESIGI || bulundugu.length === 0) {
+      // Kaçamak eşiği zorluğa bağlı (zor vakada daha çok fail yeri kabul eder → delil çelişkisi yok).
+      if (beceri > ZORLUK_PARAMETRELERI[vaka.ayar.zorluk].kacamakEsigi || bulundugu.length === 0) {
         return { ...temel, ifadeTuru: 'kacamak', icerik: gercek, dogru: true, not: 'fail: olay odasında olduğunu kabul eder, eylemi saklar' };
       }
       // Gömülü yalan: o akşam gerçekten bulunduğu başka bir oda (ayrıntılar gerçek, tek kritik ayrıntı değişik).

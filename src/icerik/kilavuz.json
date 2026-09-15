@@ -471,5 +471,17 @@
       "Rowland",
       "Derren Brown"
     ]
+  },
+  {
+    "id": "sahnelenmis-suc",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Sahnelenmiş suç ve 'fazla açık' delil",
+    "ozet": "Norwood: kanlı baston olay yerinde, koridorda 'dün olmayan' parmak izi → delil sonradan yerleştirilmiş, 'ölü' hayatta. Abbey Çiftliği: üç kadehin tortusu sahneyi çökertti. Fazla açık delil şüphe uyandırmalı.",
+    "nasilKullanilir": "Her delil için sor: Bu delili kim üretmiş olabilir? Fiziksel olarak mümkün mü? Aynı kişiyi aynı anda iki yerde gösteren iki delil varsa biri sahtedir; ikisine de güvenme, başka kaynak ara (kamera, tanık, yöntem).",
+    "sinirlari": "Her tutarsızlık sahne değildir; kayıt hatası, saat karışıklığı olabilir. Ama tutarsızlığı açıklamayla kapatma (iç masalcı); test et.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Konnikova"
+    ]
   }
 ]

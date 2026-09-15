@@ -8,7 +8,7 @@
 //     → koruma yalanları; korunan kişi fail olmak zorunda değil (koruma ≠ suç ortaklığı).
 // Sırlar gerçekle tutarlıdır: gizli ilişki dilimlerinde iki kişi zaman çizelgesinde gerçekten aynı odadadır.
 import { Rastgele } from '@ortak/rastgele';
-import type { KisiId, Vaka } from './tipler';
+import { ZORLUK_PARAMETRELERI, type KisiId, type Vaka } from './tipler';
 
 export const SIR_TURLERI = ['gizli-iliski', 'gizli-ziyaret', 'gizli-borc', 'is-kaybi', 'bagimlilik', 'sabika'] as const;
 export type SirTuru = (typeof SIR_TURLERI)[number];
@@ -23,7 +23,7 @@ export interface Sir {
   dilimler: number[];
 }
 
-export type KorumaNedeni = 'borc' | 'aile' | 'es' | 'sevgili' | 'ortak-sir';
+export type KorumaNedeni = 'borc' | 'aile' | 'es' | 'sevgili' | 'ortak-sir' | 'korku';
 
 export interface Koruma {
   koruyan: KisiId;
@@ -134,6 +134,17 @@ export function sirlarUret(vaka: Vaka): SirKatmani {
     if (!r.sans(0.4)) continue;
     const [koruyan, korunan] = r.sans(0.5) ? [i.a, i.b] : [i.b, i.a];
     ekle(koruyan, korunan, i.tur as KorumaNedeni);
+  }
+
+  // Korku: olay anında olay odasında bulunan görgü tanıkları failden korkup susabilir (zorluğa bağlı).
+  // Koruma değil sindirme; ama mekanik aynı: tanık faili adıyla vermez, "yanımdaydı" demez → koruma-yalani yerine
+  // fail-kimligi sorusunda "kimseyi görmedim". Kılavuz: koruma ≠ suç ortaklığı; korku da bir nedendir.
+  if (olay.fail) {
+    const korkuP = ZORLUK_PARAMETRELERI[vaka.ayar.zorluk].korkuOlasiligi;
+    const olayAni = vaka.zamanCizelgesi.filter((z) => z.dilim === olay.dilim && z.oda === olay.oda && z.kisi !== olay.fail && z.kisi !== olay.kurban);
+    for (const z of olayAni) {
+      if (hayattaMi(z.kisi) && r.sans(korkuP)) ekle(z.kisi, olay.fail, 'korku');
+    }
   }
 
   return { sirlar, korumalar };

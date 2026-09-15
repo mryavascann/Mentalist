@@ -10,7 +10,7 @@ import { betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, Varyant
 import { puanla, type PuanRaporu, type Suclama } from '@motor/puan';
 import type { Cevap, Soru } from '@motor/strateji';
 import { sor, sorguBaslat, teknikUygula, delilGoster as motorDelilGoster, type Sorgu, type TeknikParametreleri, type TeknikSonucu } from '@motor/teknik';
-import type { Kisi, KisiId, Vaka } from '@motor/tipler';
+import type { Kisi, KisiId, Vaka, Zorluk } from '@motor/tipler';
 import { ICERIK } from '@icerik/index';
 import { bulunma } from '@ortak/turkce';
 import { PROJE } from '@ortak/surum';
@@ -55,6 +55,8 @@ export interface OyunDurumu {
   gecmis: VakaGecmisi[];
   kilavuzMaddesi: string | null;
   forer: ForerDurumu;
+  /** Sonraki vakaların zorluğu (kullanıcı seçer; varsayılan orta). */
+  zorluk: Zorluk;
   surum: number;
 }
 
@@ -69,7 +71,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, surum: 0,
+    gercekAnlatimi: '', gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: 'orta', surum: 0,
   };
 }
 
@@ -109,8 +111,13 @@ export class OyunDeposu {
   }
 
   /** Yeni (çözülebilir) vaka kurar; seed verilmezse zaman damgasından üretir. */
+  zorlukSec(zorluk: Zorluk) {
+    this.durum.zorluk = zorluk;
+    this.bildir();
+  }
+
   yeniVaka(seed?: string | number) {
-    const { vaka, rapor } = vakaUretCozulebilir(seed ?? `vaka-${Date.now()}`);
+    const { vaka, rapor } = vakaUretCozulebilir(seed ?? `vaka-${Date.now()}`, 10, { zorluk: this.durum.zorluk });
     this.kur(sorguBaslat(vaka), rapor);
     this.durum.ekran = 'vaka-acilis';
     this.bildir();
@@ -329,7 +336,7 @@ export class OyunDeposu {
     const d = this.durum;
     const s = d.sorgu;
     return JSON.stringify({
-      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer,
+      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk,
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
       konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, gecmis: d.gecmis,
       sorgu: s ? {
@@ -343,9 +350,9 @@ export class OyunDeposu {
     try {
       const v = JSON.parse(json);
       if (!v || v.kayitSurumu !== KAYIT_SURUMU) return false;
-      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' } };
+      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta' };
       if (v.seed && v.sorgu) {
-        const sorgu = sorguBaslat(vakaUret(v.seed));
+        const sorgu = sorguBaslat(vakaUret(v.seed, { zorluk: (v.zorluk as Zorluk) ?? 'orta' }));
         sorgu.durum.defter = new Map(v.sorgu.defter);
         sorgu.gosterilen = new Map((v.sorgu.gosterilen as [string, string[]][]).map(([k, arr]) => [k, new Set(arr)]));
         sorgu.kontaminasyon = v.sorgu.kontaminasyon ?? [];

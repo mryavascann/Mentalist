@@ -11,7 +11,7 @@
 // Her katman ayrı bir alt akış (altUret) kullanır; bir katmandaki değişiklik diğerini kaydırmaz.
 import { Rastgele } from '@ortak/rastgele';
 import { tamlayan } from '@ortak/turkce';
-import type { Borc, Iliski, IliskiTuru, Kisi, Konum, Mekan, OlayCekirdegi, Vaka, ZamanDilimi } from './tipler';
+import type { Borc, Iliski, IliskiTuru, Kisi, Konum, Mekan, OlayCekirdegi, Vaka, VakaAyari, ZamanDilimi } from './tipler';
 import {
   EYLEMLER, ILISKI_SABLONLARI, MEKAN_SABLONLARI, MOTIVASYONLAR, OLAY_SABLONLARI,
   TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI,
@@ -166,8 +166,8 @@ function zamanCizelgesiUret(r: Rastgele, kisiler: Kisi[], mekan: Mekan, olay: Ol
   return cizelge;
 }
 
-/** Seed'den vakanın gerçeğini üretir. Aynı seed → birebir aynı vaka. */
-export function vakaUret(seed: number | string): Vaka {
+/** Seed'den vakanın gerçeğini üretir. Aynı seed + aynı ayar → birebir aynı vaka. Varsayılan zorluk: orta. */
+export function vakaUret(seed: number | string, ayar: VakaAyari = { zorluk: 'orta' }): Vaka {
   const kok = new Rastgele(seed);
   const mekan = mekanUret(kok.altUret('mekan'));
   const kisiler = kisileriUret(kok.altUret('kisiler'), mekan.ulke);
@@ -179,6 +179,7 @@ export function vakaUret(seed: number | string): Vaka {
   const zamanCizelgesi = zamanCizelgesiUret(kok.altUret('zaman'), kisiler, mekan, olay);
   return {
     seed: String(seed),
+    ayar: { ...ayar },
     mekan,
     kisiler,
     iliskiler,

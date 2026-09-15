@@ -36,6 +36,7 @@
 - [x] Kayıt: localStorage + JSON dışa/içe aktarma (K-011) (2026-09-16, Ajan #1)
 
 ## Aşama 3 — Genişleme
+- [x] Zorluk seçici + zorlaştırıcılar: sızıntı, kaçamak eşiği, korkuyla susan tanık, sahnelenmiş delil (Norwood), 11 test (2026-09-16, Ajan #1)
 - [ ] Diğer araçlar ve arketipler
 - [ ] Kör nokta profili + adaptif vaka üretimi
 - [ ] Mini oyunlar / tatbikatlar

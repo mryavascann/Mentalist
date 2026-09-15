@@ -1,37 +1,37 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 06:00, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 06:40, Ajan #1.
 
 ## Aktif aşama
-**Aşama 2 — Dikey dilim TAMAMLANDI** (oynanabilir, tek dosya, Forer dersi, Kılavuz, kayıt). Sıradaki: Aşama 3 başlangıcı (denge/zorlaştırıcı, cila, içerik genişletme).
+**Aşama 3 — Genişleme.** Zorluk seçici ve zorlaştırıcılar tamam. Sıradaki: cila (ilk/son ifade özeti, temel çizgi notu), Kılavuz bölümleri, ipucu kataloğu genişletme.
 
 ## Biten işler
-- Aşama 0 + 1 (motor, 161 test), dil katmanı (19), depo (12), ekranlar + jsdom (4), Forer (4).
-- Forer tutorial'ı (`src/icerik/forer.json`, `Forer.tsx`, depo `forerBasla/forerCevapla/forerPuanla/forerBitir`): ilk vakadan önce otomatik; Başlık'ta "Açılış dersi" düğmesi; kayıtla taşınır.
-- Kılavuz'a "Soğuk ve Sıcak Okuma" bölümü: Forer/Barnum, soğuk okuma öğeleri, bloklama kuralları (32 madde, 6 bölüm). Kaynak kütüğüne Poškus 2014 eklendi (37 kaynak).
-- İpucu kartı (`IpucuKarti.tsx`): sorgu odasında her davranış betimlemesi tıklanabilir → katalog kaydı (rozet, d, not, kaynak, "kanıt değil" uyarısı). Konuşma kayıtları `gozlemler` alanı taşır.
-- `scripts/dosya-kontrol.mjs` Forer akışını da geçer.
+- Aşama 0–2 tamam (kurulum, motor, dil, ekranlar, Forer, Kılavuz, kayıt). Ayrıntı YOL_HARITASI.md.
+- **Zorluk ayarı** (`tipler.ts` `Zorluk`, `VakaAyari`, `ZORLUK_PARAMETRELERI`; `vakaUret(seed, ayar)`; `vakaUretCozulebilir(seed, n, ayar)`): kolay/orta/zor. Parametreler: sızma olasılığı .15/.35/.55, kaçamak eşiği .85/.70/.45, korku olasılığı 0/.2/.6, sahneleme olasılığı 0/.2/.6.
+- **Korkuyla susan tanık** (`sirlar.ts` neden `korku`): olay odasındaki görgü tanığı failden korkup fail kimliğini vermez.
+- **Sahnelenmiş delil** (`delil.ts` `sahnelenmis`, `sahnelenmisMi`): fail, olay anında başka yerde olan bir masuma ait izi olay odasına yerleştirir; masumun gerçek izi de üretilir → aynı kişi-dilim, iki oda = fizik tutarsızlığı. Çözülebilirlik ve yöntem botu bu delilleri sinyal dışı bırakır; puanlama sahnelenmiş delile kanan oyuncuya `delil-sorgulanmadi` etiketi (Kılavuz `sahnelenmis-suc`) verir.
+- Başlık ekranında zorluk seçici; kayıtla taşınır. 11 yeni test (`tests/motor/zorluk.test.ts`).
+- Ölçüm (150 vaka/seviye): yöntem botu doğruluk kolay 1.00 / orta 1.00 / zor .97 (masum suçlama .03); ipucu botu .28–.31; ortalama zorluk puanı .32 / .43 / .65; çözülebilir vaka için ort. deneme 1.01 / 1.03 / 1.37.
 
 ## Sıradaki 3 iş
-1. **Denge/zorlaştırıcı** (kullanıcı kararı bekliyor ama öneri hazır): (a) fail kaçamak oranını beceriye göre değil vaka zorluğuna göre ayarla, (b) görgü tanığı "korku" koruması (fail tehditkâr → tanık susar), (c) sahnelenmiş delil bayrağı (Norwood şablonu) + fizik kontrolü, (d) sızıntı oranı 0.35 → zorluk seviyesine bağlı. Zorluk seçici: `vakaUretCozulebilir(seed, { hedefZorluk })`.
-2. **Cila:** analizde her kişi için "ilk ifade vs son ifade" özeti; kişi kartına temel çizgi notu; mobil sorgu düzeninde akış yüksekliği; klavye erişilebilirliği.
-3. **İçerik genişletme:** Kılavuz "Bellek ve Tanıklık", "Dikkat ve Sihir", "İkna ve Manipülasyon" bölümleri (NOTLAR'da hazır); Navarro yatıştırıcı davranışları ipucu kataloğuna (`zayif`); şablon havuzunu büyüt.
+1. **Cila:** Analiz'de her kişi için "olay anı ifadesi vs gerçek" tablosu (ilk/son ifade); kişi kartına temel çizgi notu (teknik sonucu kalıcı); sorgu odasında "delil gösterildi" rozeti; klavye/mobil kontrol.
+2. **Kılavuz genişletme:** "Bellek ve Tanıklık" (Loftus, French, Nisbett & Wilson), "Dikkat ve Sihir" (Simons & Chabris, Kuhn), "İkna ve Manipülasyon" (Cialdini) bölümleri; ipucu kataloğuna Navarro yatıştırıcı davranışları (`zayif`).
+3. **Mini oyunlar:** kör seçim (Beyerstein), soğuk okuma dedektörü (Rowland öğeleri), taban oranı bulmacası (TASARIM §13).
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
-2. Zorlaştırıcılar (yukarıdaki a–d) ve zorluk seviyeleri (kolay/orta/zor) oyuncuya seçtirilsin mi?
+2. Yöntem botu zorda hâlâ .97: bot "fizik kontrolü"nü biliyor; insan için zorluk Kılavuz'u okumaya bağlı. Daha da zorlaştırmak istersen: kaçamak eşiğini .30'a, sızmayı .70'e çekmek yeterli (tek yer: `ZORLUK_PARAMETRELERI`).
 3. "The Mentalist" adının telif riski (K-007).
 
 ## Bilinen hatalar
 - Yok.
 
 ## Test durumu
-- `npm test`: 19 dosya, 200 test geçti (2026-09-16 05:55).
+- `npm test`: 20 dosya, 211 test geçti (2026-09-16 06:35). Süre ~60 sn (zorluk testleri 3 seviye × 150 vaka).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`.
-- `node scripts/dosya-kontrol.mjs`: yerel Chrome ile file:// akışı (Forer dahil).
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
-- Bash heredoc içinde uzun Python/Markdown yazmak bu ortamda kırılıyor (kesme işaretleri); yamaları scratchpad'e `.py` olarak yaz, `python dosya.py` ile çalıştır.
-- Depo tekildir (`kullan.ts`); testler `depo.sifirla()` ile izole edilir.
-- Playwright `text=` seçicisi alt dize eşleştirir; rol tabanlı seçici kullan.
+- Bash heredoc'ta uzun Python/Markdown kırılıyor; yamaları scratchpad `.py` olarak yaz ve çalıştır.
+- Depo tekildir; testler `depo.sifirla()` ile izole edilir. Playwright'ta rol tabanlı seçici.
+- Sahnelenmiş delil oyuncuya bayrakla GÖSTERİLMEZ; oyuncu iki delilin aynı kişiyi aynı anda iki yerde gösterdiğini fark etmeli (Kılavuz: sahnelenmiş suç).

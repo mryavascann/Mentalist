@@ -43,10 +43,10 @@ describe('delilUret — yapı ve tutarlılık', () => {
     }
   });
 
-  it('konum gösteren her delil zaman çizelgesiyle birebir uyumlu (v0: sahnelenmiş delil yok)', () => {
+  it('konum gösteren her delil (sahnelenmiş olanlar hariç) zaman çizelgesiyle birebir uyumlu', () => {
     for (const o of ornekler) {
       for (const d of o.deliller) {
-        if (d.gosterir.tur !== 'konum') continue;
+        if (d.gosterir.tur !== 'konum' || d.sahnelenmis) continue; // sahnelenmiş delil bilerek gerçekle çelişir
         expect(konum(o, d.gosterir.kisi, d.gosterir.dilim), `${o.seed}: ${d.id}`).toBe(d.gosterir.oda);
         expect(d.oda).toBe(d.gosterir.oda);
       }
@@ -120,14 +120,14 @@ describe('celisenDeliller', () => {
     expect(gomulu).toBeGreaterThan(20);
   });
 
-  it('doğru cevapla hiçbir delil çelişmez', () => {
+  it('doğru cevapla (sahnelenmiş dışında) hiçbir delil çelişmez', () => {
     for (const o of ornekler.slice(0, 40)) {
       const durum = vakaDurumuKur(o.vaka);
       for (const k of o.vaka.kisiler) {
         if (!k.hayatta) continue;
         for (let d = 0; d < o.vaka.dilimler.length; d++) {
           const c = cevapla(durum, k.id, { tur: 'konum', hedef: k.id, dilim: d });
-          if (c.dogru && c.icerik !== null) expect(celisenDeliller(o.deliller, c)).toEqual([]);
+          if (c.dogru && c.icerik !== null) expect(celisenDeliller(o.deliller, c).filter((x) => !x.sahnelenmis)).toEqual([]);
         }
       }
     }

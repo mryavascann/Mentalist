@@ -11,7 +11,7 @@
 // (Vrij & Verschuere 2014). citGecerliMi bu katmandan hesaplanır; oyuncu geçersiz bir tuzak kurarsa
 // masum da tepki verir ve oyun bunu hata raporunda gösterir.
 import { Rastgele } from '@ortak/rastgele';
-import type { KisiId, Vaka } from './tipler';
+import { ZORLUK_PARAMETRELERI, type KisiId, type Vaka } from './tipler';
 
 export type BilgiKaynagi = 'gordu' | 'duydu' | 'dedikodu' | 'medya' | 'kendisi';
 export type BilgiKonusu = 'olay-yeri' | 'olay-zamani' | 'olay-yontemi' | 'fail-kimligi' | 'konum';
@@ -46,7 +46,6 @@ export const DIKKAT_DAGITAN_EYLEMLER: readonly string[] = [
 
 const GORME_OLASILIGI_NORMAL = 0.92;
 const GORME_OLASILIGI_DAGINIK = 0.45;
-const YONTEM_SIZMA_OLASILIGI = 0.35;
 const DEDIKODU_OLASILIGI = 0.12;
 const DEDIKODU_BOZULMA_OLASILIGI = 0.3;
 
@@ -121,7 +120,7 @@ export function bilgiDagit(vaka: Vaka): BilgiDagilimi {
 
   // 6) Medya: yer ve zaman kamuya açık; yöntem bazen sızar.
   const medyayaSizanKonular: BilgiKonusu[] = ['olay-yeri', 'olay-zamani'];
-  if (olay.fail && r.sans(YONTEM_SIZMA_OLASILIGI)) medyayaSizanKonular.push('olay-yontemi');
+  if (olay.fail && r.sans(ZORLUK_PARAMETRELERI[vaka.ayar.zorluk].sizmaOlasiligi)) medyayaSizanKonular.push('olay-yontemi');
   for (const k of canlilar) {
     if (!biliyorMu(k.id, 'olay-yeri')) ekle({ kisi: k.id, konu: 'olay-yeri', kaynak: 'medya', icerik: olay.oda, dogru: true });
     if (!biliyorMu(k.id, 'olay-zamani')) ekle({ kisi: k.id, konu: 'olay-zamani', kaynak: 'medya', icerik: String(olay.dilim), dogru: true });

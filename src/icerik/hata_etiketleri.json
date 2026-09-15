@@ -214,5 +214,15 @@
       "Vrij & Verschuere 2014"
     ],
     "ramKatmani": 1
+  },
+  {
+    "id": "delil-sorgulanmadi",
+    "ad": "Delili sorgulamadın (sahnelenmiş delil)",
+    "aciklama": "Aynı kişiyi aynı saatte iki farklı yerde gösteren deliller vardı; biri yerleştirilmiş olmalıydı. 'Bu delili kim üretmiş olabilir?' diye sormadın.",
+    "kilavuzMaddesi": "sahnelenmis-suc",
+    "kaynak": [
+      "Konnikova"
+    ],
+    "ramKatmani": 4
   }
 ]

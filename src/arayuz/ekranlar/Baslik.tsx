@@ -45,6 +45,15 @@ export function Baslik() {
           <br />
           <input type="text" value={seed} onChange={(e) => setSeed(e.target.value)} placeholder="örn. deniz-feneri" style={{ width: '100%' }} />
         </label>
+        <label style={{ display: 'block', marginTop: 8 }}>
+          Zorluk
+          <br />
+          <select value={d.zorluk} onChange={(e) => depo.zorlukSec(e.target.value as 'kolay' | 'orta' | 'zor')}>
+            <option value="kolay">Kolay — sızıntı az, sahnelenmiş delil yok</option>
+            <option value="orta">Orta — dengeli</option>
+            <option value="zor">Zor — kaçamak fail, korkan tanık, sahnelenmiş delil</option>
+          </select>
+        </label>
         <div className="dugmeler" style={{ marginTop: 12 }}>
           <button className="birincil" onClick={basla}>Yeni vaka</button>
           <button onClick={() => { depo.basla(ad); depo.forerBasla(); }}>Açılış dersi (2 dk)</button>

@@ -96,6 +96,7 @@ describe('SUE — stratejik delil kullanımı', () => {
         const k = q.durum.vaka.kisiler.find((x) => x.id === (d.gosterir as { kisi: string }).kisi)!;
         if (!k.hayatta || k.id === q.durum.vaka.olay.fail) continue;
         if (q.durum.sirKatmani.sirlar.some((x) => x.kisi === k.id)) continue;
+        if (d.sahnelenmis) continue; // sahnelenmiş delil masumla bilerek çelişir
         const sonuc = teknikUygula(q, k.id, 'sue', { delilId: d.id });
         if (sonuc.teknik === 'sue') expect(sonuc.celiski).toBe(false);
       }

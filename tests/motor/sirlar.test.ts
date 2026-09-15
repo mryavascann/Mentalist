@@ -108,7 +108,7 @@ describe('sirlarUret — korumalar', () => {
         expect(kisiler.get(c.korunan)!.hayatta).toBe(true);
         expect(c.korunan).not.toBe(o.vaka.olay.kurban);
         expect(c.koruyan).not.toBe(o.vaka.olay.kurban);
-        expect(['borc', 'aile', 'es', 'sevgili', 'ortak-sir']).toContain(c.neden);
+        expect(['borc', 'aile', 'es', 'sevgili', 'ortak-sir', 'korku']).toContain(c.neden);
         const anahtar = `${c.koruyan}>${c.korunan}`;
         expect(gorulen.has(anahtar)).toBe(false);
         gorulen.add(anahtar);
