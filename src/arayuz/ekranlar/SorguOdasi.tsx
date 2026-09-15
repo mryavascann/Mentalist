@@ -38,6 +38,7 @@ export function SorguOdasi() {
       <main className="dosya">
         <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{secili && <Portre id={secili.id} ad={secili.ad} boyut={40} />}{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
+        <label className="soluk" style={{ display: 'block' }}><input type="checkbox" checked={d.takimAcik} onChange={(e) => depo.takimAcKapat(e.target.checked)} /> Takım yorumları (kanıt değildir; çoğunluk sık yanılır)</label>
         {secili && d.temelCizgiNotlari.get(secili.id) && <p className="soluk" style={{ borderLeft: '3px solid var(--mantar)', paddingLeft: 8 }}>{d.temelCizgiNotlari.get(secili.id)}</p>}
         {acikIpucu && <IpucuKarti id={acikIpucu} kapat={() => setAcikIpucu(null)} />}
         <div className="akis">
@@ -46,6 +47,7 @@ export function SorguOdasi() {
             <div className={`satir ${k.tur}`} key={i}>
               <div className="soru">{k.tur === 'teknik' ? `▸ ${k.soru}` : `Sen: ${k.soru}`}</div>
               <div className="cevap">{k.cevap}</div>
+              {k.takimYorumu && <div className="takim"><b>{k.takimYorumu.ad}:</b> {k.takimYorumu.metin}</div>}
               {k.gozlemler.length > 0 && (
                 <div className="betimleme">
                   {k.gozlemler.map((g, j) => (

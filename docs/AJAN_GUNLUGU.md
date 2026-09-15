@@ -425,3 +425,23 @@
 **Yarım kalanlar:** Higgsfield üretimi kullanıcıda; gelince `Portre.tsx` base64 WebP döndürecek şekilde güncellenir.
 
 **Sıradaki ajan için:** şablon/mekân genişletme, kalan tatbikatlar, Aşama 4 hazırlığı (DURUM.md).
+
+## [2026-09-16 09:30] Ajan #1 — Takım NPC'leri (Aşama 4 ilk tuğla)
+**Görev:** Dizinin takım dinamiğini (TASARIM §14) özgün adlarla ve bilimsel işlevle kurmak: sosyal kanıt tuzağı, hesap verebilirlik, yöntem hatırlatıcı.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/arayuz/oyun/takim.ts`: `TAKIM` (4 üye), `takimYorumu(sorgu, kisi, sonuc)` — yalnızca oyuncunun gördüğü şeylerden (ipucu sayısı, gerginlik kümesi, delil çelişkisi, "bilmiyorum") deterministik yorum. Saha ajanı gerginlik görünce "yalan söylüyor" der (isabet <%45 → çoğunluk sık yanılır), lider kanıt ister, sorgucu tekniğe yönlendirir (SVT, ters sıra, SUE sırası, temel çizgi), inanan analist "içime doğdu" der.
+- Depo: `takimAcik` (aç/kapat, kayıtla taşınır), `KonusmaKaydi.takimYorumu`; sorgu odasında kesikli çerçeveli satır; suçlamada "takımın çoğunluk görüşü" dayanağı; `puan.ts` yanlış suçlamada `sosyal-kanit` etiketi.
+- Test: `tests/arayuz/takim.test.ts` (4): yapı, determinizm/sızıntı yok, ölçüm (saha ajanı <%45, lider kanıt ister), depo entegrasyonu.
+
+**Değişen dosyalar:** src/arayuz/oyun/{takim,depo}.ts, src/arayuz/ekranlar/{SorguOdasi,Suclama}.tsx, src/arayuz/stil.css, src/motor/puan.ts, tests/arayuz/takim.test.ts, docs.
+
+**Testler:** 232 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Takım adları özgün (dizi adları yok, K-007 notu).
+
+**Sorunlar / riskler:** Yorum havuzu küçük (rol başına 2–3 cümle); tekrar hissi olabilir; şablon havuzuyla birlikte büyütülecek.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** şablon/mekân genişletme, kalan tatbikatlar, "Watson'a anlat" + Ayna taslağı (DURUM.md).

@@ -89,3 +89,5 @@ select, input[type="text"], textarea { border: 1px solid var(--cizgi); backgroun
 
 .ipucu-etiket { background: transparent; border: none; border-bottom: 1px dotted var(--murekkep-soluk); border-radius: 0; padding: 0 2px; font-style: italic; color: var(--murekkep-soluk); text-align: left; }
 .ipucu-etiket:hover { background: #fff; color: var(--murekkep); }
+
+.takim { margin-top: 4px; padding: 4px 8px; border-left: 3px dashed var(--mantar); background: #fff8ec; font-size: 13px; color: var(--murekkep-soluk); }

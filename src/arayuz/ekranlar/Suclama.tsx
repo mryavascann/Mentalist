@@ -14,6 +14,7 @@ export function Suclama() {
     ...d.sorgu.deliller.map((x) => ({ id: `delil:${x.id}`, ad: `Delil ${x.id}: ${x.aciklama.slice(0, 60)}` })),
     ...kullanilanTeknikler.map((t) => ({ id: `teknik:${t}`, ad: `Teknik sonucu: ${t}` })),
     { id: 'ipucu:genel', ad: 'Davranış ipuçları (gerginlik, göz kaçırma, duraksama…)' },
+    { id: 'takim:cogunluk', ad: 'Takımın çoğunluk görüşü' },
   ];
   const degistir = (id: string) => setGerekce((g) => { const y = new Set(g); if (y.has(id)) y.delete(id); else y.add(id); return y; });
   const gonder = () => depo.suclamaYap({ fail: secim === 'yok' ? null : secim, guven: guven / 100, gerekce: [...gerekce] });

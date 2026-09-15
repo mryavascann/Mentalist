@@ -74,6 +74,7 @@ export function puanla(sorgu: Sorgu, suclama: Suclama, secenekler: PuanSecenekle
   }
   if (!dogru && olay.fail && !defter.has(`${olay.fail}|${soruAnahtari({ tur: 'konum', hedef: olay.fail, dilim: olay.dilim })}`)) etiket('ipucu-erisilemez');
   if (suclama.gerekce && suclama.gerekce.length > 0 && suclama.gerekce.every((g) => g.startsWith('ipucu:'))) etiket('tek-ipucu');
+  if (!dogru && suclama.gerekce?.some((g) => g.startsWith('takim:'))) etiket('sosyal-kanit');
 
   // --- Süreç cezaları ---
   const erken = sorgu.gecmis.filter((g) => g.teknik === 'sue' && g.ozet === 'erken gösterildi').length;

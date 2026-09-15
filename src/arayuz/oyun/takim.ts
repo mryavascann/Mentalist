@@ -1,0 +1,56 @@
+// Takım NPC'leri (TASARIM §14): dizideki rollerin özgün adlı analogları.
+//   Lider (kurallara bağlı, şüpheci): kanıtsız okumaya itiraz eder → hesap verebilirlik.
+//   Sorgucu (kısa cümleli, yöntemli): tekniğe yönlendirir.
+//   İnanan analist: davranış ipuçlarını abartır, "içine doğar" → yanlış iz.
+//   Saha ajanı: iştahlı, hızlı hüküm; çoğunluk görüşünü seslendirir → sosyal kanıt tuzağı.
+// Yorumlar oyuncunun görebildiği şeylerden (cevap içeriği, ipucu sayısı, delil çelişkisi) üretilir;
+// gizli etiketler kullanılmaz. Deterministik (seed + kişi + soru).
+import { Rastgele } from '@ortak/rastgele';
+import type { SorSonucu, Sorgu } from '@motor/teknik';
+import type { KisiId } from '@motor/tipler';
+import { soruAnahtari } from '@motor/strateji';
+
+export type TakimRolu = 'lider' | 'sorgucu' | 'inanan' | 'saha';
+
+export interface TakimUyesi { rol: TakimRolu; ad: string; tavir: string }
+
+export const TAKIM: TakimUyesi[] = [
+  { rol: 'lider', ad: 'Komiser Sevda Oral', tavir: 'Kurallara bağlı, şüpheci; kanıt ister.' },
+  { rol: 'sorgucu', ad: 'Cemal Ilgaz', tavir: 'Az konuşur; yöntemi hatırlatır.' },
+  { rol: 'inanan', ad: 'Analist Defne Yurt', tavir: 'Sezgiye ve işaretlere inanır.' },
+  { rol: 'saha', ad: 'Ajan Ozan Kaya', tavir: 'Hızlı hüküm verir, çoğunluğu seslendirir.' },
+];
+
+export interface TakimYorumu { rol: TakimRolu; ad: string; metin: string; hukum: 'supheli' | 'temiz' | 'yok' }
+
+const ARTAN_KUME = new Set(['genel-gerginlik', 'ses-perdesi-yukselme', 'tutarsizlik-ambivalans', 'detay-azligi', 'sozel-vokal-yakinlik-azligi', 'yatistirici-dokunma']);
+
+/** Sorgu satırına takım yorumu (yaklaşık %55 olasılıkla; her satırda konuşmazlar). */
+export function takimYorumu(sorgu: Sorgu, kisiId: KisiId, sonuc: SorSonucu): TakimYorumu | null {
+  const { vaka } = sorgu.durum;
+  const r = new Rastgele(`${vaka.seed}/takim/${kisiId}/${soruAnahtari(sonuc.cevap.soru)}`);
+  if (!r.sans(0.55)) return null;
+  const ad = vaka.kisiler.find((k) => k.id === kisiId)!.ad.split(' ')[0]!;
+  const ipucuSayisi = sonuc.ipuclari.length;
+  const gerginlik = sonuc.ipuclari.filter((g) => ARTAN_KUME.has(g.ipucuId)).length;
+  const celiski = sonuc.celisenDeliller.length > 0;
+  const bilmiyor = sonuc.cevap.icerik === null;
+  const uye = r.sec(TAKIM);
+
+  switch (uye.rol) {
+    case 'saha': {
+      // Hızlı hüküm: ipucu görünce "bu adam yalan söylüyor"; ipucu yoksa "temiz". Delile bakmaz.
+      if (gerginlik >= 1) return { rol: 'saha', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bence yalan söylüyor. Gördün mü, ${gerginlik > 1 ? 'her şeyi' : 'sesini'}? Bu iş bitti.`, `Bak, ${ad} kıvranıyor. Ekipte herkes aynı fikirde: bu o.`, `Ben olsam ${ad}'ı şimdi alırdım. Herkes görüyor işte.`]) };
+      return { rol: 'saha', ad: uye.ad, hukum: 'temiz', metin: r.sec([`${ad} temiz görünüyor, sakin. Bir sonrakine geçelim.`, `Bu kadar rahat biri yalan söylemez. ${ad} bizim adam değil.`]) };
+    }
+    case 'inanan':
+      if (ipucuSayisi > 0) return { rol: 'inanan', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bir şey saklıyor, içime doğdu. Enerjisi değişti.`, `O bakış… ${ad} gözlerini kaçırdı, ben bunu bilirim.`, `Bir işaret bu. ${ad} anlatırken bir şey döndü.`]) };
+      return { rol: 'inanan', ad: uye.ad, hukum: 'yok', metin: r.sec([`Hmm. ${ad} hakkında henüz bir his yok.`, `Bir şey hissetmedim ama sezgim genelde geç uyanır.`]) };
+    case 'lider':
+      if (celiski) return { rol: 'lider', ad: uye.ad, hukum: 'yok', metin: r.sec([`Elimizde delil var ve anlattığıyla uyuşmuyor. Ama çelişki tek başına hüküm değil; kaynağını sor.`, `Delil ile ifade çelişiyor. Bunu savcıya nasıl anlatırsın? Önce delilin kaynağına bak.`]) };
+      return { rol: 'lider', ad: uye.ad, hukum: 'yok', metin: r.sec([`Gerginlik kanıt değil. Elinde delil var mı? Yoksa geç.`, `"Bence" ile gelme bana. Hangi delil, hangi çelişki?`, `İyi. Şimdi bunu doğrulayacak bir kaynak bul; tek ifadeyle yürümeyiz.`]) };
+    case 'sorgucu':
+      if (bilmiyor) return { rol: 'sorgucu', ad: uye.ad, hukum: 'yok', metin: r.sec([`"Bilmiyorum." İki seçenekli sor. Bilen kaçınır.`, `Hatırlamıyorsa zorlama. Ters sırayla anlattır.`]) };
+      return { rol: 'sorgucu', ad: uye.ad, hukum: 'yok', metin: r.sec([`Delili henüz gösterme. Önce anlattır.`, `Aynı soruyu başka biçimde sor. Beklemediği yerden.`, `Temel çizgi kurdun mu? Kurmadıysan bu ipuçları boş.`]) };
+  }
+}

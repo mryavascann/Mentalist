@@ -18,6 +18,7 @@ import { PROJE } from '@ortak/surum';
 import { FORER } from '@icerik/forer';
 import { MINI_OYUNLAR, sogukOkumaPuanla } from '@icerik/mini_oyunlar';
 import { soruMetni, teknikSonucMetni } from './metinler';
+import { takimYorumu, type TakimYorumu } from './takim';
 
 export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'suclama' | 'analiz' | 'kilavuz';
 export type TatbikatId = 'kor-secim' | 'soguk-okuma' | 'taban-orani';
@@ -36,6 +37,8 @@ export interface KonusmaKaydi {
   /** Tıklanabilir betimlemeler: her biri katalogdaki bir ipucuya bağlanır (İpucu kartı). */
   gozlemler: { ipucuId: string; betimleme: string }[];
   teknikId?: string;
+  /** Takım NPC yorumu (varsa). Sosyal kanıt tuzağı: yorum kanıt değildir. */
+  takimYorumu?: TakimYorumu;
 }
 
 export interface PanoDurumu { gozlem: string[]; cikarim: string[]; hipotez: string[]; olmayan: string[] }
@@ -80,6 +83,8 @@ export interface OyunDurumu {
   kilavuzMaddesi: string | null;
   forer: ForerDurumu;
   tatbikat: TatbikatDurumu;
+  /** Takım yorumları açık mı (oyuncu kapatabilir). */
+  takimAcik: boolean;
   /** Sonraki vakaların zorluğu (kullanıcı seçer; varsayılan orta). */
   zorluk: Zorluk;
   surum: number;
@@ -96,7 +101,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, hedefler: [], brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, zorluk: 'orta', surum: 0,
+    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, zorluk: 'orta', surum: 0,
   };
 }
 
@@ -136,6 +141,11 @@ export class OyunDeposu {
   }
 
   /** Yeni (çözülebilir) vaka kurar; seed verilmezse zaman damgasından üretir. */
+  takimAcKapat(acik: boolean) {
+    this.durum.takimAcik = acik;
+    this.bildir();
+  }
+
   zorlukSec(zorluk: Zorluk) {
     this.durum.zorluk = zorluk;
     this.bildir();
@@ -212,7 +222,9 @@ export class OyunDeposu {
     if (!sorgu || !seciliKisi || puan) return false;
     const s = sor(sorgu, seciliKisi, soru);
     sorgu.zaman += SORU_MALIYETI;
-    this.kayitEkle(seciliKisi, this.cevapKaydi(seciliKisi, s.cevap, s.ipuclari, soruMetni(soru, sorgu.durum.vaka, seciliKisi)));
+    const kayit = this.cevapKaydi(seciliKisi, s.cevap, s.ipuclari, soruMetni(soru, sorgu.durum.vaka, seciliKisi));
+    if (this.durum.takimAcik) { const y = takimYorumu(sorgu, seciliKisi, s); if (y) kayit.takimYorumu = y; }
+    this.kayitEkle(seciliKisi, kayit);
     this.durum.zaman = sorgu.zaman;
     this.bildir();
     return true;
@@ -423,7 +435,7 @@ export class OyunDeposu {
     const d = this.durum;
     const s = d.sorgu;
     return JSON.stringify({
-      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk, tatbikat: { aktif: null, sonuclar: d.tatbikat.sonuclar },
+      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk, takimAcik: d.takimAcik, tatbikat: { aktif: null, sonuclar: d.tatbikat.sonuclar },
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
       konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], gecmis: d.gecmis,
       sorgu: s ? {
@@ -437,7 +449,7 @@ export class OyunDeposu {
     try {
       const v = JSON.parse(json);
       if (!v || v.kayitSurumu !== KAYIT_SURUMU) return false;
-      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta', tatbikat: { aktif: null, sonuclar: v.tatbikat?.sonuclar ?? {} } };
+      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta', tatbikat: { aktif: null, sonuclar: v.tatbikat?.sonuclar ?? {} }, takimAcik: v.takimAcik ?? true };
       if (v.seed && v.sorgu) {
         const sorgu = sorguBaslat(vakaUret(v.seed, { zorluk: (v.zorluk as Zorluk) ?? 'orta' }));
         sorgu.durum.defter = new Map(v.sorgu.defter);
