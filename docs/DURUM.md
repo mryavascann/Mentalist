@@ -1,31 +1,33 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 01:20, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 01:45, Ajan #1.
 
 ## Aktif aşama
-**Aşama 1 — Motor.** Doğruluk grafiği v0 tamam; sıradaki katman bilgi dağılımı + sırlar.
+**Aşama 1 — Motor.** Gerçek → bilgi → sırlar → strateji zinciri çalışıyor. Sıradaki: ipucu üretimi.
 
 ## Biten işler
-- Aşama 0 tamam (kurulum, belge seti, kararlar K-001…K-012, içerik şemaları).
-- `src/ortak/rastgele.ts`: seedli RNG + alt akışlar (14 test).
-- `src/icerik/`: 6 JSON kütüğü + doğrulayıcı (16 test).
-- `src/motor/tipler.ts`, `havuzlar.ts`, `gerceklik.ts`: mekân (8 şablon, TR/yurtdışı), 5–8 kişi (kişilik 4 boyut + yalan becerisi), kurban-merkezli ilişki grafiği + yan bağlar + borç grafiği, olay çekirdeği (cinayet/hırsızlık/sabotaj/kaza; fail DÜZGÜN dağılımla), 8 dilimlik gerçek zaman çizelgesi (olay kısıtları uygulanır). 18 test; 600 seed'lik ilk örüntü denetimi dahil.
+- Aşama 0 tamam (kurulum, belge seti, K-001…K-012, içerik şemaları).
+- `src/ortak/rastgele.ts` (14 test), `src/icerik/` (16 test).
+- `src/motor/gerceklik.ts`: doğruluk grafiği v0 (18 test).
+- `src/motor/bilgi.ts`: bilgi dağılımı + algı modeli (kendisi/gördü/dedikodu/medya; dikkat boşluğu; medya sızıntısı; `citGecerliMi`, `kimBiliyor`) (13 test).
+- `src/motor/sirlar.ts`: suçla ilgisiz sırlar (6 tür; gizli ilişki gerçekle tutarlı), korumalar (borç/aile/eş/sevgili/ortak sır) (11 test).
+- `src/motor/strateji.ts`: `vakaDurumuKur`, `cevapla`, yalan defteri; ifade türleri: dogru, gomulu-yalan, kacamak, gizleme, alakasiz-sir, koruma-yalani, bellek-uyumu, dikkat-boslugu (18 test).
 
 ## Sıradaki 3 iş
-1. **Bilgi dağılımı** (`src/motor/bilgi.ts`): her kişi için "neyi, NASIL biliyor" (gördü / duydu / dedikodu / medya); algı modeli (aynı odadaki olayı görme olasılığı, dikkat boşluğu); bu, gizli bilgi testinin geçerliliğini belirler.
-2. **Sırlar ve motivasyonlar** (`src/motor/sirlar.ts`): suçla ilgili ve ilgisiz sırlar (ilişki, borç, utanç); koruma ilişkileri borç grafiğinden; "gergin masum" tohumu.
-3. **NPC konuşma stratejisi + yalan defteri** (`src/motor/strateji.ts`): soru başına doğru/yalan/gizleme/kaçamak kararı; tutarlılık testi.
+1. **İpucu üretimi** (`src/motor/ipucu.ts`): her cevaba, ifade türü + kişilik (kaygı, öz-izleme, yalan becerisi) + koşullar (motivasyon, ihlal, plansız) üzerinden ipucu kataloğundan olasılıksal davranış betimlemeleri ekle. Masumlar da üretir (kaygı, alakasız sır, kişisel tetikleyici). Bilimsel sadakat testi: katalog d değerleriyle simülasyondaki yalan/doğru farkı tutarlı; "sadece ipucuya bakan bot" şansa yakın.
+2. **Delil üretimi** (`src/motor/delil.ts`): fiziksel/dijital deliller, "beklenen ama olmayan" ipucu; SUE için delil-konu eşlemesi.
+3. **Soru/teknik motoru**: teknikler.json'daki araçların (SUE, bilişsel yük, beklenmedik soru, CIT, SVT, yönlendirici soru + kontaminasyon kaydı) `cevapla` üstünde etkileri; ardından çözülebilirlik denetçisi ve denge botları.
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef oyun süresi (öneri 20–40 dk).
-2. "Cam arkası" modu için ikinci oyuncu (sorgucu) düşünülsün mü? (Şimdilik tek oyuncu varsayımı.)
-3. "The Mentalist" adının telif riski uyarısı verildi (K-007); ticari plan olursa yeniden konuşulacak.
+2. "Cam arkası" modu için ikinci oyuncu (sorgucu)? (Şimdilik tek oyuncu.)
+3. "The Mentalist" adının telif riski (K-007); ticari plan olursa yeniden konuşulacak.
 
 ## Bilinen hatalar
 - Yok.
 
 ## Test durumu
-- `npm test`: 4 dosya, 50 test geçti (2026-09-16 01:18).
+- `npm test`: 7 dosya, 92 test geçti (2026-09-16 01:44).
 - `npm run typecheck`: temiz.
 - `npm run build`: tek `dist/index.html`.
 
@@ -34,4 +36,5 @@
 - `pdftotext` kurulu; PDF'leri sayfa aralığıyla oku.
 - Uzun Markdown/JSON dosyalarını Bash heredoc yerine doğrudan dosya yazma aracıyla yaz.
 - `dist/index.html`'in `file://` altında açıldığı tarayıcıda elle doğrulanmadı; Aşama 2'de Playwright ile.
-- Zaman çizelgesi 19:00–23:00, 30 dk'lık 8 dilim (`DILIM_SAYISI`); vaka türüne göre esnetilebilir.
+- Zaman çizelgesi 19:00–23:00, 8 dilim (`DILIM_SAYISI`).
+- Strateji katmanı metin üretmez; yapısal cevap (`Cevap`) üretir. Metin giydirme dil katmanında (K-009).

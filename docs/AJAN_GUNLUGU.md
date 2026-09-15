@@ -101,3 +101,33 @@
 **Geliştirme fikirleri:**
 - Mekân şablonuna "mekâna özgü delil türleri" eklemek (hastane: ilaç kayıt defteri; motel: resepsiyon defteri).
 - Vaka arketip havuzunu (TASARIM §15) olay şablonlarına bağlamak; şimdilik dört genel tür var.
+
+## [2026-09-16 01:45] Ajan #1 — Bilgi dağılımı, sırlar, konuşma stratejisi + yalan defteri
+**Görev:** Gerçeğin üstüne "kim neyi biliyor", "kim neyi saklıyor", "kim ne cevap verir" katmanlarını kurmak.
+
+**Yapılanlar (her biri önce test, kırmızı, sonra kod):**
+- `src/motor/bilgi.ts`: kendisi/gördü/dedikodu/medya kaynakları; dikkat dağıtan eylemlerde görme olasılığı .92→.45 (Simons & Chabris); dedikodu %12 olasılıkla yayılır, %30 bozulur (bellek uyumu tohumu); yöntem %35 medyaya sızar; `citGecerliMi` (sızan/dedikodu varsa geçersiz), `kimBiliyor`.
+- `src/motor/sirlar.ts`: masum %45 / fail %30 sır olasılığı; gizli ilişki dilimleri zaman çizelgesinde gerçekten aynı odada; `odaYalaniGerektirir` (ilişki/ziyaret → oda yalanı; bağımlılık/sabıka/iş kaybı → gizleme); korumalar: ortak sır (karşılıklı), ağır borç %80, sıcak aile/eş/sevgili %40.
+- `src/motor/strateji.ts`: `Soru` (konum / olay-bilgisi), `Cevap` (ifadeTuru, icerik, dogru, not), `VakaDurumu` + yalan defteri; fail olay anında gömülü yalan (o akşam gerçekten bulunduğu başka oda) ya da kaçamak (yalanBecerisi > .7 veya başka oda yoksa); alakasız sır / gizleme; koruma yalanı ("yanımdaydı"); dikkat boşluğu; bozuk dedikodu → bellek uyumu; fail kimliğini asla vermez; yöntem sızmışsa "gazetede okudum".
+- Determinizm: her (kişi, soru) çifti kendi RNG akışını kullanır → soru sırası cevabı değiştirmez.
+
+**Değişen dosyalar:** src/motor/{bilgi,sirlar,strateji}.ts; tests/motor/{bilgi,sirlar,strateji}.test.ts; docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 92 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Numaralı karar yok; olasılık sabitleri modül başlarında, denge botlarıyla ayarlanacak.
+
+**Sorunlar / riskler:**
+- Görgü tanığı mekaniği vakayı bazen kolaylaştırır (masum tanık faili doğrudan söyler). Çözülebilirlik/zorluk denetçisi bunu "kolay vaka" olarak puanlamalı ya da tanık koruma/korku ile susmalı; Aşama 1 sonunda ele alınacak.
+- Soru türleri şimdilik iki tane (konum, olay-bilgisi). Teknik motoru (SUE, beklenmedik soru…) bunları genişletecek.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:**
+1) `src/motor/ipucu.ts`: cevaba ipucu betimlemesi ekleme (katalog d değerleri + kişilik + koşullar); bilimsel sadakat testi.
+2) `src/motor/delil.ts`: delil üretimi ve "beklenen ama olmayan".
+3) Teknik motoru + çözülebilirlik denetçisi + denge botları.
+
+**Geliştirme fikirleri:**
+- Görgü tanığının "korku" nedeniyle susması (fail tehditkâr ilişki) → yeni koruma nedeni 'korku'.
+- Fail için olay öncesi/sonrası dilimlerde de tutarlı yalan (hazırlık, iz silme) → delil katmanıyla birlikte.

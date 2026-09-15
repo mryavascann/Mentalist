@@ -14,9 +14,9 @@
 - [x] `ortak/rastgele`: seedli RNG + dağılım yardımcıları + alt akışlar, 14 test (2026-09-16, Ajan #1)
 - [x] Tipler v0: Kişi, İlişki, Borç, Zaman çizelgesi, Olay, Vaka (2026-09-16, Ajan #1) — Delil ve İfade tipleri sonraki katmanlarda
 - [x] Doğruluk grafiği v0: mekân, kişiler, ilişki/borç grafiği, olay çekirdeği, gerçek zaman çizelgesi, 18 test (2026-09-16, Ajan #1)
-- [ ] Algı modeli + bilgi dağılımı (kim neyi nasıl biliyor)
-- [ ] Sırlar ve motivasyonlar (suçla ilgili / ilgisiz)
-- [ ] NPC konuşma stratejisi + yalan defteri (tutarlılık testi)
+- [x] Algı modeli + bilgi dağılımı: kendisi/gördü/dedikodu/medya, dikkat boşluğu, CIT geçerliliği, 13 test (2026-09-16, Ajan #1)
+- [x] Sırlar ve korumalar: 6 sır türü, borç/aile/ortak-sır korumaları, 11 test (2026-09-16, Ajan #1)
+- [x] NPC konuşma stratejisi + yalan defteri: 8 ifade türü, 18 test (2026-09-16, Ajan #1)
 - [ ] İpucu kataloğu (DePaulo 2003 ağırlıkları, kanıt düzeyi) + olasılıksal ipucu üretimi (masumlar da üretir)
 - [ ] Delil üretimi (fiziksel, dijital, "beklenen ama olmayan")
 - [ ] Kırmızı ringa üretici (gergin masum, sahte anı, bellek uyumu, çoğulcu cehalet)
