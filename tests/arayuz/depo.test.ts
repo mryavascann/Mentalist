@@ -167,6 +167,20 @@ describe('OyunDeposu — akış', () => {
     expect(yeni.iceAktar('{bozuk')).toBe(false);
   });
 
+  it('adaptif üretim: Othello kör noktası olan oyuncunun sonraki vakası gergin masum içerir ve analizde hedef açıklanır', () => {
+    const depo = new OyunDeposu();
+    depo.basla('Deniz');
+    // Yapay geçmiş: üç kez Othello hatası
+    depo.durum.gecmis.push({ seed: 'x', dogru: false, puan: 0, hataEtiketleri: ['othello-hatasi'], brier: 0.8 });
+    depo.durum.gecmis.push({ seed: 'y', dogru: false, puan: 0, hataEtiketleri: ['othello-hatasi'], brier: 0.8 });
+    depo.yeniVaka('adaptif-depo-1');
+    expect(depo.durum.hedefler).toContain('gergin-masum');
+    const { vaka, sirKatmani } = depo.durum.sorgu!.durum;
+    expect(sirKatmani.sirlar.some((s) => s.kisi !== vaka.olay.fail && s.dilimler.includes(vaka.olay.dilim))).toBe(true);
+    const yeni = new OyunDeposu();
+    expect(yeni.iceAktar(depo.disaAktar())).toBe(true);
+  });
+
   it('kör nokta geçmişi: her vaka sonunda hata etiketleri birikir', () => {
     const depo = hazirOyun('depo-kor');
     const masum = depo.gorusulebilirler().find((k) => k.id !== depo.durum.sorgu!.durum.vaka.olay.fail)!;

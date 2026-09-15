@@ -385,3 +385,23 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** adaptif üretim (kör nokta → vaka), şablon/mekân genişletme, kalan Kılavuz bölümleri (DURUM.md).
+
+## [2026-09-16 08:30] Ajan #1 — Adaptif vaka üretimi (kör nokta → hedefli vaka)
+**Görev:** Oyuncunun tekrarlayan hatalarına göre sonraki vakayı fark ettirmeden ayarlamak (TASARIM §11, Ericsson 1993).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/motor/adaptif.ts`: `ETIKET_HEDEFI` (othello → gergin masum; erken delil / ipucu erişilemez → gömülü yalan; geçersiz CIT → sızıntı; sahte itiraf / tanık kirletme → telkine yatkın masum; delil sorgulanmadı → sahnelenmiş delil; doğruluk yanlılığı → suç var), `hedeflerdenAyar` (en fazla 2), `vakaHedefiSaglar` (taze sorgu), `vakaUretHedefli` (seed türevleri; hedef sağlanamazsa en iyi çözülebilir yedek).
+- Depo `yeniVaka` hedefli üretimi kullanır; `durum.hedefler` analizde "bu vaka şunları çalıştırmak için üretildi" olarak açıklanır; Kılavuz açılışında dinamik "Senin kör noktan" listesi.
+- Testler: `tests/motor/adaptif.test.ts` (10): her hedef ≥%85 sağlanır, çift hedef ≥%70, determinizm; depo testi (+1).
+
+**Değişen dosyalar:** src/motor/adaptif.ts, src/arayuz/oyun/depo.ts, src/arayuz/ekranlar/{Analiz,Kilavuz}.tsx, tests/motor/adaptif.test.ts, tests/arayuz/depo.test.ts, docs.
+
+**Testler:** 227 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Hedef vaka sonunda AÇIKLANIR (oyun sırasında değil): gelişim zihniyeti + şeffaflık; "fark ettirmeden" ilkesi vaka süresince korunur.
+
+**Sorunlar / riskler:** Hedefli üretim çözülebilirlik denetimini 30'a kadar tekrar çağırır; şu an ~50 ms/vaka, sorun değil.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** şablon/mekân genişletme, kalan Kılavuz bölümleri, Higgsfield prompt listesi (DURUM.md).

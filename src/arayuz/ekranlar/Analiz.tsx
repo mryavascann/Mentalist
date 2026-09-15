@@ -5,6 +5,14 @@ import { depo, useOyun } from '../oyun/kullan';
 
 const ETIKETLER = new Map(ICERIK.hataEtiketleri.map((h) => [h.id, h]));
 const KILAVUZ = new Map(ICERIK.kilavuz.map((m) => [m.id, m]));
+const HEDEF_ADI: Record<string, string> = {
+  'gergin-masum': 'gergin masum (Othello)',
+  'gomulu-yalan': 'gömülü yalan (SUE sırası)',
+  'sizinti': 'basına sızmış ayrıntı (CIT geçerliliği)',
+  'telkine-yatkin-masum': 'telkine yatkın tanık (kontaminasyon / sahte itiraf)',
+  'sahnelenmis-delil': 'sahnelenmiş delil (fizik kontrolü)',
+  'suc-var': 'gerçek bir suç (doğruluk yanlılığı)',
+};
 
 export function Analiz() {
   const d = useOyun();
@@ -66,6 +74,9 @@ export function Analiz() {
         )}
       </section>
 
+      {d.hedefler.length > 0 && (
+        <p className="soluk">Bu vaka, önceki hatalarına göre özellikle şunları çalıştırmak için üretildi: {d.hedefler.map((h) => HEDEF_ADI[h] ?? h).join(', ')}.</p>
+      )}
       {korNoktalar.length > 0 && (
         <section className="dosya">
           <h2>Senin kör noktan</h2>

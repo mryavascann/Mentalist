@@ -5,7 +5,8 @@
 // React tarafı `useSyncExternalStore` ile sürüm sayacını izler. Kayıt (K-011): JSON dışa/içe aktarma;
 // içe aktarımda vaka seed'den yeniden üretilir, yalan defteri ve sorgu kayıtları geri yüklenir.
 import { vakaUret } from '@motor/gerceklik';
-import { vakaUretCozulebilir, type CozulebilirlikRaporu } from '@motor/cozulebilirlik';
+import type { CozulebilirlikRaporu } from '@motor/cozulebilirlik';
+import { hedeflerdenAyar, vakaUretHedefli, type VakaHedefi } from '@motor/adaptif';
 import { betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, VaryantBellegi, type KisiUslubu } from '@motor/dil';
 import { puanla, type PuanRaporu, type Suclama } from '@motor/puan';
 import type { Cevap, Soru } from '@motor/strateji';
@@ -60,6 +61,8 @@ export interface OyunDurumu {
   kahramanAdi: string;
   sorgu: Sorgu | null;
   rapor: CozulebilirlikRaporu | null;
+  /** Bu vakada kör noktaya göre bilinçli olarak sağlanan yapısal hedefler (oyuncuya vaka sonunda açıklanır). */
+  hedefler: VakaHedefi[];
   brifing: string;
   kisiKartlari: { id: KisiId; metin: string }[];
   seciliKisi: KisiId | null;
@@ -91,7 +94,7 @@ function bosPano(): PanoDurumu { return { gozlem: [], cikarim: [], hipotez: [], 
 
 function baslangicDurumu(): OyunDurumu {
   return {
-    ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, brifing: '', kisiKartlari: [], seciliKisi: null,
+    ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, hedefler: [], brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
     gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, zorluk: 'orta', surum: 0,
   };
@@ -139,8 +142,11 @@ export class OyunDeposu {
   }
 
   yeniVaka(seed?: string | number) {
-    const { vaka, rapor } = vakaUretCozulebilir(seed ?? `vaka-${Date.now()}`, 10, { zorluk: this.durum.zorluk });
+    // Adaptif üretim: kör nokta profili → yapısal hedefler (fark ettirmeden; Ericsson 1993 bilinçli pratik).
+    const hedefler = hedeflerdenAyar(this.korNoktalar());
+    const { vaka, rapor, saglananHedefler } = vakaUretHedefli(seed ?? `vaka-${Date.now()}`, hedefler, { zorluk: this.durum.zorluk });
     this.kur(sorguBaslat(vaka), rapor);
+    this.durum.hedefler = saglananHedefler;
     this.durum.ekran = 'vaka-acilis';
     this.bildir();
   }

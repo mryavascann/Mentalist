@@ -1,20 +1,21 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 07:40, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 08:30, Ajan #1.
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi ve üç tatbikat tamam. Sıradaki: kör nokta → adaptif vaka üretimi, şablon/mekân genişletme, kalan Kılavuz bölümleri.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Sıradaki: şablon/mekân genişletme, kalan Kılavuz bölümleri, Higgsfield prompt listesi.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar (11 test), cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
 - **Kılavuz genişletmesi:** yeni bölümler Bellek ve Tanıklık (5), Dikkat ve Sihir (4), İkna ve Manipülasyon (6), Kişilik Okuma (+2); toplam 9 bölüm, 50 madde. Kaynak kütüğü 48 kayıt (Simons & Levin, Johansson, Hall, Rensink & Kuhn, Macknik, Lamont, Freedman & Fraser, Teunisse, Irwin, Naumann, Gosling 2011 eklendi; hepsi NOTLAR.md başlıklarıyla eşleşiyor).
 - **Tatbikatlar** (`src/icerik/mini_oyunlar.{json,ts}`, `Tatbikat.tsx`, depo `tatbikatAc/korSecimBitir/sogukOkumaBitir/tabanOraniBitir/tatbikatKapat`): kör seçim (4 anonim profil, ifşa), soğuk okuma dedektörü (8 öğe × 8 cümle, çoklu etiket puanı: doğru +1 / yanlış −1), taban oranı (%99 test, 1/10.000). Başlık'ta düğmeler, sonuçlar kayıtla taşınır.
+- **Adaptif üretim** (`src/motor/adaptif.ts`): `hedeflerdenAyar(korNoktalar)` → en fazla 2 yapısal hedef; `vakaUretHedefli(seed, hedefler, ayar)` seed türevlerini deneyip çözülebilir + hedefleri sağlayan vakayı döndürür (hedef ≥%85 sağlanır, 30 denemede). Depo `yeniVaka` bunu kullanır; `durum.hedefler` analizde açıklanır; Kılavuz'da dinamik "Senin kör noktan" bölümü. 10 + 1 test.
 - **İpucu kataloğu:** Navarro saha ipuçları `zayif` düzeyde: yatıştırıcı dokunma (d=.12, suç sorusunda kaygıyla artar → "hangi konu" sinyali), ayakların çıkışa dönmesi (ilişkisiz), vurgu kaybı (d=.14). 19 ipucu. İçerik testi: her bölümde ≥3 madde, ≥9 bölüm, ≥45 madde.
 
 ## Sıradaki 3 iş
-1. **Kör nokta → adaptif üretim:** `korNoktalar()` çıktısını `vakaUretCozulebilir`'e hedef parametre olarak besle (ör. Othello etiketi sıkça → gergin masum garantili; erken delil → SUE'nin belirleyici olduğu vaka).
-2. **Şablon havuzu ve mekân genişletme:** dil şablonlarını JSON'a taşı ve büyüt; mekân şablonlarına mekâna özgü delil türleri (hastane ilaç defteri, motel resepsiyon defteri).
-3. **Kalan Kılavuz bölümleri:** Duygular (Ekman + Barrett + Othello), İnanç/Paranormal/Tarikat (French, Festinger, Irwin), Holmes Gibi Düşünmek (Konnikova), Senin Kör Noktan (dinamik: `korNoktalar()`).
+1. **Şablon havuzu ve mekân genişletme:** dil şablonlarını JSON'a taşı ve büyüt; mekân şablonlarına mekâna özgü delil türleri (hastane ilaç defteri, motel resepsiyon defteri).
+2. **Kalan Kılavuz bölümleri:** Duygular (Ekman + Barrett + Othello), İnanç/Paranormal/Tarikat (French, Festinger, Irwin), Holmes Gibi Düşünmek (Konnikova).
+3. **Higgsfield prompt listesi** (brand.md §6) + portre yer tutucuları (SVG siluet) — kullanıcı üretir, `assets/KAYIT.md` tutulur.
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
@@ -26,7 +27,7 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 21 dosya, 216 test geçti (2026-09-16 08:00). Süre ~60 sn.
+- `npm test`: 22 dosya, 227 test geçti (2026-09-16 08:30). Süre ~75 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`. file:// kontrolü hata 0.
 
 ## Notlar

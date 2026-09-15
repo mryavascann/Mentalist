@@ -25,6 +25,8 @@ export function Kilavuz() {
   ]);
   const secili = d.kilavuzMaddesi ? ICERIK.kilavuz.find((m) => m.id === d.kilavuzMaddesi) : null;
   const kaynakAdi = (id: string) => ICERIK.kaynaklar.find((k) => k.id === id)?.baslik ?? id;
+  const korNoktalar = depo.korNoktalar();
+  const etiketAdi = (id: string) => ICERIK.hataEtiketleri.find((h) => h.id === id);
 
   return (
     <div className="kilavuz-duzeni">
@@ -44,6 +46,23 @@ export function Kilavuz() {
         ))}
       </aside>
       <main className="dosya">
+        {!secili && korNoktalar.length > 0 && (
+          <section style={{ marginBottom: 16 }}>
+            <h2>Senin kör noktan</h2>
+            <p className="soluk">Vakalar arasında tekrarlayan hataların. Sonraki vakalar, söylemeden, bunları çalıştıracak biçimde üretilir.</p>
+            <ul className="liste-temiz">
+              {korNoktalar.map((k) => {
+                const h = etiketAdi(k.etiket);
+                return (
+                  <li key={k.etiket}>
+                    <button className="etiket" onClick={() => h && depo.kilavuzAc(h.kilavuzMaddesi)}>{h?.ad ?? k.etiket}</button>
+                    <span className="soluk">{k.sayi} kez</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
         {!secili && (
           <>
             <h2>Nasıl kullanılır</h2>
