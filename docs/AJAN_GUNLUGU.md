@@ -216,3 +216,30 @@
 **Geliştirme fikirleri:**
 - `oruntuDenetle` çıktısını `npm run oruntu` komutuyla rapor olarak yazdırmak.
 - Zorluk seçici: `vakaUretCozulebilir(seed, { hedefZorluk })` — kör nokta profiline göre adaptif üretim (Aşama 3).
+
+## [2026-09-16 04:10] Ajan #1 — Dil katmanı (Aşama 2 ilk tuğla)
+**Görev:** Yapısal cevapları Türkçe diyaloga çevirmek; LLM'siz, seedli, kişiye özgü üslupla (K-009).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/ortak/turkce.ts`: ünlü uyumu, sertleşme, kaynaştırma, iyelikli tamlama (-nda), rakam okunuşu (412 → "on iki" → -de), özel ad/kod kesmesi.
+- `src/motor/dil.ts`: `uslupUret`, `VaryantBellegi`, `cevapMetni` (20 kategori × 3–4 şablon; "||" isteğe bağlı bölüm kısa üslupta atılır; uzun üslupta ek cümle; dolgu sözcüğü kaygıyla), `betimlemeMetni`, `vakaBrifingi`, `kisiKarti`.
+- Testler: gizli etiket sızmıyor (yasak kelime listesi), oda/kişi/yöntem adları çekimli geçiyor, deterministik, dolgu davranışı, varyant belleği, brifingde fail adı yok.
+- Düzeltmeler: dolgu eklenince baş harf büyütmesi yapılmıyor (oda adı bozulmasın); üçüncü kişi şablonlarına kişi adı eklendi; gerceklik.ts rol metni doğru ilgi ekiyle.
+
+**Değişen dosyalar:** src/ortak/turkce.ts, src/motor/{dil,gerceklik}.ts, tests/ortak/turkce.test.ts, tests/motor/dil.test.ts, docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 180 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Numaralı karar yok.
+
+**Sorunlar / riskler:**
+- Şablon sayısı sınırlı (kategori başına 3–4); uzun oturumlarda tekrar hissi olabilir. Havuz büyütmek içerik işi, motor değişikliği gerektirmez.
+- Türkçe çekimleyici havuz adlarına göre ayarlı; yeni oda/kişi adı eklerken test ekle.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** React ekran iskeleti (DURUM.md "Sıradaki 3 iş" 1), sonra Kılavuz/Forer/kayıt, sonra Playwright.
+
+**Geliştirme fikirleri:**
+- Kişi başı "tik" sözcükleri (temel çizgi): üslup zaten dolgu seçiyor; ipucu kataloğundaki sözel ipuçlarıyla (ör. "dürüst olmak gerekirse" dolgusu) bağlanabilir.
+- Teknik sonuç metinleri (SUE, CIT, SVT) için ayrı şablon seti — arayüzle birlikte.

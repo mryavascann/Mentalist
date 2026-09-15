@@ -27,6 +27,7 @@
 - [x] Denge botları: yöntem 1.00 / ipucu .28 / inanan .12 / şüpheci .20, 5 test (2026-09-16, Ajan #1)
 
 ## Aşama 2 — Dikey dilim
+- [x] Dil katmanı (K-009): Türkçe ek yardımcıları + şablon-gramer metin üreticisi, 19 test (2026-09-16, Ajan #1)
 - [ ] 1 vaka tipi, 5 kişi
 - [ ] Ekranlar: vaka açılışı, sorgu odası, pano (gözlem | çıkarım), suçlama + güven beyanı, vaka sonu analizi
 - [ ] Kılavuz ekranı (içerik hazır: 29 madde, 5 bölüm; ekran Aşama 2)

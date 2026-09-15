@@ -10,6 +10,7 @@
 //
 // Her katman ayrı bir alt akış (altUret) kullanır; bir katmandaki değişiklik diğerini kaydırmaz.
 import { Rastgele } from '@ortak/rastgele';
+import { tamlayan } from '@ortak/turkce';
 import type { Borc, Iliski, IliskiTuru, Kisi, Konum, Mekan, OlayCekirdegi, Vaka, ZamanDilimi } from './tipler';
 import {
   EYLEMLER, ILISKI_SABLONLARI, MEKAN_SABLONLARI, MOTIVASYONLAR, OLAY_SABLONLARI,
@@ -85,7 +86,7 @@ function iliskileriUret(r: Rastgele, kisiler: Kisi[], kurban: Kisi): { iliskiler
     let sablon = r.agirlikliSec(ILISKI_SABLONLARI.map((s) => ({ deger: s, agirlik: s.agirlik })));
     if (sablon.tur === 'es' && esVar) sablon = ILISKI_SABLONLARI.find((s) => s.tur === 'aile')!;
     if (sablon.tur === 'es') esVar = true;
-    k.rol = `${kurban.ad.split(' ')[0]}'ın ${r.sec(sablon.roller)}`;
+    k.rol = `${tamlayan(kurban.ad.split(' ')[0]!)} ${r.sec(sablon.roller)}`; // "Nazlı'nın kardeşi"
     iliskiler.push({ a: k.id, b: kurban.id, tur: sablon.tur, sicaklik: sicaklikUret(r, sablon.tur) });
   }
   // Yan bağlar: kurban dışı çiftler arasında %30 olasılıkla.

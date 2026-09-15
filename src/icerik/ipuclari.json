@@ -107,9 +107,10 @@
     "ad": "Kendiliğinden düzeltme",
     "kanal": "sozel",
     "betimlemeler": [
-      "'Saat üçtü… yok, pardon, üç buçuk olmalı, haberler bitmişti' diye kendini düzeltti.",
-      "Anlatırken durup 'Aslında önce fırına uğradım, sonra markete' diye sırayı düzeltti.",
-      "Bir ayrıntıyı söyledikten sonra 'Dur, yanlış söyledim' deyip yeniden anlattı."
+      "Bir ayrıntıyı söyledikten sonra durup kendini düzeltti: 'Yok, pardon, biraz daha geç olmalı.'",
+      "Anlatırken sırayı kendiliğinden düzeltti: 'Aslında önce oraya, sonra buraya gitmiştim.'",
+      "'Dur, yanlış söyledim' deyip aynı yeri yeniden anlattı.",
+      "Kimse sormadan bir ayrıntısını değiştirdi ve eskisinin yanlış olduğunu ekledi."
     ],
     "etkiBuyuklugu": -0.29,
     "yon": "yalanda_azalir",
@@ -126,8 +127,8 @@
     "ad": "Hatırlamadığını kabul etme",
     "kanal": "sozel",
     "betimlemeler": [
-      "'Kapıyı kim açtı, hatırlamıyorum açıkçası' dedi ve konuyu geçiştirmeye çalışmadı.",
-      "Bazı ayrıntılarda 'Bunu hatırlamıyorum' demekten çekinmedi.",
+      "Emin olmadığı bir ayrıntıda 'hatırlamıyorum' demekten çekinmedi.",
+      "Bazı ayrıntılarda 'Bunu hatırlamıyorum' dedi ve konuyu geçiştirmeye çalışmadı.",
       "Emin olmadığı yerde uydurmak yerine 'Bilmiyorum, dikkat etmemişim' dedi."
     ],
     "etkiBuyuklugu": -0.42,
