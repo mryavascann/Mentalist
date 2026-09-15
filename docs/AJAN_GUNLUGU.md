@@ -243,3 +243,32 @@
 **Geliştirme fikirleri:**
 - Kişi başı "tik" sözcükleri (temel çizgi): üslup zaten dolgu seçiyor; ipucu kataloğundaki sözel ipuçlarıyla (ör. "dürüst olmak gerekirse" dolgusu) bağlanabilir.
 - Teknik sonuç metinleri (SUE, CIT, SVT) için ayrı şablon seti — arayüzle birlikte.
+
+## [2026-09-16 05:10] Ajan #1 — React ekran iskeleti, oyun deposu, kayıt, tarayıcı doğrulaması
+**Görev:** Oynanabilir dikey dilim: depo + ekranlar + kayıt + duman testleri.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/arayuz/oyun/depo.ts` (`OyunDeposu`): React'ten bağımsız; ekran akışı, `sor`/`teknik`/`delilGoster`, konuşma kayıtları (aynı soru → aynı cümle), pano, suçlama → `puanla`, gerçeğin anlatımı (fail, motivasyon, herkesin olay anı gerçeği, sakladığı, koruduğu, cevabının aslı), kör nokta geçmişi, JSON dışa/içe (defter, gösterilen deliller, stres, kontaminasyon, zaman), `sifirla`.
+- `src/arayuz/oyun/metinler.ts`: `soruMetni`, `teknikSonucMetni` (CIT geçerliliği gibi gizli bilgiyi yazmaz).
+- `src/arayuz/oyun/kullan.ts`: tek depo, `useSyncExternalStore`, localStorage otomatik kayıt (try/catch).
+- Ekranlar: Kabuk, Baslik, VakaAcilis, SorguOdasi, Pano, Suclama, Analiz, Kilavuz; `stil.css` (brand.md; sistem fontları, çevrimdışı).
+- Testler: `tests/arayuz/depo.test.ts` (12), `tests/arayuz/App.test.tsx` (jsdom, 2: tam akış + tarayıcı kaydı). @testing-library/react kuruldu.
+- `scripts/dosya-kontrol.mjs` (Playwright, yerel Chrome/Edge kanalı; tarayıcı indirmez): `dist/index.html`'i `file://` ile açar, vaka başlatır, görüşme yapar, konsol hatalarını sayar.
+
+**Değişen dosyalar:** src/arayuz/**, tests/arayuz/**, scripts/dosya-kontrol.mjs, package.json (+playwright, @testing-library/*), docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 194 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dosya ~356 KB. `node scripts/dosya-kontrol.mjs`: yerel Chrome ile file:// açıldı, vaka başlatıldı, ilk cevap alındı, konsol hatası 0.
+
+**Alınan kararlar:** Numaralı karar yok. Depo tekil; testler `sifirla()` ile izole.
+
+**Sorunlar / riskler:**
+- Arayüz henüz ham: ipucu betimlemeleri Kılavuz'a bağlı değil, mobil düzen kabaca duyarlı, görsel yok (portreler yer tutucusuz).
+- Playwright'ın `text=` seçicisi alt dize eşleştirdiği için ("görüşülebilir") yanlış tıkladı; rol tabanlı seçiciye geçildi. Sonraki ajanlar için not.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Forer tutorial'ı, 2) cila (betimleme→Kılavuz bağı, ilk/son ifade özeti), 3) denge/zorlaştırıcı (kullanıcı kararı).
+
+**Geliştirme fikirleri:**
+- Sorgu odasında "temel çizgi" sonuçlarını kişi kartına kalıcı not olarak yazmak (oyuncu karşılaştırsın).
+- Analizde her kişinin ilk ve son ifadesini yan yana göstermek (anlatım abartısı / bellek uyumu dersi).

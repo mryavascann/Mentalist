@@ -28,11 +28,12 @@
 
 ## Aşama 2 — Dikey dilim
 - [x] Dil katmanı (K-009): Türkçe ek yardımcıları + şablon-gramer metin üreticisi, 19 test (2026-09-16, Ajan #1)
-- [ ] 1 vaka tipi, 5 kişi
-- [ ] Ekranlar: vaka açılışı, sorgu odası, pano (gözlem | çıkarım), suçlama + güven beyanı, vaka sonu analizi
-- [ ] Kılavuz ekranı (içerik hazır: 29 madde, 5 bölüm; ekran Aşama 2)
+- [x] Vaka: motor üretir (5–8 kişi, 4 olay türü, 8 mekân) — tek tip yerine üreticinin tamamı dikey dilimde (2026-09-16, Ajan #1)
+- [x] Ekranlar: başlık, vaka açılışı, sorgu odası, pano, suçlama + güven, vaka sonu analizi, Kılavuz; depo 12 test + jsdom 2 test (2026-09-16, Ajan #1)
+- [x] Kılavuz ekranı: 29 madde, 5 bölüm, rozetler, "karşılaştın" (2026-09-16, Ajan #1)
 - [ ] Forer testi tutorial'ı
-- [ ] Playwright duman testi: bir vaka baştan sona oynanabiliyor
+- [x] jsdom duman testi (bir vaka baştan sona) + `scripts/dosya-kontrol.mjs` yerel Chrome ile file:// doğrulaması (2026-09-16, Ajan #1)
+- [ ] Kayıt: localStorage + JSON dışa/içe aktarma — YAPILDI (K-011), Forer ile birlikte kapatılacak
 
 ## Aşama 3 — Genişleme
 - [ ] Diğer araçlar ve arketipler
