@@ -344,3 +344,24 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** Kılavuz bölümleri (bellek, dikkat, ikna) + Navarro ipuçları; sonra mini oyunlar.
+
+## [2026-09-16 07:40] Ajan #1 — Kılavuz genişletmesi ve Navarro ipuçları
+**Görev:** NOTLAR'da hazır olan bilgiyi Kılavuz'a taşımak; kataloğa saha ipuçlarını doğru etiketle eklemek.
+
+**Yapılanlar:**
+- `kilavuz.json`: 18 yeni madde (bellek-taniklik 5, dikkat-sihir 4, ikna-manipulasyon 6, kisilik-okuma 3). Her madde: özet → nasıl kullanılır → sınırları → kanıt rozeti → kaynak.
+- `kaynaklar.json`: 11 yeni kaynak kaydı, NOTLAR başlık anahtarlarıyla (içerik testi K-004 doğruladı).
+- `ipuclari.json`: yatistirici-dokunma (.12, zayıf), ayak-yonu-cikis (ilişkisiz), kas-vurgusu-azalmasi (.14, zayıf); `ipucu.ts` kişilik temel çizgileri ve suç sorusu gerginlik kümesi güncellendi. Bilimsel sadakat testi yeşil kaldı.
+- `Kilavuz.tsx` bölüm adları; içerik testine bölüm/madde alt sınırı.
+
+**Değişen dosyalar:** src/icerik/{kilavuz,kaynaklar,ipuclari}.json, src/motor/ipucu.ts, src/arayuz/ekranlar/Kilavuz.tsx, tests/icerik/semalar.test.ts, docs.
+
+**Testler:** 213 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Navarro ipuçları `zayif` düzeyde ve "stres konusu" sinyali olarak modellendi; yalan kanıtı değil (AJAN_PROMPTU §6).
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Kalan Kılavuz bölümleri (Duygular, İnanç/Tarikat, Holmes, Kör Nokta) YOL_HARITASI'nda.
+
+**Sıradaki ajan için:** mini oyunlar → adaptif üretim → şablon/mekân genişletme (DURUM.md).

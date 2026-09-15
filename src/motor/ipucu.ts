@@ -35,7 +35,7 @@ const BECERI_SONDURME = 0.5;
 const GIZLEME_CARPANI = 0.6;
 /** Suç sorusu herkesi gerer (Othello): gerginlik ipuçlarına kaygı oranında ek kayma. */
 const SUC_SORUSU_GERGINLIK = 0.3;
-const GERGINLIK_IPUCLARI = new Set(['genel-gerginlik', 'ses-perdesi-yukselme']);
+const GERGINLIK_IPUCLARI = new Set(['genel-gerginlik', 'ses-perdesi-yukselme', 'yatistirici-dokunma']);
 
 /** Kişilik → ipucu temel çizgisi (mu kayması). Yalanla ilgisi yok; kişinin "normali". */
 const KISILIK_TEMELI: Record<string, (k: Kisilik) => number> = {
@@ -49,6 +49,9 @@ const KISILIK_TEMELI: Record<string, (k: Kisilik) => number> = {
   'detay-azligi': (k) => (0.5 - k.disadonukluk) * 0.8,
   'sozel-vokal-yakinlik-azligi': (k) => (0.5 - k.disadonukluk) * 0.8,
   'mikroifade': (k) => (0.5 - k.ozIzleme) * 0.5,
+  'yatistirici-dokunma': (k) => (k.kaygi - 0.5) * 1.5,
+  'ayak-yonu-cikis': (k) => (k.kaygi - 0.5) * 0.8 + (0.5 - k.disadonukluk) * 0.4,
+  'kas-vurgusu-azalmasi': (k) => (0.5 - k.disadonukluk) * 1.0,
 };
 
 /** Standart normal dağılım CDF'i (Abramowitz-Stegun 7.1.26 yaklaşımı, hata < 1.5e-7). */

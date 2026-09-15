@@ -41,7 +41,8 @@
 - [ ] Kör nokta profili + adaptif vaka üretimi
 - [ ] Mini oyunlar / tatbikatlar
 - [ ] Higgsfield görselleri (portre havuzu, takım, mekânlar, ana görsel)
-- [ ] Kalan Kılavuz bölümleri (14 bölüm hedefi)
+- [x] Kılavuz bölümleri: Bellek ve Tanıklık, Dikkat ve Sihir, İkna ve Manipülasyon, Kişilik Okuma (+2), Soğuk Okuma → 9 bölüm / 50 madde; Navarro ipuçları kataloğa (2026-09-16, Ajan #1)
+- [ ] Kalan bölümler: Duygular (Ekman + Barrett), İnanç/Paranormal/Tarikat, Holmes Gibi Düşünmek, Senin Kör Noktan (dinamik)
 
 ## Aşama 4 — Ark
 - [ ] Takım hikâyesi

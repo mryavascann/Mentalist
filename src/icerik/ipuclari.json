@@ -332,5 +332,63 @@
       "Barrett 2019"
     ],
     "not": "Sızıntı gerçek ama nadir; doğru anlatımlarda da olur (Porter & ten Brinke: olayların ~%2'si). Mikroifade eğitimi tanımayı artırır, yalan tespitini artırdığına dair nedensel kanıt yok. 'Mikroifade = yalan' → Mitler Müzesi. Oyunda yüz ipuçları daima bağlam + temel çizgi ile."
+  },
+  {
+    "id": "yatistirici-dokunma",
+    "ad": "Yatıştırıcı davranış: boyun/yüz dokunma (saha gözlemi)",
+    "kanal": "beden",
+    "betimlemeler": [
+      "Eli boynuna gitti, yakasını düzeltir gibi yaptı.",
+      "Konuşurken alnını ovdu.",
+      "Yanağını şişirip uzunca nefes verdi.",
+      "Kolyesiyle/yakasıyla oynamaya başladı."
+    ],
+    "etkiBuyuklugu": 0.12,
+    "yon": "yalanda_artar",
+    "betimlemeYonu": "artar",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Navarro",
+      "DePaulo 2003"
+    ],
+    "not": "Navarro'nun saha iddiası: stres sonrası 'yatıştırma'. DePaulo 2003'te kendine dokunma d≈-.01 (ilişkisiz); burada küçük pozitif değer 'stres konusu' sinyali olarak kullanılır, yalan kanıtı olarak değil. 'Hangi soruda?' sorusu için değerli; 100 masuma 1 yalancı."
+  },
+  {
+    "id": "ayak-yonu-cikis",
+    "ad": "Ayakların çıkışa dönmesi / gitme niyeti (saha gözlemi)",
+    "kanal": "beden",
+    "betimlemeler": [
+      "Ayakları kapıya doğru döndü, gövdesi hâlâ sana bakıyordu.",
+      "Sandalyenin ucuna geldi, ellerini dizlerine koydu.",
+      "Bir ayağı kapıya doğru uzandı, konuşmayı bitirmek ister gibiydi."
+    ],
+    "etkiBuyuklugu": 0.05,
+    "yon": "iliskisiz",
+    "betimlemeYonu": "iliskisiz",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Navarro",
+      "DePaulo 2003"
+    ],
+    "not": "Niyet ve rahatsızlık ipucu olabilir; yalanla ilişkisi gösterilmemiştir. Navarro kendisi 'bilimsel araştırma yok' diyor."
+  },
+  {
+    "id": "kas-vurgusu-azalmasi",
+    "ad": "Anlatımda vurgunun (kaş/el) kaybolması (saha gözlemi)",
+    "kanal": "yuz",
+    "betimlemeler": [
+      "Hikâyenin bu bölümünde kaşları hiç hareket etmedi; anlatım düz aktı.",
+      "Diğer konularda vurgulu konuşurken burada monotonlaştı.",
+      "Sözlerini el ve kaşla desteklemeyi bıraktı."
+    ],
+    "etkiBuyuklugu": 0.14,
+    "yon": "yalanda_artar",
+    "betimlemeYonu": "artar",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Navarro",
+      "DePaulo 2003"
+    ],
+    "not": "Navarro: dürüstler vurgular, yalancılar vurgu yapmaz ya da gecikmeli vurgular. DePaulo'nun illüstratör azalması (d=-.14) ile örtüşür; etki küçük, temel çizgi şart."
   }
 ]

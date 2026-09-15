@@ -114,6 +114,14 @@ describe('içerik koleksiyonları', () => {
     for (const m of mitler) expect(m.kanitDuzeyi).toBe('mit');
   });
 
+  it('Kılavuz en az 9 bölüm ve 45 madde içerir; her bölümde en az 3 madde', () => {
+    const bolumler = new Map<string, number>();
+    for (const m of ICERIK.kilavuz) bolumler.set(m.bolum, (bolumler.get(m.bolum) ?? 0) + 1);
+    expect(bolumler.size).toBeGreaterThanOrEqual(9);
+    expect(ICERIK.kilavuz.length).toBeGreaterThanOrEqual(45);
+    for (const [b, n] of bolumler) expect(n, b).toBeGreaterThanOrEqual(3);
+  });
+
   it('her teknik ve her hata etiketi bir Kılavuz maddesine bağlı', () => {
     const kilavuzIdler = new Set(idler(ICERIK.kilavuz));
     for (const t of ICERIK.teknikler) expect(kilavuzIdler.has(t.kilavuzMaddesi), t.id).toBe(true);

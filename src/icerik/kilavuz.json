@@ -483,5 +483,245 @@
     "kaynak": [
       "Konnikova"
     ]
+  },
+  {
+    "id": "yanlis-bilgi-etkisi",
+    "bolum": "bellek-taniklik",
+    "baslik": "Yanlış bilgi etkisi: soru anıyı değiştirir",
+    "ozet": "'Arabalar çarpıştığında' diye soranlar daha yüksek hız tahmini verdi ve bir hafta sonra olmayan kırık camı 'hatırladı'. Mavi araba 'beyaz' denince beyaz hatırlandı; ahırsız manzarada ahır belirdi.",
+    "nasilKullanilir": "Açık uçlu sor, sonra daralt. Tanığın söylediği her ayrıntı için 'bunu ilk kim söyledi?' kaydını tut (oyun kontaminasyon kaydı tutar). Aynı tanığı gereksiz tekrar sorgulama; her sorgu anıyı yeniden yazar.",
+    "sinirlari": "Her ayrıntı telkine eşit açık değildir; merkezi ayrıntılar daha dirençlidir. Yine de bağımsız doğrulama olmadan sahte anı gerçek anıdan ayırt edilemez.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Loftus & Pickrell 1995",
+      "French 2024"
+    ]
+  },
+  {
+    "id": "sahte-ani-olusumu",
+    "bolum": "bellek-taniklik",
+    "baslik": "Sahte anı: 'AVM'de kaybolmak'",
+    "ozet": "Yakın akrabadan alınan üç gerçek olaya bir sahte olay eklendi; katılımcıların dörtte biri sahte anıyı kısmen ya da tamamen benimsedi, görüşmeler ilerledikçe netliği ARTTI. Hipnotik regresyon ve tekrarlı sorgu sahte anı fabrikasıdır.",
+    "nasilKullanilir": "'Hipnozda hatırladım', 'terapide ortaya çıktı', 'haberde görmüştüm' diyen tanığın anısını bağımsız delil olmadan kullanma. Ayrıntılı ve emin anlatım doğruluk kanıtı değildir.",
+    "sinirlari": "Sahte anı oluşturmak her kişide ve her olayda aynı kolaylıkta değildir; telkine yatkınlık, fantezi eğilimi ve baskı etkiyi büyütür.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Loftus & Pickrell 1995",
+      "Lynn 2015",
+      "French 2024"
+    ]
+  },
+  {
+    "id": "bellek-uyumu",
+    "bolum": "bellek-taniklik",
+    "baslik": "Bellek uyumu: tanıklar birbirini kirletir",
+    "ozet": "Sahte medyum anahtarı masaya koyup 'hâlâ bükülüyor' dedi: %40 bükülmeye devam ettiğini hatırladı. Yanındaki 'tanık' da onayladıysa %60. Tanıklar konuştuğunda anlatılar senkronize olur; komplo gerekmez.",
+    "nasilKullanilir": "Tanıkları birbirinden ayrı ve konuşmadan önce dinle. Birebir örtüşen anlatılar 'doğrulama' değil 'kirlenme' işareti olabilir. Kaynağı sor: gördün mü, duydun mu?",
+    "sinirlari": "Bağımsız tanıkların gerçekten örtüşmesi de mümkündür; ayırt etmek için kaynak ve ayrıntı düzeyine bak.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "French 2024",
+      "Cialdini & Goldstein 2004"
+    ]
+  },
+  {
+    "id": "konfabulasyon",
+    "bolum": "bellek-taniklik",
+    "baslik": "Konfabulasyon: 'neden' cevapları uydurmadır",
+    "ozet": "Dört aynı çorap; en sağdaki 4'e 1 seçildi, kimse konumu söylemedi. İnsanlar davranışlarının nedenini bilmez, akla yatkın bir teori üretir ve buna inanır. Seçim körlüğünde seçmedikleri yüzü savundular.",
+    "nasilKullanilir": "'Neden ona güvendin?', 'neden oraya baktın?' sorularının cevabı dürüst ama yanlış olabilir. Yalan ile konfabulasyonu ayır: kişi kandırmıyor, kendisi de bilmiyor.",
+    "sinirlari": "Kültürel olarak öğrenilmiş kurallarla (klinisyen, borsacı) içgözlem bazen doğrudur; sorun süreç hakkındaki iddialardır.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Nisbett & Wilson 1977",
+      "Johansson 2005"
+    ]
+  },
+  {
+    "id": "dikkat-boslugu-tanik",
+    "bolum": "bellek-taniklik",
+    "baslik": "'Kimse yoktu' = 'dikkat çeken kimse yoktu'",
+    "ozet": "Pas sayanların yarısı gorili görmedi; yol soran deneyci kapı geçerken değişti, çoğu fark etmedi. Görev yapan tanık beklenmedik şeyi görmez; dış gruptan kişi 'bir inşaat işçisi' olarak kodlanır.",
+    "nasilKullanilir": "'Hiç kimse mi, yoksa dikkat çeken kimse mi?' diye sor. Tanığın o sırada ne yaptığını öğren (telefon, bilgisayar, müzik → dikkat boşluğu). Kurye/temizlikçi/garson 'görünmez'dir.",
+    "sinirlari": "Kendi adı ya da gülen yüz gibi anlamlı uyaranlar dikkat dışında da fark edilir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Simons & Chabris 1999",
+      "Simons & Levin 1998",
+      "Konnikova"
+    ]
+  },
+  {
+    "id": "yanlis-yonlendirme",
+    "bolum": "dikkat-sihir",
+    "baslik": "Yanlış yönlendirme: seyirci sihirbazın baktığı yere bakar",
+    "ozet": "Sigaranın 15 cm yukarıdan görünür şekilde düşürülmesini çoğu izleyici görmez: bakış, gövde dönüşü ve şaşkınlık dikkati taşır. Tespit nereye baktığınla değil neye dikkat ettiğinle ilgilidir. Kahkaha anında dikkat 'durur'.",
+    "nasilKullanilir": "Olay yerinde 'herkesin dikkatinin başka yerde olduğu' anları ara (şaka, tartışma, gürültü). Şüpheli bir dikkat dağıtma yaratmış olabilir. 'Eylem amacı olan harekettir': amaçlı görünen hareketler şüphe çekmez.",
+    "sinirlari": "Yanlış yönlendirme kaba dikkat dağıtma değildir; izleyici yönlendirildiğini fark etmez. Aynı yöntem bağlama göre işler ya da işlemez.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Kuhn 2008",
+      "Macknik 2008",
+      "Lamont 2010"
+    ]
+  },
+  {
+    "id": "off-beat",
+    "bolum": "dikkat-sihir",
+    "baslik": "Off-beat: gevşeme anında yapılır",
+    "ozet": "Her konsantrasyon birimini eşit bir gevşeme izler. 'Ne kadar dikkatle izlersen o kadar çok kaçırırsın.' Kartlar içeceklerin altına açıkça kondu, kimse görmedi: iş 'bitti' sanıldığı anda.",
+    "nasilKullanilir": "Zaman çizelgesinde olayın 'bittiği' sanılan andan sonrasını sorgula. Delil sonradan yerleştirilmiş olabilir (Norwood). Anlatılarda A→B→C zinciri arasındaki 'önemsiz' anlar kayıptır.",
+    "sinirlari": "Kavramsal çerçeve sihirbaz deneyimine dayanır; laboratuvar ölçümleri sınırlıdır.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Derren Brown",
+      "Kuhn 2008"
+    ]
+  },
+  {
+    "id": "zorlama-secim",
+    "bolum": "dikkat-sihir",
+    "baslik": "Zorlama ve seçim körlüğü",
+    "ozet": "Bir kartı daha uzun göstermek seçimi belirler; katılımcı 'tamamen serbestti' diye hatırlar. Seçim körlüğü: seçilmeyen yüz verilince %13 anında fark etti; gerekçeler gerçek gerekçe kadar emin ve ayrıntılıydı.",
+    "nasilKullanilir": "Şüpheliye yanlış özet vermek ('dün X dedin') tuzak ama etik değil: kabullenip savunabilir. Kendi seçimlerinde de sor: bu seçeneği bana kim, nasıl sundu?",
+    "sinirlari": "Fiziksel nesnelerle seçim körlüğü daha güçlüdür; bir kez fark eden sonrakileri yakalar.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Johansson 2005",
+      "Hall 2012",
+      "Rensink & Kuhn 2015"
+    ]
+  },
+  {
+    "id": "sahte-cozum",
+    "bolum": "dikkat-sihir",
+    "baslik": "Sahte çözüm ve 'tüm kapıları kapatmak'",
+    "ozet": "Sihirbaz 'yakalandım' gibi yapar, sonra o açıklamayı çürütür → Einstellung: bir fikir gelince alternatifler düşünülmez. Tamariz: her şüpheyi sırayla çürüt, geriye 'sihir' kalsın.",
+    "nasilKullanilir": "Şüpheli sana bir açıklama 'hediye' edip sonra çürüttürüyorsa (küçük kusur itirafı → büyük yalanı saklar; Vincent taktiği), ilk fikre yapışma. Kendi teorin çürüyünce yeni teori üret, eskisini onarma.",
+    "sinirlari": "Sihir bağlamından türetilmiş ilke; sorgu odasında dolaylı uygulanır.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Kuhn 2008",
+      "Macknik 2008",
+      "Cialdini"
+    ]
+  },
+  {
+    "id": "karsiliklilik",
+    "bolum": "ikna-manipulasyon",
+    "baslik": "Karşılıklılık: küçük iyilik büyük borç",
+    "ozet": "Bir kola ısmarlayan, iki kat bilet sattı ve beğenilmese de sattı. İstenmemiş iyilik de borç yaratır. Jonestown'da Jones'un özel yemeğini reddeden kadın 'borçlanmak istemedim' dedi ve hayatta kaldı.",
+    "nasilKullanilir": "Vakada borç grafiğini çıkar: kim kime iyilik borçlu? Borçlu olan tanık alacaklısını korur. Şüpheli sana iyilik teklif ediyorsa (bilgi, kahve, 'sadece sana') borç hissini fark et ve teklifi yeniden tanımla.",
+    "sinirlari": "Karşılıklılık toplumun harcıdır; sorun hileli iyiliklerdir. 'Kural iyiliğe iyilik der, hileye değil.'",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Cialdini",
+      "Cialdini & Goldstein 2004"
+    ]
+  },
+  {
+    "id": "taahhut-tutarlilik",
+    "bolum": "ikna-manipulasyon",
+    "baslik": "Ayağı kapıya sokma ve tutarlılık",
+    "ozet": "Küçük 'güvenli sür' etiketini kabul edenlerin %76'sı bahçesine çirkin tabela koydu (kontrol %17). Yazılı ve kamusal taahhüt geri alınmaz. Kore kamplarında küçük 'ABD mükemmel değil' cümlesinden işbirlikçiliğe.",
+    "nasilKullanilir": "Sorguda küçük 'evet'lerle ilerlemek işe yarar ama sahte itiraf riskini artırır. Tanığın yazılı ilk ifadesini düzeltmeye direneceğini bil; ilk ifadeyi özel ortamda, esnek al. Çürütülen hikâyeye daha sıkı sarılmak suç kanıtı değil, tutarlılık refleksidir.",
+    "sinirlari": "Bireyci kültürlerde tutarlılık, kolektivist kültürlerde sosyal kanıt daha etkilidir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Freedman & Fraser 1966",
+      "Cialdini",
+      "Cialdini & Goldstein 2004"
+    ]
+  },
+  {
+    "id": "otorite-sahte-uzman",
+    "bolum": "ikna-manipulasyon",
+    "baslik": "Otorite ve sahte uzman",
+    "ozet": "Telefonla arayan tanımadığı 'doktor'un onaysız, iki kat dozlu emrini hemşirelerin %95'i uyguladı. Üniforma, unvan, takım elbise itaati artırır ve etki hep hafife alınır. Milgram: %65 son şoka kadar gitti.",
+    "nasilKullanilir": "İki soru: Bu otorite gerçekten bu konuda uzman mı? Burada ne kazanıyor? 'Emir aldım' diyen kişi kötü niyetli değil itaatkâr olabilir (hastane vakası: kim emretti?). Kendi çıkarına karşı konuşuyor görünen uzmana (Vincent) dikkat.",
+    "sinirlari": "Otoriteye güven çoğu zaman doğru kısayoldur; sorun sembolün uzmanlık yerine geçmesidir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Cialdini",
+      "Cialdini & Goldstein 2004"
+    ]
+  },
+  {
+    "id": "kitlik-reaktans",
+    "bolum": "ikna-manipulasyon",
+    "baslik": "Kıtlık, aciliyet ve reaktans",
+    "ozet": "'Son 5 tane', 'şimdi ya da asla', boiler-room üçüncü arama. Yasaklanan bilgi daha ikna edici; 'dikkate almayın' denen kanıt jüriyi daha çok etkiler (bumerang). Ailenin engellediği ilişki daha tutkulu (Romeo-Juliet).",
+    "nasilKullanilir": "Yükselen heyecan 'dur' sinyalidir. Şüpheli ya da dolandırıcı 'son şans' baskısı yapıyorsa nedenini sor. Bir karakteri yasakla/tehditle zorlarsan tersini yapar (reaktans).",
+    "sinirlari": "Kıtlık gerçek de olabilir; sorun yapay aciliyettir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Cialdini",
+      "Cialdini & Goldstein 2004"
+    ]
+  },
+  {
+    "id": "dolandiriciligin-yedi-ilkesi",
+    "bolum": "ikna-manipulasyon",
+    "baslik": "Dolandırıcılığın yedi ilkesi ve saflık",
+    "ozet": "Stajano & Wilson: dikkat dağıtma, sosyal itaat, sürü, sahtekârlık (kurban suça bulaşır, polise gidemez), nezaket, ihtiyaç/açgözlülük, zaman baskısı. Yüksek ihtiyaç varsa kişilik önemsizleşir. Güven ≠ saflık: yüksek güvenenler olumsuz bilgiye daha hızlı tepki verir.",
+    "nasilKullanilir": "Dolandırılan tanık utançtan saklayabilir ('kendisi suça bulaştı' hissi). Kurban profilini üç boyutla oku: ikna edilebilir, boyun eğen, şüphesiz. Yorgunluk ve bölünmüş dikkat herkesi saf yapar; kendi soruşturmanı da.",
+    "sinirlari": "Saflık ölçeği yeni ve tek bir tezden; ilkeler TV programından türetilmiş, sistematik doğrulaması sınırlı.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Teunisse 2015",
+      "Cialdini"
+    ]
+  },
+  {
+    "id": "kehanet-basarisiz-olunca",
+    "bolum": "ikna-manipulasyon",
+    "baslik": "Kehanet başarısız olunca inanç artar (tarikat)",
+    "ozet": "Tufan kehaneti tutmayınca grup 'Tanrı bizim yüzümüzden kurtardı' dedi ve daha çok tebliğe başladı: fiziksel kanıt çökünce sosyal kanıt üretilir. Koşullar: güçlü ilk inanç, rasyonalizasyon imkânı, paylaşılan sosyal destek. Jones: izolasyon, kademeli taahhüt, sert erginleme.",
+    "nasilKullanilir": "Tarikat üyesi tanık çelişkiyi 'işaret' olarak yorumlar; çürütme onu daha bağlı yapar. İşaretler: kademeli taahhüt, muhalif görüşten izolasyon, liderin doğaüstü iddiası, zorlu erginleme. Üye 'aptal' değil, sosyal ağına bağlıdır.",
+    "sinirlari": "Keech grubu sonradan dağıldı; bazı gruplar büyür. Mekanizma genel, sonuç değişken.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Cialdini",
+      "Irwin 2022",
+      "Wiseman"
+    ]
+  },
+  {
+    "id": "oda-ipuclari",
+    "bolum": "kisilik-okuma",
+    "baslik": "Oda okuma: kimlik iddiası mı, davranış kalıntısı mı?",
+    "ozet": "94 ofis, 83 yatak odası: yabancılar odadan Açıklık (.65) ve Sorumluluk (.33) gibi özellikleri isabetle okudu; Uyumluluk için 'hoş oda = hoş insan' halk inancı geçersiz çıktı. Geçerli ipuçları: düzen (sorumluluk), kitap/CD ÇEŞİTLİLİĞİ (açıklık; miktar değil).",
+    "nasilKullanilir": "Her eşya için üç soru: kendine yönelik kimlik iddiası mı, başkalarına yönelik (stratejik, belki sahte) iddia mı, davranış kalıntısı mı (açılmamış şarap + minderler = misafir bekliyor)? Kalıntılar tekrarlanan davranışın birikimidir; tek nesneden çok, örüntüden oku.",
+    "sinirlari": "Kişi odayı izlenim için düzenlemiş olabilir (sahnelenmiş oda). Stereotip her iki adımda araya girer; bireysel bilgi azaldıkça stereotip artar.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Gosling 2002"
+    ]
+  },
+  {
+    "id": "ince-dilimler",
+    "bolum": "kisilik-okuma",
+    "baslik": "İnce dilimler: 30 saniye kişilik için iyi, yalan için değil",
+    "ozet": "5 dakikadan kısa gözlemler kişilerarası sonuçları r≈.39 ile yordar; 6 saniyelik sessiz video öğretmen değerlendirmesini .68 yordadı. Ama aldatma için doğruluk .31 ve süre uzadıkça artmaz. Molar (bütüncül) izlenim moleküler (tek tik) sayımdan iyidir.",
+    "nasilKullanilir": "Kısa ilk izlenim sıcaklık/baskınlık gibi kişilerarası özelliklerde işe yarar; 'yalancı mı' sorusunda değil. Tek bir tiki değil kümeyi ve bağlamı değerlendir. Ses tonu en az kontrol edilen kanaldır.",
+    "sinirlari": "Toplu yargılar (çok gözlemci) bireysel yargıdan iyidir; 'demeanor bias': bazı insanlar doğal olarak dürüst/yalancı görünür.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Ambady & Rosenthal 1992",
+      "Naumann 2009"
+    ]
+  },
+  {
+    "id": "dijital-iz",
+    "bolum": "kisilik-okuma",
+    "baslik": "Dijital iz: modern sıcak okuma",
+    "ozet": "58 bin kullanıcının Facebook beğenilerinden cinsiyet %93, siyasi görüş %85, yaş r=.75, Açıklık .43 tahmin edildi; sinyaller dolaylıdır ('Curly Fries' → yüksek zekâ). Profilden dışadönüklük okunur (.46), nevrotiklik okunamaz (-.13).",
+    "nasilKullanilir": "Bir medyum/manipülatör 'nasıl bildi?' → önce dijital izi düşün (sosyal medya, ücretsiz bilet listesi, şov öncesi sohbet). Kendi okumanda: tahmin olasılıksaldır, bireyde yanılır; kaygıyı profilden okumaya kalkma.",
+    "sinirlari": "Kitlesel tahmin bireysel kesinlik değildir; yanlış tahmin bile zarar verebilir (etik).",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Kosinski 2013",
+      "Gosling 2011"
+    ]
   }
 ]
