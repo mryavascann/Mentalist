@@ -723,5 +723,135 @@
       "Kosinski 2013",
       "Gosling 2011"
     ]
+  },
+  {
+    "id": "duygu-yuz-baglam",
+    "bolum": "duygular",
+    "baslik": "Yüz duyguyu 'göstermez', bağlam okunur",
+    "ozet": "47 çalışma, 3599 kişi: kendiliğinden yüz hareketiyle duygu arasında r≈.32; beklenen yüz olayların %19'unda görülür; korku için şans üstü bile değil. Judo galiplerinin Duchenne gülümsemesi mutluluktan değil izleyiciyle etkileşimden yordandı. Yüz sosyal iletişim aracıdır.",
+    "nasilKullanilir": "'Kaş çattı = öfkeli' deme; kaş çatma konsantrasyon, şaşkınlık, parlak ışık olabilir. Duyguyu yüz + ses + beden + durum + kişi temel çizgisiyle birlikte, olasılıksal oku. Aynı gülümseme bağlama göre sıcak ya da küçümseyici olabilir.",
+    "sinirlari": "Mutluluk ve şaşkınlık kültürlerarası en tanınır olanlar; poz verilmiş yüzlerde uyum yüksektir (ama poz ≠ kendiliğinden).",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Barrett 2019",
+      "Zloteanu 2020"
+    ]
+  },
+  {
+    "id": "othello-refrakter",
+    "bolum": "duygular",
+    "baslik": "Refrakter dönem ve Othello hatası",
+    "ozet": "Duygu sırasında onu çürütecek bilgiye erişemeyiz; her şeyi duyguyu doğrulayacak biçimde yorumlarız. Öfkeli tanık özrü algılamaz; suçlanan masumun korkusu suçlunun korkusuyla aynı görünür. Suçlunun yakalanma korkusu ile masumun inanılmama korkusu ayırt edilemez.",
+    "nasilKullanilir": "Öfkeli ya da korkmuş kişiye o an yeni bilgi verme; refrakter dönem geçsin. Gördüğün duygu için en az iki alternatif kaynak yaz. Sen de öfkelenirsen delili kaçırırsın.",
+    "sinirlari": "Refrakter dönem süresi kişiye ve tetikleyiciye göre değişir; Ekman'ın gözlemlerine dayanır, ölçümü sınırlıdır.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Ekman — Emotions Revealed"
+    ]
+  },
+  {
+    "id": "gosterim-kurallari",
+    "bolum": "duygular",
+    "baslik": "Gösterim kuralları ve 'uygunsuz' tepki",
+    "ozet": "Japonlar bilim insanı yanındayken olumsuz ifadeyi gülümsemeyle maskeledi. Yeni Gine'de bebeği ölen anne yolda ifadesizdi, köyüne varınca feryat etti; doktor 'samimiyetsiz' sandı. Yas tutanın 'uygun duyguyu göstermemesi' sahtelik kanıtı değildir.",
+    "nasilKullanilir": "Sakin görünen yakın, gülen tanık, rahatlamış eş: kültür, mesleki maske (polis, doktor), şok ve ilişki tarihi açıklayabilir. 'Beklenti ihlali' kısayoluna düşme.",
+    "sinirlari": "Navarro'nun 'sakin anne = katil' anekdotları hayatta kalan yanlılığı taşır; ters örnekler anlatılmaz.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Ekman — Emotions Revealed",
+      "Barrett 2019",
+      "Navarro"
+    ]
+  },
+  {
+    "id": "mikroifade-suresi",
+    "bolum": "duygular",
+    "baslik": "İfade süresi: kısa-yoğun vs uzun-hafif",
+    "ozet": "İfadeler çoğunlukla 0.5–4 sn sürer. Çok kısa ama yoğun ifade gizleme (bilinçli ya da bilinçdışı), uzun süren hafif ifade kasıtlı kontrol olabilir. Referans ifade: geçmiş bir duyguyu anlatırken yüzde kısmi, kısa gösterim — şu an hissedilen duygu değildir.",
+    "nasilKullanilir": "Bir ifade fark ettiğinde süresine ve yoğunluğuna bak; anlatılan olayın referans ifadesi olabilir. Tek ifade kanıt değil; 'Her şey yolunda mı?' diye sor.",
+    "sinirlari": "Mikroifade eğitimi tanımayı artırır, yalan tespitini artırdığı gösterilmedi (Mitler Müzesi).",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Ekman — Emotions Revealed",
+      "Zloteanu 2020"
+    ]
+  },
+  {
+    "id": "anomalistik-psikoloji",
+    "bolum": "inanc-paranormal",
+    "baslik": "Anomalistik psikoloji: mucize mi, hata mı?",
+    "ozet": "Hume: tanıklığın yanlış olması, iddia edilen mucizeden daha mucizevi değilse mucizeye inanma. Davey'nin sahte seansında hiçbir katılımcı hileyi fark etmedi; yazılı anlatımlarda kritik ayrıntılar eksik, eklenmiş, sıra yanlış. Uyku felci (%7.6 yaşam boyu) 'odada biri vardı' tanıklığı üretir.",
+    "nasilKullanilir": "'Odada biri vardı ama kimse girmedi' diyen samimi tanıkta uyku felci, hipnagojik halüsinasyon, dikkatsizlik körlüğünü düşün. Görgü tanığı anlatısı olağanüstü olaya kanıt değildir.",
+    "sinirlari": "Açıklama bulmak her iddiayı çürütmez; sadece daha olası olanı seçtirir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "French 2024",
+      "Wiseman"
+    ]
+  },
+  {
+    "id": "kehanet-tutmayinca",
+    "bolum": "inanc-paranormal",
+    "baslik": "Tarikat dinamiği ve dogmatizm",
+    "ozet": "Paranormal inanç bilime değer vermemeyle (r=-.63) ve 'görüşüm kanıta göre değişmeli' ile negatif ilişkili; belirsizliğe tahammülsüzlük, kapanma ihtiyacı, otoriteye başvurma. Doublethink: çelişkiyi çözmek yerine bölmelendirme. Şüpheciler de kendi inançlarını doğrulayan çalışmayı daha titiz bulur.",
+    "nasilKullanilir": "Tarikat üyesi tanığın çelişkiyi 'işaret' saymasını bekle; çürütme bağlılığı artırır. Kendi şüpheciliğin de bir inanç: karşı kanıta eşit titizlik uygula.",
+    "sinirlari": "İnanç ile kişilik ilişkileri korelasyoneldir; birey düzeyinde yordama zayıf.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Irwin 2022",
+      "French 2024",
+      "Cialdini"
+    ]
+  },
+  {
+    "id": "ideomotor-ouija",
+    "bolum": "inanc-paranormal",
+    "baslik": "İdeomotor hareket: Ouija, sarkaç, kas okuma",
+    "ozet": "Faraday 1852: masa çevirmede eller masayı itiyor; Jastrow: sadece düşünmek kas hareketi yaratır. Ouija'da bardak, katılımcının bildiği/şüphelendiği adı yazar. Kas okuma (Bishop): gönüllünün bileğini tutup direnç yönünü izlemek — temas ve katılımcının bilmesi gerekir.",
+    "nasilKullanilir": "'Ruh katili söyledi' → kimin eli en çok hareket ettirdi, o ne biliyor ya da neyden şüpheleniyor? Sahte bomba dedektörü gibi 'sallanan çubuk' cihazları ideomotordur.",
+    "sinirlari": "İdeomotor etki iyi belgelenmiştir; ama katılımcı bilinçli olarak da yönlendirebilir (ayırt etmek zor).",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Wiseman",
+      "Derren Brown",
+      "Hyman 1977"
+    ]
+  },
+  {
+    "id": "gozlem-cikarim-ayrimi",
+    "bolum": "holmes",
+    "baslik": "Gözlem ≠ çıkarım: Priory Okulu",
+    "ozet": "Müdür ve polis 'kaçak + suç ortağı' hikâyesine kilitlendi; Holmes yalnızca 'kayıp çocuk ve kayıp öğretmen' gerçeğine bağlı kaldı: öğretmen çocuğu kurtarmaya çalışırken öldürülmüştü. Gözlemi bir yabancıya yüksek sesle ya da yazılı anlatmak boşlukları gösterir.",
+    "nasilKullanilir": "Panoda iki sütun: gözlem (ham) | çıkarım (yorum). Bir çıkarım gözlem sütununa kayarsa işaretle. Vakayı takım arkadaşına adım adım anlat: 'bu gözlem mi çıkarım mı, test ettin mi?'",
+    "sinirlari": "Tamamen yorumsuz gözlem yoktur; amaç yorumun farkında olmaktır.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Konnikova"
+    ]
+  },
+  {
+    "id": "olmayan-ipucu",
+    "bolum": "holmes",
+    "baslik": "Beklenen ama olmayan: köpek havlamadı",
+    "ozet": "Gümüş Şimşek: 'gece köpeğin yaptığı tuhaf şey' — köpek hiçbir şey yapmadı, tuhaf olan buydu: davetsiz misafiri tanıyordu. Eksik bilgi ihmali: seçeneklerde ağırlık ve radyasyon eklenince tercih değişir; seçmemek de seçimdir.",
+    "nasilKullanilir": "Olay yerinde beklediğin ama olmayanları listele: zorlanmış kapı, boğuşma izi, kayıp telefon, havlama. Kişi kartındaki 'bilinmiyor' alanlarını fark etmeden karar verme.",
+    "sinirlari": "Yokluk delili yorum gerektirir; 'köpek havlamadı' uyuyan köpek de olabilir.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Konnikova"
+    ]
+  },
+  {
+    "id": "uc-pipoluk-mola",
+    "bolum": "holmes",
+    "baslik": "Üç pipoluk problem: mesafe ve mola",
+    "ozet": "Alakasız, az çaba isteyen aktivite (yürüyüş, keman, kanepe) yaygın dikkat ağını açar; içgörü çözümleri ~300 ms önce sağ anterior temporal lobda belirir. Mesafe (zaman, mekân, sosyal, varsayımsal) soyut ve geniş bakış verir; duvardaki sinek perspektifi öfkeyi azaltır.",
+    "nasilKullanilir": "Takıldığında panoyu dağıt, kanepeye uzan (oyunda 'kanepe molası'); olay yerine başka saatte dön; vakayı bir yabancının gözünden anlat. Aşırı özgüven bilgi arttıkça artar; mola aynı zamanda kalibrasyon fırsatıdır.",
+    "sinirlari": "Bedenlenmiş biliş ve tetikleme bulgularının bir kısmı replikasyon krizinde; mola ve mesafe bulguları daha sağlam.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Konnikova",
+      "Tversky & Kahneman 1974"
+    ]
   }
 ]

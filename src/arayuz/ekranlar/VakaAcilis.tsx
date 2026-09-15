@@ -1,5 +1,6 @@
 // Vaka açılışı: brifing, kişi kartları (eksik alanlar görünür), delil listesi (sızıntı rozeti).
 import { depo, useOyun } from '../oyun/kullan';
+import { Portre } from './Portre';
 
 export function VakaAcilis() {
   const d = useOyun();
@@ -20,7 +21,10 @@ export function VakaAcilis() {
             const gorusulebilir = kisi.hayatta && kisi.id !== vaka.olay.kurban;
             return (
               <div className="kart" key={k.id}>
-                <div className="ad">{kisi.ad}</div>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <Portre id={kisi.id} ad={kisi.ad} kurban={kisi.id === vaka.olay.kurban} />
+                  <div className="ad">{kisi.ad}</div>
+                </div>
                 <div className="soluk">{k.metin}</div>
                 <div className="soluk">Kişilik: bilinmiyor · Alibi: bilinmiyor</div>
                 {gorusulebilir && <button style={{ marginTop: 6 }} onClick={() => depo.kisiSec(k.id)}>Görüş</button>}

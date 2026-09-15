@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ICERIK } from '@icerik/index';
 import { depo, useOyun } from '../oyun/kullan';
 import { IpucuKarti } from './IpucuKarti';
+import { Portre } from './Portre';
 
 export function SorguOdasi() {
   const d = useOyun();
@@ -35,7 +36,7 @@ export function SorguOdasi() {
       </aside>
 
       <main className="dosya">
-        <h2>{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
+        <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{secili && <Portre id={secili.id} ad={secili.ad} boyut={40} />}{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
         {secili && d.temelCizgiNotlari.get(secili.id) && <p className="soluk" style={{ borderLeft: '3px solid var(--mantar)', paddingLeft: 8 }}>{d.temelCizgiNotlari.get(secili.id)}</p>}
         {acikIpucu && <IpucuKarti id={acikIpucu} kapat={() => setAcikIpucu(null)} />}

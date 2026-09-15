@@ -117,8 +117,8 @@ describe('içerik koleksiyonları', () => {
   it('Kılavuz en az 9 bölüm ve 45 madde içerir; her bölümde en az 3 madde', () => {
     const bolumler = new Map<string, number>();
     for (const m of ICERIK.kilavuz) bolumler.set(m.bolum, (bolumler.get(m.bolum) ?? 0) + 1);
-    expect(bolumler.size).toBeGreaterThanOrEqual(9);
-    expect(ICERIK.kilavuz.length).toBeGreaterThanOrEqual(45);
+    expect(bolumler.size).toBeGreaterThanOrEqual(12);
+    expect(ICERIK.kilavuz.length).toBeGreaterThanOrEqual(60);
     for (const [b, n] of bolumler) expect(n, b).toBeGreaterThanOrEqual(3);
   });
 

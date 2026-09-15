@@ -7,6 +7,9 @@
 |---|---|---|---|---|---|---|
 | — | — | — | Henüz üretim yok | — | — | — |
 
+## Prompt listesi
+`assets/HIGGSFIELD_PROMPTLAR.md` (24 portre, 4 takım, 8 mekân, 1 ana görsel, 1 sorgu odası). Görsel gelene kadar `Portre.tsx` SVG siluet çizer.
+
 ## Planlanan (brand.md §6)
 1. Portre havuzu (~20–24, nötr ifade, aynı stil)
 2. Takım portreleri (4–5)

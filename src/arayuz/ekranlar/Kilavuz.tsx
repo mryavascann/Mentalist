@@ -12,6 +12,9 @@ const BOLUM_ADLARI: Record<string, string> = {
   'bellek-taniklik': 'Bellek ve Tanıklık',
   'dikkat-sihir': 'Dikkat ve Sihir',
   'ikna-manipulasyon': 'İkna ve Manipülasyon',
+  'duygular': 'Duygular',
+  'inanc-paranormal': 'İnanç, Paranormal ve Tarikatlar',
+  'holmes': 'Holmes Gibi Düşünmek',
   'mitler-muzesi': 'Mitler Müzesi',
 };
 const ROZET_ADI: Record<string, string> = { guclu: 'Güçlü', orta: 'Orta', zayif: 'Zayıf', mit: 'Mit' };

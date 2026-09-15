@@ -405,3 +405,23 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** şablon/mekân genişletme, kalan Kılavuz bölümleri, Higgsfield prompt listesi (DURUM.md).
+
+## [2026-09-16 09:00] Ajan #1 — Kılavuz 12 bölüm / 60 madde, Higgsfield prompt listesi, portre yer tutucusu
+**Görev:** Kılavuz'u TASARIM §12 hedefine tamamlamak; görsel üretim için kullanıcıya hazır prompt listesi bırakmak; görsel gelene kadar oyunun boş görünmemesi.
+
+**Yapılanlar:**
+- `kilavuz.json`: 10 yeni madde (duygular 4, inanc-paranormal 3, holmes 3); `Kilavuz.tsx` bölüm adları; içerik testi alt sınırı 12 bölüm / 60 madde.
+- `assets/HIGGSFIELD_PROMPTLAR.md`: ortak stil eki, 24 nötr portre, 4 takım, 8 mekân, ana görsel, sorgu odası; dosya adı/boyut kuralları (K-010 tek dosya, ≤60 KB portre).
+- `Portre.tsx`: kişi id+ad'dan deterministik SVG siluet (renk, saç hacmi, omuz genişliği, baş harfler; kurban çizgili; ifade yok). Vaka açılışı ve sorgu odasında kullanılıyor. Test (+1).
+
+**Değişen dosyalar:** src/icerik/kilavuz.json, src/arayuz/ekranlar/{Kilavuz,Portre,VakaAcilis,SorguOdasi}.tsx, assets/{HIGGSFIELD_PROMPTLAR,KAYIT}.md, tests/icerik/semalar.test.ts, tests/arayuz/Portre.test.tsx, docs.
+
+**Testler:** 228 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Portreler nötr ifadeli üretilecek (brand.md §1; Barrett 2019).
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Higgsfield üretimi kullanıcıda; gelince `Portre.tsx` base64 WebP döndürecek şekilde güncellenir.
+
+**Sıradaki ajan için:** şablon/mekân genişletme, kalan tatbikatlar, Aşama 4 hazırlığı (DURUM.md).
