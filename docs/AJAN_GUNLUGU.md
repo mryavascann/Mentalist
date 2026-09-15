@@ -131,3 +131,30 @@
 **Geliştirme fikirleri:**
 - Görgü tanığının "korku" nedeniyle susması (fail tehditkâr ilişki) → yeni koruma nedeni 'korku'.
 - Fail için olay öncesi/sonrası dilimlerde de tutarlı yalan (hazırlık, iz silme) → delil katmanıyla birlikte.
+
+## [2026-09-16 02:10] Ajan #1 — İpucu üretimi (bilimsel sadakat çekirdeği)
+**Görev:** Cevaplara katalog temelli, olasılıksal davranış betimlemeleri eklemek; "sadece beden diline bakan oyuncu şansa yakın kalmalı" ilkesini test altına almak.
+
+**Yapılanlar:**
+- Kataloğa `betimlemeYonu` (artar/azalir/iliskisiz) alanı eklendi: ham d işareti (`yon`) ile betimlenen davranışın yalanla ilişkisi ayrıştırıldı (ör. "detay azlığı" d=-.30 ama azlık yalanda artar). Doğrulayıcı tutarlılık kuralı ekledi.
+- `tests/motor/ipucu.test.ts` (11 test) önce yazıldı; `src/motor/ipucu.ts` sonra: z ~ N(mu,1) > 1.0 modeli; mu = kişilik temel çizgisi + yalan kayması (katalog d, koşullar ihlal/motivasyon, gizleme ×0.6, beceri söndürmesi ×(1−0.5·beceri)) + suç sorusu gerginliği (0.3·kaygı). `temelCizgi()` beklenen oranları verir.
+- Ölçüm tablosu (150 vaka, 750 yalan / 6474 doğru): sözel-vokal yakınlık azlığı +.110, iş birliği azlığı +.120, tutarsızlık +.070, göz bebeği +.071, ses perdesi +.076, gerginlik +.059, sahte gülümseme +.070, detay azlığı +.032, illüstratör azalması +.016; kendiliğinden düzeltme −.050, hatırlamıyorum kabulü −.074; göz teması −.019, duraksama +.015, gecikme −.009, kıpırdanma +.022, mikroifade −.017.
+- Bir test eşiği kalibre edildi: güçlü ipuçları için fark tabanı 0.04 → 0.03 (gerekçe testte: d=.30 teorik ~0.05, SE ~0.013). Model değerleri kaynağa sadık kaldı.
+
+**Değişen dosyalar:** src/motor/ipucu.ts, src/icerik/{ipuclari.json,tipler.ts,dogrula.ts}, tests/motor/ipucu.test.ts, docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 103 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Numaralı karar yok. Model sabitleri ipucu.ts başında belgelendi.
+
+**Sorunlar / riskler:**
+- "iliskisiz" ipuçlarında koşullu d'ler (ör. plansız yalanda duraksama +.38) şimdilik kullanılmıyor; tüm yalanlar "planlı" (defterli). Teknik motoru beklenmedik soruyla "plansız" durumu getirince bu koşul devreye alınmalı.
+- Suç sorusu gerginliği yalnızca gerginlik/ses perdesi ipuçlarına uygulanıyor; bilinçli tercih (mit ipuçları bilgi taşımasın).
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) delil.ts, 2) teknik.ts, 3) çözülebilirlik + denge botları (DURUM.md).
+
+**Geliştirme fikirleri:**
+- Betimleme seçiminde "son kullanılanları tekrar etme" belleği (dil katmanında).
+- Navarro yatıştırıcı davranışları (boyun dokunma vb.) kataloğa `zayif` düzeyde, kişiye özgü temel çizgiyle.

@@ -39,6 +39,11 @@ export interface IpucuKaydi {
   /** Meta-analiz etki büyüklüğü (Cohen d). Pozitif: yalancılarda daha çok. */
   etkiBuyuklugu: number;
   yon: IpucuYonu;
+  /**
+   * Betimlenen DAVRANIŞ yalanda artar mı, azalır mı? `yon` ham d işaretidir; bazı kayıtlar davranışın
+   * yokluğunu betimler (ör. "detay azlığı" d=-.30 ama betimlenen azlık yalanda ARTAR). Simülasyon bunu kullanır.
+   */
+  betimlemeYonu: 'artar' | 'azalir' | 'iliskisiz';
   /** Etkiyi güçlendiren koşullar (d cinsinden alternatif değer). */
   kosullar?: {
     /** Kimlik/itibar motivasyonu yüksekken. */

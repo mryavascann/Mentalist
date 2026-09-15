@@ -11,8 +11,11 @@
     ],
     "etkiBuyuklugu": -0.55,
     "yon": "yalanda_azalir",
+    "betimlemeYonu": "artar",
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003"],
+    "kaynak": [
+      "DePaulo 2003"
+    ],
     "not": "DePaulo 2003'teki en büyük etki (d=-.55) ama yine de olasılıksal; utangaç ya da resmî konuşan kişilerde temel çizgi budur. Hartwig & Bond 2011: insanlar zaten 'mesafeli/beceriksiz' izlenimini yalanla ilişkilendirir."
   },
   {
@@ -25,11 +28,17 @@
       "Yer, saat, kim ne dedi gibi somut ayrıntılar yerine genel ifadeler kullandı.",
       "Hikâyede renk yok: koku, ses, sıra, küçük aksaklık… hiçbiri anlatılmadı."
     ],
-    "etkiBuyuklugu": -0.30,
+    "etkiBuyuklugu": -0.3,
     "yon": "yalanda_azalir",
-    "kosullar": { "etkilesim": -0.33 },
+    "betimlemeYonu": "artar",
+    "kosullar": {
+      "etkilesim": -0.33
+    },
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003", "Hartwig & Bond 2011"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Hartwig & Bond 2011"
+    ],
     "not": "Konuya göre değişir: sıkıcı bir olay dürüst anlatılsa da kısa olur. 'Karşılaştırılabilir doğru' gerekir (aynı görüşme, benzer konu)."
   },
   {
@@ -44,8 +53,12 @@
     ],
     "etkiBuyuklugu": 0.34,
     "yon": "yalanda_artar",
+    "betimlemeYonu": "artar",
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003", "Hartwig & Bond 2011"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Hartwig & Bond 2011"
+    ],
     "not": "Gerçek kararsızlık (ambivalans) da aynı görünür: yakınını kaybetmiş biri gerçekten karışık duygular içindedir."
   },
   {
@@ -59,8 +72,11 @@
     ],
     "etkiBuyuklugu": 0.39,
     "yon": "yalanda_artar",
+    "betimlemeYonu": "artar",
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003"],
+    "kaynak": [
+      "DePaulo 2003"
+    ],
     "not": "Bilişsel çaba ve uyarılma göstergesi; ışık, ilaç, ilgi ve korku da büyütür. Çıplak gözle güvenilir gözlenmesi zordur; oyunda 'kayıt inceleme' aracıyla görülür."
   },
   {
@@ -74,9 +90,16 @@
     ],
     "etkiBuyuklugu": 0.21,
     "yon": "yalanda_artar",
-    "kosullar": { "motivasyon": 0.67, "etkilesim": 0.35 },
+    "betimlemeYonu": "artar",
+    "kosullar": {
+      "motivasyon": 0.67,
+      "etkilesim": 0.35
+    },
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003", "Ekman & O'Sullivan 1991"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Ekman & O'Sullivan 1991"
+    ],
     "not": "Kimlik/itibar motivasyonu yüksekken belirginleşir (d=.67). Heyecan, öfke ve korku da perdeyi yükseltir (Othello hatası)."
   },
   {
@@ -90,8 +113,12 @@
     ],
     "etkiBuyuklugu": -0.29,
     "yon": "yalanda_azalir",
+    "betimlemeYonu": "azalir",
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003", "Derren Brown"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Derren Brown"
+    ],
     "not": "Doğru söyleyenler anılarını 'düzeltir'; hazırlanmış yalan fazla pürüzsüzdür. Ama CBCA'yı öğrenen yalancı bunu taklit edebilir (Vrij & Verschuere 2014)."
   },
   {
@@ -105,8 +132,11 @@
     ],
     "etkiBuyuklugu": -0.42,
     "yon": "yalanda_azalir",
+    "betimlemeYonu": "azalir",
     "kanitDuzeyi": "orta",
-    "kaynak": ["DePaulo 2003"],
+    "kaynak": [
+      "DePaulo 2003"
+    ],
     "not": "Doğrudan suç sorusuna 'hatırlamıyorum' demek farklıdır (Symptom Validity Test ile sınanabilir). Buradaki bulgu, ikincil ayrıntılarda hatırlamamayı kabul etmedir."
   },
   {
@@ -120,8 +150,11 @@
     ],
     "etkiBuyuklugu": -0.66,
     "yon": "yalanda_azalir",
+    "betimlemeYonu": "artar",
     "kanitDuzeyi": "zayif",
-    "kaynak": ["DePaulo 2003"],
+    "kaynak": [
+      "DePaulo 2003"
+    ],
     "not": "Az sayıda çalışmaya dayanır (DePaulo 2003). Avukatının uyarısıyla susan masum ya da polise güvenmeyen kişi de iş birliği yapmaz."
   },
   {
@@ -136,9 +169,16 @@
     ],
     "etkiBuyuklugu": 0.27,
     "yon": "yalanda_artar",
-    "kosullar": { "ihlal": 0.51 },
+    "betimlemeYonu": "artar",
+    "kosullar": {
+      "ihlal": 0.51
+    },
     "kanitDuzeyi": "zayif",
-    "kaynak": ["DePaulo 2003", "Ekman — Emotions Revealed", "Vrij 2010 PSPI"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Ekman — Emotions Revealed",
+      "Vrij 2010 PSPI"
+    ],
     "not": "Othello hatasının ana kaynağı: masum ama inanılmamaktan korkan kişi de gerilir (Ekman). Gerginlik 'yalan' değil 'hangi konu rahatsız ediyor' bilgisi verir (Navarro)."
   },
   {
@@ -152,8 +192,13 @@
     ],
     "etkiBuyuklugu": -0.14,
     "yon": "yalanda_azalir",
+    "betimlemeYonu": "artar",
     "kanitDuzeyi": "zayif",
-    "kaynak": ["DePaulo 2003", "Vrij 2010 PSPI", "Ekman & Friesen 1969"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Vrij 2010 PSPI",
+      "Ekman & Friesen 1969"
+    ],
     "not": "Reid ipuçları arasında geçerli olan tek sözsüz ipucu (Vrij 2010). Etki küçük; temel çizgi şart. Kontrol çabası ('donma') ile ilgili; masum da kendini kontrol eder."
   },
   {
@@ -167,8 +212,13 @@
     ],
     "etkiBuyuklugu": 0.31,
     "yon": "yalanda_artar",
+    "betimlemeYonu": "artar",
     "kanitDuzeyi": "zayif",
-    "kaynak": ["DePaulo 2003", "Ekman & O'Sullivan 1991", "Zloteanu 2020"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Ekman & O'Sullivan 1991",
+      "Zloteanu 2020"
+    ],
     "not": "Az örnek (DePaulo 2003). Duchenne gülümsemesi istemli de yapılabilir; nezaket gülümsemesi kültürel norm (Barrett 2019, Zloteanu 2020). Kibar gülümseme ≠ yalan."
   },
   {
@@ -182,9 +232,16 @@
     ],
     "etkiBuyuklugu": 0.01,
     "yon": "iliskisiz",
-    "kosullar": { "motivasyon": -0.15 },
+    "betimlemeYonu": "iliskisiz",
+    "kosullar": {
+      "motivasyon": -0.15
+    },
     "kanitDuzeyi": "mit",
-    "kaynak": ["DePaulo 2003", "Bond & DePaulo 2006", "Vrij 2010 PSPI"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Bond & DePaulo 2006",
+      "Vrij 2010 PSPI"
+    ],
     "not": "32 tahminde d=.01: işe yaramaz. Motive yalancı göz temasını KORUR. Kültür ve utangaçlık temel çizgiyi belirler; bazı kültürlerde aşağı bakmak saygıdır. En yaygın halk inancı → Mitler Müzesi."
   },
   {
@@ -198,9 +255,15 @@
     ],
     "etkiBuyuklugu": 0.0,
     "yon": "iliskisiz",
-    "kosullar": { "plansiz": 0.38, "motivasyon": 0.38 },
+    "betimlemeYonu": "iliskisiz",
+    "kosullar": {
+      "plansiz": 0.38,
+      "motivasyon": 0.38
+    },
     "kanitDuzeyi": "mit",
-    "kaynak": ["DePaulo 2003"],
+    "kaynak": [
+      "DePaulo 2003"
+    ],
     "not": "Genelde ~.00; sadece plansız ve kimlik-motivasyonlu yalanlarda sessiz duraksama artar (+.38). Düşünen dürüst kişi de duraksar."
   },
   {
@@ -214,9 +277,16 @@
     ],
     "etkiBuyuklugu": 0.02,
     "yon": "iliskisiz",
-    "kosullar": { "motivasyon": 0.36, "ihlal": 0.27 },
+    "betimlemeYonu": "iliskisiz",
+    "kosullar": {
+      "motivasyon": 0.36,
+      "ihlal": 0.27
+    },
     "kanitDuzeyi": "mit",
-    "kaynak": ["DePaulo 2003", "Vrij & Verschuere 2014"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Vrij & Verschuere 2014"
+    ],
     "not": "'1.7 saniye gecikme = yalan' türü kurallar meta-analizle uyuşmaz (genel d=.02). Sadece motivasyonlu/ihlal yalanlarında artar; planlı yalanda cevap hızlı gelir."
   },
   {
@@ -230,9 +300,16 @@
     ],
     "etkiBuyuklugu": -0.09,
     "yon": "iliskisiz",
-    "kosullar": { "ihlal": -0.24 },
+    "betimlemeYonu": "iliskisiz",
+    "kosullar": {
+      "ihlal": -0.24
+    },
     "kanitDuzeyi": "mit",
-    "kaynak": ["DePaulo 2003", "Navarro", "Vrij 2010 PSPI"],
+    "kaynak": [
+      "DePaulo 2003",
+      "Navarro",
+      "Vrij 2010 PSPI"
+    ],
     "not": "El .00, ayak -.09: net ilişki yok. Navarro 'ayaklar en dürüst' der; bilimsel desteği sınırlı. İhlal yalanlarında ayak hareketi AZALIR (donma), artmaz."
   },
   {
@@ -246,8 +323,13 @@
     ],
     "etkiBuyuklugu": 0.0,
     "yon": "iliskisiz",
+    "betimlemeYonu": "iliskisiz",
     "kanitDuzeyi": "mit",
-    "kaynak": ["Zloteanu 2020", "Vrij 2010 PSPI", "Barrett 2019"],
+    "kaynak": [
+      "Zloteanu 2020",
+      "Vrij 2010 PSPI",
+      "Barrett 2019"
+    ],
     "not": "Sızıntı gerçek ama nadir; doğru anlatımlarda da olur (Porter & ten Brinke: olayların ~%2'si). Mikroifade eğitimi tanımayı artırır, yalan tespitini artırdığına dair nedensel kanıt yok. 'Mikroifade = yalan' → Mitler Müzesi. Oyunda yüz ipuçları daima bağlam + temel çizgi ile."
   }
 ]

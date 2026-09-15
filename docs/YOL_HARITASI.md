@@ -17,7 +17,7 @@
 - [x] Algı modeli + bilgi dağılımı: kendisi/gördü/dedikodu/medya, dikkat boşluğu, CIT geçerliliği, 13 test (2026-09-16, Ajan #1)
 - [x] Sırlar ve korumalar: 6 sır türü, borç/aile/ortak-sır korumaları, 11 test (2026-09-16, Ajan #1)
 - [x] NPC konuşma stratejisi + yalan defteri: 8 ifade türü, 18 test (2026-09-16, Ajan #1)
-- [ ] İpucu kataloğu (DePaulo 2003 ağırlıkları, kanıt düzeyi) + olasılıksal ipucu üretimi (masumlar da üretir)
+- [x] İpucu kataloğu + olasılıksal ipucu üretimi (masumlar da üretir; mit ipuçları kaymaz; ipucu botu şansa yakın), 11 test (2026-09-16, Ajan #1)
 - [ ] Delil üretimi (fiziksel, dijital, "beklenen ama olmayan")
 - [ ] Kırmızı ringa üretici (gergin masum, sahte anı, bellek uyumu, çoğulcu cehalet)
 - [ ] Çözülebilirlik denetçisi (tek çözüm, zorluk puanı)
