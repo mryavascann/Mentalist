@@ -365,3 +365,23 @@
 **Yarım kalanlar:** Kalan Kılavuz bölümleri (Duygular, İnanç/Tarikat, Holmes, Kör Nokta) YOL_HARITASI'nda.
 
 **Sıradaki ajan için:** mini oyunlar → adaptif üretim → şablon/mekân genişletme (DURUM.md).
+
+## [2026-09-16 08:00] Ajan #1 — Tatbikatlar: kör seçim, soğuk okuma dedektörü, taban oranı
+**Görev:** TASARIM §13 mini oyunlarından üçünü kurmak (kısa, anında geri bildirim, Kılavuz bağlantılı).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/icerik/mini_oyunlar.json` + `.ts`: kör seçim (Barnum, tam zıt, genel olumlu, genel olumsuz profiller + ifşa), soğuk okuma kaydı (8 cümle, 8 Rowland/Hyman öğesi, çoklu etiket) ve `sogukOkumaPuanla` (doğru +1, yanlış −1, kaçırılan sayılır), taban oranı bulmacası (tek doğru: ~%1, çözüm metni).
+- Depo: `TatbikatDurumu` (aktif, sonuçlar), `tatbikatAc/Kapat`, `korSecimBitir`, `sogukOkumaBitir`, `tabanOraniBitir`; kayıtla taşınır; içe aktarımda tatbikat ekranı başlığa düşer.
+- `Tatbikat.tsx`: üç alt ekran; soğuk okumada yeşil/kırmızı geri bildirim; her tatbikat ilgili Kılavuz maddesine bağlı. Başlık'ta "Tatbikatlar" düğmeleri (✓ ve puan).
+
+**Değişen dosyalar:** src/icerik/mini_oyunlar.{json,ts}, src/arayuz/ekranlar/{Tatbikat,Baslik}.tsx, src/arayuz/App.tsx, src/arayuz/oyun/depo.ts, tests/arayuz/miniOyunlar.test.ts, docs.
+
+**Testler:** 216 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. file:// kontrolü hata 0.
+
+**Alınan kararlar:** Yok.
+
+**Sorunlar / riskler:** Soğuk okuma kaydı tek ve sabit; tekrar oynanabilirlik için şablonla üretilmiş kayıtlar (medyum NPC) sonraki iş.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** adaptif üretim (kör nokta → vaka), şablon/mekân genişletme, kalan Kılavuz bölümleri (DURUM.md).

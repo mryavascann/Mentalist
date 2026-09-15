@@ -15,9 +15,15 @@ import { ICERIK } from '@icerik/index';
 import { bulunma } from '@ortak/turkce';
 import { PROJE } from '@ortak/surum';
 import { FORER } from '@icerik/forer';
+import { MINI_OYUNLAR, sogukOkumaPuanla } from '@icerik/mini_oyunlar';
 import { soruMetni, teknikSonucMetni } from './metinler';
 
-export type Ekran = 'baslik' | 'forer' | 'vaka-acilis' | 'sorgu' | 'pano' | 'suclama' | 'analiz' | 'kilavuz';
+export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'suclama' | 'analiz' | 'kilavuz';
+export type TatbikatId = 'kor-secim' | 'soguk-okuma' | 'taban-orani';
+
+export interface TatbikatSonucu { tamamlandi: boolean; puan: number | null; secim?: string }
+
+export interface TatbikatDurumu { aktif: TatbikatId | null; sonuclar: Partial<Record<TatbikatId, TatbikatSonucu>> }
 export type PanoTuru = 'gozlem' | 'cikarim' | 'hipotez' | 'olmayan';
 
 export interface KonusmaKaydi {
@@ -70,6 +76,7 @@ export interface OyunDurumu {
   gecmis: VakaGecmisi[];
   kilavuzMaddesi: string | null;
   forer: ForerDurumu;
+  tatbikat: TatbikatDurumu;
   /** Sonraki vakaların zorluğu (kullanıcı seçer; varsayılan orta). */
   zorluk: Zorluk;
   surum: number;
@@ -86,7 +93,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: 'orta', surum: 0,
+    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, zorluk: 'orta', surum: 0,
   };
 }
 
@@ -365,13 +372,52 @@ export class OyunDeposu {
   }
 
   // ---------------------------------------------------------------------------------------------
+  // Tatbikatlar / mini oyunlar (TASARIM §13): kısa, anında geri bildirimli.
+
+  tatbikatAc(id: TatbikatId) {
+    this.durum.tatbikat = { ...this.durum.tatbikat, aktif: id };
+    this.durum.ekran = 'tatbikat';
+    this.bildir();
+  }
+
+  tatbikatKapat() {
+    this.durum.tatbikat = { ...this.durum.tatbikat, aktif: null };
+    this.durum.ekran = this.durum.sorgu ? (this.durum.puan ? 'analiz' : 'vaka-acilis') : 'baslik';
+    this.bildir();
+  }
+
+  private tatbikatSonuc(id: TatbikatId, sonuc: TatbikatSonucu) {
+    this.durum.tatbikat = { ...this.durum.tatbikat, sonuclar: { ...this.durum.tatbikat.sonuclar, [id]: sonuc } };
+    this.bildir();
+  }
+
+  /** Kör seçim: hangi profili "ben" diye seçtiği kaydedilir; puan yok (ders ifşada). */
+  korSecimBitir(profilId: string) {
+    this.tatbikatSonuc('kor-secim', { tamamlandi: true, puan: null, secim: profilId });
+  }
+
+  /** Soğuk okuma dedektörü: çoklu etiket puanı. */
+  sogukOkumaBitir(secimler: Record<string, string[]>) {
+    const r = sogukOkumaPuanla(secimler);
+    this.tatbikatSonuc('soguk-okuma', { tamamlandi: true, puan: r.puan });
+    return r;
+  }
+
+  /** Taban oranı: doğru seçenek 1, yanlış 0. */
+  tabanOraniBitir(secenekId: string): boolean {
+    const dogru = MINI_OYUNLAR.tabanOrani.secenekler.find((s) => s.id === secenekId)?.dogru === true;
+    this.tatbikatSonuc('taban-orani', { tamamlandi: true, puan: dogru ? 1 : 0, secim: secenekId });
+    return dogru;
+  }
+
+  // ---------------------------------------------------------------------------------------------
   // Kayıt (K-011)
 
   disaAktar(): string {
     const d = this.durum;
     const s = d.sorgu;
     return JSON.stringify({
-      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk,
+      kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk, tatbikat: { aktif: null, sonuclar: d.tatbikat.sonuclar },
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
       konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], gecmis: d.gecmis,
       sorgu: s ? {
@@ -385,7 +431,7 @@ export class OyunDeposu {
     try {
       const v = JSON.parse(json);
       if (!v || v.kayitSurumu !== KAYIT_SURUMU) return false;
-      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta' };
+      this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta', tatbikat: { aktif: null, sonuclar: v.tatbikat?.sonuclar ?? {} } };
       if (v.seed && v.sorgu) {
         const sorgu = sorguBaslat(vakaUret(v.seed, { zorluk: (v.zorluk as Zorluk) ?? 'orta' }));
         sorgu.durum.defter = new Map(v.sorgu.defter);
@@ -405,7 +451,7 @@ export class OyunDeposu {
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }
-      this.durum.ekran = v.ekran === 'forer' ? 'baslik' : ((v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik'));
+      this.durum.ekran = v.ekran === 'forer' || v.ekran === 'tatbikat' ? 'baslik' : ((v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik'));
       this.bildir();
       return true;
     } catch {

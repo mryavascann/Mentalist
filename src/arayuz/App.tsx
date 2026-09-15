@@ -10,6 +10,7 @@ import { Suclama } from './ekranlar/Suclama';
 import { Analiz } from './ekranlar/Analiz';
 import { Kilavuz } from './ekranlar/Kilavuz';
 import { Forer } from './ekranlar/Forer';
+import { Tatbikat } from './ekranlar/Tatbikat';
 
 export function App() {
   const d = useOyun();
@@ -22,6 +23,7 @@ export function App() {
   switch (d.ekran) {
     case 'baslik': ekran = <Baslik />; break;
     case 'forer': ekran = <Forer />; break;
+    case 'tatbikat': ekran = <Tatbikat />; break;
     case 'vaka-acilis': ekran = <VakaAcilis />; break;
     case 'sorgu': ekran = <SorguOdasi />; break;
     case 'pano': ekran = <Pano />; break;

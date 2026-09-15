@@ -57,6 +57,12 @@ export function Baslik() {
         <div className="dugmeler" style={{ marginTop: 12 }}>
           <button className="birincil" onClick={basla}>Yeni vaka</button>
           <button onClick={() => { depo.basla(ad); depo.forerBasla(); }}>Açılış dersi (2 dk)</button>
+        </div>
+        <h3 style={{ fontFamily: 'var(--daktilo)', fontSize: 13, letterSpacing: '.08em', textTransform: 'uppercase', marginBottom: 6 }}>Tatbikatlar (2–5 dk)</h3>
+        <div className="dugmeler">
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('kor-secim'); }}>Kör seçim{d.tatbikat.sonuclar['kor-secim']?.tamamlandi ? ' ✓' : ''}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('soguk-okuma'); }}>Soğuk okuma dedektörü{d.tatbikat.sonuclar['soguk-okuma']?.tamamlandi ? ` ✓ ${d.tatbikat.sonuclar['soguk-okuma']!.puan}` : ''}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('taban-orani'); }}>Taban oranı{d.tatbikat.sonuclar['taban-orani']?.tamamlandi ? (d.tatbikat.sonuclar['taban-orani']!.puan ? ' ✓' : ' ✗') : ''}</button>
           {d.sorgu && <button onClick={() => depo.ekranaGit(d.puan ? 'analiz' : 'vaka-acilis')}>Devam et</button>}
           <button onClick={disaAktar} disabled={!d.sorgu && d.gecmis.length === 0}>Kaydı dışa aktar</button>
           <button onClick={() => dosya.current?.click()}>Kaydı içe aktar</button>

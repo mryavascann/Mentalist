@@ -3,17 +3,18 @@
 > Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 07:40, Ajan #1.
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila ve Kılavuz genişletmesi tamam. Sıradaki: mini oyunlar (kör seçim, soğuk okuma dedektörü, taban oranı), sonra kör nokta → adaptif vaka üretimi.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi ve üç tatbikat tamam. Sıradaki: kör nokta → adaptif vaka üretimi, şablon/mekân genişletme, kalan Kılavuz bölümleri.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar (11 test), cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
 - **Kılavuz genişletmesi:** yeni bölümler Bellek ve Tanıklık (5), Dikkat ve Sihir (4), İkna ve Manipülasyon (6), Kişilik Okuma (+2); toplam 9 bölüm, 50 madde. Kaynak kütüğü 48 kayıt (Simons & Levin, Johansson, Hall, Rensink & Kuhn, Macknik, Lamont, Freedman & Fraser, Teunisse, Irwin, Naumann, Gosling 2011 eklendi; hepsi NOTLAR.md başlıklarıyla eşleşiyor).
+- **Tatbikatlar** (`src/icerik/mini_oyunlar.{json,ts}`, `Tatbikat.tsx`, depo `tatbikatAc/korSecimBitir/sogukOkumaBitir/tabanOraniBitir/tatbikatKapat`): kör seçim (4 anonim profil, ifşa), soğuk okuma dedektörü (8 öğe × 8 cümle, çoklu etiket puanı: doğru +1 / yanlış −1), taban oranı (%99 test, 1/10.000). Başlık'ta düğmeler, sonuçlar kayıtla taşınır.
 - **İpucu kataloğu:** Navarro saha ipuçları `zayif` düzeyde: yatıştırıcı dokunma (d=.12, suç sorusunda kaygıyla artar → "hangi konu" sinyali), ayakların çıkışa dönmesi (ilişkisiz), vurgu kaybı (d=.14). 19 ipucu. İçerik testi: her bölümde ≥3 madde, ≥9 bölüm, ≥45 madde.
 
 ## Sıradaki 3 iş
-1. **Mini oyunlar** (TASARIM §13; 2–5 dk, anında geri bildirim): kör seçim (Beyerstein: anonim profillerden kendini bul — Forer'in devamı), soğuk okuma dedektörü (medyum kaydında cümleleri Rowland öğeleriyle etiketle; çoklu etiket puanı), taban oranı bulmacası (%99 doğru test, 1/10.000 hastalık). Depo'da `miniOyun` durumu, Başlık'ta "Tatbikatlar" düğmesi, sonuçlar kayıtla taşınır.
-2. **Kör nokta → adaptif üretim:** `korNoktalar()` çıktısını `vakaUretCozulebilir`'e hedef parametre olarak besle (ör. Othello etiketi sıkça → gergin masum garantili; erken delil → SUE'nin belirleyici olduğu vaka).
-3. **Şablon havuzu ve mekân genişletme:** dil şablonlarını JSON'a taşı ve büyüt; mekân şablonlarına mekâna özgü delil türleri (hastane ilaç defteri, motel resepsiyon defteri).
+1. **Kör nokta → adaptif üretim:** `korNoktalar()` çıktısını `vakaUretCozulebilir`'e hedef parametre olarak besle (ör. Othello etiketi sıkça → gergin masum garantili; erken delil → SUE'nin belirleyici olduğu vaka).
+2. **Şablon havuzu ve mekân genişletme:** dil şablonlarını JSON'a taşı ve büyüt; mekân şablonlarına mekâna özgü delil türleri (hastane ilaç defteri, motel resepsiyon defteri).
+3. **Kalan Kılavuz bölümleri:** Duygular (Ekman + Barrett + Othello), İnanç/Paranormal/Tarikat (French, Festinger, Irwin), Holmes Gibi Düşünmek (Konnikova), Senin Kör Noktan (dinamik: `korNoktalar()`).
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
@@ -25,7 +26,7 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 20 dosya, 213 test geçti (2026-09-16 07:35). Süre ~60 sn.
+- `npm test`: 21 dosya, 216 test geçti (2026-09-16 08:00). Süre ~60 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`. file:// kontrolü hata 0.
 
 ## Notlar
