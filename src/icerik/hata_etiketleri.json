@@ -1,20 +1,218 @@
 [
-  { "id": "othello-hatasi", "ad": "Othello hatası", "aciklama": "Gerginliği/korkuyu doğru gördün, nedenini yalan sandın; kişi masumdu ve inanılmamaktan korkuyordu ya da alakasız bir sır saklıyordu.", "kilavuzMaddesi": "othello-hatasi", "kaynak": ["Ekman — Emotions Revealed", "Vrij 2010 PSPI"], "ramKatmani": 4 },
-  { "id": "hale-etkisi", "ad": "Hale etkisi", "aciklama": "Sempatik, çekici ya da yardımsever görünen kişiyi otomatik olarak güvenilir saydın.", "kilavuzMaddesi": "hale-etkisi", "kaynak": ["Cialdini", "Konnikova"], "ramKatmani": 4 },
-  { "id": "capalama", "ad": "Çapalama", "aciklama": "İlk şüphelin, ilk verilen saat ya da ilk rakam sonraki yargılarını yapıştırdı; karşıt hipotezi hiç yazmadın.", "kilavuzMaddesi": "capalama", "kaynak": ["Tversky & Kahneman 1974", "Strack & Mussweiler 1997"], "ramKatmani": 4 },
-  { "id": "dogrulama-yanliligi", "ad": "Doğrulama yanlılığı", "aciklama": "Hipotezini destekleyen ipuçlarını topladın, çürütecek soruyu sormadın; tünel görüşü.", "kilavuzMaddesi": "dogrulama-yanliligi", "kaynak": ["Konnikova", "Derren Brown"], "ramKatmani": 2 },
-  { "id": "sosyal-kanit", "ad": "Sosyal kanıt / çoğunluğa uyma", "aciklama": "Takımın çoğunluk görüşüne ya da tanıkların birbirine uyan anlatısına, kendi gözleminden çok güvendin.", "kilavuzMaddesi": "sosyal-kanit", "kaynak": ["Cialdini", "Cialdini & Goldstein 2004"], "ramKatmani": 4 },
-  { "id": "dogruluk-yanliligi", "ad": "Doğruluk yanlılığı", "aciklama": "Delil olmadan 'doğru söylüyor' varsaydın; özellikle tanıdık ya da sempatik kişide.", "kilavuzMaddesi": "dogruluk-yanliligi", "kaynak": ["Bond & DePaulo 2006"], "ramKatmani": 4 },
-  { "id": "yalan-yanliligi", "ad": "Yalan yanlılığı", "aciklama": "Sadece davranışa (görüntüye) bakıp herkese 'yalancı' dedin; sözü dinlemedin.", "kilavuzMaddesi": "dogruluk-yanliligi", "kaynak": ["Bond & DePaulo 2006", "Vrij 2010 PSPI"], "ramKatmani": 4 },
-  { "id": "tek-ipucu", "ad": "Tek ipucuna dayanma", "aciklama": "Tek bir davranışı (göz kaçırma, terleme, duraksama) kanıt saydın; küme, bağlam ve temel çizgi yok.", "kilavuzMaddesi": "ipuclari-zayiftir", "kaynak": ["DePaulo 2003", "Vrij 2010 PSPI", "Navarro"], "ramKatmani": 1 },
-  { "id": "sorgulama-heuristigi", "ad": "Sorgulama heuristiği", "aciklama": "Sorguladın, iz bulamadın ve bu yüzden daha çok inandın; oysa iyi hazırlanmış yalan iz bırakmaz.", "kilavuzMaddesi": "sorgu-heuristikleri", "kaynak": ["Vrij 2010 PSPI"], "ramKatmani": 4 },
-  { "id": "tutarlilik-heuristigi", "ad": "Tutarlılık heuristiği", "aciklama": "Tutarlı hikâyeyi doğru sandın; prova edilmiş grup alibisi beklenen sorularda tutarlıdır.", "kilavuzMaddesi": "sorgu-heuristikleri", "kaynak": ["Vrij 2010 PSPI"], "ramKatmani": 4 },
-  { "id": "beklenti-ihlali", "ad": "Beklenti ihlali", "aciklama": "Tuhaf, 'uygunsuz' tepkiyi (yas tutmayan, gülen, sakin) yalan sandın; kültür, kişilik ve şok bunu açıklar.", "kilavuzMaddesi": "sorgu-heuristikleri", "kaynak": ["Vrij 2010 PSPI", "Ekman — Emotions Revealed"], "ramKatmani": 4 },
-  { "id": "temsil-edicilik", "ad": "Temsil edicilik (tipik suçlu)", "aciklama": "Profile 'benzeyen' kişiyi suçladın; taban oranını ve ayrıntılı profilin daha az olası olduğunu (birleşim yanılgısı) hesaba katmadın.", "kilavuzMaddesi": "sorgu-heuristikleri", "kaynak": ["Tversky & Kahneman 1974", "Vrij 2010 PSPI"], "ramKatmani": 4 },
-  { "id": "asiri-ozguven", "ad": "Aşırı özgüven", "aciklama": "Beyan ettiğin güven, gerçek doğruluğunun çok üstündeydi; ipucu sayısı arttıkça emin oldun ama isabet artmadı.", "kilavuzMaddesi": "asiri-ozguven", "kaynak": ["Tversky & Kahneman 1974", "Ekman & O'Sullivan 1991"], "ramKatmani": 4 },
-  { "id": "ic-masalci", "ad": "İç masalcı", "aciklama": "Bir tutarsızlığı test etmeden akla yatkın bir açıklamayla kapattın.", "kilavuzMaddesi": "ic-masalci", "kaynak": ["Konnikova", "Nisbett & Wilson 1977"], "ramKatmani": 4 },
-  { "id": "tanik-kirletme", "ad": "Tanık kirletme", "aciklama": "Yönlendirici sorularınla ya da tekrar sorgularınla tanığın anısını değiştirdin; sonra kendi yerleştirdiğin ayrıntıyı kanıt sandın.", "kilavuzMaddesi": "yonlendirici-soru-riski", "kaynak": ["Loftus & Pickrell 1995", "French 2024"], "ramKatmani": 1 },
-  { "id": "erken-delil", "ad": "Erken delil gösterme", "aciklama": "Delili anlatımdan önce açtın; şüpheli hikâyesini delile uydurdu ve çelişki fırsatı kayboldu.", "kilavuzMaddesi": "sue", "kaynak": ["Vrij 2010 PSPI"], "ramKatmani": 2 },
-  { "id": "ipucu-erisilemez", "ad": "İpucu önünde değildi", "aciklama": "Belirleyici bilgi sormadığın soruda, gitmediğin odada ya da açmadığın kayıttaydı (Funder RAM 2. halka).", "kilavuzMaddesi": "ram-dort-katman", "kaynak": ["Funder 1995"], "ramKatmani": 2 },
-  { "id": "fark-etmedin", "ad": "Fark etmedin", "aciklama": "İpucu önündeydi ama dikkatin başka yerdeydi; 'beklenen ama olmayan' ipucu (köpek havlamadı) da buna girer (Funder RAM 3. halka).", "kilavuzMaddesi": "ram-dort-katman", "kaynak": ["Funder 1995", "Simons & Chabris 1999", "Konnikova"], "ramKatmani": 3 }
+  {
+    "id": "othello-hatasi",
+    "ad": "Othello hatası",
+    "aciklama": "Gerginliği/korkuyu doğru gördün, nedenini yalan sandın; kişi masumdu ve inanılmamaktan korkuyordu ya da alakasız bir sır saklıyordu.",
+    "kilavuzMaddesi": "othello-hatasi",
+    "kaynak": [
+      "Ekman — Emotions Revealed",
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "hale-etkisi",
+    "ad": "Hale etkisi",
+    "aciklama": "Sempatik, çekici ya da yardımsever görünen kişiyi otomatik olarak güvenilir saydın.",
+    "kilavuzMaddesi": "hale-etkisi",
+    "kaynak": [
+      "Cialdini",
+      "Konnikova"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "capalama",
+    "ad": "Çapalama",
+    "aciklama": "İlk şüphelin, ilk verilen saat ya da ilk rakam sonraki yargılarını yapıştırdı; karşıt hipotezi hiç yazmadın.",
+    "kilavuzMaddesi": "capalama",
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Strack & Mussweiler 1997"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "dogrulama-yanliligi",
+    "ad": "Doğrulama yanlılığı",
+    "aciklama": "Hipotezini destekleyen ipuçlarını topladın, çürütecek soruyu sormadın; tünel görüşü.",
+    "kilavuzMaddesi": "dogrulama-yanliligi",
+    "kaynak": [
+      "Konnikova",
+      "Derren Brown"
+    ],
+    "ramKatmani": 2
+  },
+  {
+    "id": "sosyal-kanit",
+    "ad": "Sosyal kanıt / çoğunluğa uyma",
+    "aciklama": "Takımın çoğunluk görüşüne ya da tanıkların birbirine uyan anlatısına, kendi gözleminden çok güvendin.",
+    "kilavuzMaddesi": "sosyal-kanit",
+    "kaynak": [
+      "Cialdini",
+      "Cialdini & Goldstein 2004"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "dogruluk-yanliligi",
+    "ad": "Doğruluk yanlılığı",
+    "aciklama": "Delil olmadan 'doğru söylüyor' varsaydın; özellikle tanıdık ya da sempatik kişide.",
+    "kilavuzMaddesi": "dogruluk-yanliligi",
+    "kaynak": [
+      "Bond & DePaulo 2006"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "yalan-yanliligi",
+    "ad": "Yalan yanlılığı",
+    "aciklama": "Sadece davranışa (görüntüye) bakıp herkese 'yalancı' dedin; sözü dinlemedin.",
+    "kilavuzMaddesi": "dogruluk-yanliligi",
+    "kaynak": [
+      "Bond & DePaulo 2006",
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "tek-ipucu",
+    "ad": "Tek ipucuna dayanma",
+    "aciklama": "Tek bir davranışı (göz kaçırma, terleme, duraksama) kanıt saydın; küme, bağlam ve temel çizgi yok.",
+    "kilavuzMaddesi": "ipuclari-zayiftir",
+    "kaynak": [
+      "DePaulo 2003",
+      "Vrij 2010 PSPI",
+      "Navarro"
+    ],
+    "ramKatmani": 1
+  },
+  {
+    "id": "sorgulama-heuristigi",
+    "ad": "Sorgulama heuristiği",
+    "aciklama": "Sorguladın, iz bulamadın ve bu yüzden daha çok inandın; oysa iyi hazırlanmış yalan iz bırakmaz.",
+    "kilavuzMaddesi": "sorgu-heuristikleri",
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "tutarlilik-heuristigi",
+    "ad": "Tutarlılık heuristiği",
+    "aciklama": "Tutarlı hikâyeyi doğru sandın; prova edilmiş grup alibisi beklenen sorularda tutarlıdır.",
+    "kilavuzMaddesi": "sorgu-heuristikleri",
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "beklenti-ihlali",
+    "ad": "Beklenti ihlali",
+    "aciklama": "Tuhaf, 'uygunsuz' tepkiyi (yas tutmayan, gülen, sakin) yalan sandın; kültür, kişilik ve şok bunu açıklar.",
+    "kilavuzMaddesi": "sorgu-heuristikleri",
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Ekman — Emotions Revealed"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "temsil-edicilik",
+    "ad": "Temsil edicilik (tipik suçlu)",
+    "aciklama": "Profile 'benzeyen' kişiyi suçladın; taban oranını ve ayrıntılı profilin daha az olası olduğunu (birleşim yanılgısı) hesaba katmadın.",
+    "kilavuzMaddesi": "sorgu-heuristikleri",
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "asiri-ozguven",
+    "ad": "Aşırı özgüven",
+    "aciklama": "Beyan ettiğin güven, gerçek doğruluğunun çok üstündeydi; ipucu sayısı arttıkça emin oldun ama isabet artmadı.",
+    "kilavuzMaddesi": "asiri-ozguven",
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Ekman & O'Sullivan 1991"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "ic-masalci",
+    "ad": "İç masalcı",
+    "aciklama": "Bir tutarsızlığı test etmeden akla yatkın bir açıklamayla kapattın.",
+    "kilavuzMaddesi": "ic-masalci",
+    "kaynak": [
+      "Konnikova",
+      "Nisbett & Wilson 1977"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "tanik-kirletme",
+    "ad": "Tanık kirletme",
+    "aciklama": "Yönlendirici sorularınla ya da tekrar sorgularınla tanığın anısını değiştirdin; sonra kendi yerleştirdiğin ayrıntıyı kanıt sandın.",
+    "kilavuzMaddesi": "yonlendirici-soru-riski",
+    "kaynak": [
+      "Loftus & Pickrell 1995",
+      "French 2024"
+    ],
+    "ramKatmani": 1
+  },
+  {
+    "id": "erken-delil",
+    "ad": "Erken delil gösterme",
+    "aciklama": "Delili anlatımdan önce açtın; şüpheli hikâyesini delile uydurdu ve çelişki fırsatı kayboldu.",
+    "kilavuzMaddesi": "sue",
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 2
+  },
+  {
+    "id": "ipucu-erisilemez",
+    "ad": "İpucu önünde değildi",
+    "aciklama": "Belirleyici bilgi sormadığın soruda, gitmediğin odada ya da açmadığın kayıttaydı (Funder RAM 2. halka).",
+    "kilavuzMaddesi": "ram-dort-katman",
+    "kaynak": [
+      "Funder 1995"
+    ],
+    "ramKatmani": 2
+  },
+  {
+    "id": "fark-etmedin",
+    "ad": "Fark etmedin",
+    "aciklama": "İpucu önündeydi ama dikkatin başka yerdeydi; 'beklenen ama olmayan' ipucu (köpek havlamadı) da buna girer (Funder RAM 3. halka).",
+    "kilavuzMaddesi": "ram-dort-katman",
+    "kaynak": [
+      "Funder 1995",
+      "Simons & Chabris 1999",
+      "Konnikova"
+    ],
+    "ramKatmani": 3
+  },
+  {
+    "id": "sahte-itiraf-kabulu",
+    "ad": "Sahte itirafı kabul etme",
+    "aciklama": "Baskı altında verilen itirafı bağımsız delille doğrulamadan kanıt saydın; itiraf eden masumdu.",
+    "kilavuzMaddesi": "suclayici-ton",
+    "kaynak": [
+      "Navarro",
+      "Vrij 2010 PSPI"
+    ],
+    "ramKatmani": 4
+  },
+  {
+    "id": "gecersiz-gizli-bilgi-testi",
+    "ad": "Geçersiz gizli bilgi testi",
+    "aciklama": "Basına sızmış ya da dedikoduyla yayılmış ayrıntıyla gizli bilgi testi yaptın; masum da tanıma tepkisi verir.",
+    "kilavuzMaddesi": "gizli-bilgi-testi",
+    "kaynak": [
+      "Vrij & Verschuere 2014"
+    ],
+    "ramKatmani": 1
+  }
 ]

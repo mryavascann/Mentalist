@@ -186,3 +186,33 @@
 **Geliştirme fikirleri:**
 - Sahnelenmiş delil (`sahnelenmis: true`, failin olay sonrası dilimde yerleştirdiği) → Norwood şablonu; tek fiziksel tutarsızlıkla çöker.
 - Kontaminasyon kaydı puanlamada "bu ayrıntıyı ilk kim söyledi?" olarak oyuncuya gösterilir.
+
+## [2026-09-16 03:30] Ajan #1 — Çözülebilirlik, puanlama, denge botları → Aşama 1 kapandı
+**Görev:** Aşama 1'in son üç tuğlası; motorun "bilimsel sadakat + denge" iddiasını sayılarla kanıtlamak.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/motor/cozulebilirlik.ts`: `cozulebilirlikDenetle` (taze Sorgu klonunda; sinyaller: delil çelişkisi 3, görgü tanığı 4, geçerli CIT 2, beklenmedik soru 1, SVT 1; fail puanı ≥2 ve tek başına önde → çözülebilir), zorluk (kaçamak +.2, sızıntı +.15, koruma +.15, görgü tanığı −.2, çoklu şüpheli +.1, iyi yalancı +.1, dijital delil −.1), `vakaUretCozulebilir` (seed#n türevleri), `oruntuDenetle` (13 özellik Pearson r + üç kestirme).
+- `src/motor/puan.ts`: temel puan (doğru 100 / suç varken "suç yok" 25 / masumu suçlama 0), Brier kalibrasyon, cezalar (erken delil −10, tanık kirletme −5, sahte itiraf kabulü −40, geçersiz CIT −5, baskı −3, zaman aşımı −2/saat), bonuslar (SUE çelişkisi +10, geçerli CIT +10), otomatik etiketler (aşırı özgüven, Othello, doğruluk yanlılığı, sahte itiraf kabulü, ipucu erişilemez, tek ipucu, erken delil, tanık kirletme, geçersiz CIT) → `calisilacakKilavuz`.
+- `src/motor/botlar.ts`: ipucu botu, yöntem botu (olay yeri delilleri → SUE sırası → CIT → beklenmedik soru → SVT → tanık), inanan, şüpheci. Botlar gizli etiketleri görmez.
+- Kalıp kırıcı düzeltmeler: failin sır olasılığı masumla eşitlendi (.45); delil katmanına "tuzak masum izi" eklendi (fail ile aynı iz profili) → "en çok delili olan fail" kestirmesi .33.
+- `hata_etiketleri.json`: `sahte-itiraf-kabulu`, `gecersiz-gizli-bilgi-testi` eklendi (20 etiket).
+
+**Ölçümler:** DURUM.md "Biten işler" bölümünde.
+
+**Değişen dosyalar:** src/motor/{cozulebilirlik,puan,botlar,sirlar,delil}.ts, src/icerik/hata_etiketleri.json, tests/motor/{cozulebilirlik,puan}.test.ts, tests/denge/botlar.test.ts, docs/{DURUM,YOL_HARITASI,AJAN_GUNLUGU}.md.
+
+**Testler:** 161 geçti / 0 kaldı (komut: `npm test`, ~25 sn). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Numaralı karar yok.
+
+**Sorunlar / riskler:**
+- Metodik oyuncu için oyun şu an kolay (yöntem botu 1.00). Bu, motorun tutarlılığını kanıtlar ama dikey dilim sonrası zorlaştırıcı gerekecek (kaçamak oranı, korkuyla susan tanık, sahnelenmiş delil, sızıntı). Kullanıcı kararı bekleniyor (DURUM.md açık karar 2).
+- Denge testi ~20 sn; büyürse `tests/denge` ayrı komuta alınabilir.
+
+**Yarım kalanlar:** Yok. Aşama 1 kapalı.
+
+**Sıradaki ajan için:** Aşama 2: 1) dil katmanı (`src/motor/dil/`), 2) React ekran iskeleti, 3) Kılavuz + Forer + kayıt + Playwright (DURUM.md).
+
+**Geliştirme fikirleri:**
+- `oruntuDenetle` çıktısını `npm run oruntu` komutuyla rapor olarak yazdırmak.
+- Zorluk seçici: `vakaUretCozulebilir(seed, { hedefZorluk })` — kör nokta profiline göre adaptif üretim (Aşama 3).

@@ -10,7 +10,7 @@
 - [x] İçerik şemaları: tipler + doğrulayıcı + 6 JSON kütüğü + 16 içerik testi (2026-09-16, Ajan #1)
 - [x] Açık kararlar için kullanıcıdan yanıt → K-007…K-012 (2026-09-16)
 
-## Aşama 1 — Motor (UI yok, tamamı testli)
+## Aşama 1 — Motor (UI yok, tamamı testli) — TAMAMLANDI 2026-09-16
 - [x] `ortak/rastgele`: seedli RNG + dağılım yardımcıları + alt akışlar, 14 test (2026-09-16, Ajan #1)
 - [x] Tipler v0: Kişi, İlişki, Borç, Zaman çizelgesi, Olay, Vaka (2026-09-16, Ajan #1) — Delil ve İfade tipleri sonraki katmanlarda
 - [x] Doğruluk grafiği v0: mekân, kişiler, ilişki/borç grafiği, olay çekirdeği, gerçek zaman çizelgesi, 18 test (2026-09-16, Ajan #1)
@@ -19,12 +19,12 @@
 - [x] NPC konuşma stratejisi + yalan defteri: 8 ifade türü, 18 test (2026-09-16, Ajan #1)
 - [x] İpucu kataloğu + olasılıksal ipucu üretimi (masumlar da üretir; mit ipuçları kaymaz; ipucu botu şansa yakın), 11 test (2026-09-16, Ajan #1)
 - [x] Delil üretimi: fail izi, yöntem delili, "beklenen ama olmayan", gürültü izleri, çelişki hesabı, 12 test (2026-09-16, Ajan #1)
-- [ ] Kırmızı ringa üretici (gergin masum, sahte anı, bellek uyumu, çoğulcu cehalet)
-- [ ] Çözülebilirlik denetçisi (tek çözüm, zorluk puanı)
-- [ ] Örüntü denetçisi (binlerce seed; failin yüzeysel özelliklerle korelasyonu ≈ 0)
+- [x] Kırmızı ringa: gergin masum (sirlar), bellek uyumu (bilgi), sahte anı (teknik: yönlendirici/yem), tuzak delil (delil) — dağıtık olarak kuruldu; çoğulcu cehalet Aşama 3 (2026-09-16, Ajan #1)
+- [x] Çözülebilirlik denetçisi + zorluk + `vakaUretCozulebilir`, 10 test (2026-09-16, Ajan #1)
+- [x] Örüntü denetçisi: 13 özellik, 800 vaka, en büyük |r|=.032 (2026-09-16, Ajan #1)
 - [x] Soru/teknik motoru: 12 teknik (SUE sırası, bilişsel yük, beklenmedik soru, CIT, SVT, yönlendirici + kontaminasyon, suçlayıcı ton + sahte itiraf…), 19 test (2026-09-16, Ajan #1)
-- [ ] Puanlama + güven kalibrasyonu
-- [ ] Denge botları (sadece beden dili / yöntem / hepsine inanan / herkese yalancı) → yöntem botu belirgin şekilde üstün olmalı
+- [x] Puanlama + Brier kalibrasyonu + otomatik hata etiketleri (20 etiket), 14 test (2026-09-16, Ajan #1)
+- [x] Denge botları: yöntem 1.00 / ipucu .28 / inanan .12 / şüpheci .20, 5 test (2026-09-16, Ajan #1)
 
 ## Aşama 2 — Dikey dilim
 - [ ] 1 vaka tipi, 5 kişi

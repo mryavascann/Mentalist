@@ -98,6 +98,22 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
     }
   }
 
+  // 1b) Tuzak masum izi: rastgele bir masum da olay anında (bulunduğu yerde) fail ile aynı iz profilini bırakır.
+  //     Aksi halde "en çok delili olan fail" kalıbı doğar (örüntü denetçisi). Masum olay odasındaysa iz orada olur.
+  const tuzakAdaylari = vaka.kisiler.filter((k) => k.hayatta && k.id !== olay.kurban && k.id !== olay.fail);
+  if (tuzakAdaylari.length > 0) {
+    const tuzak = r.sec(tuzakAdaylari);
+    const oda = vaka.zamanCizelgesi.find((z) => z.kisi === tuzak.id && z.dilim === olay.dilim)!.oda;
+    if (!zatenVar(tuzak.id, olay.dilim)) deliller.push(konumDelili(tuzak.id, olay.dilim, oda, r.sans(0.25) ? 'dijital' : 'fiziksel'));
+    if (r.sans(0.3)) {
+      const komsu = r.sans(0.5) ? olay.dilim - 1 : olay.dilim + 1;
+      if (komsu >= 0 && komsu < vaka.dilimler.length && !zatenVar(tuzak.id, komsu)) {
+        const komsuOda = vaka.zamanCizelgesi.find((z) => z.kisi === tuzak.id && z.dilim === komsu)!.oda;
+        deliller.push(konumDelili(tuzak.id, komsu, komsuOda));
+      }
+    }
+  }
+
   // 2) Yöntem delili.
   if (olay.fail) {
     deliller.push({

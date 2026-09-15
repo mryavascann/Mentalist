@@ -1,6 +1,7 @@
 // Sırlar ve koruma ilişkileri.
 //
-// Gerçekçi vakada herkesin saklayacak bir şeyi olabilir; çoğu suçla ilgisizdir. Bu katman:
+// Gerçekçi vakada herkesin saklayacak bir şeyi olabilir; çoğu suçla ilgisizdir. Fail de masumla aynı
+// olasılıkla alakasız sır taşır (kalıp kırıcı ilke). Bu katman:
 //   - suçla ilgisiz sırlar üretir (gizli ilişki, gizli ziyaret, borç, iş kaybı, bağımlılık, sabıka)
 //     → "gergin masum": Othello hatasının ana kaynağı (Ekman; Navarro'nun bekçi vakası),
 //   - koruma ilişkileri üretir: borç (Cialdini karşılıklılık), aile/eş/sevgili sadakati, ortak sır
@@ -73,7 +74,8 @@ export function sirlarUret(vaka: Vaka): SirKatmani {
   // 1) Sırlar
   for (const k of adaylar) {
     if (mesgul.has(k.id)) continue;
-    const p = k.id === olay.fail ? 0.3 : 0.45;
+    // Fail ve masum için AYNI olasılık: aksi halde "sırrı olan masumdur" kalıbı doğar (örüntü denetçisi).
+    const p = 0.45;
     if (!r.sans(p)) continue;
     let sablon = r.agirlikliSec(SIR_AGIRLIKLARI.map((s) => ({ deger: s, agirlik: s.agirlik })));
     let ortak: KisiId | undefined;
