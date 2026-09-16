@@ -124,7 +124,8 @@ export function SorguOdasi() {
             <h3>Teknikler</h3>
             <div className="dugmeler">
               {['temel-cizgi', 'acik-uclu-anlatim', 'bilissel-yuk-ters-sira', 'seytanin-avukati', 'suclayici-ton'].map((id) => (
-                <button key={id} title={teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {teknik(id).maliyet.zaman}s</button>
+                // Şeytanın avukatı v0'da uygulanamaz (görüş/niyet soruları yok); düğme kapalı, Kılavuz maddesi okunabilir.
+                <button key={id} disabled={id === 'seytanin-avukati'} title={id === 'seytanin-avukati' ? `${teknik(id).nasil} (Bu sürümde uygulanamaz: görüş/niyet soruları yok. Kılavuz'da oku.)` : teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {teknik(id).maliyet.zaman}s</button>
               ))}
             </div>
             <div className="satirici">

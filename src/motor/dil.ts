@@ -255,6 +255,37 @@ export function vakaBrifingi(vaka: Vaka): string {
   return `${vaka.mekan.ad}. Akşam ${ilk}–${son} arası. ${kurban.ad} ${OLAY_METNI[vaka.olay.tur]}; olay yeri ${bulunma(oda)}, saat ${saat} civarı.${ek} ${gorusulebilir} kişiyle görüşülebilir. Herkes o akşam oradaydı.`;
 }
 
+/** Ardışık aynı oda + aynı kategori dilimlerinde kullanılan kısa devam kalıpları (anlatım tekrarını kırar). */
+const DEVAM_SABLONLARI: Record<'dogru' | 'diger', string[]> = {
+  dogru: ['Hâlâ {odaB}; {eylem}.', 'Oradan ayrılmadım; {eylem}.', 'Aynı yerdeydim, {eylem}.', 'Yine {odaB}, {eylem}.'],
+  diger: ['Aynı yerdeydim.', 'Oradan çıkmadım.', 'Değişen bir şey yok.', 'Hâlâ oradaydım.'],
+};
+
+/**
+ * Serbest anlatım satırları (açık uçlu / ters sıra): her dilime bir cümle. Kişi ardışık dilimlerde aynı odada
+ * kalıyor ve aynı ifade kategorisindeyse tam kalıp yerine kısa bir devam cümlesi kurulur; böylece
+ * "Saate bakmıştım, 20:00 civarıydı" sekiz kez tekrarlanmaz. Yalan kategorilerinde devam cümlesi oda/eylem
+ * vermez (kalıp yalnızca dürüst anlatımda eylem taşır). Sıra (ileri/geri) ne olursa olsun çalışır.
+ */
+export function anlatimSatirlari(vaka: Vaka, cevaplar: readonly Cevap[], uslup: KisiUslubu, bellek: VaryantBellegi): string[] {
+  const satirlar: string[] = [];
+  for (let i = 0; i < cevaplar.length; i++) {
+    const cevap = cevaplar[i]!;
+    const onceki = i > 0 ? cevaplar[i - 1]! : null;
+    const devam = !!onceki && cevap.soru.tur === 'konum' && cevap.icerik !== null && cevap.icerik === onceki.icerik && kategori(cevap) === kategori(onceki);
+    if (!devam) { satirlar.push(basHarfBuyut(cevapMetni(vaka, cevap, uslup, bellek))); continue; }
+    const kat = kategori(cevap) === 'kendi-dogru' ? 'dogru' : 'diger';
+    const havuz = DEVAM_SABLONLARI[kat];
+    const r = new Rastgele(`${vaka.seed}/dil-devam/${cevap.kisi}/${soruAnahtari(cevap.soru)}`);
+    const sablon = havuz[bellek.sec(`${cevap.kisi}:devam-${kat}`, havuz.length, r)]!;
+    const dilim = (cevap.soru as { dilim: number }).dilim;
+    const odaAd = vaka.mekan.odalar.find((o) => o.id === cevap.icerik)?.ad ?? '';
+    const eylem = birinciTekil(vaka.zamanCizelgesi.find((z) => z.kisi === cevap.kisi && z.dilim === dilim)?.eylem ?? 'bekliyordu');
+    satirlar.push(basHarfBuyut(sablon.replace(/\{odaB\}/g, bulunma(odaAd)).replace(/\{eylem\}/g, eylem)));
+  }
+  return satirlar;
+}
+
 /** Kişi kartı metni (oyuncuya görünen kısım; gizli parametreler yok). */
 export function kisiKarti(vaka: Vaka, kisiId: KisiId): string {
   const k = vaka.kisiler.find((x) => x.id === kisiId)!;

@@ -1,6 +1,6 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 21:25, Ajan #2.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 22:00, Ajan #2.
 
 ## Aktif aşama
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
@@ -17,12 +17,13 @@
 - **Regresyon seed'leri** (`tests/regresyon/seedler.test.ts`): 6 seed anlık görüntü; üretim bilerek değişince güncellenir ve günlüğe yazılır.
 - **İpucu kataloğu:** 19 ipucu; Navarro saha ipuçları `zayif`. İçerik testi: her bölümde ≥3 madde, ≥12 bölüm, ≥60 madde.
 - **Metin kalitesi 2 (21:25):** ipuçlarında `temelBetimlemeler` (temel çizgi sohbeti alışkanlık dilinde; `ipucuUret baglam`), yabancı adlarda ek okunuşa göre (`turkce.ts OKUNUS`), kişi kartında rolle uyumlu ilişki cümlesi (`iliski_notu.ts`, `Kisi.iliskiNotu`; ayrı RNG akışı, regresyon seed'leri korunur).
+- **Teknik çıktıları kalite turu (22:00):** SUE tanık ifadesine de uygulanır (koruma yalanı delille çelişir); oda eşyaları vaka içinde tekil (havuzlar 8–12, `temelEsyalar` + kaydırma); serbest anlatımda aynı odada kalınan ardışık dilimler kısa devam cümlesi (`dil.ts anlatimSatirlari`); uygulanamayan teknik zaman düşmez, şeytanın avukatı düğmesi kapalı.
 - **Görseller (Higgsfield, 2026-09-16):** 122 WebP `assets/` altında (56 portre + 4 takım, 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer); `src/arayuz/gorseller.ts` kütük + seed'li portre eşlemesi (cinsiyet/yaş uyumlu, faille ilişkisiz); ekranlara bağlı (başlık, vaka açılışı, sorgu, Kılavuz, tatbikat, Analiz, Pano, suçlama, Forer, Watson). `Portre.tsx` görsel yoksa siluete düşer. Kayıt: `assets/KAYIT.md`. 6 test.
 
 ## Sıradaki 3 iş
 1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
 2. **Boyut (isteğe bağlı):** dist 6 MB; gerekirse portre 384² / oda q50 ile ~4 MB. Higgsfield kredisi 0.
-3. **Gözle kalite turu (devam):** teknik çıktıları (SUE, bilişsel yük, yönlendirici soru, açık uçlu anlatım, Watson, takım sahnesi) henüz gözle okunmadı; geçici döküm testi yaz (günlük 21:25 kaydı), oku, tuhaflıkları test+kodla düzelt.
+3. **Gözle kalite turu (devam):** Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; geçici döküm testi yaz (günlük 22:00 kaydı yöntemi), oku, düzelt. Ayrıca `teknikler.json` SUE "nasil" metnine ve Kılavuz SUE maddesine tanık kullanımı notu.
 4. **Küçük fikirler:** ilişki notunu sorguda sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ; takım sahnesinde oyuncunun kısa cevap seçmesi.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
@@ -39,13 +40,16 @@
 - **20:20:** tarayıcı ekran kontrolü (Playwright Chromium kurulu) temiz; iç ses seçicisi taşması düzeltildi; rol tutarlılığı kuralları (`havuzlar.ts uygunRoller`: anne/baba, meslek yaşı, üvey çocuk/yeğen). 2 test.
 - **21:00:** içerik kalitesi — Türkçe ekler (delil/takım metinleri, `turkce.ts` özel ad kuralı), gözlem tekilleştirme/sınır (`depo gozlemOzeti`), rol tekilliği + anne/baba/kardeş soyadı, cevap büyük harf. 4 test.
 - **21:25 (Ajan #2):** temel çizgi betimlemeleri (3 test), yabancı ad ekleri okunuşa göre (+1), kişi kartı ilişki cümlesi (1 test).
-- `npm test`: 45 dosya, 327 test geçti (2026-09-16 21:25). Süre ~10 sn (paralel).
+- **22:00 (Ajan #2):** SUE tanık, oda eşyası tekilliği, anlatım devam cümlesi, uygulanamayan teknik zamanı (`kalite2.test.ts`, 4 test); iki eski test yeni kurala uyarlandı.
+- `npm test`: 45 dosya, 330 test geçti (2026-09-16 22:00). Süre ~10 sn (paralel).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
 - Bash heredoc'ta uzun Python/Markdown kırılıyor (kaçış karakterleri de bozuluyor); yamaları Write aracıyla scratchpad `.py` olarak yaz, sonra çalıştır (`PYTHONIOENCODING=utf-8`). JSON yaması dosyayı indent=2 ile yeniden biçimler (mevcut biçimle aynı).
 - Testlerde JS regex: `\b` Türkçe harfte (ş, ü) sınır değil; `/i` bayrağı İ↔i eşlemez. Sözcük bölme ve açık desen (`/İkiz|ikiz/`) kullan.
+- Döküm betiğinde `depo.durum` referansını saklama: `bildir()` nesneyi yeniler; her okumada `depo.durum` üzerinden git.
+- Oda eşyası havuzuna madde eklerken vaka içi tekillik kişi sırasına göre dağıtımla sağlanır; havuz ≥ kişi sayısı (8) olsun. Yeni anlatım kalıbı eklerken devam kalıpları (`dil.ts DEVAM_SABLONLARI`) yalan kategorisinde oda/eylem vermez.
 - Yeni ipucu eklerken `betimlemeler` (sorgu, anlatım odaklı olabilir) ve `temelBetimlemeler` (tarafsız sohbet, alışkanlık dili; soru/cevap/hikâye sözcükleri yasak) birlikte yazılır. Yeni yabancı ad eklerken yazımı okunuşundan sapıyorsa `turkce.ts OKUNUS` tablosuna ekle.
 - Higgsfield CLI global kurulu (`higgsfield --version`), giriş tarayıcıdan (`higgsfield auth login`); skill'ler proje içinde `.agents/skills/` (git dışı).
 - Depo tekildir; testler `depo.sifirla()` ile izole edilir. Playwright Chromium kurulu; ekran görüntüsü için `dist/index.html`'i file:// ile aç (betik örneği günlükte 20:20 kaydı).

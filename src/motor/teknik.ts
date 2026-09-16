@@ -156,7 +156,10 @@ export function teknikUygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: Te
   const teknik = ICERIK.teknikler.find((t) => t.id === teknikId);
   if (!teknik) throw new Error(`Bilinmeyen teknik: ${teknikId}`);
   const sonuc = uygula(sorgu, kisi, teknikId, p);
-  sorgu.zaman += teknik.maliyet.zaman;
+  // Uygulanamayan teknik (şeytanın avukatı v0'da, kayıt yokken iç ses / kayıt inceleme) zaman düşmez:
+  // oyuncu bir şey öğrenmediği adım için cezalandırılmaz.
+  const uygulanamadi = 'uygulanamaz' in sonuc && sonuc.uygulanamaz === true;
+  if (!uygulanamadi) sorgu.zaman += teknik.maliyet.zaman;
   sorgu.gecmis.push({ kisi, teknik: teknikId, ozet: ozetle(sonuc) });
   return sonuc;
 }
@@ -220,13 +223,17 @@ function uygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: TeknikParametre
     case 'sue': {
       const delil = sorgu.deliller.find((d) => d.id === p.delilId);
       if (!delil || delil.gosterir.tur !== 'konum') throw new Error('SUE için konum gösteren bir delil gerekir');
-      const { dilim } = delil.gosterir;
-      const soru: Soru = { tur: 'konum', hedef: kisi, dilim };
+      const { dilim, kisi: hedef } = delil.gosterir;
+      // Delil kişinin kendisi hakkındaysa kendi konumu, başkası hakkındaysa "X'i nerede gördün?" sorulur.
+      // SUE mantığı tanık ifadesine de uygulanır: koruma yalanı ("benimleydi") kamera kaydıyla çelişebilir.
+      const soru: Soru = { tur: 'konum', hedef, dilim };
       const anahtar = `${kisi}|${soruAnahtari(soru)}`;
-      const erkenGosterildi = !!gosterilmisKonumDelili(sorgu, kisi, dilim) && !durum.defter.has(anahtar);
+      // Erken gösterim: kendi konumu için o dilime ait herhangi bir konum delili; tanık sorusunda bu delilin kendisi.
+      const dahaOnceAcilmis = hedef === kisi ? !!gosterilmisKonumDelili(sorgu, kisi, dilim) : (sorgu.gosterilen.get(kisi)?.has(delil.id) ?? false);
+      const erkenGosterildi = dahaOnceAcilmis && !durum.defter.has(anahtar);
       const once = sor(sorgu, kisi, soru); // 1–2: delili açmadan anlattır
       delilGoster(sorgu, kisi, delil.id);   // 3: delili aç
-      const celiski = delil.gosterir.kisi === kisi && once.cevap.icerik !== null && once.cevap.icerik !== delil.gosterir.oda;
+      const celiski = once.cevap.icerik !== null && once.cevap.icerik !== delil.gosterir.oda;
       return { teknik: 'sue', once, delil, celiski, erkenGosterildi };
     }
 

@@ -80,8 +80,12 @@ describe('OyunDeposu — akış', () => {
     const delil = depo.durum.sorgu!.deliller.find((d) => d.gosterir.tur === 'konum')!;
     for (const t of ICERIK.teknikler) {
       const once = depo.durum.zaman;
-      depo.teknik(t.id, { dilim: 1, delilId: delil.id, konu: 'olay-yontemi', onerilenOda: depo.durum.sorgu!.durum.vaka.mekan.odalar[0]!.id, uydurmaAd: 'Cemil Aktaş' });
-      expect(depo.durum.zaman).toBeGreaterThan(once);
+      const sonuc = depo.teknikSonucu(t.id, { dilim: 1, delilId: delil.id, konu: 'olay-yontemi', onerilenOda: depo.durum.sorgu!.durum.vaka.mekan.odalar[0]!.id, uydurmaAd: 'Cemil Aktaş' })!;
+      expect(sonuc).not.toBeNull();
+      // Uygulanamayan teknik (şeytanın avukatı v0, tahminsiz iç ses) zaman düşmez; diğerleri zamanı artırır.
+      const uygulanamadi = 'uygulanamaz' in sonuc && sonuc.uygulanamaz === true;
+      if (uygulanamadi) expect(depo.durum.zaman).toBe(once);
+      else expect(depo.durum.zaman).toBeGreaterThan(once);
     }
     const k = depo.durum.konusmalar.get(kisi.id)!;
     expect(k.filter((x) => x.tur === 'teknik').length).toBe(ICERIK.teknikler.length);

@@ -37,7 +37,9 @@ describe('sorguBaslat / sor / zaman', () => {
     for (const t of ICERIK.teknikler) {
       const sonuc = teknikUygula(q, k, t.id, { dilim: 2, delilId: q.deliller[0]!.id, konu: 'olay-yontemi', onerilenOda: q.durum.vaka.mekan.odalar[0]!.id, uydurmaAd: 'Cemil Aktaş' });
       expect(sonuc.teknik).toBe(t.id);
-      beklenen += t.maliyet.zaman;
+      // Uygulanamayan teknik (şeytanın avukatı v0) zaman düşmez; diğerleri maliyetini ekler.
+      const uygulanamadi = 'uygulanamaz' in sonuc && sonuc.uygulanamaz === true;
+      if (!uygulanamadi) beklenen += t.maliyet.zaman;
       expect(q.zaman).toBeCloseTo(beklenen, 5);
     }
     expect(q.gecmis.length).toBe(ICERIK.teknikler.length);

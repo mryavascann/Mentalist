@@ -75,85 +75,173 @@ export interface OdaOkumasi {
 const SIR_KALINTILARI: Record<SirTuru, { tur: EsyaTuru; betimlemeler: string[]; ima: string }> = {
   'gizli-iliski': {
     tur: 'kalinti-ic',
-    betimlemeler: ['İki fincan, ikisi de yıkanmamış; yastığın altında ona ait olmayan bir çakmak.', 'Lavaboda iki diş fırçası; dolapta ona küçük gelecek bir ceket.'],
+    betimlemeler: ['İki fincan, ikisi de yıkanmamış; yastığın altında ona ait olmayan bir çakmak.', 'Lavaboda iki diş fırçası; dolapta ona küçük gelecek bir ceket.', 'Telefon ekranı hep aşağı dönük; çekmecede küçük, açılmamış bir hediye paketi.', 'Yatak odasında iki farklı parfüm; yalnızca biri onun.'],
     ima: 'Biriyle gizlice görüşüyor olabilir: "o akşam kiminleydin?" diye sor. Sır ≠ suç.',
   },
   'gizli-ziyaret': {
     tur: 'kalinti-dis',
-    betimlemeler: ['Ceketin cebinde başka bir semtin otobüs bileti; ayakkabıda taze çamur.', 'Masada sonradan buruşturulmuş bir adres notu; anahtarlıkta tanımadığın bir anahtar.'],
+    betimlemeler: ['Ceketin cebinde başka bir semtin otobüs bileti; ayakkabıda taze çamur.', 'Masada sonradan buruşturulmuş bir adres notu; anahtarlıkta tanımadığın bir anahtar.', 'Otopark makbuzu, tanımadığın bir semtten; ceket cebinde katlanmış bir kroki.', 'Ayakkabılıkta tek çift çamurlu bot; diğerleri pırıl pırıl.'],
     ima: 'Söylemediği bir yere gitmiş: nereye, kimi görmeye? Sır ≠ suç.',
   },
   'gizli-borc': {
     tur: 'kalinti-dis',
-    betimlemeler: ['Çekmecede el yazısıyla vade tarihleri; açılmamış banka zarfları.', 'Rehin dükkânı makbuzu; boş bir mücevher kutusu.'],
+    betimlemeler: ['Çekmecede el yazısıyla vade tarihleri; açılmamış banka zarfları.', 'Rehin dükkânı makbuzu; boş bir mücevher kutusu.', 'Kesilmiş kredi kartı parçaları çöpte; masada ödeme planı hesapları.', 'Duvarda boş bir çerçeve; satılmış bir tablonun izi hâlâ solgun.'],
     ima: 'Para sıkıntısı saklıyor: sorulacak konu, suçun kanıtı değil. Sır ≠ suç.',
   },
   'is-kaybi': {
     tur: 'kalinti-dis',
-    betimlemeler: ['Ütülü gömlekler hazır ama takvimde iki haftadır boş günler; kartvizitlerin yarısı çöpte.', 'Masada açık iş ilanları; şirket kimlik kartı çekmecenin dibinde.'],
+    betimlemeler: ['Ütülü gömlekler hazır ama takvimde iki haftadır boş günler; kartvizitlerin yarısı çöpte.', 'Masada açık iş ilanları; şirket kimlik kartı çekmecenin dibinde.', 'Şirket rozeti çekmecede, kordonu kesilmiş; masada özgeçmiş taslakları.', 'Takım elbise askıda naylonuyla; ajandada \'toplantı\' yazılı ama boş saatler.'],
     ima: 'İşiyle ilgili bir şey saklıyor: "işler nasıl?" diye sor, cevabı temel çizgiyle kıyasla. Sır ≠ suç.',
   },
   bagimlilik: {
     tur: 'kalinti-ic',
-    betimlemeler: ['Dolabın arkasında boş şişeler; ağız spreyi ve naneli şeker paketleri.', 'Reçetesiz ilaç kutuları; sürekli yenilenen bir su sürahisi.'],
+    betimlemeler: ['Dolabın arkasında boş şişeler; ağız spreyi ve naneli şeker paketleri.', 'Reçetesiz ilaç kutuları; sürekli yenilenen bir su sürahisi.', 'Çekmecede birden fazla eczaneden alınmış aynı ilaç; fişler farklı tarihli.', 'Buzdolabında yalnızca içecek; tezgâhta açılmamış yemek paketleri.'],
     ima: 'Bir bağımlılığı saklıyor olabilir: gerginliğinin kaynağı bu olabilir (Othello). Sır ≠ suç.',
   },
   sabika: {
     tur: 'kalinti-dis',
-    betimlemeler: ['Kilitli küçük bir kutu; eski tarihli, resmi görünüşlü bir zarf.', 'Başka bir şehirden gelmiş avukat mektubu; sayfaları çok kez katlanmış.'],
+    betimlemeler: ['Kilitli küçük bir kutu; eski tarihli, resmi görünüşlü bir zarf.', 'Başka bir şehirden gelmiş avukat mektubu; sayfaları çok kez katlanmış.', 'Parmak izi mürekkebi izi taşıyan eski bir kart; dosya dolabında \'kapandı\' yazılı klasör.', 'Bir kefalet bürosunun kartviziti; takvimde düzenli aralıklarla aynı harfle işaretlenmiş günler.'],
     ima: 'Geçmişinde sakladığı bir şey var: sabıka gerginlik yaratır, suç kanıtı değildir. Sır ≠ suç.',
   },
 };
 
-const SICAK_ODA = ['Oda sıcak ve dekore: duvarda fotoğraflar, iki misafir koltuğu, masada ikramlık.', 'Kapı açık; içeride konuk sandalyeleri, duvarda konser afişleri, radyo çalıyor.', 'Davetkâr bir köşe: kilim, minderler, yarısı dolu bir ziyaretçi defteri.'];
-const CIPLAK_ODA = ['Oda çıplak: tek sandalye, duvarda hiçbir şey, kapı hep kapalı.', 'Masada tek bir kalem ve defter; konuk oturacak yer yok.', 'Perdeler çekili, tek kişilik düzen; her şey kendine dönük.'];
-const KAYGI_KALINTISI = ['Komodinde papatya çayı kutuları ve uyku damlası; not defterinde üstü çizilip yeniden yazılmış listeler.', 'Kapının arkasında iki ayrı kilit; takvimde her randevu üç kez işaretlenmiş.', 'Masada tırnakla oyulmuş bir silgi; ilaç dolabında sakinleştirici bitki çayları.'];
-const SAHNE = ['Kitaplık kusursuz dizilmiş, ama raftaki toz izleri kitapların dün yerinden oynatıldığını söylüyor.', 'Masada açık bir felsefe kitabı; sırtı hiç kırılmamış, sayfa köşeleri dümdüz.', 'Çerçeveli takdir belgeleri tam göz hizasında; arkalarındaki boya duvarın kalanından açık, yeni asılmış.'];
-const BASKALARINA_IDDIA = ['Masanın üstünde konuklara dönük diploma ve ödül; kişisel hiçbir şey görünürde değil.', 'Girişte özenle sergilenmiş sertifikalar; çalışma masası ise bomboş.'];
-const TUZAK = ['Renkli minderler, neşeli bir tablo, pencerede taze çiçek.', 'Duvarda gülümseyen aile fotoğrafları, masada şekerleme kâsesi.', 'Yumuşak ışık, rahat koltuk, kapıda el yapımı "hoş geldiniz" yazısı.'];
+const SICAK_ODA = [
+  'Oda sıcak ve dekore: duvarda fotoğraflar, iki misafir koltuğu, masada ikramlık.',
+  'Kapı açık; içeride konuk sandalyeleri, duvarda konser afişleri, masada açık bir çikolata kutusu.',
+  'Masanın karşısında iki koltuk; duvarda arkadaşlarla çekilmiş fotoğraflar, rafta oyun kutuları.',
+  'Girişte "hoş geldin" paspası; içeride müzik açık, yanında ikinci bir fincan hazır.',
+  'Renkli duvarlar, üst üste davetiye kartları, masada herkesin alabileceği bir şeker kavanozu.',
+  'Kapı hep aralık; içeride büyük bir masanın etrafına dizilmiş beş sandalye, duvarda grup fotoğrafları.',
+  'Pencere önünde iki kişilik kanepe, masada iki bardak, panoda etkinlik biletleri.',
+  'Oda kalabalık ve canlı: duvarda kartpostallar, rafta hediye paketleri, masada misafir defteri.',
+];
+const CIPLAK_ODA = [
+  'Oda çıplak: tek sandalye, duvarda hiçbir şey, kapı hep kapalı.',
+  'Masada tek bir kalem ve defter; konuk oturacak yer yok.',
+  'Perdeler çekili, ışık loş; duvarda tek bir takvim, o da geçen aydan.',
+  'Rafta sıraya dizili dosyalar, kişisel tek bir nesne yok; kapıda "rahatsız etmeyin" kartı.',
+  'Tek koltuk pencereye dönük; masada kulaklık, duvarda boş çiviler.',
+  'Oda küçük ve sessiz; kitaplar kapalı raflarda, masada yalnızca bir su bardağı.',
+  'Konuk sandalyesi dosyalarla dolu; duvarda çerçevesiz tek bir harita.',
+  'Kapı kilitli tutuluyor; içeride tek bir lamba ve yıpranmış bir okuma koltuğu.',
+];
+const KAYGI_KALINTISI = [
+  'Komodinde papatya çayı kutuları ve uyku damlası; not defterinde üstü çizilip yeniden yazılmış listeler.',
+  'Kapının arkasında iki ayrı kilit; takvimde her randevu üç kez işaretlenmiş.',
+  'Masada tırnakla oyulmuş bir silgi; ilaç dolabında sakinleştirici bitki çayları.',
+  'Çekmecede yedek şarj aleti, yedek anahtar, yedek ilaç; hepsi etiketli.',
+  'Yatak başında el feneri ve su; not defterinde "unutma" ile başlayan yarım sayfa.',
+  'Ajandada saatler dakikasına kadar yazılmış; kenarlara "geç kalma" notları.',
+  'Masa üstünde nefes egzersizi kartı; pencere kilidi ikinci bir mandalla desteklenmiş.',
+  'Telefonun yanında üç liste: yapılacaklar, yapılanlar, yapılamayanlar.',
+];
+const SAHNE = [
+  'Kitaplık kusursuz dizilmiş, ama raftaki toz izleri kitapların dün yerinden oynatıldığını söylüyor.',
+  'Masada açık bir felsefe kitabı; sırtı hiç kırılmamış, sayfaları yeni.',
+  'Duvarda yeni asılmış bir diploma; çivinin etrafındaki boya izi eski çerçevenin daha küçük olduğunu gösteriyor.',
+  'Çalışma masası düzenli ama çekmeceler tıka basa; yalnızca görünen yüzey düzenlenmiş.',
+  'Spor ekipmanı görünür yerde, etiketleri hâlâ üstünde.',
+  'Konuk koltuğunun önüne konmuş aile albümü; kapağında tek bir parmak izi yok.',
+  'Masada "Ziyaretçi" defteri; ilk sayfa dışında boş.',
+  'Rafta ödül kupaları öne, tozlu kutular arkaya alınmış; raf izleri yeni.',
+];
+const BASKALARINA_IDDIA = [
+  'Masanın üstünde konuklara dönük diploma ve ödül; kişisel hiçbir şey görünürde değil.',
+  'Girişte özenle sergilenmiş sertifikalar; çalışma masası ise bomboş.',
+  'Duvarda ünlü kişilerle çekilmiş fotoğraflar, hepsi kapıya bakan açıda.',
+  'Masada pahalı bir dolma kalem, hiç kullanılmamış; yanında kartvizitlik dolu.',
+  'Rafta sırtı okunmamış ciltli klasikler; kapıdan girenin ilk gördüğü yerde.',
+  'Kapı arkasında ayna değil, gelenlerin göreceği yerde bir başarı plaketi.',
+  'Konuk sandalyesinin karşısında bir gazete kesiği: kendi adı sarıyla çizilmiş.',
+  'Masada açık bırakılmış bir teşekkür mektubu; zarfı ortada yok.',
+];
+const TUZAK = [
+  'Renkli minderler, neşeli bir tablo, pencerede taze çiçek.',
+  'Duvarda gülümseyen aile fotoğrafları, masada şekerleme kâsesi.',
+  'Yumuşak ışık, kedili takvim, pencere kenarında el yapımı bir kupa.',
+  'Rafta çocuk resimleri, masada kurabiye kavanozu, kapıda hoş bir çan.',
+  'Pastel duvarlar, yastıkta nakışlı bir söz: "Her gün yeni bir başlangıç."',
+  'Küçük bir akvaryum, bitki dolu pencere kenarı, masada kart oyunu.',
+  'Duvarda motivasyon posteri, rafta el örgüsü battaniye, masada nane şekeri.',
+  'Kapı üstünde nazar boncuğu, içeride meyve tabağı ve gülümseyen bir çerçeve.',
+];
 const GURULTU: { betimleme: string; tur: EsyaTuru; ima: string }[] = [
   { betimleme: 'Pencere kenarında küçük bir çakıl taşı ve bir deniz kabuğu.', tur: 'kimlik-iddiasi-kendine', ima: 'Kendine yönelik kimlik iddiası (kişisel anlamlı nesne): ona bir şey ifade eder, sana bir şey söylemez.' },
   { betimleme: 'Yarım kalmış bir bulmaca ve soğumuş çay.', tur: 'kalinti-ic', ima: 'Tekrarlanan bir alışkanlığın kalıntısı; vakayla ilgisi yok.' },
   { betimleme: 'Raflarda şiir, astronomi ve aşçılık kitapları yan yana.', tur: 'kalinti-ic', ima: 'Kitap ÇEŞİTLİLİĞİ deneyime açıklığın geçerli ipucudur (miktar değil çeşitlilik); vakayla ilgisi yok.' },
   { betimleme: 'Askıda bir yağmurluk ve kullanılmış bir sinema bileti.', tur: 'kalinti-dis', ima: 'Dış davranış kalıntısı: dışarıda ne yaptığını gösterir; hangi gün olduğunu sorabilirsin.' },
+  { betimleme: 'Pencere pervazında yarısı okunmuş bir gazete ve bir okuma gözlüğü.', tur: 'kalinti-ic', ima: 'Tekrarlanan bir alışkanlığın kalıntısı; vakayla ilgisi yok.' },
+  { betimleme: 'Kapı arkasında bir şemsiye ve tozlu bir spor çantası.', tur: 'kalinti-dis', ima: 'Dış davranış kalıntısı; en son ne zaman kullanıldığını sorabilirsin.' },
+  { betimleme: 'Masada bir saksı bitkisi, altında sulama takvimi.', tur: 'kalinti-ic', ima: 'Düzenli bir alışkanlığın kalıntısı; vakayla ilgisi yok.' },
+  { betimleme: 'Rafta eski bir fotoğraf makinesi ve birkaç yabancı bozuk para.', tur: 'kimlik-iddiasi-kendine', ima: 'Kendine yönelik kimlik iddiası: kim olmak istediğini anlatır, o akşamı değil.' },
+  { betimleme: 'Masanın altında bir çift terlik; yanında yarısı bitmiş bir bulmaca kitabı.', tur: 'kalinti-ic', ima: 'Alışkanlık kalıntısı; vakayla ilgisi yok.' },
+  { betimleme: 'Duvarda bir konser bileti, tarihi geçen ay.', tur: 'kalinti-dis', ima: 'Dış davranış kalıntısı: geçen ay nerede olduğunu anlatır, o akşamı değil.' },
+  { betimleme: 'Pencere kenarında küçük bir kaktüs koleksiyonu.', tur: 'kimlik-iddiasi-kendine', ima: 'Kendine yönelik kimlik iddiası; suçla ilgisi yok.' },
+  { betimleme: 'Çekmecede eski bir harita ve bir pusula.', tur: 'kimlik-iddiasi-kendine', ima: 'Kendine yönelik kimlik iddiası: hayalini anlatır, hareketini değil.' },
 ];
 
-/** Bir kişinin odasını okur; seed + kişi ile deterministik. Sırrı olan tek bir sır kalıntısı bırakır. */
-export function odaOku(sorgu: Sorgu, kisi: KisiId): OdaOkumasi {
+/**
+ * Gürültü dışı eşyalar (kişilik, kaygı, sır, öz-izleme, tuzak) ve kişinin RNG'si.
+ * Ayrı fonksiyon: gürültü kaydırması için önceki kişilerin eşya sayısı da buradan hesaplanır.
+ */
+function temelEsyalar(sorgu: Sorgu, kisi: KisiId): { esyalar: Omit<OdaEsyasi, 'id'>[]; r: Rastgele } {
   const { vaka, sirKatmani } = sorgu.durum;
   const kayit = vaka.kisiler.find((k) => k.id === kisi)!;
   const r = new Rastgele(`${vaka.seed}/oda/${kisi}`);
   const esyalar: Omit<OdaEsyasi, 'id'>[] = [];
   const { disadonukluk, kaygi, ozIzleme } = kayit.kisilik;
+  // Vaka içinde tekillik: her havuz vaka düzeyinde bir kez karıştırılır ve kişi sırasına göre dağıtılır;
+  // böylece aynı vakada iki kişinin odasında aynı eşya ("gülümseyen aile fotoğrafları") çıkmaz.
+  // Havuzlar 8'er eşya, kişi sayısı en fazla 8. Kişilik/sır koşulları yine kişiye özel `r` ile atılır.
+  const kisiIndeks = Math.max(0, vaka.kisiler.findIndex((k) => k.id === kisi));
+  const secTekil = <T>(havuz: readonly T[], etiket: string, sira = kisiIndeks): T => {
+    const karisik = new Rastgele(`${vaka.seed}/oda-havuz/${etiket}`).karistir(havuz);
+    return karisik[sira % karisik.length]!;
+  };
 
   // 1) Dışadönüklük: sıcak/dekore oda geçerli ipucu (Gosling 2002: ofiste .24, davetkârlık ipucu).
-  if (disadonukluk > 0.65) esyalar.push({ betimleme: r.sec(SICAK_ODA), tur: 'kalinti-ic', konu: 'kisilik', gecerli: true, ima: 'Dışadönük: sıcak, dekore, davetkâr oda dışadönüklüğün geçerli ipucudur. Konuşkanlığı ve göz teması onun normali; suçla ilgisi yok.' });
-  else if (disadonukluk < 0.35) esyalar.push({ betimleme: r.sec(CIPLAK_ODA), tur: 'kalinti-ic', konu: 'kisilik', gecerli: true, ima: 'Çıplak, kendine dönük oda: içe dönük kişinin kalıntısı. Az konuşması, göz kaçırması onun normali; yalan ipucu değil.' });
+  if (disadonukluk > 0.65) esyalar.push({ betimleme: secTekil(SICAK_ODA, 'sicak'), tur: 'kalinti-ic', konu: 'kisilik', gecerli: true, ima: 'Dışadönük: sıcak, dekore, davetkâr oda dışadönüklüğün geçerli ipucudur. Konuşkanlığı ve göz teması onun normali; suçla ilgisi yok.' });
+  else if (disadonukluk < 0.35) esyalar.push({ betimleme: secTekil(CIPLAK_ODA, 'ciplak'), tur: 'kalinti-ic', konu: 'kisilik', gecerli: true, ima: 'Çıplak, kendine dönük oda: içe dönük kişinin kalıntısı. Az konuşması, göz kaçırması onun normali; yalan ipucu değil.' });
 
   // 2) Kaygı: yatak odasından duygusal denge orta düzeyde okunur (.36); gergin masum uyarısı.
-  if (kaygi > 0.65 && r.sans(0.8)) esyalar.push({ betimleme: r.sec(KAYGI_KALINTISI), tur: 'kalinti-ic', konu: 'kaygi', gecerli: true, ima: 'Kaygı eğilimi: gerginliği onun normali olabilir. Sorguda gerilirse Othello hatasına dikkat.' });
+  if (kaygi > 0.65 && r.sans(0.8)) esyalar.push({ betimleme: secTekil(KAYGI_KALINTISI, 'kaygi'), tur: 'kalinti-ic', konu: 'kaygi', gecerli: true, ima: 'Kaygı eğilimi: gerginliği onun normali olabilir. Sorguda gerilirse Othello hatasına dikkat.' });
 
   // 3) Sır kalıntısı: sırrı olan herkes (fail de masum da) tek bir iz bırakır. Sır ≠ suç.
   const sir = sirKatmani.sirlar.find((s) => s.kisi === kisi);
   if (sir) {
     const k = SIR_KALINTILARI[sir.tur];
-    esyalar.push({ betimleme: r.sec(k.betimlemeler), tur: k.tur, konu: 'sir', gecerli: true, ima: k.ima });
+    // Aynı sırrı taşıyanlar arasındaki sıra: iki kişi aynı sır türündeyse farklı kalıntı görürler.
+    const ayniSir = sirKatmani.sirlar.filter((x) => x.tur === sir.tur).map((x) => x.kisi);
+    esyalar.push({ betimleme: secTekil(k.betimlemeler, `sir-${sir.tur}`, Math.max(0, ayniSir.indexOf(kisi))), tur: k.tur, konu: 'sir', gecerli: true, ima: k.ima });
   }
 
   // 4) Öz-izleme: yüksekse oda izlenim için düzenlenmiş olabilir (sahnelenmiş) ya da başkalarına yönelik iddia taşır.
   //    Faille ilişkisi yok; sadece kişilikten. (Kalıp = hata.)
   if (ozIzleme > 0.65) {
-    if (r.sans(0.7)) esyalar.push({ betimleme: r.sec(SAHNE), tur: 'sahnelenmis', konu: 'sahne', gecerli: true, ima: 'Oda izlenim için düzenlenmiş: başkalarına yönelik stratejik iddia. Yüksek öz-izleme; okunması zor kişi. Dürüst görünme çabası suç kanıtı değildir.' });
-    else esyalar.push({ betimleme: r.sec(BASKALARINA_IDDIA), tur: 'kimlik-iddiasi-baskalarina', konu: 'iddia', gecerli: true, ima: 'Başkalarına yönelik kimlik iddiası: kendini nasıl göstermek istediğini söyler, ne olduğunu değil.' });
+    if (r.sans(0.7)) esyalar.push({ betimleme: secTekil(SAHNE, 'sahne'), tur: 'sahnelenmis', konu: 'sahne', gecerli: true, ima: 'Oda izlenim için düzenlenmiş: başkalarına yönelik stratejik iddia. Yüksek öz-izleme; okunması zor kişi. Dürüst görünme çabası suç kanıtı değildir.' });
+    else esyalar.push({ betimleme: secTekil(BASKALARINA_IDDIA, 'iddia'), tur: 'kimlik-iddiasi-baskalarina', konu: 'iddia', gecerli: true, ima: 'Başkalarına yönelik kimlik iddiası: kendini nasıl göstermek istediğini söyler, ne olduğunu değil.' });
   }
 
   // 5) Tuzak: "hoş oda = hoş insan" (uyumluluk doğruluğu −.04). Kişilikten bağımsız; herkesin odasında olabilir.
-  if (r.sans(0.6)) esyalar.push({ betimleme: r.sec(TUZAK), tur: 'kimlik-iddiasi-kendine', konu: 'tuzak', gecerli: false, ima: '"Hoş oda = hoş, uyumlu insan" halk inancı: Gosling 2002\'de geçersiz çıktı. Sevimli oda güven vermez; sevimsiz oda şüphe.' });
+  if (r.sans(0.6)) esyalar.push({ betimleme: secTekil(TUZAK, 'tuzak'), tur: 'kimlik-iddiasi-kendine', konu: 'tuzak', gecerli: false, ima: '"Hoş oda = hoş, uyumlu insan" halk inancı: Gosling 2002\'de geçersiz çıktı. Sevimli oda güven vermez; sevimsiz oda şüphe.' });
 
-  // 6) Gürültü: en az 3 eşya olsun diye ilgisiz kalıntı/iddia.
-  const havuz = r.karistir([...GURULTU]);
-  while (esyalar.length < 3 && havuz.length) {
-    const g = havuz.pop()!;
+  return { esyalar, r };
+}
+
+/** Bir kişinin odasını okur; seed + kişi ile deterministik. Sırrı olan tek bir sır kalıntısı bırakır. */
+export function odaOku(sorgu: Sorgu, kisi: KisiId): OdaOkumasi {
+  const { vaka } = sorgu.durum;
+  const { esyalar, r } = temelEsyalar(sorgu, kisi);
+
+  // 6) Gürültü: en az 3 eşya olsun diye ilgisiz kalıntı/iddia. Havuz vaka düzeyinde karıştırılır ve
+  //    önceki kişilerin gürültü ihtiyacı kadar kaydırılır: kişiler birbirinin eşyasını almaz (havuz yetince).
+  const kisiIndeks = Math.max(0, vaka.kisiler.findIndex((k) => k.id === kisi));
+  const ihtiyac = (id: KisiId) => Math.max(0, 3 - temelEsyalar(sorgu, id).esyalar.length);
+  let kayma = 0;
+  for (const k of vaka.kisiler.slice(0, kisiIndeks)) kayma += ihtiyac(k.id);
+  const gurultuKarisik = new Rastgele(`${vaka.seed}/oda-havuz/gurultu`).karistir([...GURULTU]);
+  for (let i = 0; esyalar.length < 3 && i < gurultuKarisik.length; i++) {
+    const g = gurultuKarisik[(kayma + i) % gurultuKarisik.length]!;
     esyalar.push({ betimleme: g.betimleme, tur: g.tur, konu: 'gurultu', gecerli: true, ima: g.ima });
   }
 

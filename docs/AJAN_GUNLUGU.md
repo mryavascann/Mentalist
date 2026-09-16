@@ -763,3 +763,28 @@
 **Sıradaki ajan için:** 1) Kullanıcı oynayınca DURUM "Açık kararlar" (zor seviye a/b/c, saat bütçesi). 2) Döküm turu devam: teknik çıktıları (SUE, bilişsel yük ters sıra, yönlendirici soru, açık uçlu anlatım, Watson, takım sahnesi metinleri) henüz gözle okunmadı; aynı geçici döküm yöntemiyle oku. 3) İsteğe bağlı: dist 6 MB → portre 384² / oda q50.
 
 **Geliştirme fikirleri:** "Ne zamandır tanışıyorsunuz?" türü sohbet sorusu ilişki notunu sorguda yeniden kullanabilir (temel çizgi tekniğinin metnine eklenebilir); oda görsellerini ifade çizelgesinde göstermek; takım sahnesinde oyuncunun kısa cevap seçmesi.
+
+## [2026-09-16 22:00] Ajan #2 — Teknik çıktıları kalite turu: SUE tanık ifadesi, oda eşyası tekilliği, anlatım devam cümlesi, uygulanamayan teknik zamanı
+**Görev:** DURUM sıradaki iş 3: teknik çıktılarının (16 teknik, takım yorumu, kanepe, Watson, puan raporu, gerçek anlatımı, ifade çizelgesi, takım sahnesi) metin dökümünü gözle okuyup kusurları test+kodla düzeltmek.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- **Döküm:** geçici `tests/denge/_dokum2.test.ts` (2 vaka × 3 kişi × 16 teknik + kanepe + Watson + suçlama + puan + takım sahnesi); okunup silindi. Not: depo `bildir()` durum nesnesini yeniler; dökümde eski `depo.durum` referansı tutulunca kanepe/Watson boş göründü — oyun hatası değil, betik hatası.
+- **SUE tanık ifadesine de uygulanır** (`teknik.ts` sue): delil başkası hakkındaysa o kişi sorulur ("X'i nerede gördün?"); koruma yalanı ("benimleydi") kamera/iz deliliyle çelişebilir. Eskiden kişiyle ilgisiz delil her zaman "uyuşuyor" diyordu. Erken gösterim: kendi konumunda o dilime ait herhangi bir konum delili; tanık sorusunda bu delilin kendisi. Puan bonusu (fail çelişkisi) değişmedi.
+- **Oda eşyası vaka içinde tekil** (`araclar.ts`): havuzlar 8'er (GURULTU 12, sır kalıntıları 4'er); `temelEsyalar` ayrıldı; her havuz vaka düzeyinde bir kez karıştırılıp kişi sırasına göre dağıtılır; gürültü önceki kişilerin ihtiyacı kadar kaydırılır; sır eşyası aynı sırrı taşıyanlar arasındaki sıraya göre. 100 vakada kişiler arası tekrar 515 → ≤10 (test).
+- **Anlatım devam cümlesi** (`dil.ts anlatimSatirlari`): açık uçlu / ters sıra anlatımda aynı oda + aynı ifade kategorisindeki ardışık dilimler kısa kalıpla ("Hâlâ Oda 7'de; kapının önünde volta atıyordum." / "Oradan çıkmadım."). Dürüst kategoride oda+eylem, yalan kategorilerinde oda/eylem yok. `depo.ts` anlatım satırlarını buradan alır. Eskiden "Saate bakmıştım, … civarıydı" sekiz dilimde tekrarlanıyordu.
+- **Uygulanamayan teknik zaman düşmez** (`teknikUygula`): şeytanın avukatı (v0'da görüş/niyet sorusu yok), tahmin/kayıt yokken iç ses ve kayıt inceleme. Sorgu odasında şeytanın avukatı düğmesi kapalı; ipucu metni nedenini söyler. İki eski test (`teknik.test`, `depo.test`) yeni kurala göre güncellendi.
+- Test: `tests/motor/kalite2.test.ts` (4).
+
+**Değişen dosyalar:** src/motor/{teknik,araclar,dil}.ts, src/arayuz/oyun/depo.ts, src/arayuz/ekranlar/SorguOdasi.tsx, tests/motor/{kalite2,teknik}.test.ts, tests/arayuz/depo.test.ts, docs.
+
+**Testler:** 330 geçti / 0 kaldı (komut: `npm test`; 45 dosya). `npm run typecheck` temiz. `npm run build` 6.0 MB.
+
+**Alınan kararlar:** KARARLAR'a girecek boyutta yok. Küçük: (1) SUE tanık ifadesine de uygulanır; (2) uygulanamayan teknik ücretsiz; (3) anlatım devam kalıbı dürüst kategoride eylem taşır (tam kalıp da taşıyordu).
+
+**Sorunlar / riskler:** Ters sıra anlatımında "Yine Otoparkta" geriye doğru okunduğunda hafif tuhaf ama anlaşılır. `teknikler.json` SUE "nasil" metni ve Kılavuz SUE maddesi tanık kullanımını henüz anlatmıyor. Takım sahnesinde aynı rolden iki satır art arda gelebiliyor (lider ×2).
+
+**Yarım kalanlar:** Yok. Çalışma ağacı commit'li.
+
+**Sıradaki ajan için:** 1) Kullanıcı oynayınca DURUM "Açık kararlar". 2) `teknikler.json` SUE "nasil" metnine tanık kullanımını ekle; Kılavuz SUE maddesine not (kaynak kütüğünde Hartwig/Granhag SUE kaydı var mı kontrol et; yoksa "doğrulanmadı" işaretle). 3) Döküm turu devam: Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı. 4) dist 6 MB isteğe bağlı.
+
+**Geliştirme fikirleri:** Takım sahnesinde rol tekilliği (aynı rol art arda konuşmasın); kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sohbet sorusu olarak kullanmak.

@@ -8,7 +8,7 @@ import { vakaUret } from '@motor/gerceklik';
 import type { CozulebilirlikRaporu } from '@motor/cozulebilirlik';
 import { hedeflerdenAyar, vakaUretHedefli, type VakaHedefi } from '@motor/adaptif';
 import { aynaVakasiMi, aynaTahmini, aynaNotu, aynaOkuduMu, aynaArkOzeti, aynaOkunmaOrani } from '@motor/ayna';
-import { betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, VaryantBellegi, type KisiUslubu } from '@motor/dil';
+import { anlatimSatirlari, betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, VaryantBellegi, type KisiUslubu } from '@motor/dil';
 import { puanla, type PuanRaporu, type Suclama } from '@motor/puan';
 import type { Cevap, Soru } from '@motor/strateji';
 import { sor, sorguBaslat, teknikUygula, delilGoster as motorDelilGoster, type Sorgu, type TeknikParametreleri, type TeknikSonucu } from '@motor/teknik';
@@ -384,7 +384,9 @@ export class OyunDeposu {
     const kayit: KonusmaKaydi = { tur: 'teknik', teknikId, soru: teknik.ad, cevap: teknikSonucMetni(sonuc, vaka, seciliKisi), betimleme: '', ipucuIdler: [], gozlemler: [] };
     // Anlatım içeren teknikler cevap satırlarını da döker.
     if (sonuc.teknik === 'acik-uclu-anlatim' || sonuc.teknik === 'bilissel-yuk-ters-sira') {
-      const satirlar = sonuc.anlatim.map((a) => `[${vaka.dilimler[(a.cevap.soru as { dilim: number }).dilim]!.baslangic}] ${cevapMetni(vaka, a.cevap, this.usluplar.get(seciliKisi)!, this.bellek)}`);
+      // Aynı odada kalınan ardışık dilimler kısa devam cümlesiyle (dil.ts anlatimSatirlari): kalıp tekrarı yok.
+      const metinler = anlatimSatirlari(vaka, sonuc.anlatim.map((a) => a.cevap), this.usluplar.get(seciliKisi)!, this.bellek);
+      const satirlar = sonuc.anlatim.map((a, i) => `[${vaka.dilimler[(a.cevap.soru as { dilim: number }).dilim]!.baslangic}] ${metinler[i]}`);
       kayit.cevap = `${kayit.cevap} ${satirlar.join(' ')}`;
       // 8 dilim × ~3 ipucu = spam olurdu: ipucu başına bir kez, en fazla GOZLEM_SINIRI (tek tik kanıt değil; küme).
       const hepsi = gozlemOzeti(sonuc.anlatim.flatMap((a) => a.ipuclari), GOZLEM_SINIRI);
