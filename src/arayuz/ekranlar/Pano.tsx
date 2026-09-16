@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { depo, useOyun } from '../oyun/kullan';
 import type { PanoTuru } from '../oyun/depo';
 import { ifadeCizelgesi } from '../oyun/cizelge';
+import { DIGER } from '../gorseller';
 
 const SUTUNLAR: { tur: PanoTuru; baslik: string; ipucu: string }[] = [
   { tur: 'gozlem', baslik: 'Gözlem (ham)', ipucu: 'Ne gördün, ne duydun; yorum katma.' },
@@ -38,11 +39,12 @@ export function Pano() {
   const dolu = d.pano.gozlem.length + d.pano.cikarim.length + d.pano.hipotez.length + d.pano.olmayan.length > 0;
   return (
     <div>
-      <div className="mantar izgara">
+      <div className="mantar izgara" style={DIGER.mantar ? { backgroundImage: `url(${DIGER.mantar})`, backgroundSize: 'cover' } : undefined}>
         {SUTUNLAR.map((s) => <Sutun key={s.tur} {...s} />)}
       </div>
       {d.takimNotlari.length > 0 && (
         <section className="dosya">
+          {DIGER.kanepe && <img src={DIGER.kanepe} alt="" aria-hidden="true" style={{ width: '100%', maxHeight: 140, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
           <h2>Takım notları (kanepe molaları)</h2>
           <ul className="liste-temiz">{d.takimNotlari.map((n, i) => <li key={i}><span>{n.metin}</span><span className="soluk">{n.zaman.toFixed(1)} s</span></li>)}</ul>
         </section>

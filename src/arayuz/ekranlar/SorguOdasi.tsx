@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ICERIK } from '@icerik/index';
 import { ESYA_SINIF_ADLARI, IC_SES_KATEGORILERI, IC_SES_SECENEKLERI, type EsyaSinifi, type IcSesKategori } from '@motor/araclar';
 import { depo, useOyun } from '../oyun/kullan';
+import { PORTRELER, TAKIM_PORTRELERI, portreUrl } from '../gorseller';
 import { IpucuKarti } from './IpucuKarti';
 import { Portre } from './Portre';
 
@@ -39,7 +40,7 @@ export function SorguOdasi() {
       </aside>
 
       <main className="dosya">
-        <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{secili && <Portre id={secili.id} ad={secili.ad} boyut={40} />}{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
+        <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{secili && <Portre id={secili.id} ad={secili.ad} boyut={40} src={portreUrl(vaka, secili.id)} />}{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
         <label className="soluk" style={{ display: 'block' }}><input type="checkbox" checked={d.takimAcik} onChange={(e) => depo.takimAcKapat(e.target.checked)} /> Takım yorumları (kanıt değildir; çoğunluk sık yanılır)</label>
         {secili && d.temelCizgiNotlari.get(secili.id) && <p className="soluk" style={{ borderLeft: '3px solid var(--mantar)', paddingLeft: 8 }}>{d.temelCizgiNotlari.get(secili.id)}</p>}
@@ -68,7 +69,12 @@ export function SorguOdasi() {
             <div className={`satir ${k.tur}`} key={i}>
               <div className="soru">{k.tur === 'teknik' ? `▸ ${k.soru}` : `Sen: ${k.soru}`}</div>
               <div className="cevap">{k.cevap}</div>
-              {k.takimYorumu && <div className="takim"><b>{k.takimYorumu.ad}:</b> {k.takimYorumu.metin}</div>}
+              {k.takimYorumu && (
+                <div className="takim" style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                  {PORTRELER[TAKIM_PORTRELERI[k.takimYorumu.rol] ?? ''] && <img src={PORTRELER[TAKIM_PORTRELERI[k.takimYorumu.rol]!]} alt="" aria-hidden="true" width={28} height={28} style={{ borderRadius: 4, flex: 'none', objectFit: 'cover' }} />}
+                  <span><b>{k.takimYorumu.ad}:</b> {k.takimYorumu.metin}</span>
+                </div>
+              )}
               {k.gozlemler.length > 0 && (
                 <div className="betimleme">
                   {k.gozlemler.map((g, j) => (

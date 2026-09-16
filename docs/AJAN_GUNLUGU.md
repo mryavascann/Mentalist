@@ -659,3 +659,26 @@
 **Değişen dosyalar:** assets/KAYIT.md, docs/AJAN_GUNLUGU.md, docs/DURUM.md (kullanıcı ayarı: ~/.claude.json MCP kaydı).
 **Testler:** 305 (değişiklik yok).
 **Sıradaki ajan için:** MCP yetkilendirilince: 1) p01 ile stil denemesi (GPT Image 2.5, quality medium, 1:1), beğenilirse 24 portre + 4 takım; 2) 8 mekân + sorgu odası Soul Location 16:9; 3) ana görsel; 4) WebP'ye çevir (portre 512², ≤60 KB; mekân 1280×720, ≤150 KB), `assets/portreler/`, `assets/mekanlar/`; 5) `Portre.tsx` gerçek görsel + kişi→portre eşlemesi (cinsiyet/yaş uyumlu, seed'le deterministik), mekân türü→arka plan; KAYIT.md satırları.
+
+## [2026-09-16 19:00] Ajan #1 — Higgsfield görselleri üretildi ve oyuna gömüldü (110 kredi → 0)
+**Görev:** Kullanıcı onayıyla görsel havuzunu üretmek ("kredi çöpe gitmesin, hepsini kullan") ve oyuna bağlamak.
+
+**Yapılanlar:**
+- Erişim: CLI deneme kısıtı; claude.ai Higgsfield MCP bağlayıcısı (kullanıcı yetkilendirdi) ile `generate_image_batch` + `jobs_wait`; eş zamanlı iş sınırı 8.
+- Üretim (122 görsel, ~110 kredi): 56 portre + 4 takım (GPT Image 2.5), 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer (ana görsel varyantları, ofis, kanepe, forer, watson, mantar dokusu, suçlama, Ayna notu). Tümü `assets/KAYIT.md`'de tablo hâlinde; elenenler ve ders (Soul Location figür ekliyor → iç mekânda GPT) not edildi.
+- Kod (önce test): `src/arayuz/gorseller.ts` — `import.meta.glob` kütükleri, `PORTRE_KAYITLARI` (cinsiyet/yaş), `portreEslemesi` (seed'le deterministik, cinsiyet uyumlu, yaş ağırlıklı, vakada tekrarsız, faille ilişkisiz), `portreUrl`, `mekanGorseli`, `odaGorseli`. `Portre.tsx` `src` desteği (yoksa siluet). Ekranlar: Başlık (ana görsel), Vaka açılışı (mekân + portreler + Ayna notu görseli), Sorgu (portre, takım yorumu portresi), Kılavuz (bölüm görseli), Tatbikat (başlık), Analiz (ofis + takım portreleri), Pano (mantar dokusu, kanepe), Suçlama, Forer, Watson.
+- Test: `tests/arayuz/gorseller.test.ts` (6): varlık, boyut bütçesi (portre ≤60 KB, mekân/oda ≤150 KB, toplam ≤6 MB), eşleme (cinsiyet, tekrarsız, deterministik, yaş farkı <10), örüntü denetimi (fail portre no ≈ masum), her oda görsel alır.
+
+**Değişen dosyalar:** assets/** (122 webp), assets/KAYIT.md, src/arayuz/gorseller.ts, src/arayuz/ekranlar/{Portre,VakaAcilis,SorguOdasi,Baslik,Kilavuz,Tatbikat,Analiz,Pano,Suclama,Forer,Watson}.tsx, tests/arayuz/gorseller.test.ts, docs.
+
+**Testler:** 311 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dist/index.html 5.98 MB (gzip 4.3 MB; 122 data:image/webp).
+
+**Alınan kararlar:** Portre eşlemesi seed + cinsiyet + yaş; ifade nötr (Barrett). Oda ve delil görselleri şimdilik yalnızca varlık; ekrana bağlanmadı.
+
+**Sorunlar / riskler:** dist 6 MB (önce 0.5 MB): dosya paylaşımı için kabul edilebilir; gerekirse portre 384² / oda q50 ile ~4 MB'a iner. Higgsfield kredisi 0; yeni görsel için yeniden kredi gerekir.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Oda görsellerini ekrana bağla (ör. "Neredeydin?" cevabında küçük oda kartı; `odaGorseli`). 2) Delil kartlarını Pano/Suçlama'da göster (`DELIL_GORSELLERI[delil.tur]`). 3) Kullanıcı oynayınca açık kararlar (zor seviye, bütçe).
+
+**Geliştirme fikirleri:** `ana-dikey` mobil başlık; `ana-pano` Analiz arka planı; portre havuzu büyürse `PORTRE_KAYITLARI` JSON'a taşınabilir.

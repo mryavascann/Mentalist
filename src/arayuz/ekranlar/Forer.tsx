@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { FORER } from '@icerik/forer';
 import { depo, useOyun } from '../oyun/kullan';
+import { DIGER } from '../gorseller';
 
 export function Forer() {
   const d = useOyun();
@@ -11,6 +12,7 @@ export function Forer() {
 
   return (
     <div className="dosya" style={{ maxWidth: 720, margin: '20px auto' }}>
+      {DIGER.forer && <img src={DIGER.forer} alt="" aria-hidden="true" style={{ width: '100%', maxHeight: 180, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
       {asama === 'sorular' && (
         <>
           <h2>Açılış dersi · Kısa kişilik testi</h2>

@@ -47,6 +47,8 @@ Az sayıda, tekrar kullanılabilir, aynı stilde. Her üretim `assets/KAYIT.md`'
 5. (Opsiyonel, en sona) kısa tanıtım videosu.
 Görsel gelene kadar yer tutucu (SVG siluet) kullanılır. Prompt listesi Aşama 3 başında hazırlanır.
 
+**Durum (16.09.2026):** 1–4 üretildi (GPT Image 2.5 + Soul Location; stil: "muted paper-and-ink illustration, desaturated warm palette, single red accent"); ayrıca oda, Kılavuz bölümü, tatbikat, delil kartı ve UI görselleri. Kayıt `assets/KAYIT.md`; kod `src/arayuz/gorseller.ts`. Portreler nötr ifadeli (Barrett 2019) ve seed'le cinsiyet/yaşa göre atanır; faille ilişkisi yoktur (test). Kurban portresi soluk + kırmızı çizgi. Görsel yoksa SVG siluet.
+
 ## 7. Açık tasarım soruları
 
 - ~~Oyun adı~~ → The Mentalist (K-007). Başlık ekranında oyuncu kahraman adını girer.

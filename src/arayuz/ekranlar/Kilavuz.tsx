@@ -2,6 +2,7 @@
 // "Karşılaştın" rozeti: vaka analizinde önerilen ya da kullandığın tekniğe bağlı maddeler.
 import { ICERIK } from '@icerik/index';
 import { depo, useOyun } from '../oyun/kullan';
+import { KILAVUZ_GORSELLERI } from '../gorseller';
 
 const BOLUM_ADLARI: Record<string, string> = {
   'yalan-tespitinin-bilimi': 'Yalan Tespitinin Bilimi',
@@ -75,6 +76,7 @@ export function Kilavuz() {
         )}
         {secili && (
           <>
+            {KILAVUZ_GORSELLERI[secili.bolum] && <img src={KILAVUZ_GORSELLERI[secili.bolum]} alt={`${BOLUM_ADLARI[secili.bolum] ?? secili.bolum} bölümü`} style={{ width: '100%', maxHeight: 200, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
             <h2>{secili.baslik} <span className={`rozet ${secili.kanitDuzeyi}`}>{ROZET_ADI[secili.kanitDuzeyi]}</span></h2>
             <p>{secili.ozet}</p>
             <h3>Nasıl kullanılır</h3>

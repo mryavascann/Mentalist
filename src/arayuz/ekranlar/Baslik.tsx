@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import { depo, kaydiSil, useOyun } from '../oyun/kullan';
 import type { TatbikatSonucu } from '../oyun/depo';
+import { DIGER } from '../gorseller';
 
 /** Tatbikat düğmesi eki: tamamlandıysa ✓, puanı varsa puan. */
 function puanEki(s: TatbikatSonucu | undefined): string {
@@ -38,6 +39,7 @@ export function Baslik() {
 
   return (
     <div className="baslik-ekrani">
+      {DIGER.ana && <img src={DIGER.ana} alt="Dedektif masası: dosya, daktilo raporu, çay, mantar pano" style={{ width: '100%', border: '1px solid var(--cizgi)', boxShadow: '2px 2px 0 var(--cizgi)' }} />}
       <h1>THE MENTALIST</h1>
       <p>Okuma sanatını bilimle sınayan bir dedektif oyunu. Yanılmak oyunun parçası; her yanılgı sana neyi çalışman gerektiğini söyler.</p>
       <div className="dosya" style={{ textAlign: 'left' }}>

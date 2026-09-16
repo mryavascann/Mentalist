@@ -3,6 +3,8 @@
 import { ICERIK } from '@icerik/index';
 import { ESYA_SINIF_ADLARI, ESYA_SINIFI, ESYA_TURU_ADLARI, IC_SES_SECENEKLERI } from '@motor/araclar';
 import { depo, useOyun } from '../oyun/kullan';
+import { DIGER, PORTRELER, TAKIM_PORTRELERI } from '../gorseller';
+import { TAKIM } from '../oyun/takim';
 import { ARKETIPLER } from '@motor/arketipler';
 import { kalibrasyonOzeti } from '../oyun/cizelge';
 import { takimSahnesi } from '../oyun/takim_hikaye';
@@ -225,10 +227,18 @@ export function Analiz() {
         return (
           <section className="dosya">
             <h2>Ofis · sonra</h2>
+            {DIGER.ofis && <img src={DIGER.ofis} alt="Takım ofisi, mesai sonrası" style={{ width: '100%', maxHeight: 220, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
             <p className="soluk">Çaylar demlendi; kanepe boş. Takım konuşuyor.</p>
-            {sahne.satirlar.map((s, i) => (
-              <p key={i} style={{ margin: '6px 0' }}><b className="daktilo" style={{ fontSize: 13 }}>{s.ad}:</b> {s.metin}</p>
-            ))}
+            {sahne.satirlar.map((s, i) => {
+              const rol = TAKIM.find((u) => u.ad === s.ad)?.rol;
+              const portre = rol ? PORTRELER[TAKIM_PORTRELERI[rol] ?? ''] : undefined;
+              return (
+                <p key={i} style={{ margin: '6px 0', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                  {portre && <img src={portre} alt="" aria-hidden="true" width={28} height={28} style={{ borderRadius: 4, flex: 'none', objectFit: 'cover' }} />}
+                  <span><b className="daktilo" style={{ fontSize: 13 }}>{s.ad}:</b> {s.metin}</span>
+                </p>
+              );
+            })}
             {m && <p className="soluk">Bu hikâyenin dersi: <button className="etiket" onClick={() => depo.kilavuzAc(m.id)}>{m.baslik}</button></p>}
           </section>
         );

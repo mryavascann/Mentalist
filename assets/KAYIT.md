@@ -1,28 +1,40 @@
 # assets/KAYIT.md — Görsel üretim kaydı
 
-> Her Higgsfield (veya başka araç) üretimi buraya işlenir. Kredi ekonomisi için önce liste hazırlanır, kullanıcı onaylar, sonra üretilir.
-> Yer tutucular (SVG siluet vb.) da listelenir ki neyin gerçek görselle değiştirileceği belli olsun.
+> Her Higgsfield (veya başka araç) üretimi buraya işlenir. Kaynak PNG'ler Higgsfield hesabında (job geçmişi); repoda yalnızca küçültülmüş WebP'ler durur ve derlemede tek HTML'e gömülür (K-010). Kod tarafı: `src/arayuz/gorseller.ts` (`import.meta.glob`), test: `tests/arayuz/gorseller.test.ts` (varlık, boyut bütçesi, portre eşlemesi örüntü denetimi).
 
-| Tarih | Amaç | Araç | Prompt (özet) | Dosya adı | Tahmini kredi | Durum |
-|---|---|---|---|---|---|---|
-| — | — | — | Henüz üretim yok | — | — | — |
-| 2026-09-16 | Deneme (p01 portre, m01 malikâne) | Higgsfield CLI | GPT Image 2.5 / Z Image / Soul Location | — | 0 (reddedildi) | **Engellendi:** hesap deneme durumunda, CLI ve workflow üretimi kapalı (`only_mcp_usage_on_trial_is_available`); yalnızca MCP açık. Çözüm: Higgsfield MCP sunucusu Claude Code'a eklendi (`claude mcp add … https://mcp.higgsfield.ai/mcp`), kullanıcı `/mcp` ile tarayıcıdan yetkilendirecek. |
+## Üretim özeti (2026-09-16, Higgsfield MCP, hesap: plus, 110 kredi → 0)
 
-## Maliyet tablosu (2026-09-16, CLI `generate cost`; bütçe 110 kredi)
-| Model | Kredi/görsel | Kullanım |
-|---|---|---|
-| GPT Image 2.5 (`gpt_image_2_5`, kalite medium) | 1 | Portreler + takım + ana görsel (29 görsel ≈ 29 kredi) |
-| Nano Banana 2 Lite (`nano_banana_2_lite`) | 1 | Yedek (karakter tutarlılığı) |
-| Z Image (`z_image`) | 0.15 | Ucuz deneme/iterasyon |
-| Soul Location (`soul_location`, 16:9) | 0.12 | 8 mekân + sorgu odası (≈ 1.1 kredi) |
-Plan: tam liste (38 görsel) ≈ 31 kredi; tekrar/seçim payıyla ≤ 60 kredi. MCP'de fiyatlar aynı ("standart oran").
+| Klasör | Adet | Model | Boyut / kalite | Toplam | Kullanım |
+|---|---|---|---|---|---|
+| `portreler/` p01–p56 | 56 | GPT Image 2.5 (quality medium, 1:1) | 448², q68 (≤ 60 KB) | ~950 KB | Kişi portreleri: cinsiyet uyumlu, yaşa yakın, vakada tekrarsız, seed'le deterministik (`portreEslemesi`) |
+| `portreler/` t01–t04 | 4 | GPT Image 2.5 | 448² | ~70 KB | Takım: lider (t01), sorgucu (t02), inanan analist (t03), saha ajanı (t04); sorgu yorumu, Analiz ofis sahnesi, Watson |
+| `mekanlar/` | 9 | Soul Location (m01–m03, m06–m09) + GPT Image 2.5 (çiftlik, hastane; Soul figür ekliyordu) | 1024×576, q60 | 382 KB | Vaka açılışında olay yeri; `mekanGorseli(tur)`; `sorgu-odasi` yedek |
+| `odalar/` | 18 | GPT Image 2.5 (13) + Soul Location (5) | 1024×576, q60 | 908 KB | `odaGorseli(vaka, odaId)`: kütüphane, mutfak, bahçe, çalışma odası, üst kat koridoru, garaj, toplantı odası, arşiv, merdiven, oturma odası, kayıkhane, sera, yemekhane, hasta odası, motel odası, ana çadır, daire, bodrum. Henüz ekranda kullanılmıyor (fikir: zaman çizelgesi / "neredeydin" cevabı) |
+| `kilavuz/` | 12 | GPT Image 2.5 (16:9) | 960×540, q62 | 682 KB | Kılavuz bölüm başlığı görseli (madde açıkken) |
+| `tatbikat/` | 7 | GPT Image 2.5 (16:9) | 960×540 | 269 KB | Tatbikat ekranı başlığı |
+| `delil/` | 4 | GPT Image 2.5 (1:1) | 384² | 31 KB | Delil türü kartları (fiziksel, dijital, belge, olmayan). Henüz ekranda kullanılmıyor |
+| `diger/` | 12 | GPT Image 2.5 | çeşitli | 717 KB | `ana` (başlık), `ana-dikey`/`ana-kare`/`ana-pencere`/`ana-pano` (yedek/tanıtım), `ofis` (Analiz "Ofis · sonra"), `kanepe` (Pano takım notları), `forer` (açılış dersi), `watson`, `mantar` (pano dokusu), `suclama`, `ayna-not` (Ayna notu yanı) |
 
-## Prompt listesi
-`assets/HIGGSFIELD_PROMPTLAR.md` (24 portre, 4 takım, 8 mekân, 1 ana görsel, 1 sorgu odası). Görsel gelene kadar `Portre.tsx` SVG siluet çizer.
+Toplam: 122 WebP, ~4.0 MB; derleme `dist/index.html` 5.98 MB (gzip 4.3 MB).
 
-## Planlanan (brand.md §6)
-1. Portre havuzu (~20–24, nötr ifade, aynı stil)
-2. Takım portreleri (4–5)
-3. Mekân arka planları (6–8)
-4. Ana görsel (1)
-5. Tanıtım videosu (opsiyonel, en sona)
+## Ortak stil (tüm promptlarda)
+"muted paper-and-ink illustration, desaturated warm palette (cream, manila, cork brown, ink black, single red accent), soft grain, no text, no logo, no watermark, consistent series style". Portreler: "neutral resting expression, direct gaze, shoulders-up, plain warm-grey background, even soft light" (Barrett 2019: ifade ipucu değildir).
+
+## Elenenler (üretildi, kullanılmadı)
+- Soul Location: malikâne (yeniden, figür), çiftlik (figür), hastane (figür/karanlık), kütüphane (figür), eczane (figür), havuz başı (yazı), karavan alanı (yazı). Ders: Soul Location "no people" talimatına uymuyor; iç mekân için GPT Image 2.5 daha güvenilir (1 kredi).
+- Ayna notu v1 (delil numaraları ve "R" imzası); v2 "A" imzalı kullanıldı.
+
+## Maliyet tablosu (CLI/MCP `cost`)
+| Model | Kredi/görsel |
+|---|---|
+| GPT Image 2.5 (medium) | 1 (high: 2) |
+| Nano Banana 2 Lite | 1 |
+| Z Image | 0.15 |
+| Soul Location | 0.12 |
+
+## Erişim notu
+CLI (`higgsfield generate`) deneme hesabında `only_mcp_usage_on_trial_is_available` ile reddedildi; üretim claude.ai Higgsfield MCP bağlayıcısıyla (Claude Code'da "claude.ai Higgsfield — Connected") yapıldı. Eş zamanlı iş sınırı 8 (plus planı); toplu istekler 8'erli gönderildi.
+
+## Yeni portre eklerken
+1. Aynı stil ekiyle üret, 448² q68 WebP'ye çevir, `portreler/pNN.webp`.
+2. `src/arayuz/gorseller.ts` `PORTRE_KAYITLARI`'na `{ id, cinsiyet, yas }` ekle (test: dosya var mı, cinsiyet dengesi).

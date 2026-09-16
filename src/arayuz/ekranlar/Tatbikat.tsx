@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { MINI_OYUNLAR } from '@icerik/mini_oyunlar';
 import { depo, useOyun } from '../oyun/kullan';
+import { TATBIKAT_GORSELLERI } from '../gorseller';
 import type { TatbikatId } from '../oyun/depo';
 
 /** Her tatbikatın "Kılavuz" düğmesinin açtığı madde. */
@@ -257,6 +258,7 @@ export function Tatbikat() {
   const aktif = d.tatbikat.aktif;
   return (
     <div className="dosya" style={{ maxWidth: 820, margin: '20px auto' }}>
+      {aktif && TATBIKAT_GORSELLERI[aktif] && <img src={TATBIKAT_GORSELLERI[aktif]} alt="" aria-hidden="true" style={{ width: '100%', maxHeight: 180, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
       {aktif === 'kor-secim' && <KorSecim />}
       {aktif === 'soguk-okuma' && <SogukOkuma />}
       {aktif === 'taban-orani' && <TabanOrani />}

@@ -2,8 +2,10 @@
 // gözlem / çıkarım / hipotez diye sınıflar ve test edip etmediğini söyler. Sonuç: çıkarımı gözlem sanma sayısı.
 import { depo, useOyun } from '../oyun/kullan';
 import { TAKIM } from '../oyun/takim';
+import { PORTRELER, TAKIM_PORTRELERI } from '../gorseller';
 
 const SORGUCU = TAKIM.find((t) => t.rol === 'sorgucu')!;
+const SORGUCU_PORTRE = PORTRELER[TAKIM_PORTRELERI.sorgucu ?? ''];
 
 export function Watson() {
   const d = useOyun();
@@ -11,7 +13,7 @@ export function Watson() {
   const adim = w.adimlar[w.indeks];
   return (
     <div className="dosya" style={{ maxWidth: 720, margin: '20px auto' }}>
-      <h2>{SORGUCU.ad} dinliyor</h2>
+      <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{SORGUCU_PORTRE && <img src={SORGUCU_PORTRE} alt="" aria-hidden="true" width={40} height={40} style={{ borderRadius: 6, objectFit: 'cover' }} />}{SORGUCU.ad} dinliyor</h2>
       <p className="soluk">Vakayı adım adım anlat. Her madde için: gözlem mi, çıkarım mı, hipotez mi? Test ettin mi? (Öğreterek öğrenme; Priory Okulu.)</p>
       {!w.bitti && adim && (
         <>

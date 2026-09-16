@@ -1,6 +1,7 @@
 // Suçlama: kişi ya da "suç yok", güven beyanı (kalibrasyon), dayanaklar (gerekçe) ve savcıya savunma kontrol listesi.
 import { useState } from 'react';
 import { depo, useOyun } from '../oyun/kullan';
+import { DIGER } from '../gorseller';
 
 export function Suclama() {
   const d = useOyun();
@@ -23,6 +24,7 @@ export function Suclama() {
   return (
     <div className="izgara">
       <section className="dosya">
+        {DIGER.suclama && <img src={DIGER.suclama} alt="" aria-hidden="true" style={{ width: '100%', maxHeight: 160, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
         <h2>Kimi suçluyorsun?</h2>
         {kisiler.map((k) => (
           <label key={k.id} style={{ display: 'block' }}>

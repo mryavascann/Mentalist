@@ -16,25 +16,25 @@
 - **Diğer araçlar** (`src/motor/araclar.ts`, K-014, TASARIM §7 uygulama notu): oda okuma (eşya sınıflama + vaka sonu karnesi), dijital iz (profil; dışadönüklük okunur, kaygı okunmaz), "şu an ne düşünüyor?" (6 kategori, gerçek vaka sonunda; az konuşulan kişide 6 seçenek), kayıt inceleme (küçük etki; temel çizgiyle normali/sapma). Hata etiketi `oda-okuma-suc`; iç seste hep "suç kaygısı" → `yalan-yanliligi`. Sorgu odasında "Kişiyi oku" bloğu; Suçlama'da "Oda okuması / dijital profil" dayanağı. 20 test.
 - **Regresyon seed'leri** (`tests/regresyon/seedler.test.ts`): 6 seed anlık görüntü; üretim bilerek değişince güncellenir ve günlüğe yazılır.
 - **İpucu kataloğu:** 19 ipucu; Navarro saha ipuçları `zayif`. İçerik testi: her bölümde ≥3 madde, ≥12 bölüm, ≥60 madde.
-- **Görsel:** `assets/HIGGSFIELD_PROMPTLAR.md` (24 portre, 4 takım, 8 mekân, ana görsel, sorgu odası), `Portre.tsx` deterministik SVG siluet.
+- **Görseller (Higgsfield, 2026-09-16):** 122 WebP `assets/` altında (56 portre + 4 takım, 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer); `src/arayuz/gorseller.ts` kütük + seed'li portre eşlemesi (cinsiyet/yaş uyumlu, faille ilişkisiz); ekranlara bağlı (başlık, vaka açılışı, sorgu, Kılavuz, tatbikat, Analiz, Pano, suçlama, Forer, Watson). `Portre.tsx` görsel yoksa siluete düşer. Kayıt: `assets/KAYIT.md`. 6 test.
 
 ## Sıradaki 3 iş
 1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
-2. **Higgsfield görselleri (onaylı, 110 kredi):** CLI deneme kısıtına takıldı (`only_mcp_usage_on_trial_is_available`); MCP sunucusu Claude Code'a eklendi, kullanıcı `/mcp` ile yetkilendirecek. Sonra: plan ve maliyet tablosu `assets/KAYIT.md`'de; adımlar günlüğün son kaydında.
+2. **Görsel bağlama (kalan):** oda görsellerini "Neredeydin?" cevabına / zaman çizelgesine bağla (`odaGorseli`); delil kartlarını Pano/Suçlama'da göster (`DELIL_GORSELLERI`). Higgsfield kredisi 0; yeni üretim için kredi gerekir.
 3. **Geliştirme fikirleri (günlükten):** "ikinci kez sor" mekaniği (Swerts), Ayna 3. karşılaşma finali (takım sahnesi), oda okumada sahnelenmiş eşyayı panoya tek tıkla ekleme.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
 1. Vaka başına soruşturma saati bütçesi (varsayılan 12; oynayınca "yetmedi / bol" hissine göre).
 2. **Zor seviye yeterince zor mu? Bot ölçümü (2026-09-16, 300 vaka/zorluk):** yöntem botu kolay/orta/zor = %97/%97/%97 doğruluk (masum suçlama %3); ipucu botu %32/%31/%30; şüpheci %20/%20/%18. Zorluk parametreleri bot için fark yaratmıyor. Tanı (suç vakalarında): tanık faili söyledi %44/%38/%30, delil çelişkisi %96/%89/%60, ikisi de yok %1/%5/%23, fail kaçamak %4/%11/%40. Zorda tanık ve delil azalıyor ama bot "olay anında izi olan tek kişi + geçerli CIT" yolundan buluyor (çözülebilirlik tohumu: fail her zaman olay odasında iz bırakır). **Seçenekler (karar oyuncuda):** (a) zorda masumlara da olay dilimi/odasında gürültü izi (şüpheli kümesi büyür), (b) zorda CIT'te failin ayrıntıyı "fark etmemiş" olma olasılığı, (c) hiç dokunma; insan oyuncu botun prosedürünü uygulamaz, önce oyna. Tek ayar noktası `ZORLUK_PARAMETRELERI` + `delil.ts` çözülebilirlik tohumu.
 3. "The Mentalist" adının telif riski (K-007) — yalnızca not; yayın öncesi hatırlatılacak.
-4. Higgsfield görselleri: görselsiz de oynanıyor; üretim kullanıcı isteğiyle.
+4. ~~Higgsfield görselleri~~ → üretildi ve gömüldü (16.09.2026). dist 6 MB; küçültme gerekirse portre 384² / oda q50.
 
 ## Bilinen hatalar
 - Yok.
 
 ## Test durumu
-- `npm test`: 37 dosya, 305 test geçti (2026-09-16 17:00). Süre ~90 sn.
-- `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (498 kB).
+- `npm test`: 38 dosya, 311 test geçti (2026-09-16 19:00). Süre ~90 sn.
+- `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
