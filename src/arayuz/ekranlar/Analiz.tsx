@@ -1,6 +1,7 @@
 // Vaka sonu analizi: puan, kalibrasyon, cezalar/bonuslar, hata etiketleri → Kılavuz, gerçeğin anlatımı, kör noktalar.
 // Dil: gelişim zihniyeti ("şunu öğrendin"), TASARIM §11.
 import { ICERIK } from '@icerik/index';
+import { ESYA_SINIF_ADLARI, ESYA_SINIFI, ESYA_TURU_ADLARI, IC_SES_SECENEKLERI } from '@motor/araclar';
 import { depo, useOyun } from '../oyun/kullan';
 import { ARKETIPLER } from '@motor/arketipler';
 import { kalibrasyonOzeti } from '../oyun/cizelge';
@@ -84,6 +85,59 @@ export function Analiz() {
             </tbody>
           </table>
           <p className="soluk">Sormadığın kişi: ipucu önünde değildi (Funder RAM 2. halka). Doğru oda ama "gizleme": yerini söyledi, ne yaptığını sakladı.</p>
+        </section>
+      )}
+
+      {p.odaKarnesi && (
+        // Oda okuma karnesi (Gosling 2002): gizli tür ve ima burada açılır.
+        <section className="dosya">
+          <h2>Oda okuma karnesi · {p.odaKarnesi.dogru}/{p.odaKarnesi.n}</h2>
+          <p className="soluk">Her eşyanın gerçek türü ve dikkatli okuyucunun çıkarımı. Geçersiz çıkarım = "hoş oda, hoş insan" tuzağı. Oda kişiliği ve sırrı okur; suçu değil.</p>
+          {[...d.sorgu.odaOkumalari.values()].map((okuma) => {
+            const ad = d.sorgu!.durum.vaka.kisiler.find((k) => k.id === okuma.kisi)?.ad ?? okuma.kisi;
+            return (
+              <div key={okuma.kisi} style={{ marginBottom: 8 }}>
+                <b>{ad}</b>
+                <ul className="liste-temiz">
+                  {okuma.esyalar.map((e) => {
+                    const senin = d.sorgu!.odaSiniflamalari.get(e.id);
+                    const dogru = senin === ESYA_SINIFI[e.tur];
+                    return (
+                      <li key={e.id} style={{ display: 'block', borderTop: '1px dotted var(--cizgi)', padding: '4px 0' }}>
+                        <div>{e.betimleme}</div>
+                        <div className="soluk">
+                          Senin sınıfın: {senin ? ESYA_SINIF_ADLARI[senin] : 'sınıflamadın'} · Gerçek: <b>{ESYA_TURU_ADLARI[e.tur]}</b> {senin && (dogru ? '✓' : '✗')}
+                          {!e.gecerli && <> · <span className="uyari">geçersiz çıkarım</span></>}
+                        </div>
+                        <div className="soluk">{e.ima}</div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
+          <p className="soluk">Kaynak: <button className="etiket" onClick={() => depo.kilavuzAc('oda-ipuclari')}>Oda okuma</button></p>
+        </section>
+      )}
+      {p.icSesKarnesi && (
+        // İç ses karnesi (Ickes 1990): tahmin vs gerçek; ortalama insan %22.
+        <section className="dosya">
+          <h2>İç ses karnesi · {p.icSesKarnesi.dogru}/{p.icSesKarnesi.n}</h2>
+          <p className="soluk">Ickes 1990: yabancılar birbirinin düşüncesini ortalama %22 isabetle okudu; "okudum" hissi kanıt değildir.</p>
+          <ul className="liste-temiz">
+            {d.sorgu.icSesTahminleri.map((t, i) => {
+              const ad = d.sorgu!.durum.vaka.kisiler.find((k) => k.id === t.kisi)?.ad ?? t.kisi;
+              return (
+                <li key={i} style={{ display: 'block', borderTop: '1px dotted var(--cizgi)', padding: '4px 0' }}>
+                  <div><b>{ad}</b> {t.tahmin === t.gercek ? '✓' : '✗'}</div>
+                  <div className="soluk">Tahminin: {IC_SES_SECENEKLERI[t.tahmin]}</div>
+                  <div>Gerçek: <span className="daktilo" style={{ fontStyle: 'italic' }}>{t.gercekMetin}</span></div>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="soluk">Kaynak: <button className="etiket" onClick={() => depo.kilavuzAc('empatik-dogruluk')}>Empatik doğruluk</button></p>
         </section>
       )}
 

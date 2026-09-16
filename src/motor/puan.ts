@@ -6,6 +6,7 @@
 // güven ≠ doğruluk). Hata etiketleri src/icerik/hata_etiketleri.json'dan gelir ve her biri bir Kılavuz
 // maddesine bağlıdır; vaka sonu analizi "şunu çalış" derken bu listeyi kullanır.
 import { ICERIK } from '@icerik/index';
+import { odaKarnesi } from './araclar';
 import { sahnelenmisMi } from './delil';
 import { soruAnahtari } from './strateji';
 import type { Sorgu } from './teknik';
@@ -30,7 +31,14 @@ export interface PuanRaporu {
   cezalar: PuanKalemi[];
   hataEtiketleri: string[];
   calisilacakKilavuz: string[];
+  /** Oda okuma karnesi (okuma yapıldıysa): eşya sayısı, doğru sınıflanan, sınıflanmayan. */
+  odaKarnesi?: { n: number; dogru: number; sinifsiz: number };
+  /** "Şu an ne düşünüyor?" karnesi (tahmin yapıldıysa): Ickes 1990'da yabancıların ortalaması ~%22. */
+  icSesKarnesi?: { n: number; dogru: number };
 }
+
+/** İç ses: kaç tahminden sonra "hep suç kaygısı" kalıbı yalan yanlılığı sayılır. */
+const IC_SES_YANLILIK_ESIGI = 3;
 
 export interface PuanSecenekleri {
   /** Soruşturma saati bütçesi; aşımı cezalandırılır. */
@@ -75,6 +83,21 @@ export function puanla(sorgu: Sorgu, suclama: Suclama, secenekler: PuanSecenekle
   if (!dogru && olay.fail && !defter.has(`${olay.fail}|${soruAnahtari({ tur: 'konum', hedef: olay.fail, dilim: olay.dilim })}`)) etiket('ipucu-erisilemez');
   if (suclama.gerekce && suclama.gerekce.length > 0 && suclama.gerekce.every((g) => g.startsWith('ipucu:'))) etiket('tek-ipucu');
   if (!dogru && suclama.gerekce?.some((g) => g.startsWith('takim:'))) etiket('sosyal-kanit');
+  // Oda okuması / dijital profil kişiliği okur, suçu değil (Gosling 2002); dayanak yapıp yanılmak ayrı etiket.
+  if (!dogru && suclama.gerekce?.some((g) => g.startsWith('profil:'))) etiket('oda-okuma-suc');
+
+  // --- Kişi okuma karneleri (oyun sırasında gizli, burada açılır) ---
+  const oda = odaKarnesi(sorgu);
+  let icSes: PuanRaporu['icSesKarnesi'];
+  if (sorgu.icSesTahminleri.length > 0) {
+    const n = sorgu.icSesTahminleri.length;
+    const isabet = sorgu.icSesTahminleri.filter((t) => t.tahmin === t.gercek).length;
+    icSes = { n, dogru: isabet };
+    // Herkesi "suçu düşünüyor" diye okumak: gerçekte öyle olmayan çoğunlukta yalan yanlılığı.
+    const sucTahmin = sorgu.icSesTahminleri.filter((t) => t.tahmin === 'suc-kaygisi').length;
+    const sucGercek = sorgu.icSesTahminleri.filter((t) => t.gercek === 'suc-kaygisi').length;
+    if (n >= IC_SES_YANLILIK_ESIGI && sucTahmin / n >= 0.6 && sucGercek / n < 0.5) etiket('yalan-yanliligi');
+  }
 
   // --- Süreç cezaları ---
   const erken = sorgu.gecmis.filter((g) => g.teknik === 'sue' && g.ozet === 'erken gösterildi').length;
@@ -98,5 +121,5 @@ export function puanla(sorgu: Sorgu, suclama: Suclama, secenekler: PuanSecenekle
 
   const hataEtiketleri = [...etiketler];
   const calisilacakKilavuz = [...new Set(hataEtiketleri.map((e) => ETIKET_KUTUGU.get(e)!.kilavuzMaddesi))];
-  return { dogru, puan, kalibrasyon: { guven: suclama.guven, sonuc, brier }, bonuslar, cezalar, hataEtiketleri, calisilacakKilavuz };
+  return { dogru, puan, kalibrasyon: { guven: suclama.guven, sonuc, brier }, bonuslar, cezalar, hataEtiketleri, calisilacakKilavuz, ...(oda ? { odaKarnesi: oda } : {}), ...(icSes ? { icSesKarnesi: icSes } : {}) };
 }

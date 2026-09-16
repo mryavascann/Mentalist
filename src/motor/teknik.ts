@@ -11,6 +11,7 @@ import { citGecerliMi, kimBiliyor, type BilgiKonusu } from './bilgi';
 import { celisenDeliller, delilUret, type Delil } from './delil';
 import { ipucuUret, YALAN_IFADE_TURLERI, type IpucuGozlemi } from './ipucu';
 import { cevapla, soruAnahtari, vakaDurumuKur, type Cevap, type Soru, type VakaDurumu } from './strateji';
+import { dijitalIz, icSesTahminEt, kayitIncele, odaOku, type DijitalProfil, type EsyaSinifi, type IcSesKategori, type IcSesSonucu, type IcSesTahmini, type KayitSonucu, type OdaOkumasi } from './araclar';
 import type { KisiId, OdaId, Vaka } from './tipler';
 
 export interface SorSonucu {
@@ -38,6 +39,12 @@ export interface Sorgu {
   /** Harcanan soruşturma saati. */
   zaman: number;
   gecmis: { kisi: KisiId; teknik: string; ozet: string }[];
+  /** Oda okuma (araclar.ts): kişi → okunan eşyalar; gizli türler vaka sonunda açılır. */
+  odaOkumalari: Map<KisiId, OdaOkumasi>;
+  /** Oyuncunun eşya sınıflamaları: eşya id → iddia / kalıntı / sahnelenmiş. */
+  odaSiniflamalari: Map<string, EsyaSinifi>;
+  /** "Şu an ne düşünüyor?" tahminleri; gerçek kategori burada durur ama arayüz vaka sonuna kadar göstermez. */
+  icSesTahminleri: IcSesTahmini[];
 }
 
 export interface TeknikParametreleri {
@@ -47,6 +54,10 @@ export interface TeknikParametreleri {
   konu?: 'olay-yontemi' | 'fail-kimligi';
   onerilenOda?: OdaId;
   uydurmaAd?: string;
+  /** İç ses / kayıt inceleme: hangi cevabın kaydı; verilmezse kişiye verilen son cevap. */
+  soru?: Soru;
+  /** İç ses: oyuncunun tahmini. */
+  tahmin?: IcSesKategori;
 }
 
 export type TeknikSonucu =
@@ -61,7 +72,11 @@ export type TeknikSonucu =
   | { teknik: 'saskinlik-testi'; konu: BilgiKonusu; sasirdi: boolean }
   | { teknik: 'sahte-bilgi-yemi'; uydurmaAd: string; onayladi: boolean; ifadeTuru: string }
   | { teknik: 'seytanin-avukati'; uygulanamaz: true; neden: string }
-  | { teknik: 'suclayici-ton'; stres: number; sahteItiraf: boolean; itiraf: boolean };
+  | { teknik: 'suclayici-ton'; stres: number; sahteItiraf: boolean; itiraf: boolean }
+  | { teknik: 'oda-okuma'; okuma: OdaOkumasi }
+  | { teknik: 'dijital-iz'; profil: DijitalProfil }
+  | IcSesSonucu
+  | KayitSonucu;
 
 const SVT_SORU_SAYISI = 12;
 const SVT_SANS_ALTI_ESIGI = 3;
@@ -71,7 +86,7 @@ const STRES_TAVANI = 2;
 
 export function sorguBaslat(vaka: Vaka): Sorgu {
   const durum = vakaDurumuKur(vaka);
-  return { durum, deliller: delilUret(vaka, durum.dagilim), gosterilen: new Map(), kontaminasyon: [], stres: new Map(), zaman: 0, gecmis: [] };
+  return { durum, deliller: delilUret(vaka, durum.dagilim), gosterilen: new Map(), kontaminasyon: [], stres: new Map(), zaman: 0, gecmis: [], odaOkumalari: new Map(), odaSiniflamalari: new Map(), icSesTahminleri: [] };
 }
 
 function rng(sorgu: Sorgu, kisi: KisiId, etiket: string): Rastgele {
@@ -133,6 +148,10 @@ function ozetle(s: TeknikSonucu): string {
     case 'gizli-bilgi-testi': return `${s.gecerli ? 'geçerli' : 'GEÇERSİZ'} / ${s.tepki}`;
     case 'zorunlu-iki-secenek': return s.skor === null ? 'uygulanamadı' : `${s.skor}/${s.n}`;
     case 'suclayici-ton': return `stres ${s.stres}${s.sahteItiraf ? ' / SAHTE İTİRAF' : ''}${s.itiraf ? ' / itiraf' : ''}`;
+    case 'oda-okuma': return `${s.okuma.esyalar.length} eşya`;
+    case 'dijital-iz': return `ton ${s.profil.kurbanaDairTon}`;
+    case 'ic-ses': return s.uygulanamaz ? 'uygulanamadı' : 'tahmin kaydedildi';
+    case 'kayit-inceleme': return s.uygulanamaz ? 'uygulanamadı' : s.temelCizgiVar ? 'temel çizgiyle kıyas' : 'temel çizgisiz';
     default: return s.teknik;
   }
 }
@@ -286,6 +305,20 @@ function uygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: TeknikParametre
       }
       return { teknik: 'suclayici-ton', stres, sahteItiraf, itiraf };
     }
+
+    // --- Diğer araçlar (araclar.ts): kişilik ve sır okur, suç değil ---
+    case 'oda-okuma': {
+      // Aynı oda ikinci kez okununca aynı eşyalar döner (deterministik); zaman yine harcanır.
+      const okuma = sorgu.odaOkumalari.get(kisi) ?? odaOku(sorgu, kisi);
+      sorgu.odaOkumalari.set(kisi, okuma);
+      return { teknik: 'oda-okuma', okuma };
+    }
+    case 'dijital-iz':
+      return { teknik: 'dijital-iz', profil: dijitalIz(sorgu, kisi) };
+    case 'ic-ses':
+      return icSesTahminEt(sorgu, kisi, p.tahmin, p.soru);
+    case 'kayit-inceleme':
+      return kayitIncele(sorgu, kisi, p.soru);
 
     default:
       throw new Error(`Teknik uygulanmadı: ${teknikId}`);

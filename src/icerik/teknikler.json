@@ -6,9 +6,20 @@
     "nasil": "Suç sorusundan önce 3–4 tarafsız soru sor. Sonra sapmaları değil, HANGİ konuda sapma olduğunu not et.",
     "sinirlari": "Küçük sohbet temel çizgisi ≠ suç sorusu temel çizgisi. 'Karşılaştırılabilir doğru' ara: aynı görüşme, benzer önem, yakın zaman.",
     "kilavuzMaddesi": "temel-cizgi",
-    "kaynak": ["Vrij 2010 PSPI", "Navarro", "Bond & DePaulo 2006"],
-    "maliyet": { "zaman": 1 },
-    "etkiler": { "bilgi": 0.2, "kontaminasyon": 0.0, "stres": 0.05, "itirafBaskisi": 0.0 }
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Navarro",
+      "Bond & DePaulo 2006"
+    ],
+    "maliyet": {
+      "zaman": 1
+    },
+    "etkiler": {
+      "bilgi": 0.2,
+      "kontaminasyon": 0.0,
+      "stres": 0.05,
+      "itirafBaskisi": 0.0
+    }
   },
   {
     "id": "acik-uclu-anlatim",
@@ -17,9 +28,19 @@
     "nasil": "Soru sorma, dinle. Bittiğinde 'Atladığın bir şey var mı?' de. Ayrıntı, düzeltme ve 'hatırlamıyorum' kabullerini not et.",
     "sinirlari": "Çok konuşmak doğruluk değildir; doğrulanamayan uzun ifadeye güvenme. Sözel ipuçları CBCA'yı bilen yalancı tarafından taklit edilebilir.",
     "kilavuzMaddesi": "ipuclari-zayiftir",
-    "kaynak": ["Vrij 2010 PSPI", "Navarro"],
-    "maliyet": { "zaman": 1 },
-    "etkiler": { "bilgi": 0.7, "kontaminasyon": 0.05, "stres": 0.1, "itirafBaskisi": 0.0 }
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Navarro"
+    ],
+    "maliyet": {
+      "zaman": 1
+    },
+    "etkiler": {
+      "bilgi": 0.7,
+      "kontaminasyon": 0.05,
+      "stres": 0.1,
+      "itirafBaskisi": 0.0
+    }
   },
   {
     "id": "yonlendirici-soru",
@@ -28,9 +49,20 @@
     "nasil": "Kullanırsan bil: motor bu ayrıntıyı 'ilk kimin söylediğini' kaydeder; sonradan tanık aynı ayrıntıyı söylerse kaynağı sen olabilirsin.",
     "sinirlari": "Loftus fiil etkisi: 'çarptı' vs 'değdi' hız tahminini ve sonraki anıyı değiştirir. Çocuk ve telkine yatkın tanıklarda daha tehlikeli.",
     "kilavuzMaddesi": "yonlendirici-soru-riski",
-    "kaynak": ["Loftus & Pickrell 1995", "Konnikova", "Derren Brown"],
-    "maliyet": { "zaman": 0.5 },
-    "etkiler": { "bilgi": 0.5, "kontaminasyon": 0.8, "stres": 0.1, "itirafBaskisi": 0.1 }
+    "kaynak": [
+      "Loftus & Pickrell 1995",
+      "Konnikova",
+      "Derren Brown"
+    ],
+    "maliyet": {
+      "zaman": 0.5
+    },
+    "etkiler": {
+      "bilgi": 0.5,
+      "kontaminasyon": 0.8,
+      "stres": 0.1,
+      "itirafBaskisi": 0.1
+    }
   },
   {
     "id": "sue",
@@ -39,9 +71,18 @@
     "nasil": "1) Delili söyleme, anlattır. 2) Delilin konusuyla ilgili soruyu delili açmadan sor. 3) Şimdi delili göster, çelişkiyi sor. Erken gösterirsen suçlu hikâyesini delile uydurur.",
     "sinirlari": "Elde delil yoksa uygulanamaz. Masumun 'bilmiyordum' demesi normaldir; çelişki yoksa suçlama.",
     "kilavuzMaddesi": "sue",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "maliyet": { "zaman": 2 },
-    "etkiler": { "bilgi": 0.9, "kontaminasyon": 0.1, "stres": 0.3, "itirafBaskisi": 0.2 }
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "maliyet": {
+      "zaman": 2
+    },
+    "etkiler": {
+      "bilgi": 0.9,
+      "kontaminasyon": 0.1,
+      "stres": 0.3,
+      "itirafBaskisi": 0.2
+    }
   },
   {
     "id": "bilissel-yuk-ters-sira",
@@ -50,9 +91,18 @@
     "nasil": "'Şimdi aynı akşamı en sondan başlayarak anlat.' Tutarsızlık, ayrıntı kaybı ve duraksamaları ilk anlatımla karşılaştır.",
     "sinirlari": "Herkes için zordur; temel çizgiyle kıyasla. Yaşlı ve yorgun tanıklarda doğrucu da zorlanır.",
     "kilavuzMaddesi": "bilissel-yuk",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "maliyet": { "zaman": 1.5 },
-    "etkiler": { "bilgi": 0.6, "kontaminasyon": 0.05, "stres": 0.25, "itirafBaskisi": 0.05 }
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "maliyet": {
+      "zaman": 1.5
+    },
+    "etkiler": {
+      "bilgi": 0.6,
+      "kontaminasyon": 0.05,
+      "stres": 0.25,
+      "itirafBaskisi": 0.05
+    }
   },
   {
     "id": "beklenmedik-soru",
@@ -61,9 +111,18 @@
     "nasil": "Alibinin beklenen kısmını değil, çevresini sor. Grup alibisinde iki kişiye ayrı ayrı sor ve karşılaştır.",
     "sinirlari": "Dürüst kişi de ayrıntıyı unutmuş olabilir; 'bilmiyorum' demesi normaldir. Yalancı ise bilmiyorum diyemeyip uydurma eğilimindedir.",
     "kilavuzMaddesi": "beklenmedik-soru",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "maliyet": { "zaman": 1 },
-    "etkiler": { "bilgi": 0.7, "kontaminasyon": 0.05, "stres": 0.2, "itirafBaskisi": 0.05 }
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "maliyet": {
+      "zaman": 1
+    },
+    "etkiler": {
+      "bilgi": 0.7,
+      "kontaminasyon": 0.05,
+      "stres": 0.2,
+      "itirafBaskisi": 0.05
+    }
   },
   {
     "id": "gizli-bilgi-testi",
@@ -72,9 +131,19 @@
     "nasil": "'Silah bıçak mıydı, buz kıracağı mı, çekiç mi?' Ayrıntı basına sızmadıysa geçerlidir. Tepki 'korku' değil 'tanıma'dır (dikkat).",
     "sinirlari": "Ayrıntı medyada/ dedikoduda yayıldıysa masum da tepki verir; fail ayrıntıyı fark etmemiş olabilir. Hot reading riskiyle aynı hata: bilgi başka kanaldan sızmış olabilir.",
     "kilavuzMaddesi": "gizli-bilgi-testi",
-    "kaynak": ["Vrij & Verschuere 2014", "Navarro"],
-    "maliyet": { "zaman": 1.5 },
-    "etkiler": { "bilgi": 0.8, "kontaminasyon": 0.3, "stres": 0.2, "itirafBaskisi": 0.1 }
+    "kaynak": [
+      "Vrij & Verschuere 2014",
+      "Navarro"
+    ],
+    "maliyet": {
+      "zaman": 1.5
+    },
+    "etkiler": {
+      "bilgi": 0.8,
+      "kontaminasyon": 0.3,
+      "stres": 0.2,
+      "itirafBaskisi": 0.1
+    }
   },
   {
     "id": "zorunlu-iki-secenek",
@@ -83,9 +152,18 @@
     "nasil": "En az 10–15 iki seçenekli soru sor. Gerçekten hatırlamayan ~%50 tutturur; sürekli yanlış seçen doğruyu bilip kaçınıyordur.",
     "sinirlari": "Az soruyla sonuç şansa açıktır. Doğrudan suç sorusuna 'hatırlamıyorum' diyen için geçerli; ikincil ayrıntıları hatırlamamak normaldir.",
     "kilavuzMaddesi": "symptom-validity-test",
-    "kaynak": ["Vrij & Verschuere 2014"],
-    "maliyet": { "zaman": 1.5 },
-    "etkiler": { "bilgi": 0.6, "kontaminasyon": 0.1, "stres": 0.2, "itirafBaskisi": 0.1 }
+    "kaynak": [
+      "Vrij & Verschuere 2014"
+    ],
+    "maliyet": {
+      "zaman": 1.5
+    },
+    "etkiler": {
+      "bilgi": 0.6,
+      "kontaminasyon": 0.1,
+      "stres": 0.2,
+      "itirafBaskisi": 0.1
+    }
   },
   {
     "id": "saskinlik-testi",
@@ -94,9 +172,18 @@
     "nasil": "Açıklamayı ani ve beklenmedik yap. Şaşkınlık en kısa duygudur; hemen başka duyguya dönüşür.",
     "sinirlari": "Şaşkınlık bastırılabilir, 'şaşırmış rolü' yapılabilir; irkilme refleksi ise kontrol edilemez ama bilgiyle ilgili değildir. Tek başına kanıt değil.",
     "kilavuzMaddesi": "saskinlik-testi",
-    "kaynak": ["Ekman — Emotions Revealed"],
-    "maliyet": { "zaman": 0.5 },
-    "etkiler": { "bilgi": 0.4, "kontaminasyon": 0.4, "stres": 0.15, "itirafBaskisi": 0.05 }
+    "kaynak": [
+      "Ekman — Emotions Revealed"
+    ],
+    "maliyet": {
+      "zaman": 0.5
+    },
+    "etkiler": {
+      "bilgi": 0.4,
+      "kontaminasyon": 0.4,
+      "stres": 0.15,
+      "itirafBaskisi": 0.05
+    }
   },
   {
     "id": "sahte-bilgi-yemi",
@@ -105,9 +192,19 @@
     "nasil": "'Cemil'in o gece aradığını söylediler, ne konuştunuz?' (Cemil yok.) Onaylayıp büyüten kişinin anlatısı güvenilmezdir.",
     "sinirlari": "Masuma yanlış bilgi yerleştirme riski (kontaminasyon). Telkine yatkın kişi 'hatırlar' gibi yapabilir. Nadir ve dikkatli kullan.",
     "kilavuzMaddesi": "sahte-bilgi-yemi",
-    "kaynak": ["Rowland", "Derren Brown"],
-    "maliyet": { "zaman": 1 },
-    "etkiler": { "bilgi": 0.5, "kontaminasyon": 0.9, "stres": 0.1, "itirafBaskisi": 0.1 }
+    "kaynak": [
+      "Rowland",
+      "Derren Brown"
+    ],
+    "maliyet": {
+      "zaman": 1
+    },
+    "etkiler": {
+      "bilgi": 0.5,
+      "kontaminasyon": 0.9,
+      "stres": 0.1,
+      "itirafBaskisi": 0.1
+    }
   },
   {
     "id": "seytanin-avukati",
@@ -116,9 +213,18 @@
     "nasil": "Doğru söyleyenin lehte cevabı uzun ve zengin, aleyhte cevabı kısa olur; yalancıda fark azdır.",
     "sinirlari": "Görüş ve niyet yalanlarında çalışır; olay anlatımında sınırlı. Sözel becerisi düşük kişide ayrım zayıflar.",
     "kilavuzMaddesi": "seytanin-avukati",
-    "kaynak": ["Vrij 2010 PSPI"],
-    "maliyet": { "zaman": 1 },
-    "etkiler": { "bilgi": 0.4, "kontaminasyon": 0.05, "stres": 0.15, "itirafBaskisi": 0.0 }
+    "kaynak": [
+      "Vrij 2010 PSPI"
+    ],
+    "maliyet": {
+      "zaman": 1
+    },
+    "etkiler": {
+      "bilgi": 0.4,
+      "kontaminasyon": 0.05,
+      "stres": 0.15,
+      "itirafBaskisi": 0.0
+    }
   },
   {
     "id": "suclayici-ton",
@@ -127,8 +233,100 @@
     "nasil": "Kullanırsan sonucunu bil: masum da gerilir, yalancı 'bana inanmıyorsunuz, konuşmam' kaçışı bulur; sahte itiraf riski artar.",
     "sinirlari": "Reid tarzı baskı sahte itiraf üretir (Central Park vakası). Bilgi toplama tarzı hem daha çok bilgi hem daha doğru ayrım verir.",
     "kilavuzMaddesi": "suclayici-ton",
-    "kaynak": ["Vrij 2010 PSPI", "Navarro", "Ekman — Emotions Revealed"],
-    "maliyet": { "zaman": 0.5 },
-    "etkiler": { "bilgi": 0.2, "kontaminasyon": 0.3, "stres": 0.9, "itirafBaskisi": 0.9 }
+    "kaynak": [
+      "Vrij 2010 PSPI",
+      "Navarro",
+      "Ekman — Emotions Revealed"
+    ],
+    "maliyet": {
+      "zaman": 0.5
+    },
+    "etkiler": {
+      "bilgi": 0.2,
+      "kontaminasyon": 0.3,
+      "stres": 0.9,
+      "itirafBaskisi": 0.9
+    }
+  },
+  {
+    "id": "oda-okuma",
+    "ad": "Odasını oku",
+    "aciklama": "Kişinin odasına/masasına bakmak: her eşya kimlik iddiası mı (kendine ya da başkalarına), davranış kalıntısı mı, sahnelenmiş mi?",
+    "nasil": "Eşyaları listele, her birini sınıfla. Kalıntılar tekrarlanan davranışın birikimidir; iddialar kişinin nasıl görünmek istediğidir. Sır kalıntı bırakır: sorulacak konu çıkarır, suç kanıtı değil.",
+    "sinirlari": "Odadan kişilik ve sır okunur, suç okunmaz. 'Hoş oda = hoş insan' geçersizdir. Kişi odayı izlenim için düzenlemiş olabilir (yüksek öz-izleme).",
+    "kilavuzMaddesi": "oda-ipuclari",
+    "kaynak": [
+      "Gosling 2002"
+    ],
+    "maliyet": {
+      "zaman": 1
+    },
+    "etkiler": {
+      "bilgi": 0.4,
+      "kontaminasyon": 0.0,
+      "stres": 0.0,
+      "itirafBaskisi": 0.0
+    }
+  },
+  {
+    "id": "dijital-iz",
+    "ad": "Dijital iz",
+    "aciklama": "Sosyal medya profili: arkadaş sayısı, paylaşım sıklığı, beğeniler, kurbana dair son paylaşımın tonu.",
+    "nasil": "Dışadönüklüğü buradan oku (arkadaş ve paylaşım sayısı geçerli ipucu); kaygıyı okumaya kalkma (görünmez). Kurbana dair tonu ilişkinin sıcaklığıyla kıyasla; izlenim yöneten kişi soğukluğu saklar.",
+    "sinirlari": "Tahmin olasılıksaldır, bireyde yanılır. 'Çok paylaşım = kaygılı' halk inancı geçersiz. Bir medyumun 'nasıl bildi?'sinin cevabı çoğu zaman budur (sıcak okuma).",
+    "kilavuzMaddesi": "dijital-iz",
+    "kaynak": [
+      "Kosinski 2013",
+      "Gosling 2011"
+    ],
+    "maliyet": {
+      "zaman": 0.5
+    },
+    "etkiler": {
+      "bilgi": 0.3,
+      "kontaminasyon": 0.0,
+      "stres": 0.0,
+      "itirafBaskisi": 0.0
+    }
+  },
+  {
+    "id": "ic-ses",
+    "ad": "Şu an ne düşünüyor?",
+    "aciklama": "Son cevabı verirken kişinin iç sesini tahmin et; gerçek iç ses vaka sonunda açılır ve isabetin puanlanır.",
+    "nasil": "Önce konuş ve soru sor; az konuşulan kişi okunmaz (seçenekler çoğalır). Tahminini seç; sonucu vaka sonunda 'İç ses karnesi'nde gör. Ortalama insan %22 tutturur.",
+    "sinirlari": "Ickes 1990: içerik isabeti %22, olumlu/olumsuz ayrımı şans düzeyi. 'Okudum' hissi kanıt değildir; hep 'suçu düşünüyor' demek yalan yanlılığıdır.",
+    "kilavuzMaddesi": "empatik-dogruluk",
+    "kaynak": [
+      "Ickes 1990"
+    ],
+    "maliyet": {
+      "zaman": 0.5
+    },
+    "etkiler": {
+      "bilgi": 0.2,
+      "kontaminasyon": 0.0,
+      "stres": 0.0,
+      "itirafBaskisi": 0.0
+    }
+  },
+  {
+    "id": "kayit-inceleme",
+    "ad": "Kaydı incele",
+    "aciklama": "Son cevabın kaydını yavaşlatıp yüzün bir bölümünü kapatarak yeniden izlemek; temel çizgi varsa gözlemleri 'onun normali' ve 'sapma' diye ayırmak.",
+    "nasil": "Önce temel çizgi kur, sonra kaydı incele; yoksa ilk izlediğini 'normal' sanırsın (sıra yanlılığı). Sapmalar sorulacak konudur, kanıt değil.",
+    "sinirlari": "Etkisi küçüktür (%49 → %53). Tek bir ipucu yoktur; kişiye özgü karışım vardır. Aynı cevabı ikinci kez sordurmak daha çok iz verir.",
+    "kilavuzMaddesi": "kayit-inceleme",
+    "kaynak": [
+      "Swerts 2013"
+    ],
+    "maliyet": {
+      "zaman": 0.5
+    },
+    "etkiler": {
+      "bilgi": 0.2,
+      "kontaminasyon": 0.0,
+      "stres": 0.05,
+      "itirafBaskisi": 0.0
+    }
   }
 ]

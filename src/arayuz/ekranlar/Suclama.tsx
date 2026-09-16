@@ -15,6 +15,7 @@ export function Suclama() {
     ...kullanilanTeknikler.map((t) => ({ id: `teknik:${t}`, ad: `Teknik sonucu: ${t}` })),
     { id: 'ipucu:genel', ad: 'Davranış ipuçları (gerginlik, göz kaçırma, duraksama…)' },
     { id: 'takim:cogunluk', ad: 'Takımın çoğunluk görüşü' },
+    { id: 'profil:genel', ad: 'Oda okuması / dijital profil (kişilik okuması)' },
   ];
   const degistir = (id: string) => setGerekce((g) => { const y = new Set(g); if (y.has(id)) y.delete(id); else y.add(id); return y; });
   const gonder = () => depo.suclamaYap({ fail: secim === 'yok' ? null : secim, guven: guven / 100, gerekce: [...gerekce] });

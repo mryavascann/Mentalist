@@ -224,5 +224,16 @@
       "Konnikova"
     ],
     "ramKatmani": 4
+  },
+  {
+    "id": "oda-okuma-suc",
+    "ad": "Kişilik okumasını suç kanıtı saydın",
+    "aciklama": "Oda okuması ya da dijital profil kişiliği ve sırrı okur; suçu okumaz. Sevimsiz oda, soğuk profil ya da saklanan bir sır seni faile götürmez; sorulacak konu verir.",
+    "kilavuzMaddesi": "oda-ipuclari",
+    "kaynak": [
+      "Gosling 2002",
+      "Kosinski 2013"
+    ],
+    "ramKatmani": 4
   }
 ]

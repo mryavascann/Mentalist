@@ -2,6 +2,7 @@
 // Saf fonksiyonlar (DOM yok) → Node'da test edilir. Gizli bilgiyi sızdırmaz: CIT geçerliliği, ifade türü
 // gibi motor iç bilgileri burada asla yazılmaz; onlar vaka sonu analizinde açılır.
 import { belirtme } from '@ortak/turkce';
+import { IC_SES_SECENEKLERI } from '@motor/araclar';
 import type { Soru } from '@motor/strateji';
 import type { TeknikSonucu } from '@motor/teknik';
 import type { Vaka } from '@motor/tipler';
@@ -19,8 +20,8 @@ export function soruMetni(soru: Soru, vaka: Vaka, kisiId: string): string {
   return `${saat(vaka, soru.dilim)} civarında ${belirtme(ilkAd(vaka, soru.hedef))} gördün mü? Neredeydi?`;
 }
 
-/** Teknik sonucunun oyuncuya sunumu. */
-export function teknikSonucMetni(sonuc: TeknikSonucu, vaka: Vaka): string {
+/** Teknik sonucunun oyuncuya sunumu. kisiId, kayıt incelemede sorunun kimin için sorulduğunu yazmak için. */
+export function teknikSonucMetni(sonuc: TeknikSonucu, vaka: Vaka, kisiId = ''): string {
   switch (sonuc.teknik) {
     case 'temel-cizgi':
       return sonuc.gozlemler.length === 0
@@ -64,6 +65,25 @@ export function teknikSonucMetni(sonuc: TeknikSonucu, vaka: Vaka): string {
     case 'suclayici-ton':
       if (sonuc.sahteItiraf || sonuc.itiraf) return `Sesini yükselttin, suçladın. Baskı ${sonuc.stres.toFixed(1)}. Çöktü: "Tamam… ben yaptım."`;
       return `Sesini yükselttin, suçladın. Baskı ${sonuc.stres.toFixed(1)}. Kapandı; cevapları kısaldı, gerginleşti.`;
+    // --- Diğer araçlar: kişilik ve sır okur; gizli tür/kategori burada yazılmaz ---
+    case 'oda-okuma':
+      return `Odasına baktın. ${sonuc.okuma.esyalar.map((e) => e.betimleme).join(' · ')} (Her eşyayı sınıfla: iddia mı, alışkanlık izi mi, izlenim için mi?)`;
+    case 'dijital-iz': {
+      const p = sonuc.profil;
+      const ton = { sicak: 'sıcak', notr: 'nötr', soguk: 'soğuk', yok: 'paylaşım yok' }[p.kurbanaDairTon];
+      return `Profil: ${p.arkadas} arkadaş, haftada ${p.haftalikPaylasim} paylaşım, ${p.foto} fotoğraf, ${p.grup} grup. Beğeniler: ${p.begeniler.join(', ')}. Kurbana dair son paylaşımın tonu: ${ton}.`;
+    }
+    case 'ic-ses':
+      if (sonuc.uygulanamaz) return `Uygulanamadı: ${sonuc.neden}`;
+      return `Tahminin kaydedildi: ${IC_SES_SECENEKLERI[sonuc.tahmin]} Gerçek iç ses vaka sonunda açılır (Ickes 1990: yabancıların ortalama isabeti %22).`;
+    case 'kayit-inceleme': {
+      if (sonuc.uygulanamaz) return `Uygulanamadı: ${sonuc.neden}`;
+      const bas = `Kaydı yavaşlatıp yeniden izledin ("${soruMetni(sonuc.soru, vaka, kisiId)}").`;
+      if (!sonuc.temelCizgiVar) return `${bas} Temel çizgi yok; ilk izlediğini "normal" sayma (sıra yanlılığı). Gözlemler aşağıda; hangisi onun normali bilinmiyor.`;
+      const normali = sonuc.normali.length ? sonuc.normali.map((g) => g.betimleme).join(' ') : 'yok';
+      const sapma = sonuc.sapmalar.length ? sonuc.sapmalar.map((g) => g.betimleme).join(' ') : 'yok';
+      return `${bas} Temel çizgiyle kıyas — onun normali: ${normali} Sapma: ${sapma} (Sapma sorulacak konudur, kanıt değil; etkisi küçük.)`;
+    }
     default:
       return 'Uygulandı.';
   }

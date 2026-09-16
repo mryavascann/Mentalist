@@ -37,6 +37,7 @@ export const TATBIKAT_ONERISI: Record<string, TatbikatId> = {
   'tek-ipucu': 'ince-dilim',
   'beklenti-ihlali': 'ince-dilim',
   'hale-etkisi': 'ince-dilim',
+  'oda-okuma-suc': 'ince-dilim',
   'dogruluk-yanliligi': 'soguk-okuma',
   'delil-sorgulanmadi': 'cift-kor',
   'gecersiz-gizli-bilgi-testi': 'cift-kor',

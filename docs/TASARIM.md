@@ -138,6 +138,8 @@ Her araç bir **Kılavuz sayfasına** bağlanır ve motor, etkisini kaynaktaki b
 - **"Şu an ne düşünüyor?" (Ickes):** oyuncu karakterin iç sesini tahmin eder, sonra gerçek iç ses açılır ve benzerlik puanlanır.
 - **Soğuk okuma dedektörü:** bir medyum/manipülatör kaydındaki cümleleri etiketle (Barnum, gökkuşağı hilesi, olta, çatal, belirsiz gelecek, gizli soru...). Rowland'ın 5 bloklama kuralı oyuncu aracı olur: sakin kal, sorunun soru olduğunu fark ettir, soruya cevap verme, geri bildirim verme, yapıyı açığa çıkar.
 
+**Uygulama notu (2026-09-16, `src/motor/araclar.ts`):** Oda okuma, dijital iz, iç ses ve kayıt inceleme "Kişiyi oku" bloğunda; hepsi kişilik ve sır okur, suç okumaz. Oda eşyaları oyuncu tarafından iddia/kalıntı/sahnelenmiş diye sınıflanır, gerçek tür ve ima vaka sonu karnesinde açılır; sahnelenmiş oda öz-izlemeye bağlıdır, faille ilişkisizdir. İç ses tahmini vaka sonunda puanlanır (K-014); az konuşulan kişide seçenek altıya çıkar. Kayıt incelemenin etkisi bilerek küçüktür; asıl değeri temel çizgiyle kıyastır. Kişilik okumasını suç dayanağı yapıp yanılmak `oda-okuma-suc` etiketi verir.
+
 ---
 
 ## 8. Davranış ipuçları sistemi

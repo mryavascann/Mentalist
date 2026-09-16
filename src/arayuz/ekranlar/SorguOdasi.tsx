@@ -1,6 +1,7 @@
 // Sorgu odası: solda kişiler, ortada konuşma akışı + davranış betimlemeleri, sağda sorular ve teknikler.
 import { useState } from 'react';
 import { ICERIK } from '@icerik/index';
+import { ESYA_SINIF_ADLARI, IC_SES_KATEGORILERI, IC_SES_SECENEKLERI, type EsyaSinifi, type IcSesKategori } from '@motor/araclar';
 import { depo, useOyun } from '../oyun/kullan';
 import { IpucuKarti } from './IpucuKarti';
 import { Portre } from './Portre';
@@ -13,7 +14,9 @@ export function SorguOdasi() {
   const [oneriOda, setOneriOda] = useState('');
   const [uydurmaAd, setUydurmaAd] = useState('Cemil Aktaş');
   const [acikIpucu, setAcikIpucu] = useState<string | null>(null);
+  const [tahmin, setTahmin] = useState<IcSesKategori>('sakin');
   if (!d.sorgu) return null;
+  const odaOkumasi = d.seciliKisi ? d.sorgu.odaOkumalari.get(d.seciliKisi) : undefined;
   const vaka = d.sorgu.durum.vaka;
   const kisiler = depo.gorusulebilirler();
   const secili = d.seciliKisi ? vaka.kisiler.find((k) => k.id === d.seciliKisi) : null;
@@ -41,6 +44,24 @@ export function SorguOdasi() {
         <label className="soluk" style={{ display: 'block' }}><input type="checkbox" checked={d.takimAcik} onChange={(e) => depo.takimAcKapat(e.target.checked)} /> Takım yorumları (kanıt değildir; çoğunluk sık yanılır)</label>
         {secili && d.temelCizgiNotlari.get(secili.id) && <p className="soluk" style={{ borderLeft: '3px solid var(--mantar)', paddingLeft: 8 }}>{d.temelCizgiNotlari.get(secili.id)}</p>}
         {acikIpucu && <IpucuKarti id={acikIpucu} kapat={() => setAcikIpucu(null)} />}
+        {odaOkumasi && (
+          // Oda okuma (Gosling 2002): her eşya için oyuncu sınıf seçer; gerçek tür vaka sonunda açılır.
+          <div className="dosya" style={{ margin: '8px 0', padding: 8 }}>
+            <b className="daktilo" style={{ fontSize: 13 }}>Odası</b>
+            <ul className="liste-temiz">
+              {odaOkumasi.esyalar.map((e) => (
+                <li key={e.id} style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span>{e.betimleme}</span>
+                  <select aria-label={`Eşya sınıfı: ${e.betimleme}`} disabled={kapali} value={d.sorgu!.odaSiniflamalari.get(e.id) ?? ''} onChange={(ev) => depo.esyaSinifla(e.id, ev.target.value as EsyaSinifi)}>
+                    <option value="">sınıfla…</option>
+                    {(Object.keys(ESYA_SINIF_ADLARI) as EsyaSinifi[]).map((s) => <option key={s} value={s}>{ESYA_SINIF_ADLARI[s]}</option>)}
+                  </select>
+                </li>
+              ))}
+            </ul>
+            <span className="soluk">Kalıntı: tekrarlanan davranışın izi. İddia: nasıl görünmek istediği. Sahnelenmiş: fizik tutarsızlığı olan düzen. Oda kişiliği okur, suçu değil.</span>
+          </div>
+        )}
         <div className="akis">
           {konusma.length === 0 && secili && <p className="soluk">Henüz soru sormadın. Önce tarafsız sohbetle temel çizgi kur (Kılavuz: Temel çizgi).</p>}
           {konusma.map((k, i) => (
@@ -115,6 +136,19 @@ export function SorguOdasi() {
               <select value={oneriOda} onChange={(e) => setOneriOda(e.target.value)}>
                 <option value="">oda öner…</option>
                 {vaka.mekan.odalar.map((o) => <option key={o.id} value={o.id}>{o.ad}</option>)}
+              </select>
+            </div>
+
+            <h3>Kişiyi oku</h3>
+            <div className="dugmeler">
+              {['oda-okuma', 'dijital-iz', 'kayit-inceleme'].map((id) => (
+                <button key={id} title={teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {teknik(id).maliyet.zaman}s</button>
+              ))}
+            </div>
+            <div className="satirici">
+              <button title={teknik('ic-ses').nasil} onClick={() => depo.teknik('ic-ses', { tahmin })}>{teknik('ic-ses').ad} · {teknik('ic-ses').maliyet.zaman}s</button>
+              <select aria-label="İç ses tahmini" value={tahmin} onChange={(e) => setTahmin(e.target.value as IcSesKategori)}>
+                {IC_SES_KATEGORILERI.map((k) => <option key={k} value={k}>{IC_SES_SECENEKLERI[k]}</option>)}
               </select>
             </div>
 

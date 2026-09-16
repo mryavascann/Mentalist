@@ -595,3 +595,28 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** 1) Diğer araçlar (TASARIM §7). 2) Ayna arkı (özel arketip, biriken notlar). 3) Higgsfield ile portre/mekân görselleri (`assets/HIGGSFIELD_PROMPTLAR.md`; CLI artık kurulu, `assets/KAYIT.md` tutulacak).
+
+## [2026-09-16 16:00] Ajan #1 — Diğer araçlar: oda okuma, dijital iz, iç ses, kayıt inceleme
+**Görev:** TASARIM §7'de kalan dört aracı kurmak; hepsi kaynaklı, Kılavuz'a bağlı, gizli bilgiyi oyun sırasında sızdırmayan.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/motor/araclar.ts` (yeni): `odaOku` (Gosling 2002: eşya = kimlik iddiası kendine/başkalarına, kalıntı iç/dış, sahnelenmiş; sır → tek kalıntı; "hoş oda = hoş insan" tuzak eşyası geçersiz; sahnelenmiş oda öz-izlemeye bağlı, faille ilişkisiz), `odaKarnesi`, `dijitalIz` (Kosinski/Gosling 2011: arkadaş/paylaşım dışadönüklükle r>.4, kaygıyla |r|<.15; yüksek öz-izleyen kurbana dair soğuk görünmez), `icSesKategorisi/icSesMetni/icSesTahminEt` (Ickes 1990: 6 kategori; gerçek cevabın gizli etiketinden; <3 soru konuşulmuşsa 6 seçenek, yoksa 4; sonuç vaka sonunda), `kayitIncele` (Swerts 2013: kayma çarpanı 1.25 = küçük etki; temel çizgi varsa gözlemler normali/sapma; yoksa sıra yanlılığı uyarısı).
+- `teknik.ts`: `Sorgu.odaOkumalari/odaSiniflamalari/icSesTahminleri`, `TeknikParametreleri.soru/tahmin`, dört yeni `TeknikSonucu` üyesi, dağıtım ve özet.
+- `puan.ts`: `odaKarnesi`, `icSesKarnesi`; `profil:` gerekçesiyle yanılınca `oda-okuma-suc`; ≥3 tahminin ≥%60'ı "suç kaygısı" ve gerçek <%50 ise `yalan-yanliligi`.
+- İçerik: teknikler +4 (16), Kılavuz +2 (`empatik-dogruluk` orta, `kayit-inceleme` zayıf; 66 madde), kaynak `Ickes 1990` (49), hata etiketi `oda-okuma-suc` (22). `oda-ipuclari` ve `dijital-iz` maddelerine ilişkili teknik bağı.
+- Arayüz: Sorgu odasında "Kişiyi oku" bloğu (üç düğme + iç ses tahmin seçicisi), okunan odanın eşya listesi ve sınıflama seçicisi; Analiz'de "Oda okuma karnesi" (gerçek tür, ima, geçersiz çıkarım işareti) ve "İç ses karnesi"; Suçlama'da "Oda okuması / dijital profil" dayanağı; `tatbikat_onerisi`: `oda-okuma-suc` → ince dilim; `metinler.ts` dört metin; depo `esyaSinifla`, dışa/içe aktarım.
+- Testler: `tests/motor/araclar.test.ts` (16: içerik bağları, oda determinizmi/sır kalıntısı/tuzak oranı/dışadönüklük/örüntü denetimi/karne/etiket, dijital korelasyonlar/ton kürasyonu, iç ses eşlemesi/akış/sızma/yanlılık etiketi, kayıt akışı/küçük etki), `tests/arayuz/araclarDepo.test.ts` (4).
+
+**Değişen dosyalar:** src/motor/{araclar,teknik,puan}.ts, src/icerik/{teknikler,kilavuz,kaynaklar,hata_etiketleri}.json, src/arayuz/oyun/{depo,metinler,tatbikat_onerisi}.ts, src/arayuz/ekranlar/{SorguOdasi,Analiz,Suclama}.tsx, tests/motor/araclar.test.ts, tests/arayuz/araclarDepo.test.ts, docs.
+
+**Testler:** 297 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dist/index.html (496 kB).
+
+**Alınan kararlar:** K-014 (iç ses gerçeği vaka sonunda açılır; kişilik okuması suç dayanağı olamaz → etiket).
+
+**Sorunlar / riskler:** Oda eşyaları 4 kişilik parametresinden türer; Gosling'in en güçlü bulgusu (açıklık ← kitap çeşitliliği) modelde karşılığı olmadığı için yalnızca "gürültü" eşyası olarak var. Kayıt inceleme etkisi bilerek küçük; oyuncu "işe yaramıyor" diyebilir — Kılavuz bunu dürüstçe söylüyor. `teknikler.json` python yamasıyla yeniden biçimlendi (içerik aynı, diff büyük).
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Ayna arkı: Ayna vakalarına özel arketip ağırlığı, ark boyunca biriken notlar, "okundu" oranı kör nokta bölümünde. 2) Zor seviye ölçümü: bot denge testleriyle zor seviyede başarım rakamları çıkarıp kullanıcıya sun (kullanıcı henüz oynamadı; açık kararlar oynayınca). 3) Higgsfield görselleri (kullanıcı "üret" deyince).
+
+**Geliştirme fikirleri:** "İkinci kez sor" mekaniği (Swerts: tekrar sorulan yalan daha çok sızdırır) — defter aynı cevabı verir, ipucu çekimi `tekrar` etiketiyle 1.2 çarpan. Oda okumada oyuncunun sınıfladığı "sahnelenmiş" eşyayı panoya tek tıkla "olmayan/tutarsız" olarak eklemek.

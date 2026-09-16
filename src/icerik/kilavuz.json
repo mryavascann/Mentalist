@@ -696,6 +696,9 @@
     "kanitDuzeyi": "orta",
     "kaynak": [
       "Gosling 2002"
+    ],
+    "iliskiliTeknikler": [
+      "oda-okuma"
     ]
   },
   {
@@ -722,6 +725,9 @@
     "kaynak": [
       "Kosinski 2013",
       "Gosling 2011"
+    ],
+    "iliskiliTeknikler": [
+      "dijital-iz"
     ]
   },
   {
@@ -879,6 +885,37 @@
       "Derren Brown",
       "Wiseman",
       "French 2024"
+    ]
+  },
+  {
+    "id": "empatik-dogruluk",
+    "bolum": "kisilik-okuma",
+    "baslik": "\"Şu an ne düşünüyor?\": empatik doğruluk %22",
+    "ozet": "İki yabancı 6 dakika sohbet etti; sonra her biri ötekinin o anki düşüncesini tahmin etti. İçerik isabeti ortalama %22 (şans %6); düşüncenin olumlu mu olumsuz mu olduğu bile şans üstü tahmin edilemedi. Doğruluğu artıran: soru sormak (+.29), partnere bakmak, partnerin kendini açması. Kadınlar daha iyi değildi; 'empatiğim' diyenler daha isabetli değildi (öz-bildirim empati ölçekleri çoğu negatif korelasyon).",
+    "nasilKullanilir": "Bir kişinin iç sesini tahmin etmeden önce onunla konuş ve soru sor; az konuşulan kişi okunmaz. Tahminini yaz, vaka sonunda gerçekle kıyasla; isabet oranın %22 civarındaysa normal insansın, 'okudum' hissi kanıt değildir. Tahminlerin hep 'suçu düşünüyor' ise yalan yanlılığındasın.",
+    "sinirlari": "Sonuçlar çift düzeyinde ortaya çıkar: aynı kişi bazı insanlarla iyi, bazılarıyla kötü okur. İlgisiz kalan sorgucu kaydı sonradan izlese de kaybı telafi edemez. Kendi empati becerini bilmiyorsun; ölç.",
+    "kanitDuzeyi": "orta",
+    "kaynak": [
+      "Ickes 1990"
+    ],
+    "iliskiliTeknikler": [
+      "ic-ses"
+    ]
+  },
+  {
+    "id": "kayit-inceleme",
+    "bolum": "yalan-tespitinin-bilimi",
+    "baslik": "Kaydı yavaşlat, yüzü kapat: etkisi küçük",
+    "ozet": "Aynı çocuğun aynı cümleyi bir doğru bir yalan söylediği kayıtlar: normal hızda %49 (şans altı), yarı hızda %53; gözler ya da ağız kapatılınca %51–52. Etki gerçek ama küçük. Daha büyük iki etki: ikinci kez sorulan yalan daha çok sızdırır (%62) ve SIRA yanlılığı — ilk izlenen kayıt 'normal' sayılır, ikincisi sapma gibi görünür (%57 vs %44).",
+    "nasilKullanilir": "Kaydı incelemeden önce temel çizgi kur; yoksa ilk izlediğin şeyi 'normal' sanırsın. Gözlemleri 'onun normali' ve 'sapma' diye ayır; sapma bile tek başına kanıt değil, sorulacak konu. Şüphelendiğin cevabı ikinci kez sordur; tekrar eden yalan daha çok iz bırakır.",
+    "sinirlari": "Çocuklarla, düşük bahisli oyun yalanlarıyla yapıldı; ciddi yalanlar farklı olabilir. İyi yakalanan yalanlarda tek bir ipucu yoktu; kişiye özgü karışım vardı.",
+    "kanitDuzeyi": "zayif",
+    "kaynak": [
+      "Swerts 2013"
+    ],
+    "iliskiliTeknikler": [
+      "kayit-inceleme",
+      "temel-cizgi"
     ]
   }
 ]

@@ -70,3 +70,9 @@
 - **Gerekçe:** Tahmin faille ilişkili olsa Ayna bir "ipucu"ya dönüşür ve örüntü oluşur (AJAN_PROMPTU §4). Adı yazılmayan not oyuncuyu itmez; vaka sonunda "okundun" dersi gelir. Kadans sürprizi korur, tek seferlik hatayı "kör nokta" saymaz.
 - **Alternatifler:** Her vakada Ayna (yoruculuk); tahmini açılışta açıkça yazmak (oyuncuyu yönlendirir); Ayna için özel arketip (sonraya bırakıldı).
 - **Geri dönüş koşulu:** Örüntü testi (`tests/motor/ayna.test.ts`) şans düzeyini aşarsa ölçütler değiştirilir; oyuncu testlerinde not "spoiler" gibi algılanırsa notun gösterim yeri değişir.
+
+## K-014 · 2026-09-16 · Kişi okuma araçları: gerçek vaka sonunda açılır; kişilik okuması suç dayanağı olamaz
+- **Karar:** "Şu an ne düşünüyor?" tahmininin gerçeği ve oda eşyalarının gizli türü oyun sırasında gösterilmez, yalnızca vaka sonu karnelerinde açılır. Suçlamada "Oda okuması / dijital profil" dayanağı seçilip yanılınca `oda-okuma-suc` etiketi basılır.
+- **Gerekçe:** Ickes paradigmasında gerçek düşünce hemen açılır; oyunda bu, cevabın gizli etiketini (yalan/koruma/sır) sızdırır ve vakayı çözer. Gosling'in bulgusu kişilik/sır okumadır; suç okuması değil — oyuncu bunu kanıt sayarsa öğrenmesi gereken ders tam olarak budur.
+- **Alternatifler:** Gerçeği anında açmak (sızıntı); iç sesi hiç puanlamamak (öğrenme kaybı); kişilik okumasını gerekçe listesinden çıkarmak (tuzağı kaldırır, dersi de kaldırır).
+- **Geri dönüş koşulu:** Oyuncu testlerinde karneler "geç geldi, unuttum" hissi verirse, tahmin anında yalnızca "kaydedildi" yerine kısa bir güven sorusu eklenebilir.

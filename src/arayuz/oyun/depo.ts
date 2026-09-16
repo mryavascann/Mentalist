@@ -12,6 +12,7 @@ import { betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, Varyant
 import { puanla, type PuanRaporu, type Suclama } from '@motor/puan';
 import type { Cevap, Soru } from '@motor/strateji';
 import { sor, sorguBaslat, teknikUygula, delilGoster as motorDelilGoster, type Sorgu, type TeknikParametreleri, type TeknikSonucu } from '@motor/teknik';
+import type { EsyaSinifi, IcSesTahmini, OdaOkumasi } from '@motor/araclar';
 import type { Kisi, KisiId, Vaka, Zorluk } from '@motor/tipler';
 import { ICERIK } from '@icerik/index';
 import { bulunma } from '@ortak/turkce';
@@ -345,7 +346,7 @@ export class OyunDeposu {
     const teknik = ICERIK.teknikler.find((t) => t.id === teknikId);
     if (!teknik) return null;
     const sonuc = teknikUygula(sorgu, seciliKisi, teknikId, p);
-    const kayit: KonusmaKaydi = { tur: 'teknik', teknikId, soru: teknik.ad, cevap: teknikSonucMetni(sonuc, vaka), betimleme: '', ipucuIdler: [], gozlemler: [] };
+    const kayit: KonusmaKaydi = { tur: 'teknik', teknikId, soru: teknik.ad, cevap: teknikSonucMetni(sonuc, vaka, seciliKisi), betimleme: '', ipucuIdler: [], gozlemler: [] };
     // Anlatım içeren teknikler cevap satırlarını da döker.
     if (sonuc.teknik === 'acik-uclu-anlatim' || sonuc.teknik === 'bilissel-yuk-ters-sira') {
       const satirlar = sonuc.anlatim.map((a) => `[${vaka.dilimler[(a.cevap.soru as { dilim: number }).dilim]!.baslangic}] ${cevapMetni(vaka, a.cevap, this.usluplar.get(seciliKisi)!, this.bellek)}`);
@@ -365,6 +366,10 @@ export class OyunDeposu {
       kayit.cevap = `Önce anlattı: "${cevapMetni(vaka, sonuc.once.cevap, this.usluplar.get(seciliKisi)!, this.bellek)}" ${kayit.cevap}`;
       kayit.betimleme = betimlemeMetni(sonuc.once.ipuclari);
       kayit.gozlemler = sonuc.once.ipuclari.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
+    } else if (sonuc.teknik === 'kayit-inceleme' && !sonuc.uygulanamaz) {
+      // Temel çizgi yoksa metin gözlemleri yazmaz; tıklanabilir etiketler burada dökülür.
+      kayit.gozlemler = sonuc.gozlemler.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
+      kayit.ipucuIdler = sonuc.gozlemler.map((g) => g.ipucuId);
     }
     this.kayitEkle(seciliKisi, kayit);
     this.durum.zaman = sorgu.zaman;
@@ -374,6 +379,15 @@ export class OyunDeposu {
 
   teknik(teknikId: string, p: TeknikParametreleri = {}): boolean {
     return this.teknikSonucu(teknikId, p) !== null;
+  }
+
+  /** Oda okuma: oyuncu bir eşyayı sınıflar (iddia / kalıntı / sahnelenmiş). Suçlama sonrası kilitlidir. */
+  esyaSinifla(esyaId: string, sinif: EsyaSinifi): boolean {
+    const { sorgu, puan } = this.durum;
+    if (!sorgu || puan) return false;
+    sorgu.odaSiniflamalari.set(esyaId, sinif);
+    this.bildir();
+    return true;
   }
 
   panoEkle(tur: PanoTuru, metin: string): boolean {
@@ -570,6 +584,7 @@ export class OyunDeposu {
       sorgu: s ? {
         defter: [...s.durum.defter.entries()], gosterilen: [...s.gosterilen.entries()].map(([k, v]) => [k, [...v]]),
         kontaminasyon: s.kontaminasyon, stres: [...s.stres.entries()], zaman: s.zaman, gecmis: s.gecmis,
+        odaOkumalari: [...s.odaOkumalari.entries()], odaSiniflamalari: [...s.odaSiniflamalari.entries()], icSesTahminleri: s.icSesTahminleri,
       } : null,
     });
   }
@@ -587,6 +602,9 @@ export class OyunDeposu {
         sorgu.stres = new Map(v.sorgu.stres ?? []);
         sorgu.zaman = Number(v.sorgu.zaman ?? 0);
         sorgu.gecmis = v.sorgu.gecmis ?? [];
+        sorgu.odaOkumalari = new Map((v.sorgu.odaOkumalari ?? []) as [string, OdaOkumasi][]);
+        sorgu.odaSiniflamalari = new Map((v.sorgu.odaSiniflamalari ?? []) as [string, EsyaSinifi][]);
+        sorgu.icSesTahminleri = (v.sorgu.icSesTahminleri ?? []) as IcSesTahmini[];
         this.kur(sorgu, null);
         this.durum.konusmalar = new Map(((v.konusmalar ?? []) as [string, KonusmaKaydi[]][]).map(([k, liste]) => [k, liste.map((x) => ({ ...x, gozlemler: x.gozlemler ?? [] }))]));
         this.durum.pano = { ...bosPano(), ...(v.pano ?? {}) };
