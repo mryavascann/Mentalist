@@ -15,7 +15,7 @@ import { sor, sorguBaslat, teknikUygula, delilGoster as motorDelilGoster, type S
 import type { EsyaSinifi, IcSesTahmini, OdaOkumasi } from '@motor/araclar';
 import type { Kisi, KisiId, Vaka, Zorluk } from '@motor/tipler';
 import { ICERIK } from '@icerik/index';
-import { bulunma } from '@ortak/turkce';
+import { basHarfBuyut, bulunma } from '@ortak/turkce';
 import { PROJE } from '@ortak/surum';
 import { Rastgele } from '@ortak/rastgele';
 import { FORER } from '@icerik/forer';
@@ -115,6 +115,22 @@ export interface OyunDurumu {
 }
 
 const HIPOTEZ_LIMITI = 7;
+/** Bir kayıtta gösterilen en çok gözlem (ipucu başına bir kez). Uzun anlatımlarda tekrar ve spam önlenir. */
+const GOZLEM_SINIRI = 8;
+const TEMEL_CIZGI_SINIRI = 6;
+
+/** Gözlemleri ipucu kimliğine göre tekilleştirir (ilk betimleme kalır) ve sınırlar. */
+function gozlemOzeti<T extends { ipucuId: string }>(gozlemler: T[], sinir: number): T[] {
+  const gorulen = new Set<string>();
+  const sonuc: T[] = [];
+  for (const g of gozlemler) {
+    if (gorulen.has(g.ipucuId)) continue;
+    gorulen.add(g.ipucuId);
+    sonuc.push(g);
+    if (sonuc.length >= sinir) break;
+  }
+  return sonuc;
+}
 const SORU_MALIYETI = 0.5;
 const VARSAYILAN_BUTCE = 12;
 const KAYIT_SURUMU = 1;
@@ -320,13 +336,14 @@ export class OyunDeposu {
     const vaka = this.vaka!;
     const anahtar = `${kisiId}|${JSON.stringify(cevap.soru)}`;
     let metin = this.cevapMetinleri.get(anahtar);
-    if (!metin) { metin = cevapMetni(vaka, cevap, this.usluplar.get(kisiId)!, this.bellek); this.cevapMetinleri.set(anahtar, metin); }
+    if (!metin) { metin = basHarfBuyut(cevapMetni(vaka, cevap, this.usluplar.get(kisiId)!, this.bellek)); this.cevapMetinleri.set(anahtar, metin); }
+    const ozet = gozlemOzeti(ipuclari, GOZLEM_SINIRI);
     return {
       tur: 'soru', soru: soruMetin,
       cevap: metin,
-      betimleme: betimlemeMetni(ipuclari as never),
-      ipucuIdler: ipuclari.map((g) => g.ipucuId),
-      gozlemler: ipuclari.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme })),
+      betimleme: betimlemeMetni(ozet as never),
+      ipucuIdler: ozet.map((g) => g.ipucuId),
+      gozlemler: ozet.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme })),
     };
   }
 
@@ -369,13 +386,16 @@ export class OyunDeposu {
     if (sonuc.teknik === 'acik-uclu-anlatim' || sonuc.teknik === 'bilissel-yuk-ters-sira') {
       const satirlar = sonuc.anlatim.map((a) => `[${vaka.dilimler[(a.cevap.soru as { dilim: number }).dilim]!.baslangic}] ${cevapMetni(vaka, a.cevap, this.usluplar.get(seciliKisi)!, this.bellek)}`);
       kayit.cevap = `${kayit.cevap} ${satirlar.join(' ')}`;
-      const hepsi = sonuc.anlatim.flatMap((a) => a.ipuclari);
+      // 8 dilim × ~3 ipucu = spam olurdu: ipucu başına bir kez, en fazla GOZLEM_SINIRI (tek tik kanıt değil; küme).
+      const hepsi = gozlemOzeti(sonuc.anlatim.flatMap((a) => a.ipuclari), GOZLEM_SINIRI);
       kayit.betimleme = betimlemeMetni(hepsi);
       kayit.ipucuIdler = hepsi.map((g) => g.ipucuId);
       kayit.gozlemler = hepsi.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
     } else if (sonuc.teknik === 'temel-cizgi') {
-      kayit.gozlemler = sonuc.gozlemler.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
-      this.durum.temelCizgiNotlari.set(seciliKisi, sonuc.gozlemler.length === 0 ? 'Normali: sakin, akıcı.' : `Normali: ${sonuc.gozlemler.map((g) => g.betimleme).join(' ')}`);
+      const ozet = gozlemOzeti(sonuc.gozlemler, TEMEL_CIZGI_SINIRI);
+      kayit.cevap = ozet.length === 0 ? 'Tarafsız sohbet (hava, yol, işi): sakin ve akıcı. Dikkat çeken bir şey yok; bu onun normali.' : `Tarafsız sohbet (hava, yol, işi). Bu onun normali: ${ozet.map((g) => g.betimleme).join(' ')}`;
+      kayit.gozlemler = ozet.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
+      this.durum.temelCizgiNotlari.set(seciliKisi, ozet.length === 0 ? 'Normali: sakin, akıcı.' : `Normali: ${ozet.map((g) => g.betimleme).join(' ')}`);
     } else if (sonuc.teknik === 'yonlendirici-soru') {
       kayit.cevap = `${cevapMetni(vaka, sonuc.sonuc.cevap, this.usluplar.get(seciliKisi)!, this.bellek)} — ${kayit.cevap}`;
       kayit.betimleme = betimlemeMetni(sonuc.sonuc.ipuclari);

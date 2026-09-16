@@ -1,9 +1,9 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 17:00, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 21:00, Ajan #1 (devir teslim).
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve Higgsfield görselleri.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar, cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
@@ -21,7 +21,8 @@
 ## Sıradaki 3 iş
 1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
 2. **Boyut (isteğe bağlı):** dist 6 MB; gerekirse portre 384² / oda q50 ile ~4 MB. Higgsfield kredisi 0.
-3. **Küçük fikirler:** oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ; takım sahnesinde oyuncunun kısa cevap seçmesi.
+3. **Gözle kalite turu (devam):** geçici döküm testiyle (günlük 21:00 kaydı) vaka metinlerini oku; ipucu kataloğunda temel çizgiye uymayan betimlemeleri ayıkla; kişi kartına rolle uyumlu ilişki cümlesi.
+4. **Küçük fikirler:** oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ; takım sahnesinde oyuncunun kısa cevap seçmesi.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
 1. Vaka başına soruşturma saati bütçesi (varsayılan 12; oynayınca "yetmedi / bol" hissine göre).
@@ -35,7 +36,8 @@
 ## Test durumu
 - **Son eklemeler (19:40):** "ikinci kez sor" (K-016, `TEKRAR_CARPANI`), konuşma kaydında oda küçük resmi, delil türü ikonları, Ayna 3. karşılaşma takım sahnesi (`AYNA_SAHNE_ESIGI`), oda eşyası → Pano düğmesi. 4 test.
 - **20:20:** tarayıcı ekran kontrolü (Playwright Chromium kurulu) temiz; iç ses seçicisi taşması düzeltildi; rol tutarlılığı kuralları (`havuzlar.ts uygunRoller`: anne/baba, meslek yaşı, üvey çocuk/yeğen). 2 test.
-- `npm test`: 41 dosya, 317 test geçti (2026-09-16 20:20). Süre ~90 sn.
+- **21:00:** içerik kalitesi — Türkçe ekler (delil/takım metinleri, `turkce.ts` özel ad kuralı), gözlem tekilleştirme/sınır (`depo gozlemOzeti`), rol tekilliği + anne/baba/kardeş soyadı, cevap büyük harf. 4 test.
+- `npm test`: 42 dosya, 321 test geçti (2026-09-16 21:00). Süre ~90 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar

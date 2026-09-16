@@ -31,6 +31,30 @@ describe('OyunDeposu — oda kimliği ve tekrar', () => {
   });
 });
 
+describe('OyunDeposu — betimleme özeti ve büyük harf', () => {
+  it('serbest anlatım ve temel çizgi kayıtlarında gözlemler ipucu başına bir kez ve sınırlı; her cevap büyük harfle (ya da tırnak/rakamla) başlar', () => {
+    for (const seed of ['ozet-1', 'ozet-2', 'ozet-3']) {
+      const depo = new OyunDeposu();
+      depo.basla('Deniz');
+      depo.yeniVaka(seed);
+      for (const k of depo.gorusulebilirler()) {
+        depo.kisiSec(k.id);
+        depo.teknik('temel-cizgi');
+        depo.teknik('acik-uclu-anlatim');
+        depo.sor({ tur: 'olay-bilgisi', konu: 'olay-yontemi' });
+        for (const kayit of depo.durum.konusmalar.get(k.id)!) {
+          const idler = kayit.gozlemler.map((g) => g.ipucuId);
+          expect(new Set(idler).size, `${seed}/${k.id}/${kayit.soru}`).toBe(idler.length);
+          expect(idler.length).toBeLessThanOrEqual(8);
+          expect(kayit.cevap, kayit.cevap).toMatch(/^[A-ZÇĞİÖŞÜ0-9"'\[(]/);
+        }
+        const not = depo.durum.temelCizgiNotlari.get(k.id)!;
+        expect(not.split('. ').length).toBeLessThanOrEqual(7);
+      }
+    }
+  });
+});
+
 describe('takım sahnesi — Ayna arkı', () => {
   const g = (ayna: boolean, okundu = true) => ({ dogru: false, hataEtiketleri: ['othello-hatasi'], ...(ayna ? { ayna: { etiket: 'othello-hatasi', okundu } } : {}) });
 

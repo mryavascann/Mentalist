@@ -86,11 +86,20 @@ const ROL_KOSULLARI: Record<string, (kisi: { yas: number; cinsiyet: 'kadin' | 'e
   terapisti: (k) => k.yas >= 27,
   'iş ortağı': (k) => k.yas >= 23,
   'eski ortağı': (k) => k.yas >= 25,
+  asistanı: (k) => k.yas <= 50,
+  çalışanı: (k) => k.yas <= 65,
+  şoförü: (k) => k.yas <= 65,
 };
 
-/** Şablonun bu kişi için uygun rolleri; hiçbiri uymazsa nötr "yakını". */
-export function uygunRoller(sablon: { roller: string[] }, kisi: { yas: number; cinsiyet: 'kadin' | 'erkek' }, kurban: { yas: number }): string[] {
-  const uygun = sablon.roller.filter((rol) => ROL_KOSULLARI[rol]?.(kisi, kurban) ?? true);
+/** Bir vakada yalnızca bir kişide olabilecek roller (kurbanın iki annesi, iki avukatı olmaz). */
+export const TEKIL_ROLLER: readonly string[] = ['annesi', 'babası', 'eşi', 'avukatı', 'muhasebecisi', 'terapisti', 'şoförü', 'asistanı', 'bahçıvanı', 'sevgilisi'];
+
+/** Kurbanla aynı soyadı taşıyan roller. */
+export const SOYADI_ORTAK_ROLLER: readonly string[] = ['annesi', 'babası', 'kardeşi'];
+
+/** Şablonun bu kişi için uygun rolleri (yaş/cinsiyet kuralı + vakada daha önce kullanılmış tekil roller hariç); hiçbiri uymazsa nötr "yakını". */
+export function uygunRoller(sablon: { roller: string[] }, kisi: { yas: number; cinsiyet: 'kadin' | 'erkek' }, kurban: { yas: number }, kullanilan: ReadonlySet<string> = new Set()): string[] {
+  const uygun = sablon.roller.filter((rol) => (ROL_KOSULLARI[rol]?.(kisi, kurban) ?? true) && !(TEKIL_ROLLER.includes(rol) && kullanilan.has(rol)));
   return uygun.length ? uygun : ['yakını'];
 }
 

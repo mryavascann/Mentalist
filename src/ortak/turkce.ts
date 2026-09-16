@@ -96,7 +96,8 @@ export function bulunma(ad: string, ozel = false): string {
 export function yonelme(ad: string, ozel = false): string {
   const a = aUnlusu(sonUnlu(ad));
   const kod = kodMu(sonSozcuk(ad));
-  if (!kod && iyelikliTamlamaMi(ad)) return `${ad}${kesme(ad, ozel)}n${a}`;
+  // Özel adlarda (kişi adı) iyelikli tamlama kuralı uygulanmaz: "Tobias Delgado'ya", "Çalışma Odasına".
+  if (!ozel && !kod && iyelikliTamlamaMi(ad)) return `${ad}${kesme(ad, ozel)}n${a}`;
   if (unluyleBitiyor(ad)) return `${ad}${kesme(ad, ozel)}y${a}`;
   return `${ad}${kesme(ad, ozel)}${a}`;
 }
@@ -104,7 +105,7 @@ export function yonelme(ad: string, ozel = false): string {
 /** Belirtme durumu (özel ad varsayılan): -ı/-i/-u/-ü, ünlüden sonra -yı/-yi/-yu/-yü. */
 export function belirtme(ad: string, ozel = true): string {
   const i = iUnlusu(sonUnlu(ad));
-  if (!kodMu(sonSozcuk(ad)) && iyelikliTamlamaMi(ad)) return `${ad}${kesme(ad, ozel)}n${i}`;
+  if (!ozel && !kodMu(sonSozcuk(ad)) && iyelikliTamlamaMi(ad)) return `${ad}${kesme(ad, ozel)}n${i}`;
   if (unluyleBitiyor(ad)) return `${ad}${kesme(ad, ozel)}y${i}`;
   return `${ad}${kesme(ad, ozel)}${i}`;
 }

@@ -6,6 +6,7 @@
 // Yorumlar oyuncunun görebildiği şeylerden (cevap içeriği, ipucu sayısı, delil çelişkisi) üretilir;
 // gizli etiketler kullanılmaz. Deterministik (seed + kişi + soru).
 import { Rastgele } from '@ortak/rastgele';
+import { belirtme } from '@ortak/turkce';
 import type { SorSonucu, Sorgu } from '@motor/teknik';
 import type { KisiId } from '@motor/tipler';
 import { soruAnahtari } from '@motor/strateji';
@@ -40,7 +41,7 @@ export function takimYorumu(sorgu: Sorgu, kisiId: KisiId, sonuc: SorSonucu): Tak
   switch (uye.rol) {
     case 'saha': {
       // Hızlı hüküm: ipucu görünce "bu adam yalan söylüyor"; ipucu yoksa "temiz". Delile bakmaz.
-      if (gerginlik >= 1) return { rol: 'saha', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bence yalan söylüyor. Gördün mü, ${gerginlik > 1 ? 'her şeyi' : 'sesini'}? Bu iş bitti.`, `Bak, ${ad} kıvranıyor. Ekipte herkes aynı fikirde: bu o.`, `Ben olsam ${ad}'ı şimdi alırdım. Herkes görüyor işte.`]) };
+      if (gerginlik >= 1) return { rol: 'saha', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bence yalan söylüyor. Gördün mü, ${gerginlik > 1 ? 'her şeyi' : 'sesini'}? Bu iş bitti.`, `Bak, ${ad} kıvranıyor. Ekipte herkes aynı fikirde: bu o.`, `Ben olsam ${belirtme(ad)} şimdi alırdım. Herkes görüyor işte.`]) };
       return { rol: 'saha', ad: uye.ad, hukum: 'temiz', metin: r.sec([`${ad} temiz görünüyor, sakin. Bir sonrakine geçelim.`, `Bu kadar rahat biri yalan söylemez. ${ad} bizim adam değil.`]) };
     }
     case 'inanan':

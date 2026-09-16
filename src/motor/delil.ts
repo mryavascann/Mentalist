@@ -10,6 +10,7 @@
 //   3) "Beklenen ama olmayan": cinayette kapı zorlanmamış / köpek havlamamış / boğuşma izi yok gibi
 //      yokluk delilleri (Konnikova, Gümüş Şimşek). Kazada suç iması taşıyan yokluk delili üretilmez.
 import { Rastgele } from '@ortak/rastgele';
+import { belirtme, tamlayan, yonelme } from '@ortak/turkce';
 import type { BilgiDagilimi } from './bilgi';
 import { ZORLUK_PARAMETRELERI, type KisiId, type MekanTuru, type OdaId, type Vaka } from './tipler';
 import type { Cevap } from './strateji';
@@ -84,14 +85,14 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
     let gucu: number;
     if (tur === 'dijital') {
       aciklama = kamera
-        ? `${yer} kamerası ${saat} civarında ${ad}'ı kaydetmiş.`
-        : `${ad}'ın telefonu ${saat} civarında ${yer} bölgesindeki kablosuz ağa bağlanmış.`;
+        ? `${yer} kamerası ${saat} civarında ${belirtme(ad)} kaydetmiş.`
+        : `${tamlayan(ad)} telefonu ${saat} civarında ${yer} bölgesindeki kablosuz ağa bağlanmış.`;
       gucu = kamera ? 0.95 : 0.85;
     } else if (tur === 'belge') {
-      aciklama = `${yer}: ${ad}'a ait ${r.sec(MEKAN_BELGELERI[vaka.mekan.tur])} (${saat}).`;
+      aciklama = `${yer}: ${yonelme(ad, true)} ait ${r.sec(MEKAN_BELGELERI[vaka.mekan.tur])} (${saat}).`;
       gucu = 0.7;
     } else {
-      aciklama = `${yer}: ${ad}'a ait ${r.sec(FIZIKSEL_IZLER)}.`;
+      aciklama = `${yer}: ${yonelme(ad, true)} ait ${r.sec(FIZIKSEL_IZLER)}.`;
       gucu = 0.5 + r.sayi() * 0.35;
     }
     return { id: yeniId(), tur, oda, aciklama, gosterir: { tur: 'konum', kisi, dilim, oda }, gucu: Math.round(gucu * 100) / 100, sizmis: false, sahnelenmis: false };

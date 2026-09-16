@@ -711,3 +711,31 @@
 **Değişen dosyalar:** src/motor/{havuzlar,gerceklik}.ts, src/arayuz/ekranlar/SorguOdasi.tsx, tests/motor/roller.test.ts, docs.
 **Testler:** 317 geçti / 0 kaldı. Typecheck temiz. Build 5.98 MB.
 **Sıradaki ajan için:** Ekran kontrolü tekrar gerekirse: scratchpad'de `ekran.mjs` yoktur (oturumluk); Playwright + `chromium.launch()` ile `dist/index.html`'i aç, `.kisi-listesi button`, `.panel .dugmeler button`, `input[name=fail]`, `.birincil` seçicileri iş görür. Chromium `~/AppData/Local/ms-playwright` altında kurulu.
+
+## [2026-09-16 21:00] Ajan #1 — İçerik kalitesi: Türkçe ekler, gözlem spam'i, rol tekilliği/soyadı, büyük harf (DEVİR TESLİM)
+**Görev:** Üç vakanın metin dökümünü gözle okuyup görünen kusurları düzeltmek; sonra yeni ajana devretmek (kullanıcı isteği).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- **Türkçe ekler:** `delil.ts` ve `takim.ts` sabit "'a ait / 'ı kaydetmiş / 'ın telefonu" yerine `yonelme/belirtme/tamlayan` kullanır ("Güneş'e ait", "Moreau'yu kaydetmiş", "Duran'ın telefonu"). `turkce.ts`: özel adlarda (ozel=true) iki kelimeli adlar iyelikli tamlama sayılmaz ("Delgado'ya", eskiden "Delgado'na"). Yabancı sessiz-e adları yazıma göre çekimlenir ("Whitmore'nin"; bilinçli dar kapsam).
+- **Gözlem spam'i:** depo `gozlemOzeti` — kayıt başına ipucu kimliğine göre tekilleştirme; sınır 8 (serbest anlatım) / 6 (temel çizgi). Eskiden 8 dilim × ~3 ipucu = 25 tekrarlı cümle.
+- **Roller:** `TEKIL_ROLLER` (anne, baba, eş, avukat, muhasebeci, terapist, şoför, asistan, bahçıvan, sevgili) bir vakada bir kez; `SOYADI_ORTAK_ROLLER` (anne/baba/kardeş) kurbanın soyadını alır; asistan ≤50, çalışan/şoför ≤65 yaş. RNG tüketimi aynı, regresyon seed'leri geçiyor.
+- **Büyük harf:** cevap metni `basHarfBuyut` ile başlar ("sözleşme sahteciliği diyorlar" → "Sözleşme…").
+- Testler: `tests/motor/metinKalite.test.ts` (3), `tests/arayuz/devam.test.ts` +1.
+
+**Değişen dosyalar:** src/ortak/turkce.ts, src/motor/{delil,havuzlar,gerceklik}.ts, src/arayuz/oyun/{depo,takim}.ts, tests/motor/metinKalite.test.ts, tests/arayuz/devam.test.ts, docs.
+
+**Testler:** 321 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` 5.98 MB.
+
+**Alınan kararlar:** Yok (kalite düzeltmeleri).
+
+**Sorunlar / riskler:** Metin dökümünde görülen ama dokunulmayanlar: (1) temel çizgi sohbetinde "Aynı konuda önce bir şey söyledi, sonra tersini ima etti" gibi anlatım-odaklı betimlemeler tarafsız sohbette tuhaf kaçabiliyor (ipucu kataloğunda `temel-cizgi` için uygun/uygunsuz işareti eklenebilir); (2) aynı vakada hem "eşi" hem "sevgilisi" olabiliyor (dramatik, bilinçli bırakıldı); (3) 72 yaşında "kuzeni" 33 yaşındaki kurban için mümkün ama seyrek olmalı (kural |fark|≤25 var, tamam).
+
+**Yarım kalanlar:** Yok. Çalışma ağacı temiz, her şey commit'li.
+
+**Sıradaki ajan için (öncelik sırasıyla):**
+1) Kullanıcı oynayınca DURUM "Açık kararlar" (zor seviye a/b/c, saat bütçesi).
+2) Gözle kalite turu devam: `tests/denge/` altına geçici döküm testi yazıp (örnek: günlük 21:00 kaydı; `OyunDeposu` ile 3 vaka, brifing/kartlar/deliller/cevaplar/gerçek) çıktıyı oku; tuhaflıkları test+kodla düzelt.
+3) İpucu kataloğunda temel çizgiye uygun olmayan betimlemeleri ayıkla (bkz. risk 1).
+4) İsteğe bağlı: dist 6 MB → portre 384² / oda q50.
+
+**Geliştirme fikirleri:** Kişi kartında rolle uyumlu kısa "ilişki cümlesi" (ör. "üç yıldır avukatı"); oda görsellerini ifade çizelgesine de koymak; takım sahnesinde oyuncu cevabı.

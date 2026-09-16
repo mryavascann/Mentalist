@@ -14,7 +14,7 @@ import { tamlayan } from '@ortak/turkce';
 import type { Borc, Iliski, IliskiTuru, Kisi, Konum, Mekan, OlayCekirdegi, Vaka, VakaAyari, ZamanDilimi } from './tipler';
 import {
   EYLEMLER, ILISKI_SABLONLARI, MEKAN_SABLONLARI, MOTIVASYONLAR,
-  TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI, uygunRoller,
+  TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI, SOYADI_ORTAK_ROLLER, uygunRoller,
 } from './havuzlar';
 import { mekanaUygunArketipler, type Arketip } from './arketipler';
 import { AYNA_ARKETIPLERI, AYNA_ARKETIP_CARPANI } from './ayna';
@@ -82,14 +82,19 @@ function iliskileriUret(r: Rastgele, kisiler: Kisi[], kurban: Kisi): { iliskiler
   const iliskiler: Iliski[] = [];
   const borclar: Borc[] = [];
   let esVar = false;
+  const kullanilanRoller = new Set<string>();
   for (const k of kisiler) {
     if (k.id === kurban.id) continue;
     // Tek eş kuralı: ikinci "eş" çıkarsa aile/tanıdık'a düşür.
     let sablon = r.agirlikliSec(ILISKI_SABLONLARI.map((s) => ({ deger: s, agirlik: s.agirlik })));
     if (sablon.tur === 'es' && esVar) sablon = ILISKI_SABLONLARI.find((s) => s.tur === 'aile')!;
     if (sablon.tur === 'es') esVar = true;
-    // Rol, kişinin yaşı/cinsiyetiyle tutarlı seçilir (havuzlar.ts ROL_KOSULLARI); RNG tüketimi değişmez.
-    k.rol = `${tamlayan(kurban.ad.split(' ')[0]!)} ${r.sec(uygunRoller(sablon, k, kurban))}`; // "Nazlı'nın kardeşi"
+    // Rol, kişinin yaşı/cinsiyetiyle tutarlı ve vakada tekil seçilir (havuzlar.ts ROL_KOSULLARI, TEKIL_ROLLER);
+    // RNG tüketimi değişmez (tek çekim). Anne/baba/kardeş kurbanın soyadını alır.
+    const rol = r.sec(uygunRoller(sablon, k, kurban, kullanilanRoller));
+    kullanilanRoller.add(rol);
+    k.rol = `${tamlayan(kurban.ad.split(' ')[0]!)} ${rol}`; // "Nazlı'nın kardeşi"
+    if (SOYADI_ORTAK_ROLLER.includes(rol)) k.ad = `${k.ad.split(' ')[0]} ${kurban.ad.split(' ').slice(-1)[0]}`;
     iliskiler.push({ a: k.id, b: kurban.id, tur: sablon.tur, sicaklik: sicaklikUret(r, sablon.tur) });
   }
   // Yan bağlar: kurban dışı çiftler arasında %30 olasılıkla.
