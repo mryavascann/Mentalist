@@ -809,3 +809,15 @@
 **Sorunlar / riskler:** CIT tanıma oranı (0.7) tasarım varsayımı; kaynak kütüğünde suçlu isabet sayısı doğrulanmadı. Bot doğruluğu zorda düşmüyor (çözülebilirlik eleği); insan zorluğu şüpheli sayısı/tuzak olarak artar — oyuncu geri bildirimi bekleniyor.
 **Yarım kalanlar:** Yok.
 **Sıradaki ajan için:** 1) Döküm turu: Analiz ekranı metinleri ve Kılavuz maddeleri. 2) Takım sahnesinde rol tekilliği. 3) Kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulunu kontrol et. 4) dist 6 MB isteğe bağlı.
+
+## [2026-09-16 23:15] Ajan #2 — Takım sahnesinde rol tekilliği; Kılavuz ve Analiz metinleri gözle okundu (DEVİR TESLİM)
+**Görev:** DURUM sıradaki iş 1–2: Analiz/Kılavuz metin dökümü ve takım sahnesinde aynı rolün art arda konuşmaması.
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- **Kılavuz dökümü:** 66 madde (başlık/özet/nasıl/sınırlar/kaynak) scratchpad'e döküldü ve tamamı okundu; dil ve kaynak tutarlı, düzeltme gerekmedi. Analiz ekranı metinleri (hata etiketi açıklamaları, kalibrasyon, Ayna notu) `hata_etiketleri.json` + `Analiz.tsx` üzerinden okundu; sorun yok.
+- **Takım sahnesi rol tekilliği** (`takim_hikaye.ts`): tepki rolü etikete, arka plan anlatıcısı vaka sayısına bağlıydı → "lider ×2" olabiliyordu. Karşılık satırı artık yüzer: ilk çakışmanın arasına girer (tepkiye karşılık gibi okunur); yalnızca Ayna sahnesinde mümkün ikinci çakışmada anlatıcı bir sonraki üyeye kayar. Kapatan son konuşandan ve karşılıkçıdan farklı seçilir. Arklar bozulmaz (16 vakada her üye ≥3 kez anlatır). Test `tests/arayuz/takimRol.test.ts` (2; ~5000 sahne kombinasyonu).
+**Değişen dosyalar:** src/arayuz/oyun/takim_hikaye.ts, tests/arayuz/takimRol.test.ts, docs.
+**Testler:** 337 geçti / 0 kaldı (47 dosya). typecheck temiz. build 6.0 MB.
+**Alınan kararlar:** Yok.
+**Sorunlar / riskler:** Yok.
+**Yarım kalanlar:** Yok. Çalışma ağacı commit'li ve GitHub'a gönderildi.
+**Sıradaki ajan için:** 1) Kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulunu kontrol et (çözülemez hissi / masum suçlama). 2) Kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde göstermek. 3) dist 6 MB isteğe bağlı. 4) CIT tanıma oranı için kaynak (suçlu isabet oranı) bulununca `citTanimaOlasiligi` güncellenir.

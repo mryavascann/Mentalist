@@ -129,6 +129,7 @@ const doldur = (metin: string, ad: string) => metin.replaceAll('{ad}', ad);
 /**
  * Vaka sonu ofis sahnesi. Geçmiş boşsa null (ilk vaka bitmeden takım hikâyesi yok).
  * Sıra: tepki → arka plan (üye = (n−1) mod 4, bölüm = ⌊(n−1)/4⌋, döngüsel) → karşılık → kapanış.
+ * Rol tekilliği: aynı üye art arda konuşmaz; karşılık satırı gerekirse tepki ile arka planın arasına girer.
  */
 export function takimSahnesi(gecmis: readonly SahneGecmisi[], kahramanAdi: string): TakimSahnesiSonucu | null {
   const n = gecmis.length;
@@ -156,18 +157,42 @@ export function takimSahnesi(gecmis: readonly SahneGecmisi[], kahramanAdi: strin
     ayna = { karsilasma: aynalar.length, okunmaOrani: okunma };
   }
 
+  // Rol tekilliği: aynı üye art arda iki satır konuşmaz (tepki rolü etikete, anlatıcı vaka sayısına bağlı; çakışabilir).
+  // Karşılık satırı "yüzer": ilk çakışmanın arasına girer (tepkiye ya da Ayna satırına karşılık gibi okunur);
+  // yalnızca Ayna sahnesinde mümkün olan ikinci çakışmada anlatıcı bir sonraki üyeye kayar. Arklar bozulmaz.
+  const rolSec = (baslangic: number, yasak: (TakimRolu | undefined)[]): TakimRolu => {
+    for (let i = 0; i < TAKIM.length; i++) {
+      const rol = TAKIM[(baslangic + i) % TAKIM.length]!.rol;
+      if (!yasak.includes(rol)) return rol;
+    }
+    return TAKIM[baslangic % TAKIM.length]!.rol;
+  };
+  const cakisma = (liste: SahneSatiri[]) => liste.findIndex((x, i) => i > 0 && x.rol === liste[i - 1]!.rol);
+  let karsilikci: TakimRolu | undefined;
+  const karsilikEkle = (indeks: number) => {
+    karsilikci = rolSec(n, [satirlar[indeks - 1]?.rol, satirlar[indeks]?.rol]);
+    satirlar.splice(indeks, 0, satir(karsilikci, r.sec(KARSILIK[karsilikci])));
+  };
+  // Tepki ile Ayna satırı çakışırsa karşılık araya girer.
+  const ilkCakisma = cakisma(satirlar);
+  if (ilkCakisma !== -1) karsilikEkle(ilkCakisma);
+
   // 2. Arka plan: üyeler sırayla, bölümler vaka sayısıyla ilerler (bölümler bitince başa döner).
-  const anlatici = TAKIM[(n - 1) % TAKIM.length]!.rol;
+  let anlatici = TAKIM[(n - 1) % TAKIM.length]!.rol;
+  const sonRol = satirlar[satirlar.length - 1]!.rol;
+  if (anlatici === sonRol) {
+    if (karsilikci === undefined) karsilikEkle(satirlar.length); // 3'. Karşılık tepkiden sonra, arka plandan önce
+    else anlatici = rolSec(n, [sonRol]);
+  }
   const ark = TAKIM_ARKI[anlatici];
   const bolum = ark[Math.floor((n - 1) / TAKIM.length) % ark.length]!;
   satirlar.push(satir(anlatici, bolum.metin));
 
-  // 3. Karşılık: bir sonraki üye (anlatıcıdan farklı).
-  const karsilikci = TAKIM[n % TAKIM.length]!.rol;
-  satirlar.push(satir(karsilikci, r.sec(KARSILIK[karsilikci])));
+  // 3. Karşılık (henüz girmediyse): bir sonraki üye, anlatıcıdan farklı.
+  if (karsilikci === undefined) karsilikEkle(satirlar.length);
 
-  // 4. Kapanış: karşılıkçıdan da farklı bir üye.
-  const kapatan = TAKIM[(n + 2) % TAKIM.length]!.rol;
+  // 4. Kapanış: son konuşandan ve karşılıkçıdan farklı bir üye.
+  const kapatan = rolSec(n + 2, [satirlar[satirlar.length - 1]!.rol, karsilikci]);
   satirlar.push(satir(kapatan, doldur(r.sec(KAPANIS[kapatan]), kahramanAdi)));
 
   return { satirlar, arkaPlan: { rol: anlatici, metin: bolum.metin }, kilavuz: bolum.kilavuz, ...(ayna ? { ayna } : {}) };
