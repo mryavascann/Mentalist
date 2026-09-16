@@ -234,6 +234,10 @@ Tatbikatlar kısa (2–5 dk), anında geri bildirimli, aralıklı tekrar mantı�
 
 **Ana düşman arkı fikri — "Ayna":** oyuncunun kör nokta profilini "okuyan" bir manipülatör. Ark vakaları oyuncunun en çok düştüğü yanlılıkları hedefleyerek üretilir; bıraktığı imza, oyuncunun geçmiş vakalarda yaptığı bir hatayı alıntılayan kısa bir nottur. Dizideki "düşmanın şüpheli listesini önceden bilmesi" anının karşılığı: Ayna, oyuncunun kime şüpheleneceğini oyuncunun kendi verisinden tahmin eder. (Çekirdek oyun bitmeden yapılmamalı; sonraki aşama.)
 
+**Uygulama durumu (16.09.2026):**
+- *Takım hikâyesi* (`src/arayuz/oyun/takim_hikaye.ts`): her vaka sonunda Analiz'de "Ofis · sonra" sahnesi. Tepki (doğruysa övgü; yanlışsa ilk hata etiketiyle ilgili üye konuşur: sosyal kanıt → saha, Othello → sorgucu, hale → lider, doğruluk yanlılığı → inanan), arka plan bölümü (üye = (n−1) mod 4, bölüm = ⌊(n−1)/4⌋; üye başına 5 bölüm, her biri bir Kılavuz maddesine bağlı), karşılık, kapanış. Yalnızca geçmiş kayıtlardan üretilir; vaka verisi kullanılmaz.
+- *Ayna taslağı* (`src/motor/ayna.ts`, K-013): her 3. bitmiş vakada, kör nokta profilinin baskın etiketi ≥2 tekrarlamışsa Ayna vakası. Tahmin yalnızca görünür özelliklerden: Othello/tek ipucu → en kaygılı; hale → en az dışadönük; temsil edicilik → kurbana en soğuk; çapalama/doğrulama → ilk kişi; doğruluk yanlılığı → "suç yok"; sosyal kanıt → kaygı + düşük öz-izleme. Olay yerinde imza notu (kahraman adı + geçmiş hata iması; kişi adı yok). Analiz'de "Ayna seni okudu / yanıldı" + gerekçe + kör nokta bağı; geçmiş kaydına `ayna.okundu`. Örüntü testi: tahmin faille şans düzeyinde. Henüz yapılmayan: Ayna vakalarının özel arketip/mekân ile üretilmesi, ark boyunca biriken bir hikâye.
+
 ---
 
 ## 15. Vaka arketipi havuzu (üretici bunları karıştırır, kalıp oluşturmaz)

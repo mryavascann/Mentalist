@@ -64,3 +64,9 @@
 ## K-012 · 2026-09-16 · Kılavuz baştan tamamen açık
 - **Karar:** Tüm Kılavuz maddeleri ilk andan okunabilir. Vakada kullanılan/karşılaşılan maddeler "vakada karşılaştın" rozeti alır; "Senin kör noktan" bölümü verilerle dolar.
 - **Gerekçe:** Eğitim amacı öncelikli; kilitli içerik öğrenmeyi geciktirir. Merak ve ilerleme hissi rozet ve kör nokta bölümüyle korunur (Ericsson 1993: geri bildirimli bilinçli pratik).
+
+## K-013 · 2026-09-16 · Ayna: oyuncuyu okur, vakayı değil
+- **Karar:** Ayna'nın tahmini yalnızca oyuncuya görünür özelliklerden (kişilik temel çizgisi, kurbanla ilişki sıcaklığı, görüşme sırası) ve kör nokta profilinden üretilir; failin kimliğine erişmez. İmza notu tahmin edilen kişinin adını yazmaz. Kadans: her 3 bitmiş vakada bir, baskın kör nokta ≥2 tekrar.
+- **Gerekçe:** Tahmin faille ilişkili olsa Ayna bir "ipucu"ya dönüşür ve örüntü oluşur (AJAN_PROMPTU §4). Adı yazılmayan not oyuncuyu itmez; vaka sonunda "okundun" dersi gelir. Kadans sürprizi korur, tek seferlik hatayı "kör nokta" saymaz.
+- **Alternatifler:** Her vakada Ayna (yoruculuk); tahmini açılışta açıkça yazmak (oyuncuyu yönlendirir); Ayna için özel arketip (sonraya bırakıldı).
+- **Geri dönüş koşulu:** Örüntü testi (`tests/motor/ayna.test.ts`) şans düzeyini aşarsa ölçütler değiştirilir; oyuncu testlerinde not "spoiler" gibi algılanırsa notun gösterim yeri değişir.

@@ -551,3 +551,26 @@
 **Sıradaki ajan için:** 1) Takım arka plan hikâyesi + Ayna ark taslağı (TASARIM §14). 2) Diğer araçlar (§7): oda okuma, dijital iz, "şu an ne düşünüyor?", kayıt inceleme. 3) Analiz ekranından hata etiketine uygun tatbikat önerisi (aralıklı tekrar).
 
 **Geliştirme fikirleri:** Off-beat tatbikatını vaka üreticisine bağlamak: zaman çizelgesinde gerçek bir "gevşeme anı"na delil yerleştirme (sahnelenmiş delil ile birleşir).
+
+## [2026-09-16 13:20] Ajan #1 — Takım hikâyesi ve Ayna taslağı
+**Görev:** TASARIM §14: vakalar arası takım diyalogları; kör nokta verisini okuyan ana düşman taslağı.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/arayuz/oyun/takim_hikaye.ts`: `TAKIM_ARKI` (4 üye × 5 bölüm, her biri Kılavuz maddesine bağlı), `takimSahnesi(gecmis, ad)` → tepki + arka plan + karşılık + kapanış; 20 hata etiketi için üye/tepki eşlemesi. Analiz'de "Ofis · sonra" bölümü (takım açıksa).
+- `src/motor/ayna.ts`: `AYNA_KADANSI=3`, `aynaVakasiMi`, `aynaTahmini` (etiket → görünür özellik), `aynaNotu` (imza), `aynaOkuduMu`.
+- Depo: `OyunDurumu.ayna`, `VakaGecmisi.ayna`, `yeniVaka` kadans kontrolü, `suclamaYap` okundu kaydı, dışa/içe aktarım. `VakaAcilis` notu gösterir; `Analiz` "Ayna seni okudu / yanıldı" + gerekçe + kör nokta bağı.
+- Testler: `tests/motor/ayna.test.ts` (6: kadans, geçerli/deterministik tahmin, kural doğrulaması, örüntü/şans, not), `tests/arayuz/takimHikaye.test.ts` (6: ark içeriği, sahne determinizmi, tepki/rol eşlemesi, bölüm ilerlemesi, depo Ayna bütünleşmesi, kayıt).
+
+**Değişen dosyalar:** src/motor/ayna.ts, src/arayuz/oyun/{takim_hikaye,depo}.ts, src/arayuz/ekranlar/{Analiz,VakaAcilis}.tsx, tests/motor/ayna.test.ts, tests/arayuz/takimHikaye.test.ts, docs.
+
+**Testler:** 274 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dist/index.html (471 kB).
+
+**Alınan kararlar:** K-013 (Ayna oyuncuyu okur, vakayı değil; kadans 3; not ad vermez).
+
+**Sorunlar / riskler:** Takım arka plan hikâyeleri kurgu; içlerindeki dersler Kılavuz maddelerine bağlı ama hikâyeler kaynak iddiası değil. Ayna vakaları henüz sıradan vakalardan farklı üretilmiyor (yalnızca not + analiz).
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Diğer araçlar (TASARIM §7): oda okuma, dijital iz, "şu an ne düşünüyor?", kayıt inceleme. 2) Analiz'den hata etiketine uygun tatbikat önerisi (aralıklı tekrar). 3) Ayna arkı: Ayna vakalarına özel arketip ("sahnelenmiş olay" ağırlığı) ve ark boyunca biriken notlar.
+
+**Geliştirme fikirleri:** Ayna "okundu" oranını kör nokta grafiğinde göstermek; takım sahnesinde oyuncunun kısa cevap seçmesi (Watson'a anlat ile birleşebilir).

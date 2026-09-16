@@ -4,6 +4,7 @@ import { ICERIK } from '@icerik/index';
 import { depo, useOyun } from '../oyun/kullan';
 import { ARKETIPLER } from '@motor/arketipler';
 import { kalibrasyonOzeti } from '../oyun/cizelge';
+import { takimSahnesi } from '../oyun/takim_hikaye';
 
 const ETIKETLER = new Map(ICERIK.hataEtiketleri.map((h) => [h.id, h]));
 const KILAVUZ = new Map(ICERIK.kilavuz.map((m) => [m.id, m]));
@@ -85,6 +86,22 @@ export function Analiz() {
       {d.hedefler.length > 0 && (
         <p className="soluk">Bu vaka, önceki hatalarına göre özellikle şunları çalıştırmak için üretildi: {d.hedefler.map((h) => HEDEF_ADI[h] ?? h).join(', ')}.</p>
       )}
+      {d.ayna && (() => {
+        const okundu = d.ayna.tahmin === (d.suclama?.fail ?? null);
+        const tahminAd = d.ayna.tahmin ? d.sorgu!.durum.vaka.kisiler.find((k) => k.id === d.ayna!.tahmin)?.ad : 'kimse ("suç yok")';
+        const etiket = ETIKETLER.get(d.ayna.etiket);
+        return (
+          <section className="dosya">
+            <h2>{okundu ? 'Ayna seni okudu' : 'Ayna yanıldı'}</h2>
+            <p className="daktilo" style={{ fontStyle: 'italic' }}>"{d.ayna.not}"</p>
+            <p>
+              Notu bırakan, kime şüpheleneceğini <b>senin geçmiş hatalarından</b> tahmin etti: <b>{tahminAd}</b>. {d.ayna.gerekce}
+              {okundu ? ' Tam da o kişiyi suçladın: kör noktan okunabilir bir kalıp olmuş.' : ' Başka yöne gittin: kalıbın kırılıyor.'}
+            </p>
+            {etiket && <p className="soluk">Hedef alınan kör nokta: <button className="etiket" onClick={() => depo.kilavuzAc(etiket.kilavuzMaddesi)}>{etiket.ad}</button></p>}
+          </section>
+        );
+      })()}
       {d.gecmis.length >= 2 && (
         <section className="dosya">
           <h2>Karar günlüğü · kalibrasyon</h2>
@@ -112,6 +129,22 @@ export function Analiz() {
           </ul>
         </section>
       )}
+
+      {d.takimAcik && (() => {
+        const sahne = takimSahnesi(d.gecmis, d.kahramanAdi);
+        if (!sahne) return null;
+        const m = KILAVUZ.get(sahne.kilavuz);
+        return (
+          <section className="dosya">
+            <h2>Ofis · sonra</h2>
+            <p className="soluk">Çaylar demlendi; kanepe boş. Takım konuşuyor.</p>
+            {sahne.satirlar.map((s, i) => (
+              <p key={i} style={{ margin: '6px 0' }}><b className="daktilo" style={{ fontSize: 13 }}>{s.ad}:</b> {s.metin}</p>
+            ))}
+            {m && <p className="soluk">Bu hikâyenin dersi: <button className="etiket" onClick={() => depo.kilavuzAc(m.id)}>{m.baslik}</button></p>}
+          </section>
+        );
+      })()}
 
       <div className="dugmeler">
         <button className="birincil" onClick={() => depo.yeniVaka()}>Yeni vaka</button>

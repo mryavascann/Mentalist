@@ -7,6 +7,7 @@
 import { vakaUret } from '@motor/gerceklik';
 import type { CozulebilirlikRaporu } from '@motor/cozulebilirlik';
 import { hedeflerdenAyar, vakaUretHedefli, type VakaHedefi } from '@motor/adaptif';
+import { aynaVakasiMi, aynaTahmini, aynaNotu, aynaOkuduMu } from '@motor/ayna';
 import { betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, VaryantBellegi, type KisiUslubu } from '@motor/dil';
 import { puanla, type PuanRaporu, type Suclama } from '@motor/puan';
 import type { Cevap, Soru } from '@motor/strateji';
@@ -64,7 +65,14 @@ export interface IfadeKarsilastirma {
 /** Kanepe molasında takımın getirdiği not (TASARIM §3 adım 5). */
 export interface TakimNotu { tur: 'delil' | 'dedikodu' | 'bos'; metin: string; zaman: number }
 
-export interface VakaGecmisi { seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number }
+export interface VakaGecmisi {
+  seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number;
+  /** Ayna vakasıysa: hedeflenen kör nokta ve Ayna'nın tahmini tuttu mu ("okundun"). */
+  ayna?: { etiket: string; okundu: boolean };
+}
+
+/** Aktif vakadaki Ayna durumu (TASARIM §14): tahmin gizli tutulur, not açılışta gösterilir, gerekçe analizde. */
+export interface AynaDurumu { etiket: string; tahmin: KisiId | null; gerekce: string; not: string }
 
 export interface OyunDurumu {
   ekran: Ekran;
@@ -98,6 +106,8 @@ export interface OyunDurumu {
   takimNotlari: TakimNotu[];
   /** Sonraki vakaların zorluğu (kullanıcı seçer; varsayılan orta). */
   zorluk: Zorluk;
+  /** Bu vaka bir Ayna vakasıysa Ayna'nın tahmini ve notu; değilse null. */
+  ayna: AynaDurumu | null;
   surum: number;
 }
 
@@ -112,7 +122,7 @@ function baslangicDurumu(): OyunDurumu {
   return {
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, hedefler: [], brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
-    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, watson: { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] }, takimNotlari: [], zorluk: 'orta', surum: 0,
+    gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, watson: { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] }, takimNotlari: [], zorluk: 'orta', ayna: null, surum: 0,
   };
 }
 
@@ -234,10 +244,16 @@ export class OyunDeposu {
 
   yeniVaka(seed?: string | number) {
     // Adaptif üretim: kör nokta profili → yapısal hedefler (fark ettirmeden; Ericsson 1993 bilinçli pratik).
-    const hedefler = hedeflerdenAyar(this.korNoktalar());
+    const korNoktalar = this.korNoktalar();
+    const hedefler = hedeflerdenAyar(korNoktalar);
     const { vaka, rapor, saglananHedefler } = vakaUretHedefli(seed ?? `vaka-${Date.now()}`, hedefler, { zorluk: this.durum.zorluk });
     this.kur(sorguBaslat(vaka), rapor);
     this.durum.hedefler = saglananHedefler;
+    // Ayna (TASARIM §14): kadans geldiyse oyuncunun şüphesini kör nokta profilinden tahmin et, olay yerine not bırak.
+    if (aynaVakasiMi(this.durum.gecmis.length, korNoktalar)) {
+      const tahmin = aynaTahmini(vaka, korNoktalar);
+      this.durum.ayna = { ...tahmin, not: aynaNotu(vaka, this.durum.kahramanAdi, tahmin) };
+    }
     this.durum.ekran = 'vaka-acilis';
     this.bildir();
   }
@@ -250,7 +266,7 @@ export class OyunDeposu {
     this.durum = {
       ...this.durum, sorgu, rapor, brifing: vakaBrifingi(vaka),
       kisiKartlari: vaka.kisiler.map((k) => ({ id: k.id, metin: kisiKarti(vaka, k.id) })),
-      seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), takimNotlari: [], kilavuzMaddesi: null,
+      seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), takimNotlari: [], kilavuzMaddesi: null, ayna: null,
     };
   }
 
@@ -382,7 +398,11 @@ export class OyunDeposu {
     this.durum.puan = puan;
     this.durum.gercekAnlatimi = this.gercegiAnlat();
     this.durum.ifadeKarsilastirma = this.ifadeleriKarsilastir();
-    this.durum.gecmis.push({ seed: sorgu.durum.vaka.seed, dogru: puan.dogru, puan: puan.puan, hataEtiketleri: puan.hataEtiketleri, brier: puan.kalibrasyon.brier });
+    const ayna = this.durum.ayna;
+    this.durum.gecmis.push({
+      seed: sorgu.durum.vaka.seed, dogru: puan.dogru, puan: puan.puan, hataEtiketleri: puan.hataEtiketleri, brier: puan.kalibrasyon.brier,
+      ...(ayna ? { ayna: { etiket: ayna.etiket, okundu: aynaOkuduMu(ayna, suclama.fail) } } : {}),
+    });
     this.durum.ekran = 'analiz';
     this.bildir();
   }
@@ -546,7 +566,7 @@ export class OyunDeposu {
     return JSON.stringify({
       kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk, takimAcik: d.takimAcik, tatbikat: { aktif: null, sonuclar: d.tatbikat.sonuclar },
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
-      konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], takimNotlari: d.takimNotlari, gecmis: d.gecmis,
+      konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], takimNotlari: d.takimNotlari, gecmis: d.gecmis, ayna: d.ayna,
       sorgu: s ? {
         defter: [...s.durum.defter.entries()], gosterilen: [...s.gosterilen.entries()].map(([k, v]) => [k, [...v]]),
         kontaminasyon: s.kontaminasyon, stres: [...s.stres.entries()], zaman: s.zaman, gecmis: s.gecmis,
@@ -576,6 +596,7 @@ export class OyunDeposu {
         this.durum.ifadeKarsilastirma = v.ifadeKarsilastirma ?? [];
         this.durum.temelCizgiNotlari = new Map(v.temelCizgiNotlari ?? []);
         this.durum.takimNotlari = v.takimNotlari ?? [];
+        this.durum.ayna = v.ayna ?? null;
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }

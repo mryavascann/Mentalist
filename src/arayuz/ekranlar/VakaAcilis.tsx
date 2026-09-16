@@ -12,6 +12,12 @@ export function VakaAcilis() {
         <h2>Dosya · {vaka.mekan.ad}</h2>
         <p className="daktilo">{d.brifing}</p>
         {d.rapor && <p className="soluk">Tahmini zorluk: {Math.round(d.rapor.zorluk * 100)}/100</p>}
+        {d.ayna && (
+          <div className="kart" style={{ marginTop: 10 }}>
+            <p className="soluk" style={{ margin: '0 0 4px' }}>Olay yerinde, delillerin arasında el yazısı bir not:</p>
+            <p className="daktilo" style={{ margin: 0, fontStyle: 'italic' }}>"{d.ayna.not}"</p>
+          </div>
+        )}
       </section>
       <section className="dosya">
         <h2>Kişiler</h2>
