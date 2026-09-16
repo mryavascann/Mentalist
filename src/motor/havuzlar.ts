@@ -73,9 +73,14 @@ export const ILISKI_SABLONLARI: IliskiSablonu[] = [
  * Rol kuralları: rol, kişinin yaşı/cinsiyetiyle ve kurbanın yaşıyla çelişmemeli ("25 yaşında erkek, annesi" olmaz).
  * Kural yoksa rol serbesttir. Meslek rolleri için alt yaş; ebeveyn/çocuk için yön ve en az 16 yıl fark.
  */
-const ROL_KOSULLARI: Record<string, (kisi: { yas: number; cinsiyet: 'kadin' | 'erkek' }, kurban: { yas: number }) => boolean> = {
+type RolKisi = { yas: number; cinsiyet: 'kadin' | 'erkek' };
+const ROL_KOSULLARI: Record<string, (kisi: RolKisi, kurban: RolKisi) => boolean> = {
   annesi: (k, v) => k.cinsiyet === 'kadin' && k.yas - v.yas >= 16,
   babası: (k, v) => k.cinsiyet === 'erkek' && k.yas - v.yas >= 16,
+  // Kullanıcı kararı (16.09.2026): eş/sevgili rolleri kurbanla karşı cinsten.
+  eşi: (k, v) => k.cinsiyet !== v.cinsiyet,
+  sevgilisi: (k, v) => k.cinsiyet !== v.cinsiyet,
+  'eski sevgilisi': (k, v) => k.cinsiyet !== v.cinsiyet,
   'üvey çocuğu': (k, v) => v.yas - k.yas >= 16,
   yeğeni: (k, v) => v.yas - k.yas >= 10,
   kardeşi: (k, v) => Math.abs(k.yas - v.yas) <= 25,
@@ -98,7 +103,7 @@ export const TEKIL_ROLLER: readonly string[] = ['annesi', 'babası', 'eşi', 'av
 export const SOYADI_ORTAK_ROLLER: readonly string[] = ['annesi', 'babası', 'kardeşi'];
 
 /** Şablonun bu kişi için uygun rolleri (yaş/cinsiyet kuralı + vakada daha önce kullanılmış tekil roller hariç); hiçbiri uymazsa nötr "yakını". */
-export function uygunRoller(sablon: { roller: string[] }, kisi: { yas: number; cinsiyet: 'kadin' | 'erkek' }, kurban: { yas: number }, kullanilan: ReadonlySet<string> = new Set()): string[] {
+export function uygunRoller(sablon: { roller: string[] }, kisi: RolKisi, kurban: RolKisi, kullanilan: ReadonlySet<string> = new Set()): string[] {
   const uygun = sablon.roller.filter((rol) => (ROL_KOSULLARI[rol]?.(kisi, kurban) ?? true) && !(TEKIL_ROLLER.includes(rol) && kullanilan.has(rol)));
   return uygun.length ? uygun : ['yakını'];
 }

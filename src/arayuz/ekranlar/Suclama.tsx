@@ -12,7 +12,8 @@ export function Suclama() {
   const kisiler = depo.gorusulebilirler();
   const kullanilanTeknikler = [...new Set(d.sorgu.gecmis.map((g) => g.teknik))];
   const dayanaklar = [
-    ...d.sorgu.deliller.map((x) => ({ id: `delil:${x.id}`, ad: `Delil ${x.id}: ${x.aciklama.slice(0, 60)}` })),
+    // Açıklama tam yazılır: kesilmiş cümle ("...kamerası 19:00 civarında Gökçe Bozkurt'u") dayanak seçimini bozuyordu.
+    ...d.sorgu.deliller.map((x) => ({ id: `delil:${x.id}`, ad: `Delil ${x.id}: ${x.aciklama}` })),
     ...kullanilanTeknikler.map((t) => ({ id: `teknik:${t}`, ad: `Teknik sonucu: ${t}` })),
     { id: 'ipucu:genel', ad: 'Davranış ipuçları (gerginlik, göz kaçırma, duraksama…)' },
     { id: 'takim:cogunluk', ad: 'Takımın çoğunluk görüşü' },

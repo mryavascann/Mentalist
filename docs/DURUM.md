@@ -1,6 +1,6 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 23:15, Ajan #2 (devir teslim).
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 23:45, Ajan #2 (devir teslim).
 
 ## Aktif aşama
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
@@ -17,6 +17,7 @@
 - **Regresyon seed'leri** (`tests/regresyon/seedler.test.ts`): 6 seed anlık görüntü; üretim bilerek değişince güncellenir ve günlüğe yazılır.
 - **İpucu kataloğu:** 19 ipucu; Navarro saha ipuçları `zayif`. İçerik testi: her bölümde ≥3 madde, ≥12 bölüm, ≥60 madde.
 - **Metin kalitesi 2 (21:25):** ipuçlarında `temelBetimlemeler` (temel çizgi sohbeti alışkanlık dilinde; `ipucuUret baglam`), yabancı adlarda ek okunuşa göre (`turkce.ts OKUNUS`), kişi kartında rolle uyumlu ilişki cümlesi (`iliski_notu.ts`, `Kisi.iliskiNotu`; ayrı RNG akışı, regresyon seed'leri korunur).
+- **Oyuncu geri bildirimi 1 (23:45):** eş/sevgili rolleri karşı cins (`havuzlar.ts`), suçlama dayanak cümleleri tam, seçim kutuları taşmıyor (`stil.css max-width`). Kullanıcı: zorluk iyi.
 - **Takım sahnesi rol tekilliği (23:15):** aynı üye art arda konuşmaz (`takim_hikaye.ts`, karşılık satırı yüzer). Kılavuz 66 madde ve Analiz metinleri gözle okundu; düzeltme gerekmedi.
 - **K-017 zor seviye (22:45):** olay odasındaki masumlar da iz bırakır (şüpheli kümesi büyür), CIT'te tanımama payı; ayrı RNG akışı, regresyon korunur. Repo GitHub'da: https://github.com/mryavascann/Mentalist (özel).
 - **Teknik çıktıları kalite turu (22:00):** SUE tanık ifadesine de uygulanır (koruma yalanı delille çelişir); oda eşyaları vaka içinde tekil (havuzlar 8–12, `temelEsyalar` + kaydırma); serbest anlatımda aynı odada kalınan ardışık dilimler kısa devam cümlesi (`dil.ts anlatimSatirlari`); uygulanamayan teknik zaman düşmez, şeytanın avukatı düğmesi kapalı.
@@ -45,7 +46,8 @@
 - **22:15:** SUE teknik/Kılavuz metinlerinde tanık kullanımı "oyunun genişletmesi" olarak etiketlendi (+1 test).
 - **22:45:** K-017 zor seviye (`zorlukZor.test.ts`, 4 test).
 - **23:15:** takım sahnesi rol tekilliği (`takimRol.test.ts`, 2 test).
-- `npm test`: 47 dosya, 337 test geçti (2026-09-16 23:15). Süre ~10 sn (paralel).
+- **23:45:** rol karşı-cins (+1), suçlama render testi (+1).
+- `npm test`: 48 dosya, 339 test geçti (2026-09-16 23:45). Süre ~10 sn (paralel).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar

@@ -821,3 +821,17 @@
 **Sorunlar / riskler:** Yok.
 **Yarım kalanlar:** Yok. Çalışma ağacı commit'li ve GitHub'a gönderildi.
 **Sıradaki ajan için:** 1) Kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulunu kontrol et (çözülemez hissi / masum suçlama). 2) Kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde göstermek. 3) dist 6 MB isteğe bağlı. 4) CIT tanıma oranı için kaynak (suçlu isabet oranı) bulununca `citTanimaOlasiligi` güncellenir.
+
+## [2026-09-16 23:45] Ajan #2 — Oyuncu geri bildirimi 1: eş/sevgili karşı cins, suçlama delil metni tam, seçim kutusu taşması
+**Görev:** Kullanıcı ilk vakayı oynadı (zor). Geri bildirim: (1) "Kerem'in eşi" erkek çıktı → eş/sevgili rolleri karşı cinsten olsun; (2) suçlama ekranında sağdaki delil cümleleri yarıda kalıyor; (3) seçim kutuları alandan sağa taşıyor; (4) zorluk iyi, zorlayıcı.
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `havuzlar.ts` `ROL_KOSULLARI`: eşi / sevgilisi / eski sevgilisi → `k.cinsiyet !== kurban.cinsiyet`; `uygunRoller` kurban parametresi artık cinsiyet de taşır (`RolKisi`). RNG tek çekim, regresyon seed'leri değişmedi. Test `roller.test.ts` +1 ve mevcut döngüye karşı-cins denetimi.
+- `Suclama.tsx`: dayanak listesinde `aciklama.slice(0, 60)` kaldırıldı; cümle tam. Test `tests/arayuz/Suclama.test.tsx` (render; 3 seed, uzun cümle içeren en az bir delil). Yamadan önce kırmızıydı.
+- `stil.css`: `select, input[type=text], textarea { max-width: 100%; box-sizing: border-box }`, select `text-overflow: ellipsis`. Playwright ölçümü (dist, 1160px): başlıkta select/inputlar kartın 17 px içinde, taşma 0, konsol hatası 0. (Betik oturumluk; proje köküne kopyalayıp `node _ekran.mjs` ile çalıştır, sonra sil — scratchpad'den `playwright` çözümlenmiyor.)
+- Zorluk memnuniyeti: K-017 geri dönüş koşulu şimdilik tetiklenmedi.
+**Değişen dosyalar:** src/motor/havuzlar.ts, src/arayuz/ekranlar/Suclama.tsx, src/arayuz/stil.css, tests/motor/roller.test.ts, tests/arayuz/Suclama.test.tsx, docs.
+**Testler:** 339 geçti / 0 kaldı (48 dosya). typecheck temiz. build 6.0 MB.
+**Alınan kararlar:** Kullanıcı kararı: eş/sevgili rolleri karşı cins (KARARLAR'a küçük not: K-017 altına değil, rol kuralı olarak `havuzlar.ts` yorumunda).
+**Sorunlar / riskler:** Yok.
+**Yarım kalanlar:** Yok. Commit'li ve push'lu.
+**Sıradaki ajan için:** 1) Kullanıcının sonraki geri bildirimleri. 2) Küçük fikirler (DURUM). 3) CIT tanıma oranı kaynağı.
