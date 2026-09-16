@@ -574,3 +574,24 @@
 **Sıradaki ajan için:** 1) Diğer araçlar (TASARIM §7): oda okuma, dijital iz, "şu an ne düşünüyor?", kayıt inceleme. 2) Analiz'den hata etiketine uygun tatbikat önerisi (aralıklı tekrar). 3) Ayna arkı: Ayna vakalarına özel arketip ("sahnelenmiş olay" ağırlığı) ve ark boyunca biriken notlar.
 
 **Geliştirme fikirleri:** Ayna "okundu" oranını kör nokta grafiğinde göstermek; takım sahnesinde oyuncunun kısa cevap seçmesi (Watson'a anlat ile birleşebilir).
+
+## [2026-09-16 13:50] Ajan #1 — Aralıklı tekrar: Analiz'den tatbikat önerisi
+**Görev:** Vaka sonunda hata etiketinden ilgili tatbikata yönlendirme (TASARIM §11 "çalışma önerisi").
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `src/arayuz/oyun/tatbikat_onerisi.ts`: `TATBIKAT_ADLARI`, `TATBIKAT_ONERISI` (13 etiket → 6 tatbikat; gerekçeler yorumda), `tatbikatOner(etiketler)` tekrarsız ve sıralı.
+- `Analiz.tsx` "Öğrendiklerin" altında "Önerilen tatbikat" düğmeleri (tamamlanmışsa "· tekrar"); `tatbikatKapat` zaten analize döndürüyor.
+- Test `tests/arayuz/tatbikatOnerisi.test.ts` (3): eşleme geçerliliği, tekrarsız/sıralı öneri, depo gidiş-dönüş.
+- Yan iş (kullanıcı isteği): Higgsfield CLI global kuruldu (1.1.25), `npx skills add higgsfield-ai/skills` projeye `.agents/skills/` kurdu; `.gitignore`'a `.agents/`, `.claude/skills/`, `skills-lock.json` eklendi.
+
+**Değişen dosyalar:** src/arayuz/oyun/tatbikat_onerisi.ts, src/arayuz/ekranlar/Analiz.tsx, tests/arayuz/tatbikatOnerisi.test.ts, .gitignore, docs.
+
+**Testler:** 277 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz.
+
+**Alınan kararlar:** Yok.
+
+**Sorunlar / riskler:** Yok.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Diğer araçlar (TASARIM §7). 2) Ayna arkı (özel arketip, biriken notlar). 3) Higgsfield ile portre/mekân görselleri (`assets/HIGGSFIELD_PROMPTLAR.md`; CLI artık kurulu, `assets/KAYIT.md` tutulacak).

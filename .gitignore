@@ -15,3 +15,8 @@ docs/kaynaklar/mentaldocs/**/*.pdf
 Thumbs.db
 .vscode/*
 !.vscode/extensions.json
+
+# Higgsfield CLI yardımcı skill'leri (npx skills add higgsfield-ai/skills): üçüncü taraf, yerel kurulum; depoya alınmaz.
+.agents/
+.claude/skills/
+skills-lock.json

@@ -1,9 +1,9 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 13:20, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 13:50, Ajan #1.
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Kılavuz 12 bölüm / 60 madde tamam; Higgsfield prompt listesi ve portre yer tutucusu hazır. Takım NPC'leri, şablon havuzu (kategori başına ≥5) ve mekâna özgü belgeler tamam. Arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü ve regresyon seed'leri tamam. Yedi tatbikatın hepsi tamam (Kılavuz 64 madde). Takım hikâyesi ve Ayna taslağı tamam. Sıradaki: diğer araçlar (§7), aralıklı tekrar önerisi, Ayna arkı.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, üç tatbikat ve adaptif üretim tamam. Kılavuz 12 bölüm / 60 madde tamam; Higgsfield prompt listesi ve portre yer tutucusu hazır. Takım NPC'leri, şablon havuzu (kategori başına ≥5) ve mekâna özgü belgeler tamam. Arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü ve regresyon seed'leri tamam. Yedi tatbikatın hepsi tamam (Kılavuz 64 madde). Takım hikâyesi, Ayna taslağı ve aralıklı tekrar önerisi tamam. Sıradaki: diğer araçlar (§7), Ayna arkı, Higgsfield görselleri.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar (11 test), cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
@@ -20,13 +20,14 @@
 - **Kalan tatbikatlar** (`mini_oyunlar.{json,ts}`, `Tatbikat.tsx`): Linda tuzağı (5 çift, 1'i ayrık; `lindaBitir`), kaybolan top / off-beat (5 an, 3 soru; `offBeatBitir`), ince dilim (2 kişi × 3 boyut, yalan=bilinemez; `inceDilimBitir`), çift kör test tasarla (6 gerekli + 6 tuzak; `ciftKorBitir`). Kılavuz'a `birlesim-yanilgisi` ve `cift-kor-test` eklendi. 9 test.
 - **Takım hikâyesi** (`takim_hikaye.ts`): Analiz'de "Ofis · sonra" sahnesi; 4 üye × 5 arka plan bölümü (Kılavuz bağlı), hata etiketine göre tepki veren üye. 6 test.
 - **Ayna taslağı** (`src/motor/ayna.ts`, K-013): her 3. vakada baskın kör nokta ≥2 ise Ayna vakası; tahmin görünür özelliklerden (faille şans düzeyi); açılışta imza notu (`durum.ayna.not`), Analiz'de okundu/yanıldı, `VakaGecmisi.ayna`. 6 test.
+- **Aralıklı tekrar** (`tatbikat_onerisi.ts`): Analiz'de hata etiketine uyan tatbikat düğmeleri (13 etiket → 6 tatbikat); tatbikat kapanınca Analiz'e dönülür. 3 test.
 - **Regresyon seed'leri** (`tests/regresyon/seedler.test.ts`): 6 seed anlık görüntü (mekân, arketip, fail, dilim, yöntem, delil/sır sayısı, çözülebilirlik, zorluk). Üretim bilerek değişince güncellenir ve günlüğe yazılır.
 - **İpucu kataloğu:** Navarro saha ipuçları `zayif` düzeyde: yatıştırıcı dokunma (d=.12, suç sorusunda kaygıyla artar → "hangi konu" sinyali), ayakların çıkışa dönmesi (ilişkisiz), vurgu kaybı (d=.14). 19 ipucu. İçerik testi: her bölümde ≥3 madde, ≥9 bölüm, ≥45 madde.
 
 ## Sıradaki 3 iş
 1. **Diğer araçlar (TASARIM §7):** oda okuma (Gosling: eşya = kimlik iddiası / kalıntı / sahnelenmiş), dijital iz profili, "şu an ne düşünüyor?" (Ickes), kayıt inceleme (yavaşlat/yüz kapat; etkisi küçük).
-2. **Aralıklı tekrar:** Analiz ekranındaki hata etiketinden ilgili tatbikata yönlendirme (temsil-edicilik → Linda, fark-etmedin → off-beat, tek-ipucu → ince dilim).
-3. **Ayna arkı:** Ayna vakalarına özel arketip ağırlığı ve ark boyunca biriken notlar; "okundu" oranı kör nokta bölümünde.
+2. **Ayna arkı:** Ayna vakalarına özel arketip ağırlığı ve ark boyunca biriken notlar; "okundu" oranı kör nokta bölümünde.
+3. **Higgsfield görselleri:** CLI kurulu (`higgsfield`), skill'ler `.agents/skills/` altında; `assets/HIGGSFIELD_PROMPTLAR.md` listesinden portre havuzu üretimi, `assets/KAYIT.md` güncellemesi.
 
 ## Açık kararlar (kullanıcıya sorulacak)
 1. Vaka başına hedef süre → soruşturma saati bütçesi (varsayılan 12).
@@ -38,12 +39,13 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 32 dosya, 274 test geçti (2026-09-16 13:20). Süre ~90 sn.
+- `npm test`: 33 dosya, 277 test geçti (2026-09-16 13:50). Süre ~90 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html`. file:// kontrolü hata 0.
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
 - Bash heredoc'ta uzun Python/Markdown kırılıyor; yamaları scratchpad `.py` olarak yaz ve çalıştır.
+- Higgsfield CLI global kurulu (`higgsfield --version`), giriş tarayıcıdan (`higgsfield auth login`); skill'ler proje içinde `.agents/skills/` (git dışı).
 - Depo tekildir; testler `depo.sifirla()` ile izole edilir. Playwright'ta rol tabanlı seçici.
 - Sahnelenmiş delil oyuncuya bayrakla gösterilmez; fizik tutarsızlığı ile bulunur.
 - İpucu sadakat testi zayıf ipuçlarında gürültüye duyarlı; yeni ipucu eklerken `betimlemeYonu` ve kişilik temel çizgisini (`ipucu.ts KISILIK_TEMELI`) birlikte ekle.

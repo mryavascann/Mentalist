@@ -220,7 +220,7 @@ Bölüm önerisi:
 - **Çift kör test tasarla:** "şifacı"yı test edecek protokol kur.
 Tatbikatlar kısa (2–5 dk), anında geri bildirimli, aralıklı tekrar mantığıyla önerilir.
 
-**Uygulama durumu (16.09.2026):** yedi tatbikatın hepsi `src/icerik/mini_oyunlar.{json,ts}` + `Tatbikat.tsx`'te. Linda tuzağında 4 birleşim çiftine 1 ayrık ('ya da') çift eklendi ki oyuncu 'hep kısa olanı seç' kalıbı yerine 'koşulları say' kuralını öğrensin. Off-beat tatbikatı üç soruludur: yöntemin anı (gevşeme), 'gözümü ayırmadım' ifadesinin anlamı (bakmak ≠ görmek), kaybolan top (tanık tahmini 'gördü'). İnce dilimde yalan sorusunun tek doğrusu 'bilinemez'dir; evet/hayır 'aşırı genelleme' sayılır. Çift kör testte gerekli madde +1, tuzak −1. İki yeni Kılavuz maddesi: `birlesim-yanilgisi`, `cift-kor-test`. Aralıklı tekrar önerisi henüz yok.
+**Uygulama durumu (16.09.2026):** yedi tatbikatın hepsi `src/icerik/mini_oyunlar.{json,ts}` + `Tatbikat.tsx`'te. Linda tuzağında 4 birleşim çiftine 1 ayrık ('ya da') çift eklendi ki oyuncu 'hep kısa olanı seç' kalıbı yerine 'koşulları say' kuralını öğrensin. Off-beat tatbikatı üç soruludur: yöntemin anı (gevşeme), 'gözümü ayırmadım' ifadesinin anlamı (bakmak ≠ görmek), kaybolan top (tanık tahmini 'gördü'). İnce dilimde yalan sorusunun tek doğrusu 'bilinemez'dir; evet/hayır 'aşırı genelleme' sayılır. Çift kör testte gerekli madde +1, tuzak −1. İki yeni Kılavuz maddesi: `birlesim-yanilgisi`, `cift-kor-test`. Aralıklı tekrar: Analiz'de hata etiketine uyan tatbikat önerilir (`tatbikat_onerisi.ts`; 13 etiket → 6 tatbikat), bitince Analiz'e dönülür.
 
 ---
 

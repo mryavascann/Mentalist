@@ -5,6 +5,7 @@ import { depo, useOyun } from '../oyun/kullan';
 import { ARKETIPLER } from '@motor/arketipler';
 import { kalibrasyonOzeti } from '../oyun/cizelge';
 import { takimSahnesi } from '../oyun/takim_hikaye';
+import { tatbikatOner } from '../oyun/tatbikat_onerisi';
 
 const ETIKETLER = new Map(ICERIK.hataEtiketleri.map((h) => [h.id, h]));
 const KILAVUZ = new Map(ICERIK.kilavuz.map((m) => [m.id, m]));
@@ -47,6 +48,23 @@ export function Analiz() {
             </div>
           );
         })}
+        {(() => {
+          // Aralıklı tekrar: hata etiketine uyan tatbikatlar (2–5 dk). Tamamlanmış olsa da tekrar önerilir.
+          const oneriler = tatbikatOner(p.hataEtiketleri);
+          if (oneriler.length === 0) return null;
+          return (
+            <div style={{ marginTop: 10 }}>
+              <div className="soluk" style={{ marginBottom: 4 }}>Önerilen tatbikat (2–5 dk); bitince buraya dönersin:</div>
+              <div className="dugmeler">
+                {oneriler.map((o) => (
+                  <button key={o.tatbikat} onClick={() => depo.tatbikatAc(o.tatbikat)} title={o.etiketler.map((e) => ETIKETLER.get(e)?.ad ?? e).join(', ')}>
+                    {o.ad}{d.tatbikat.sonuclar[o.tatbikat]?.tamamlandi ? ' · tekrar' : ''}
+                  </button>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
       {d.ifadeKarsilastirma.length > 0 && (
