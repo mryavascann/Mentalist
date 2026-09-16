@@ -260,5 +260,5 @@ export function kisiKarti(vaka: Vaka, kisiId: KisiId): string {
   const k = vaka.kisiler.find((x) => x.id === kisiId)!;
   const kurban = vaka.kisiler.find((x) => x.id === vaka.olay.kurban)!;
   if (k.id === kurban.id) return `${k.ad}, ${k.yas}. Kurban.${k.hayatta ? '' : ' Hayatta değil.'}`;
-  return `${k.ad}, ${k.yas}. ${basHarfBuyut(k.rol)}.`;
+  return `${k.ad}, ${k.yas}. ${basHarfBuyut(k.rol)}.${k.iliskiNotu ? ` ${k.iliskiNotu}` : ''}`;
 }

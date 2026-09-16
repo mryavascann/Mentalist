@@ -87,6 +87,11 @@ export interface IpucuSecenekleri {
   ekGerginlik?: number;
   /** RNG akışını ayırmak için etiket (aynı soru farklı teknikle sorulunca farklı gözlem). */
   etiket?: string;
+  /**
+   * Metin bağlamı: 'temel-cizgi' → alışkanlık dilindeki `temelBetimlemeler` kullanılır (varsa).
+   * Yalnızca metni değiştirir; hangi ipucunun gözlendiği (RNG akışı) aynı kalır.
+   */
+  baglam?: 'temel-cizgi';
 }
 
 /** Cevaba eşlik eden gözlemler; aynı (kişi, soru, etiket) için deterministik. */
@@ -103,7 +108,10 @@ export function ipucuUret(durum: VakaDurumu, cevap: Cevap, secenekler: IpucuSece
     if (sucSorusu && GERGINLIK_IPUCLARI.has(ipucu.id)) mu += SUC_SORUSU_GERGINLIK * kisi.kisilik.kaygi;
     if (ekGerginlik > 0 && GERGINLIK_IPUCLARI.has(ipucu.id)) mu += ekGerginlik;
     const z = r.normal(mu, 1);
-    const betimleme = r.sec(ipucu.betimlemeler); // her ipucu için çekilir ki akış sabit kalsın
+    // Her ipucu için çekilir ki akış sabit kalsın; `sec` liste uzunluğundan bağımsız tek çekim yapar,
+    // bu yüzden temel çizgi seti farklı uzunlukta olsa da gözlenen ipucu kümesi değişmez.
+    const havuz = secenekler.baglam === 'temel-cizgi' && ipucu.temelBetimlemeler?.length ? ipucu.temelBetimlemeler : ipucu.betimlemeler;
+    const betimleme = r.sec(havuz);
     if (z > ESIK) gozlemler.push({ ipucuId: ipucu.id, kanal: ipucu.kanal, betimleme });
   }
   return gozlemler;

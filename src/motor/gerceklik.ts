@@ -17,6 +17,7 @@ import {
   TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI, SOYADI_ORTAK_ROLLER, uygunRoller,
 } from './havuzlar';
 import { mekanaUygunArketipler, type Arketip } from './arketipler';
+import { iliskiNotuUret } from './iliski_notu';
 import { AYNA_ARKETIPLERI, AYNA_ARKETIP_CARPANI } from './ayna';
 
 /** Akşam 19:00'dan itibaren 30 dakikalık 8 dilim (19:00–23:00). */
@@ -183,6 +184,8 @@ export function vakaUret(seed: number | string, ayar: VakaAyari = { zorluk: 'ort
   const kurban = kok.altUret('kurban').sec(kisiler);
   kurban.rol = 'kurban';
   const { iliskiler, borclar } = iliskileriUret(kok.altUret('iliskiler'), kisiler, kurban);
+  // İlişki cümlesi ayrı akıştan (seed + kişi): ana akışı ve regresyon seed'lerini kaydırmaz.
+  for (const k of kisiler) if (k.id !== kurban.id) k.iliskiNotu = iliskiNotuUret(new Rastgele(`${seed}/iliski-notu/${k.id}`), k, kurban);
   // Arketip mekâna göre, ağırlıklı ve düzgün karıştırılır; olay türü/yöntemi buradan gelir (TASARIM §15).
   const arketipR = kok.altUret('arketip');
   // Ayna vakasında (TASARIM §14) sahne/manipülasyon arketipleri ağır basar; aynı seed'de mekân ve kişiler aynı kalır.

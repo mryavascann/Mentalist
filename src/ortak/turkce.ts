@@ -5,11 +5,21 @@
 // ünsüz sertleşmesi (f s t k ç ş h p → -ta/-te), kaynaştırma (-y-, -n-), iyelikli tamlamalarda -n-,
 // rakam/harf kodu ve özel adlarda kesme işareti. Rakamlar okunuşuna göre çekimlenir (412 → "on iki" → -de).
 // Kapsam bilinçli olarak dar: oyunun isim/oda havuzları için yeterli, genel bir çekimleyici değil.
+// Yabancı özel adlarda ek OKUNUŞA göre gelir (TDK: "Shakespeare'in", "Bordeaux'ya"); havuzdaki yazımı
+// okunuşundan sapan adlar OKUNUS tablosunda tutulur, ek bu okunuşa göre hesaplanıp yazıma eklenir.
 
 const UNLULER = 'aeıioöuüAEIİOÖUÜ';
 const KALIN = 'aıouAIOU';
 const YUVARLAK = 'oöuüOÖUÜ';
 const SERT_UNSUZLER = 'fstkçşhpFSTKÇŞHP';
+
+/**
+ * Yazımı okunuşundan sapan yabancı adlar (havuzlar.ts): sondaki sessiz harf düşer ya da ünlü değişir.
+ * Tablo yalnızca havuzdaki adları kapsar; tabloda olmayan ad yazımına göre çekimlenir ("Baxter'in").
+ */
+const OKUNUS: Record<string, string> = {
+  Whitmore: 'Vitmor', Thorne: 'Torn', Hale: 'Heyl', Beatrice: 'Biatris', Margot: 'Margo',
+};
 
 /** Rakamların okunuşundaki son ünlü. */
 const RAKAM_SON_UNLU: Record<string, string> = { '0': 'ı', '1': 'i', '2': 'i', '3': 'ü', '4': 'ö', '5': 'e', '6': 'ı', '7': 'i', '8': 'i', '9': 'u' };
@@ -26,9 +36,16 @@ function kodMu(son: string): boolean {
   return /^\d+[A-Za-z]?$/.test(son);
 }
 
-function sonSozcuk(ad: string): string {
+/** Son sözcük, yazıldığı gibi. */
+function sonSozcukYazim(ad: string): string {
   const parcalar = ad.trim().split(/\s+/);
   return parcalar[parcalar.length - 1]!;
+}
+
+/** Son sözcüğün ek hesabında kullanılan biçimi: okunuşu sapan yabancı adlarda okunuş, yoksa yazım. */
+function sonSozcuk(ad: string): string {
+  const son = sonSozcukYazim(ad);
+  return OKUNUS[son] ?? son;
 }
 
 /** Kelimenin (ya da kodun okunuşunun) son ünlüsü. */

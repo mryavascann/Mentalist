@@ -85,6 +85,7 @@ export function dogrulaIcerik(icerik: TumIcerik): string[] {
     metinAlanlari(i as unknown as Record<string, unknown>, ['id', 'ad'], e, hatalar);
     if (!KANALLAR.has(i.kanal)) hatalar.push(`${e}: geçersiz kanal "${i.kanal}"`);
     if (!Array.isArray(i.betimlemeler) || i.betimlemeler.length < 3) hatalar.push(`${e}: en az 3 betimleme varyantı gerekli`);
+    if (i.temelBetimlemeler !== undefined && (!Array.isArray(i.temelBetimlemeler) || i.temelBetimlemeler.length < 3)) hatalar.push(`${e}: temelBetimlemeler varsa en az 3 varyant gerekli`);
     ipucuYonDenetle(i, e, hatalar);
     if (!['artar', 'azalir', 'iliskisiz'].includes(i.betimlemeYonu)) hatalar.push(`${e}: geçersiz betimlemeYonu "${i.betimlemeYonu}"`);
     else if ((i.yon === 'iliskisiz') !== (i.betimlemeYonu === 'iliskisiz')) hatalar.push(`${e}: yön "${i.yon}" ile betimlemeYonu "${i.betimlemeYonu}" çelişiyor (ilişkisizlik eşleşmeli)`);

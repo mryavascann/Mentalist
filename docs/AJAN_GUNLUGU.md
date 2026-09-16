@@ -739,3 +739,27 @@
 4) İsteğe bağlı: dist 6 MB → portre 384² / oda q50.
 
 **Geliştirme fikirleri:** Kişi kartında rolle uyumlu kısa "ilişki cümlesi" (ör. "üç yıldır avukatı"); oda görsellerini ifade çizelgesine de koymak; takım sahnesinde oyuncu cevabı.
+
+## [2026-09-16 21:25] Ajan #2 — Gözle kalite turu 2: temel çizgi betimlemeleri, yabancı ad ekleri, kişi kartı ilişki cümlesi
+**Görev:** Devir teslimdeki sıradaki işler 2–3 (döküm turu, temel çizgiye uymayan betimlemeler) + geliştirme fikri (kişi kartına rolle uyumlu ilişki cümlesi). Kullanıcı kararı gerektirenler (zor seviye, saat bütçesi) beklemede.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- **Döküm:** geçici `tests/denge/_dokum.test.ts` ile 3 vaka (`dokum-a/b/c`: brifing, kartlar, deliller, her kişide temel çizgi + 3 konum + fail + başkası sorusu, gerçek) okundu. Tutarlılık sağlam (koruma yalanları, tanıklık, gerçek anlatımı uyumlu); kusurlar metin düzeyinde. Geçici dosya silindi.
+- **Temel çizgi betimlemeleri:** `ipuclari.json` her ipucuya `temelBetimlemeler` (3'er; alışkanlık dili: "Sohbette de göz temasından kaçınıyor; sık sık masaya bakıyor"). `ipucuUret` yeni `baglam: 'temel-cizgi'` seçeneği: yalnızca metin havuzu değişir; `Rastgele.sec` liste uzunluğundan bağımsız tek çekim yaptığı için gözlenen ipucu kümesi birebir aynı (test doğrular). `teknik.ts` temel çizgi tekniği bağlamı geçer; `dogrula.ts` alan varsa ≥3 ister. Ayrıca `tutarsizlik-ambivalans` sorgu betimlemesindeki "'çok üzüldüm' derken sesi düz" alıntısı konum cevabına yapışmıyordu → nötr cümle.
+- **Yabancı adlarda ek okunuşa göre (TDK):** `turkce.ts` `OKUNUS` tablosu (Whitmore→Vitmor, Thorne→Torn, Hale→Heyl, Beatrice→Biatris, Margot→Margo); "Beatrice'nin kardeşi" → "Beatrice'in", "Thorne'ye ait" → "Thorne'a ait", "Whitmore'nin telefonu" → "Whitmore'un". Önceki "yazıma göre, bilinçli dar kapsam" tercihi geri alındı; tabloda olmayan adlar yazıma göre kalır ("Baxter'in"). `metinKalite` testi güncellendi.
+- **Kişi kartı ilişki cümlesi:** yeni `src/motor/iliski_notu.ts` (`Kisi.iliskiNotu`), 26 rol için şablon. Sayılar yaşla çelişmez (evlilik yılı ≤ küçük eşin yaşı−18; meslek süresi ≤ yaş−alt yaş; kardeşte gerçek yaş farkı, 0 → "İkizler."). Ayrı RNG akışı (`seed/iliski-notu/kId`) → ana akış ve regresyon seed'leri değişmedi. `kisiKarti` sonuna ekler; gizli bilgi taşımaz (test: sır/koru/fail/suç/yalan sözcükleri geçmez).
+- Testler: `tests/motor/temelCizgiBetimleme.test.ts` (3), `tests/motor/iliskiNotu.test.ts` (1), `tests/ortak/turkce.test.ts` +1.
+
+**Değişen dosyalar:** src/icerik/{ipuclari.json,tipler.ts,dogrula.ts}, src/motor/{ipucu,teknik,tipler,gerceklik,dil}.ts, src/motor/iliski_notu.ts (yeni), src/ortak/turkce.ts, tests/motor/{temelCizgiBetimleme,iliskiNotu,metinKalite}.test.ts, tests/ortak/turkce.test.ts, docs.
+
+**Testler:** 327 geçti / 0 kaldı (komut: `npm test`; 45 dosya). `npm run typecheck` temiz. `npm run build` 5.99 MB.
+
+**Alınan kararlar:** KARARLAR'a girecek boyutta yok. Küçük kalite kararları: (1) yabancı adlarda ek okunuşa göre, tablo havuzla sınırlı; (2) ilişki notu ayrı RNG akışından, kurbanda yok.
+
+**Sorunlar / riskler:** Testlerde JS regex tuzakları: `\b` Türkçe harfte (ş, ü) kelime sınırı değil; `/i` bayrağı "İ" ile "i"yi eşlemez → sözcük bölme ve açık desen kullanıldı. İlişki notu vaka açılış kartında görünür; sorgu odası kişi listesinde yok (yer dar, bilinçli). Bash heredoc uzun Python'da yine kırıldı; yamalar Write ile scratchpad `.py` olarak yazılıp çalıştırıldı.
+
+**Yarım kalanlar:** Yok. Çalışma ağacı commit'li.
+
+**Sıradaki ajan için:** 1) Kullanıcı oynayınca DURUM "Açık kararlar" (zor seviye a/b/c, saat bütçesi). 2) Döküm turu devam: teknik çıktıları (SUE, bilişsel yük ters sıra, yönlendirici soru, açık uçlu anlatım, Watson, takım sahnesi metinleri) henüz gözle okunmadı; aynı geçici döküm yöntemiyle oku. 3) İsteğe bağlı: dist 6 MB → portre 384² / oda q50.
+
+**Geliştirme fikirleri:** "Ne zamandır tanışıyorsunuz?" türü sohbet sorusu ilişki notunu sorguda yeniden kullanabilir (temel çizgi tekniğinin metnine eklenebilir); oda görsellerini ifade çizelgesinde göstermek; takım sahnesinde oyuncunun kısa cevap seçmesi.

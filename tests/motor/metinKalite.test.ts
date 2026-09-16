@@ -17,8 +17,8 @@ describe('Türkçe ekler', () => {
     expect(belirtme('Iris Ostrowski')).toBe("Iris Ostrowski'yi");
     expect(belirtme('Gökçe Bozkurt')).toBe("Gökçe Bozkurt'u");
     expect(tamlayan('Mert Duran')).toBe("Mert Duran'ın");
-    // Yabancı adlarda çekim yazıma göre (okunuşa göre değil): kasıtlı, dar kapsam.
-    expect(tamlayan('Nora Whitmore')).toBe("Nora Whitmore'nin");
+    // Yabancı adlarda ek okunuşa göre (turkce.ts OKUNUS tablosu): "Whitmore'un".
+    expect(tamlayan('Nora Whitmore')).toBe("Nora Whitmore'un");
   });
 
   it('delil açıklamaları kişi adlarını doğru ekle yazar (200 vaka)', () => {

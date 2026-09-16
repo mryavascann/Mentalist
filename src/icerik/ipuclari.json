@@ -9,6 +9,11 @@
       "Cümleleri kısaldı, ses tonu düzleşti; anlattığı şeyle arasına mesafe koyuyor gibiydi.",
       "Sizinle değil, masanın üstündeki bir noktayla konuşuyormuş gibi soğuk ve edilgen anlattı."
     ],
+    "temelBetimlemeler": [
+      "Havadan sudan konuşurken bile mesafeli ve dolaylı; sanki başkasının gününü aktarıyor.",
+      "Kendinden 'insan', 'kişi' gibi genel öznelerle söz etmeyi seviyor.",
+      "Sesi düz, cümleleri kısa; sıcak bir konuda bile araya mesafe koyuyor."
+    ],
     "etkiBuyuklugu": -0.55,
     "yon": "yalanda_azalir",
     "betimlemeYonu": "artar",
@@ -27,6 +32,11 @@
       "Diğer konularda ayrıntıya boğarken bu konuda anlatım birden inceldi.",
       "Yer, saat, kim ne dedi gibi somut ayrıntılar yerine genel ifadeler kullandı.",
       "Hikâyede renk yok: koku, ses, sıra, küçük aksaklık… hiçbiri anlatılmadı."
+    ],
+    "temelBetimlemeler": [
+      "Gününü iki cümleyle özetleyen biri; ayrıntıya kendiliğinden girmiyor.",
+      "Yer, saat, kim ne dedi gibi somutluklar onun sohbetinde az.",
+      "Anlattıklarında renk az: koku, ses, küçük aksaklık pek geçmiyor."
     ],
     "etkiBuyuklugu": -0.3,
     "yon": "yalanda_azalir",
@@ -48,8 +58,13 @@
     "betimlemeler": [
       "Aynı konuda önce bir şey söyledi, iki cümle sonra tersini ima etti.",
       "Anlatırken ikide bir durup 'yani… şey…' diye kendi kendine düzeltir gibi oldu, ama netleşmedi.",
-      "Söyledikleriyle ses tonu uyuşmuyordu: 'çok üzüldüm' derken sesi düz ve ilgisizdi.",
+      "Söyledikleriyle ses tonu uyuşmuyordu; kelimeler bir şey, ses başka bir şey söylüyordu.",
       "Kararsız bir anlatım: bazen emin, bazen 'sanırım', 'galiba' ile geri adım."
+    ],
+    "temelBetimlemeler": [
+      "Sohbette bile 'sanırım', 'galiba' ile sık geri adım atıyor; kararsız bir dili var.",
+      "Basit bir şeyi söylerken 'yani… şey…' diye kendini düzeltip netleşmeyen bir tarzı var.",
+      "Söylediğiyle ses tonu her zaman aynı hizada değil; sıcak bir sözü düz bir sesle söyleyebiliyor."
     ],
     "etkiBuyuklugu": 0.34,
     "yon": "yalanda_artar",
@@ -70,6 +85,11 @@
       "Loş odada bile göz bebeklerinin genişlediği fark ediliyordu.",
       "Gözleri kararır gibi oldu: göz bebekleri açıldı."
     ],
+    "temelBetimlemeler": [
+      "Sohbette de göz bebekleri sık sık geniş; loş odada belirgin.",
+      "Sıradan bir konuda bile göz bebekleri kolayca açılıyor.",
+      "Gözleri 'kararır gibi' oluyor; göz bebekleri çabuk genişliyor."
+    ],
     "etkiBuyuklugu": 0.39,
     "yon": "yalanda_artar",
     "betimlemeYonu": "artar",
@@ -87,6 +107,11 @@
       "Cevap verirken sesi inceldi, bir perde yukarı çıktı.",
       "Konuşmasının ortasında sesi tizleşti; sonra kendini toparlayıp normale döndü.",
       "'Hayır' derken sesi normalden daha ince ve gergin çıktı."
+    ],
+    "temelBetimlemeler": [
+      "Heyecanlanmasa da sesi ince ve yukarıdan; bu onun olağan perdesi.",
+      "Sohbetin ortasında sesi tizleşip sonra normale dönüyor; sık oluyor.",
+      "Sıradan bir 'evet' bile normalden ince çıkıyor."
     ],
     "etkiBuyuklugu": 0.21,
     "yon": "yalanda_artar",
@@ -112,6 +137,11 @@
       "'Dur, yanlış söyledim' deyip aynı yeri yeniden anlattı.",
       "Kimse sormadan bir ayrıntısını değiştirdi ve eskisinin yanlış olduğunu ekledi."
     ],
+    "temelBetimlemeler": [
+      "Havadan sudan konuşurken bile 'yok, pardon, biraz daha geçti' diye kendini düzeltiyor.",
+      "Sırayı kendiliğinden düzelten bir anlatıcı: 'Aslında önce oraya gitmiştim.'",
+      "Kimse istemeden küçük ayrıntılarını değiştirip eskisinin yanlış olduğunu ekliyor."
+    ],
     "etkiBuyuklugu": -0.29,
     "yon": "yalanda_azalir",
     "betimlemeYonu": "azalir",
@@ -131,6 +161,11 @@
       "Bazı ayrıntılarda 'Bunu hatırlamıyorum' dedi ve konuyu geçiştirmeye çalışmadı.",
       "Emin olmadığı yerde uydurmak yerine 'Bilmiyorum, dikkat etmemişim' dedi."
     ],
+    "temelBetimlemeler": [
+      "Emin olmadığı yerde rahatlıkla 'hatırlamıyorum' diyor; sohbette de böyle.",
+      "Bilmediği bir şeyi uydurmak yerine 'dikkat etmemişim' deyip geçiyor.",
+      "'Bunu bilmiyorum' demekten çekinmeyen biri."
+    ],
     "etkiBuyuklugu": -0.42,
     "yon": "yalanda_azalir",
     "betimlemeYonu": "azalir",
@@ -148,6 +183,11 @@
       "Sorulara kısa, isteksiz cevaplar verdi; soruyu tekrar ettirmek gerekti.",
       "Görüşmeyi bir an önce bitirmek istiyor gibiydi, açılım yapmadı.",
       "Yardımcı olmaya çalışmıyor, sadece sorulanı en dar biçimde cevaplıyordu."
+    ],
+    "temelBetimlemeler": [
+      "Sohbete kısa, isteksiz cümlelerle katılıyor; açılım yapmıyor.",
+      "Sıradan bir sohbeti bile bir an önce bitirmek ister gibi.",
+      "Ne denirse en dar biçimde karşılıyor; kendiliğinden bir şey eklemiyor."
     ],
     "etkiBuyuklugu": -0.66,
     "yon": "yalanda_azalir",
@@ -167,6 +207,11 @@
       "Sandalyede sürekli pozisyon değiştirdi, yerinde duramadı.",
       "Sesi gergin, cümleleri kesik kesikti.",
       "Yüzünde gergin bir ifade belirdi, çenesini sıktı."
+    ],
+    "temelBetimlemeler": [
+      "Rahat bir sohbette bile omuzları kasık, elleri birbirine kilitli.",
+      "Sandalyede sık pozisyon değiştiriyor; yerinde durmak ona zor.",
+      "Çenesini sıkma alışkanlığı var; yüzü dinlenirken de gergin."
     ],
     "etkiBuyuklugu": 0.27,
     "yon": "yalanda_artar",
@@ -191,6 +236,11 @@
       "Anlatımın vurgusu kayboldu; eller masanın altına çekildi.",
       "Diğer sorularda canlı jestler yapıyordu; burada hareketsizleşti."
     ],
+    "temelBetimlemeler": [
+      "Konuşurken elleri kucağında; jest az kullanan biri.",
+      "Anlatımını el hareketiyle desteklemiyor; eller masanın altında.",
+      "Havadan sudan konuşurken bile hareketsiz; vurgu sesinde de az."
+    ],
     "etkiBuyuklugu": -0.14,
     "yon": "yalanda_azalir",
     "betimlemeYonu": "artar",
@@ -211,6 +261,11 @@
       "Gülümsemesi biraz uzun sürdü ve aniden söndü.",
       "Zorlama bir gülümseme: ağız gülüyor, bakış aynı kalıyor."
     ],
+    "temelBetimlemeler": [
+      "Gülümsemesi çoğu zaman gözlere ulaşmıyor; dudak köşeleri gerilip göz çevresi düz kalıyor.",
+      "Gülümsemeleri biraz uzun sürüp aniden sönüyor; bu onun olağanı.",
+      "Nezaket gülümsemesi: ağız gülüyor, bakış aynı."
+    ],
     "etkiBuyuklugu": 0.31,
     "yon": "yalanda_artar",
     "betimlemeYonu": "artar",
@@ -230,6 +285,11 @@
       "Cevap verirken gözlerini kaçırdı, masaya baktı.",
       "Bakışlarını pencereye çevirdi, sizinle göz göze gelmedi.",
       "Yere bakarak konuştu."
+    ],
+    "temelBetimlemeler": [
+      "Sohbette de göz temasından kaçınıyor; sık sık masaya bakıyor.",
+      "Bakışlarını pencereye çevirerek konuşmayı seviyor.",
+      "Yere bakarak konuşan biri; bu onun tarzı."
     ],
     "etkiBuyuklugu": 0.01,
     "yon": "iliskisiz",
@@ -254,6 +314,11 @@
       "'Iıı… şey…' diye başladı.",
       "Cümlenin ortasında durdu, sonra devam etti."
     ],
+    "temelBetimlemeler": [
+      "Sıradan bir cümleye bile 'ıııı… şey…' diye başlıyor.",
+      "Cümlenin ortasında durup devam etme alışkanlığı var.",
+      "Konuşmadan önce kısa bir sessizlik; sohbette de böyle."
+    ],
     "etkiBuyuklugu": 0.0,
     "yon": "iliskisiz",
     "betimlemeYonu": "iliskisiz",
@@ -275,6 +340,11 @@
       "Soru ile cevap arasında bir-iki saniyelik boşluk oldu.",
       "Cevabı hemen vermedi; soruyu tartar gibi bekledi.",
       "Bu soruda diğerlerine göre daha geç cevap verdi."
+    ],
+    "temelBetimlemeler": [
+      "Ne söylense bir-iki saniye tartıp öyle karşılık veriyor; tempo onun.",
+      "Hemen karşılık vermeyen, yavaş tempolu bir konuşmacı.",
+      "Sohbetin akışında bile küçük gecikmelerle konuşuyor."
     ],
     "etkiBuyuklugu": 0.02,
     "yon": "iliskisiz",
@@ -299,6 +369,11 @@
       "Parmaklarıyla masaya tıklattı.",
       "Ayaklarını sandalyenin altına çekti, sonra tekrar uzattı."
     ],
+    "temelBetimlemeler": [
+      "Ayağını masanın altında sallama alışkanlığı var.",
+      "Parmaklarıyla masaya tıklatıyor; sohbette de sürekli.",
+      "Ayaklarını çekip uzatıyor; hareketli biri."
+    ],
     "etkiBuyuklugu": -0.09,
     "yon": "iliskisiz",
     "betimlemeYonu": "iliskisiz",
@@ -322,6 +397,11 @@
       "Göz kırpma süresi kadar kısa bir kaş çatma belirip söndü.",
       "Dudakları bir an bastırıldı, sonra yüz yeniden nötrleşti."
     ],
+    "temelBetimlemeler": [
+      "Yüzünden sık sık kısa, yakalanması güç ifadeler geçiyor; sohbette de böyle.",
+      "Göz kırpma süresi kadar kısa kaş çatmaları var; her konuda.",
+      "Dudaklarını bir an bastırıp nötrleşme alışkanlığı var."
+    ],
     "etkiBuyuklugu": 0.0,
     "yon": "iliskisiz",
     "betimlemeYonu": "iliskisiz",
@@ -343,6 +423,11 @@
       "Yanağını şişirip uzunca nefes verdi.",
       "Kolyesiyle/yakasıyla oynamaya başladı."
     ],
+    "temelBetimlemeler": [
+      "Konuşurken eli sık sık boynuna, yakasına gidiyor.",
+      "Alnını ovma alışkanlığı var; sıradan bir sohbette de.",
+      "Kolyesiyle/yakasıyla oynayarak konuşuyor."
+    ],
     "etkiBuyuklugu": 0.12,
     "yon": "yalanda_artar",
     "betimlemeYonu": "artar",
@@ -362,6 +447,11 @@
       "Sandalyenin ucuna geldi, ellerini dizlerine koydu.",
       "Bir ayağı kapıya doğru uzandı, konuşmayı bitirmek ister gibiydi."
     ],
+    "temelBetimlemeler": [
+      "Otururken ayakları hep kapıya dönük; gövdesi size bakıyor.",
+      "Sandalyenin ucunda oturan biri; elleri dizlerinde.",
+      "Bir ayağı kapıya doğru uzanmış hâlde oturuyor; sohbette de öyle."
+    ],
     "etkiBuyuklugu": 0.05,
     "yon": "iliskisiz",
     "betimlemeYonu": "iliskisiz",
@@ -380,6 +470,11 @@
       "Hikâyenin bu bölümünde kaşları hiç hareket etmedi; anlatım düz aktı.",
       "Diğer konularda vurgulu konuşurken burada monotonlaştı.",
       "Sözlerini el ve kaşla desteklemeyi bıraktı."
+    ],
+    "temelBetimlemeler": [
+      "Kaşları az hareket eden, düz anlatan biri.",
+      "Vurgusu az; ses de yüz de monoton akıyor.",
+      "Sözlerini el ve kaşla desteklemeyen sakin bir konuşma tarzı."
     ],
     "etkiBuyuklugu": 0.14,
     "yon": "yalanda_artar",

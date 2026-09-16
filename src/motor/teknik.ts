@@ -188,7 +188,7 @@ function uygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: TeknikParametre
       const gozlemler: IpucuGozlemi[] = [];
       for (let i = 0; i < 4; i++) {
         const sanal: Cevap = { kisi, soru: { tur: 'konum', hedef: kisi, dilim: 100 + i }, ifadeTuru: 'dogru', icerik: null, dogru: true, not: 'temel çizgi sohbeti' };
-        gozlemler.push(...ipucuUret(durum, sanal, { etiket: 'temel-cizgi' }));
+        gozlemler.push(...ipucuUret(durum, sanal, { etiket: 'temel-cizgi', baglam: 'temel-cizgi' }));
       }
       return { teknik: 'temel-cizgi', gozlemler };
     }

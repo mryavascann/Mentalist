@@ -36,6 +36,11 @@ export interface IpucuKaydi {
   kanal: Kanal;
   /** Aynı davranış için metin varyantları; tekrar hissini kırmak için en az 3. */
   betimlemeler: string[];
+  /**
+   * Temel çizgi sohbeti için alışkanlık dilinde varyantlar ("Sohbette de göz temasından kaçınıyor").
+   * Sorgu betimlemeleri anlatım/soru odaklıdır ("tersini ima etti"); tarafsız sohbette tuhaf kaçar.
+   */
+  temelBetimlemeler?: string[];
   /** Meta-analiz etki büyüklüğü (Cohen d). Pozitif: yalancılarda daha çok. */
   etkiBuyuklugu: number;
   yon: IpucuYonu;

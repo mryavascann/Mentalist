@@ -74,3 +74,22 @@ describe('yonelme (-a/-e) cins ve özel', () => {
     expect(yonelme('Nazlı', true)).toBe("Nazlı'ya");
   });
 });
+
+describe('yabancı adlarda ek okunuşa göre (TDK; havuzdaki yazımı okunuşundan sapan adlar)', () => {
+  it('sondaki sessiz harf düşer: Whitmore → Vitmor, Thorne → Torn, Hale → Heyl, Beatrice → Biatris, Margot → Margo', () => {
+    expect(tamlayan('Nora Whitmore')).toBe("Nora Whitmore'un");
+    expect(yonelme('Nora Whitmore', true)).toBe("Nora Whitmore'a");
+    expect(belirtme('Iris Thorne')).toBe("Iris Thorne'u");
+    expect(tamlayan('Thorne')).toBe("Thorne'un");
+    expect(bulunma('Thorne', true)).toBe("Thorne'da");
+    expect(tamlayan('Beatrice')).toBe("Beatrice'in");
+    expect(yonelme('Beatrice Hale', true)).toBe("Beatrice Hale'e");
+    expect(belirtme('Hale')).toBe("Hale'i");
+    expect(tamlayan('Margot Voss')).toBe("Margot Voss'un");
+    expect(yonelme('Margot', true)).toBe("Margot'ya");
+    expect(tamlayan('Margot')).toBe("Margot'nun");
+    // Okunuşu yazımından sapmayan adlar eskisi gibi.
+    expect(belirtme('Victor Moreau')).toBe("Victor Moreau'yu");
+    expect(tamlayan('Elias Baxter')).toBe("Elias Baxter'in");
+  });
+});

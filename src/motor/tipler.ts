@@ -51,6 +51,8 @@ export interface Kisi {
   cinsiyet: 'kadin' | 'erkek';
   /** Kurbanla ilişkisinin oyuncuya görünen kısa tarifi ("iş ortağı", "komşu"). */
   rol: string;
+  /** Rolle uyumlu, herkesçe bilinen kısa ilişki cümlesi ("Üç yıldır davalarını yürütüyor."). Kurbanda yok. */
+  iliskiNotu?: string;
   hayatta: boolean;
   kisilik: Kisilik;
   /** Vrij 2010'un "iyi yalancı" özelliklerinin tek sayıya indirgenmiş hali (0–1). */
