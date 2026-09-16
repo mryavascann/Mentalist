@@ -799,3 +799,13 @@
 **Yarım kalanlar:** Yok. Çalışma ağacı commit'li.
 **Sıradaki ajan için:** 1) Kullanıcı oynayınca DURUM "Açık kararlar" (zor seviye a/b/c, saat bütçesi). 2) Döküm turu: Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; yöntem: 22:00 kaydı. 3) Takım sahnesinde rol tekilliği (aynı rol art arda konuşmasın). 4) dist 6 MB isteğe bağlı.
 **Geliştirme fikirleri:** Kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde göstermek.
+
+## [2026-09-16 22:45] Ajan #2 — K-017: zor seviye (masum izi + CIT tanımama), bütçe 12; repo GitHub'a yayınlandı
+**Görev:** Kullanıcı kararları: zor seviye "gerçek hayat gibi" zorlaşsın; bütçe aşımı ceza olduğu için 12 kalsın; repoyu yayınla (ortak eklenecek).
+**Yapılanlar (önce test, kırmızı, sonra kod):** `tests/motor/zorlukZor.test.ts` (4): parametre sırası, olay odasında izli kişi ortalaması kolay<orta<zor ve zorda çok-şüpheli >%50, failin izi korunur ve masum izi gerçek konumdan, CIT tanıma oranı zor<orta≤kolay ve 0.55–0.85. Kod: `tipler.ts` üç yeni parametre; `delil.ts` tuzak masum izi olay odasındaki masumdan + zorda ikinci masum (ayrı akış `delil-zor`); `teknik.ts` CIT tanıma olasılığı zorluğa bağlı; `Baslik.tsx` zor açıklaması. Regresyon seed'leri, denge botları, çözülebilirlik testleri değişmeden geçti. **GitHub:** `gh repo create` ile özel repo `https://github.com/mryavascann/Mentalist`, `origin/main` push edildi (dist ve PDF'ler git dışı).
+**Değişen dosyalar:** src/motor/{tipler,delil,teknik}.ts, src/arayuz/ekranlar/Baslik.tsx, tests/motor/zorlukZor.test.ts, docs.
+**Testler:** 335 geçti / 0 kaldı (46 dosya). typecheck temiz. build 6.0 MB.
+**Alınan kararlar:** K-017.
+**Sorunlar / riskler:** CIT tanıma oranı (0.7) tasarım varsayımı; kaynak kütüğünde suçlu isabet sayısı doğrulanmadı. Bot doğruluğu zorda düşmüyor (çözülebilirlik eleği); insan zorluğu şüpheli sayısı/tuzak olarak artar — oyuncu geri bildirimi bekleniyor.
+**Yarım kalanlar:** Yok.
+**Sıradaki ajan için:** 1) Döküm turu: Analiz ekranı metinleri ve Kılavuz maddeleri. 2) Takım sahnesinde rol tekilliği. 3) Kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulunu kontrol et. 4) dist 6 MB isteğe bağlı.

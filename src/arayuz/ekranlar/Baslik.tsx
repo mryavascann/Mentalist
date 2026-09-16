@@ -59,7 +59,7 @@ export function Baslik() {
           <select value={d.zorluk} onChange={(e) => depo.zorlukSec(e.target.value as 'kolay' | 'orta' | 'zor')}>
             <option value="kolay">Kolay — sızıntı az, sahnelenmiş delil yok</option>
             <option value="orta">Orta — dengeli</option>
-            <option value="zor">Zor — kaçamak fail, korkan tanık, sahnelenmiş delil</option>
+            <option value="zor">Zor — gerçek hayat gibi: olay yerinde birden çok iz, kaçamak fail, korkan tanık, sahnelenmiş delil, tanımayan CIT</option>
           </select>
         </label>
         <div className="dugmeler" style={{ marginTop: 12 }}>

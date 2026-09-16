@@ -12,7 +12,7 @@ import { celisenDeliller, delilUret, type Delil } from './delil';
 import { ipucuUret, YALAN_IFADE_TURLERI, type IpucuGozlemi } from './ipucu';
 import { cevapla, soruAnahtari, vakaDurumuKur, type Cevap, type Soru, type VakaDurumu } from './strateji';
 import { dijitalIz, icSesTahminEt, kayitIncele, odaOku, type DijitalProfil, type EsyaSinifi, type IcSesKategori, type IcSesSonucu, type IcSesTahmini, type KayitSonucu, type OdaOkumasi } from './araclar';
-import type { KisiId, OdaId, Vaka } from './tipler';
+import { ZORLUK_PARAMETRELERI, type KisiId, type OdaId, type Vaka } from './tipler';
 
 export interface SorSonucu {
   cevap: Cevap;
@@ -277,7 +277,8 @@ function uygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: TeknikParametre
       const gecerli = citGecerliMi(vaka, dagilim, konu);
       const biliyor = kimBiliyor(dagilim, konu).includes(kisi);
       const r = rng(sorgu, kisi, `cit-${konu}`);
-      const tepki = r.sans(biliyor ? 0.85 : 0.1) ? 'tanima' : 'yok';
+      // K-017b: bilen kişi ayrıntıyı her zaman tanımaz (kodlanmamış ayrıntı); oran zorluğa bağlı. Bilmeyen %10 (yanlış alarm).
+      const tepki = r.sans(biliyor ? ZORLUK_PARAMETRELERI[vaka.ayar.zorluk].citTanimaOlasiligi : 0.1) ? 'tanima' : 'yok';
       return { teknik: 'gizli-bilgi-testi', konu, gecerli, tepki };
     }
 

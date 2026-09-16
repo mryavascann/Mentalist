@@ -126,10 +126,22 @@ export const ZORLUK_PARAMETRELERI: Record<Zorluk, {
   korkuOlasiligi: number;
   /** Failin masuma sahnelenmiş delil yerleştirme olasılığı. */
   sahnelemeOlasiligi: number;
+  /**
+   * K-017a: Olay anında olay odasında bulunan bir masum varsa, tuzak izin o masuma (olay odasına) düşme olasılığı.
+   * Gerçek hayatta olay yerinde iz bırakan tek kişi fail değildir; şüpheli kümesi büyür.
+   */
+  olayOdasiMasumIzi: number;
+  /** K-017a: Olay odasındaki ikinci bir masumun da iz bırakma olasılığı (yalnızca zor). */
+  ikinciMasumIzi: number;
+  /**
+   * K-017b: Gizli bilgi testinde ayrıntıyı BİLEN kişinin (fail dahil) tanıma tepkisi verme olasılığı.
+   * CIT ayrıntının kodlanmış olmasına bağlıdır (Vrij & Verschuere 2014); zorda fail ayrıntıyı fark etmemiş olabilir.
+   */
+  citTanimaOlasiligi: number;
 }> = {
-  kolay: { sizmaOlasiligi: 0.15, kacamakEsigi: 0.85, korkuOlasiligi: 0, sahnelemeOlasiligi: 0 },
-  orta: { sizmaOlasiligi: 0.35, kacamakEsigi: 0.7, korkuOlasiligi: 0.2, sahnelemeOlasiligi: 0.2 },
-  zor: { sizmaOlasiligi: 0.55, kacamakEsigi: 0.45, korkuOlasiligi: 0.6, sahnelemeOlasiligi: 0.6 },
+  kolay: { sizmaOlasiligi: 0.15, kacamakEsigi: 0.85, korkuOlasiligi: 0, sahnelemeOlasiligi: 0, olayOdasiMasumIzi: 0, ikinciMasumIzi: 0, citTanimaOlasiligi: 0.9 },
+  orta: { sizmaOlasiligi: 0.35, kacamakEsigi: 0.7, korkuOlasiligi: 0.2, sahnelemeOlasiligi: 0.2, olayOdasiMasumIzi: 0.35, ikinciMasumIzi: 0, citTanimaOlasiligi: 0.85 },
+  zor: { sizmaOlasiligi: 0.55, kacamakEsigi: 0.45, korkuOlasiligi: 0.6, sahnelemeOlasiligi: 0.6, olayOdasiMasumIzi: 0.9, ikinciMasumIzi: 0.6, citTanimaOlasiligi: 0.7 },
 };
 
 /** Vakanın gerçeği. İfadeler ve ipuçları bunun üstüne sonraki katmanlarda eklenir. */

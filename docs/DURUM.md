@@ -1,6 +1,6 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 22:15, Ajan #2 (devir teslim).
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 22:45, Ajan #2.
 
 ## Aktif aşama
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
@@ -17,19 +17,20 @@
 - **Regresyon seed'leri** (`tests/regresyon/seedler.test.ts`): 6 seed anlık görüntü; üretim bilerek değişince güncellenir ve günlüğe yazılır.
 - **İpucu kataloğu:** 19 ipucu; Navarro saha ipuçları `zayif`. İçerik testi: her bölümde ≥3 madde, ≥12 bölüm, ≥60 madde.
 - **Metin kalitesi 2 (21:25):** ipuçlarında `temelBetimlemeler` (temel çizgi sohbeti alışkanlık dilinde; `ipucuUret baglam`), yabancı adlarda ek okunuşa göre (`turkce.ts OKUNUS`), kişi kartında rolle uyumlu ilişki cümlesi (`iliski_notu.ts`, `Kisi.iliskiNotu`; ayrı RNG akışı, regresyon seed'leri korunur).
+- **K-017 zor seviye (22:45):** olay odasındaki masumlar da iz bırakır (şüpheli kümesi büyür), CIT'te tanımama payı; ayrı RNG akışı, regresyon korunur. Repo GitHub'da: https://github.com/mryavascann/Mentalist (özel).
 - **Teknik çıktıları kalite turu (22:00):** SUE tanık ifadesine de uygulanır (koruma yalanı delille çelişir); oda eşyaları vaka içinde tekil (havuzlar 8–12, `temelEsyalar` + kaydırma); serbest anlatımda aynı odada kalınan ardışık dilimler kısa devam cümlesi (`dil.ts anlatimSatirlari`); uygulanamayan teknik zaman düşmez, şeytanın avukatı düğmesi kapalı.
 - **Görseller (Higgsfield, 2026-09-16):** 122 WebP `assets/` altında (56 portre + 4 takım, 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer); `src/arayuz/gorseller.ts` kütük + seed'li portre eşlemesi (cinsiyet/yaş uyumlu, faille ilişkisiz); ekranlara bağlı (başlık, vaka açılışı, sorgu, Kılavuz, tatbikat, Analiz, Pano, suçlama, Forer, Watson). `Portre.tsx` görsel yoksa siluete düşer. Kayıt: `assets/KAYIT.md`. 6 test.
 
 ## Sıradaki 3 iş
-1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
-2. **Boyut (isteğe bağlı):** dist 6 MB; gerekirse portre 384² / oda q50 ile ~4 MB. Higgsfield kredisi 0.
-3. **Gözle kalite turu (devam):** Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; geçici döküm testi yaz (günlük 22:00 kaydı yöntemi), oku, düzelt.
+1. **Gözle kalite turu (devam):** Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; geçici döküm testi yaz (günlük 22:00 kaydı yöntemi), oku, düzelt.
+2. **Takım sahnesinde rol tekilliği:** aynı rol art arda konuşmasın (`takim_hikaye.ts`).
+3. **Boyut (isteğe bağlı):** dist 6 MB; gerekirse portre 384² / oda q50 ile ~4 MB. Higgsfield kredisi 0.
 4. **Küçük fikirler:** ilişki notunu sorguda sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ; takım sahnesinde oyuncunun kısa cevap seçmesi.
 
-## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
-1. Vaka başına soruşturma saati bütçesi (varsayılan 12; oynayınca "yetmedi / bol" hissine göre).
-2. **Zor seviye yeterince zor mu? Bot ölçümü (2026-09-16, 300 vaka/zorluk):** yöntem botu kolay/orta/zor = %97/%97/%97 doğruluk (masum suçlama %3); ipucu botu %32/%31/%30; şüpheci %20/%20/%18. Zorluk parametreleri bot için fark yaratmıyor. Tanı (suç vakalarında): tanık faili söyledi %44/%38/%30, delil çelişkisi %96/%89/%60, ikisi de yok %1/%5/%23, fail kaçamak %4/%11/%40. Zorda tanık ve delil azalıyor ama bot "olay anında izi olan tek kişi + geçerli CIT" yolundan buluyor (çözülebilirlik tohumu: fail her zaman olay odasında iz bırakır). **Seçenekler (karar oyuncuda):** (a) zorda masumlara da olay dilimi/odasında gürültü izi (şüpheli kümesi büyür), (b) zorda CIT'te failin ayrıntıyı "fark etmemiş" olma olasılığı, (c) hiç dokunma; insan oyuncu botun prosedürünü uygulamaz, önce oyna. Tek ayar noktası `ZORLUK_PARAMETRELERI` + `delil.ts` çözülebilirlik tohumu.
-3. "The Mentalist" adının telif riski (K-007) — yalnızca not; yayın öncesi hatırlatılacak.
+## Açık kararlar
+1. ~~Saat bütçesi~~ → 12 kalır (K-017): aşım ceza (saat başına −2 puan), başarısızlık değil.
+2. ~~Zor seviye~~ → K-017 uygulandı (masum izi + CIT tanımama). Oyuncu zorda oynayınca geri dönüş koşulu kontrol edilecek.
+3. "The Mentalist" adının telif riski (K-007) — yalnızca not; yayın öncesi hatırlatılacak. Repo şu an özel.
 4. ~~Higgsfield görselleri~~ → üretildi ve gömüldü (16.09.2026). dist 6 MB; küçültme gerekirse portre 384² / oda q50.
 
 ## Bilinen hatalar
@@ -42,10 +43,13 @@
 - **21:25 (Ajan #2):** temel çizgi betimlemeleri (3 test), yabancı ad ekleri okunuşa göre (+1), kişi kartı ilişki cümlesi (1 test).
 - **22:00 (Ajan #2):** SUE tanık, oda eşyası tekilliği, anlatım devam cümlesi, uygulanamayan teknik zamanı (`kalite2.test.ts`, 4 test); iki eski test yeni kurala uyarlandı.
 - **22:15:** SUE teknik/Kılavuz metinlerinde tanık kullanımı "oyunun genişletmesi" olarak etiketlendi (+1 test).
-- `npm test`: 45 dosya, 331 test geçti (2026-09-16 22:15). Süre ~10 sn (paralel).
+- **22:45:** K-017 zor seviye (`zorlukZor.test.ts`, 4 test).
+- `npm test`: 46 dosya, 335 test geçti (2026-09-16 22:45). Süre ~10 sn (paralel).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar
+- **Doğrulanmadı:** CIT'te bilen kişinin tanıma oranı (kolay 0.9 / orta 0.85 / zor 0.7) tasarım varsayımı; kaynak kütüğünde suçlu isabet oranı yok (Vrij & Verschuere 2014 yalnızca kodlanma koşulunu vurgular).
+- Git: `origin` = https://github.com/mryavascann/Mentalist (özel). Commit sonrası `git push`.
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
 - Bash heredoc'ta uzun Python/Markdown kırılıyor (kaçış karakterleri de bozuluyor); yamaları Write aracıyla scratchpad `.py` olarak yaz, sonra çalıştır (`PYTHONIOENCODING=utf-8`). JSON yaması dosyayı indent=2 ile yeniden biçimler (mevcut biçimle aynı).
 - Testlerde JS regex: `\b` Türkçe harfte (ş, ü) sınır değil; `/i` bayrağı İ↔i eşlemez. Sözcük bölme ve açık desen (`/İkiz|ikiz/`) kullan.

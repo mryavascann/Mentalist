@@ -113,9 +113,16 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
 
   // 1b) Tuzak masum izi: rastgele bir masum da olay anında (bulunduğu yerde) fail ile aynı iz profilini bırakır.
   //     Aksi halde "en çok delili olan fail" kalıbı doğar (örüntü denetçisi). Masum olay odasındaysa iz orada olur.
+  //     K-017a (zorluk): olay anında olay odasında gerçekten bulunan bir masum varsa tuzak iz onun olur → şüpheli kümesi
+  //     büyür; zorda ikinci bir masum da iz bırakabilir. Bu kararlar AYRI akıştan (`delil-zor`) çekilir: ana akışın
+  //     çekim sayısı değişmez, orta seviyenin regresyon seed'leri korunur.
+  const zp = ZORLUK_PARAMETRELERI[vaka.ayar.zorluk];
+  const rz = new Rastgele(`${vaka.seed}/delil-zor`);
   const tuzakAdaylari = vaka.kisiler.filter((k) => k.hayatta && k.id !== olay.kurban && k.id !== olay.fail);
   if (tuzakAdaylari.length > 0) {
-    const tuzak = r.sec(tuzakAdaylari);
+    const odadakiler = tuzakAdaylari.filter((k) => vaka.zamanCizelgesi.find((z) => z.kisi === k.id && z.dilim === olay.dilim)!.oda === olay.oda);
+    const havuz = odadakiler.length > 0 && rz.sans(zp.olayOdasiMasumIzi) ? odadakiler : tuzakAdaylari;
+    const tuzak = r.sec(havuz); // tek çekim: havuz ne olursa olsun ana akış aynı ilerler
     const oda = vaka.zamanCizelgesi.find((z) => z.kisi === tuzak.id && z.dilim === olay.dilim)!.oda;
     if (!zatenVar(tuzak.id, olay.dilim)) deliller.push(konumDelili(tuzak.id, olay.dilim, oda, r.sans(0.25) ? 'dijital' : 'fiziksel'));
     if (r.sans(0.3)) {
@@ -124,6 +131,11 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
         const komsuOda = vaka.zamanCizelgesi.find((z) => z.kisi === tuzak.id && z.dilim === komsu)!.oda;
         deliller.push(konumDelili(tuzak.id, komsu, komsuOda));
       }
+    }
+    const digerOdadakiler = odadakiler.filter((k) => k.id !== tuzak.id);
+    if (digerOdadakiler.length > 0 && zp.ikinciMasumIzi > 0 && rz.sans(zp.ikinciMasumIzi)) {
+      const ikinci = rz.sec(digerOdadakiler);
+      if (!zatenVar(ikinci.id, olay.dilim)) deliller.push(konumDelili(ikinci.id, olay.dilim, olay.oda, rz.sans(0.25) ? 'dijital' : 'fiziksel'));
     }
   }
 
