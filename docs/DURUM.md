@@ -20,8 +20,8 @@
 
 ## Sıradaki 3 iş
 1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
-2. **Görsel bağlama (kalan):** oda görsellerini "Neredeydin?" cevabına / zaman çizelgesine bağla (`odaGorseli`); delil kartlarını Pano/Suçlama'da göster (`DELIL_GORSELLERI`). Higgsfield kredisi 0; yeni üretim için kredi gerekir.
-3. **Geliştirme fikirleri (günlükten):** "ikinci kez sor" mekaniği (Swerts), Ayna 3. karşılaşma finali (takım sahnesi), oda okumada sahnelenmiş eşyayı panoya tek tıkla ekleme.
+2. **Boyut (isteğe bağlı):** dist 6 MB; gerekirse portre 384² / oda q50 ile ~4 MB. Higgsfield kredisi 0.
+3. **Küçük fikirler:** oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ; takım sahnesinde oyuncunun kısa cevap seçmesi.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
 1. Vaka başına soruşturma saati bütçesi (varsayılan 12; oynayınca "yetmedi / bol" hissine göre).
@@ -33,7 +33,8 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 38 dosya, 311 test geçti (2026-09-16 19:00). Süre ~90 sn.
+- **Son eklemeler (19:40):** "ikinci kez sor" (K-016, `TEKRAR_CARPANI`), konuşma kaydında oda küçük resmi, delil türü ikonları, Ayna 3. karşılaşma takım sahnesi (`AYNA_SAHNE_ESIGI`), oda eşyası → Pano düğmesi. 4 test.
+- `npm test`: 40 dosya, 315 test geçti (2026-09-16 19:40). Süre ~90 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar

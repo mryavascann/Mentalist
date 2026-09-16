@@ -682,3 +682,25 @@
 **Sıradaki ajan için:** 1) Oda görsellerini ekrana bağla (ör. "Neredeydin?" cevabında küçük oda kartı; `odaGorseli`). 2) Delil kartlarını Pano/Suçlama'da göster (`DELIL_GORSELLERI[delil.tur]`). 3) Kullanıcı oynayınca açık kararlar (zor seviye, bütçe).
 
 **Geliştirme fikirleri:** `ana-dikey` mobil başlık; `ana-pano` Analiz arka planı; portre havuzu büyürse `PORTRE_KAYITLARI` JSON'a taşınabilir.
+
+## [2026-09-16 19:40] Ajan #1 — İkinci kez sor, oda/delil görselleri ekranda, Ayna 3. karşılaşma sahnesi, eşya → pano
+**Görev:** Günlükteki geliştirme fikirlerinden dördünü kapatmak (kullanıcı oynayamıyor; sıradaki işlerden devam).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- **İkinci kez sor** (`teknik.ts`): `Sorgu.soruSayaci`; `sor()` aynı soruda cevabı değiştirmez (defter), gözlemleri `tekrarN` akışıyla yeniden çeker ve yalan kaymasını `TEKRAR_CARPANI = 1.2` ile büyütür (Swerts 2013 %53→%62; doğru cevapta kayma yok). `SorSonucu.tekrar`. Depo: kayıt "(tekrar)" işaretli; sayaç dışa/içe aktarımda. Test `tests/motor/tekrarSor.test.ts` (2): sayaç/deterministik cevap; fail yalanında 2. soruş ipucu oranı 1.0–1.6, doğru cevapta 0.85–1.15.
+- **Oda görselleri**: `KonusmaKaydi.odaId` (konum cevabı); sorgu akışında söylenen odanın 96×54 küçük resmi ("iddia; gerçek değil" ipucu). **Delil kartları**: vaka açılışında delil türü ikonu.
+- **Ayna 3. karşılaşma** (`takim_hikaye.ts`): `SahneGecmisi.ayna`, `AYNA_SAHNE_ESIGI = 3`; son vaka Ayna vakasıysa ve ≥3. karşılaşmaysa takım Ayna'yı konuşur (okundu: lider + sorgucu "kalıbı kır"; kırdı: lider + inanan "kayıtlara erişimi mi var?"); `TakimSahnesiSonucu.ayna` (karşılaşma, okunma oranı).
+- **Eşya → Pano**: oda okuma listesinde "→ Pano" düğmesi (gözlem olarak ekler).
+- Test `tests/arayuz/devam.test.ts` (2): odaId/tekrar/kayıt; Ayna sahnesi eşik, ton farkı, determinizm.
+
+**Değişen dosyalar:** src/motor/teknik.ts, src/arayuz/oyun/{depo,takim_hikaye}.ts, src/arayuz/ekranlar/{SorguOdasi,VakaAcilis}.tsx, tests/motor/tekrarSor.test.ts, tests/arayuz/devam.test.ts, docs.
+
+**Testler:** 315 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` 5.98 MB.
+
+**Alınan kararlar:** K-016 (tekrar sorma: cevap sabit, gözlem çarpanı küçük).
+
+**Sorunlar / riskler:** Teknikler (açık uçlu anlatım vb.) sayaçları artırır; sonra aynı dilimi elle sormak "tekrar" sayılır — anlamlı (gerçekten tekrar). Oda küçük resmi iddiayı gösterir, gerçeği değil; başlıkta yazıyor.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Kullanıcı oynayınca açık kararlar (zor seviye seçenekleri a/b/c, saat bütçesi). 2) dist 6 MB rahatsız ederse portre 384² / oda q50. 3) Fikir: Kılavuz 'kayit-inceleme' maddesine "ikinci kez sor" için oyun içi bağ (teknik listesi değil, sorgu ipucu metni).

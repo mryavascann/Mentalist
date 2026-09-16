@@ -82,3 +82,9 @@
 - **Gerekçe:** Ayna'nın "sahne kuran manipülatör" kimliği vakanın rengine yansımalı; ama fail seçimine dokunmamalı (örüntü testi). Bayrak kayıtta taşınmazsa aynı seed farklı arketip üretir ve kayıt bozulur.
 - **Alternatifler:** Ayna için ayrı mekân/arketip listesi (kalıp riski, çeşitlilik kaybı); ağırlık yerine zorunlu arketip (her Ayna vakası aynı hikâye).
 - **Geri dönüş koşulu:** Ayna vakalarının %95'inden fazlası aynı arketipe düşerse çarpan düşürülür; oyuncu testlerinde "Ayna vakası hep sahte medyum" hissi oluşursa havuz genişletilir.
+
+## K-016 · 2026-09-16 · "İkinci kez sor": cevap sabit, gözlem kayması küçük çarpanla büyür
+- **Karar:** Aynı soru aynı kişiye tekrar sorulunca yalan defteri cevabı değiştirmez; davranış gözlemleri yeni akışla çekilir ve yalan kayması ×1.2 olur. Doğru cevapta kayma yoktur. Kayıtta "(tekrar)" görünür; ayrı teknik değildir, maliyeti normal soru maliyetidir.
+- **Gerekçe:** Swerts 2013: ikinci yalan denemesi daha çok ipucu verdi (%53→%62); DePaulo: kasıtlı çaba ele verir. Ama planlı yalan tutarlıdır (Vrij 2010): içerik değişmez, yalnızca sızıntı artar. Büyük çarpan "tekrar sor = yalan dedektörü" kalıbı yaratırdı.
+- **Alternatifler:** Tekrarı yasaklamak (öğrenme kaybı); tekrarda cevabı değiştirmek (bilişsel yük tekniğiyle karışır, gerçekçi değil).
+- **Geri dönüş koşulu:** Denge botu tekrar sorarak >%45'e çıkarsa çarpan düşürülür.

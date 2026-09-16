@@ -1,6 +1,6 @@
 // Vaka açılışı: brifing, kişi kartları (eksik alanlar görünür), delil listesi (sızıntı rozeti).
 import { depo, useOyun } from '../oyun/kullan';
-import { DIGER, mekanGorseli, portreUrl } from '../gorseller';
+import { DELIL_GORSELLERI, DIGER, mekanGorseli, portreUrl } from '../gorseller';
 import { Portre } from './Portre';
 
 export function VakaAcilis() {
@@ -50,8 +50,9 @@ export function VakaAcilis() {
         <ul className="liste-temiz">
           {d.sorgu.deliller.map((delil) => (
             <li key={delil.id}>
-              <span>
-                <span className="daktilo">{delil.id}</span> · {delil.aciklama}
+              <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                {DELIL_GORSELLERI[delil.tur] && <img src={DELIL_GORSELLERI[delil.tur]} alt={`${delil.tur} delil`} width={36} height={36} style={{ borderRadius: 4, border: '1px solid var(--cizgi)', flex: 'none' }} />}
+                <span><span className="daktilo">{delil.id}</span> · {delil.aciklama}</span>
                 {delil.sizmis && <span className="rozet sizmis">basına sızdı</span>}
               </span>
               <span className="soluk">{delil.tur} · güç {Math.round(delil.gucu * 100)}%</span>

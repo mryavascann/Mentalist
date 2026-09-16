@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ICERIK } from '@icerik/index';
 import { ESYA_SINIF_ADLARI, IC_SES_KATEGORILERI, IC_SES_SECENEKLERI, type EsyaSinifi, type IcSesKategori } from '@motor/araclar';
 import { depo, useOyun } from '../oyun/kullan';
-import { PORTRELER, TAKIM_PORTRELERI, portreUrl } from '../gorseller';
+import { PORTRELER, TAKIM_PORTRELERI, odaGorseli, portreUrl } from '../gorseller';
 import { IpucuKarti } from './IpucuKarti';
 import { Portre } from './Portre';
 
@@ -53,10 +53,13 @@ export function SorguOdasi() {
               {odaOkumasi.esyalar.map((e) => (
                 <li key={e.id} style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'space-between' }}>
                   <span>{e.betimleme}</span>
-                  <select aria-label={`Eşya sınıfı: ${e.betimleme}`} disabled={kapali} value={d.sorgu!.odaSiniflamalari.get(e.id) ?? ''} onChange={(ev) => depo.esyaSinifla(e.id, ev.target.value as EsyaSinifi)}>
-                    <option value="">sınıfla…</option>
-                    {(Object.keys(ESYA_SINIF_ADLARI) as EsyaSinifi[]).map((s) => <option key={s} value={s}>{ESYA_SINIF_ADLARI[s]}</option>)}
-                  </select>
+                  <span style={{ display: 'flex', gap: 4, flex: 'none' }}>
+                    <select aria-label={`Eşya sınıfı: ${e.betimleme}`} disabled={kapali} value={d.sorgu!.odaSiniflamalari.get(e.id) ?? ''} onChange={(ev) => depo.esyaSinifla(e.id, ev.target.value as EsyaSinifi)}>
+                      <option value="">sınıfla…</option>
+                      {(Object.keys(ESYA_SINIF_ADLARI) as EsyaSinifi[]).map((s) => <option key={s} value={s}>{ESYA_SINIF_ADLARI[s]}</option>)}
+                    </select>
+                    <button title="Panoya gözlem olarak ekle" disabled={kapali} onClick={() => depo.panoEkle('gozlem', `${secili?.ad.split(' ')[0]} · oda: ${e.betimleme}`)}>→ Pano</button>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -68,7 +71,10 @@ export function SorguOdasi() {
           {konusma.map((k, i) => (
             <div className={`satir ${k.tur}`} key={i}>
               <div className="soru">{k.tur === 'teknik' ? `▸ ${k.soru}` : `Sen: ${k.soru}`}</div>
-              <div className="cevap">{k.cevap}</div>
+              <div className="cevap" style={k.odaId ? { display: 'flex', gap: 10, alignItems: 'flex-start' } : undefined}>
+                {k.odaId && odaGorseli(vaka, k.odaId) && <img src={odaGorseli(vaka, k.odaId)} alt={vaka.mekan.odalar.find((o) => o.id === k.odaId)?.ad ?? ''} title="Söylediği yer (iddia; gerçek değil)" width={96} height={54} style={{ objectFit: 'cover', border: '1px solid var(--cizgi)', flex: 'none', borderRadius: 3 }} />}
+                <span>{k.cevap}</span>
+              </div>
               {k.takimYorumu && (
                 <div className="takim" style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
                   {PORTRELER[TAKIM_PORTRELERI[k.takimYorumu.rol] ?? ''] && <img src={PORTRELER[TAKIM_PORTRELERI[k.takimYorumu.rol]!]} alt="" aria-hidden="true" width={28} height={28} style={{ borderRadius: 4, flex: 'none', objectFit: 'cover' }} />}

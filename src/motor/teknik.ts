@@ -19,7 +19,15 @@ export interface SorSonucu {
   ipuclari: IpucuGozlemi[];
   /** Kişinin kendi konum iddiasıyla çelişen deliller (oyuncu görsün görmesin; arayüz süzer). */
   celisenDeliller: Delil[];
+  /** Bu soru bu kişiye kaçıncı kez soruldu (1 = ilk). */
+  tekrar: number;
 }
+
+/**
+ * Tekrar sorulan soruda yalan kaymasının çarpanı (Swerts 2013: ikinci yalan denemesi daha çok ipucu verir,
+ * %53 → %62; DePaulo: kasıtlı çaba ele verir). Küçük tutulur; doğru cevapta kayma zaten sıfırdır.
+ */
+export const TEKRAR_CARPANI = 1.2;
 
 export interface KontaminasyonKaydi {
   kisi: KisiId;
@@ -45,6 +53,8 @@ export interface Sorgu {
   odaSiniflamalari: Map<string, EsyaSinifi>;
   /** "Şu an ne düşünüyor?" tahminleri; gerçek kategori burada durur ama arayüz vaka sonuna kadar göstermez. */
   icSesTahminleri: IcSesTahmini[];
+  /** `${kisi}|${soruAnahtari}` → kaç kez soruldu ("ikinci kez sor" mekaniği). */
+  soruSayaci: Map<string, number>;
 }
 
 export interface TeknikParametreleri {
@@ -86,7 +96,7 @@ const STRES_TAVANI = 2;
 
 export function sorguBaslat(vaka: Vaka): Sorgu {
   const durum = vakaDurumuKur(vaka);
-  return { durum, deliller: delilUret(vaka, durum.dagilim), gosterilen: new Map(), kontaminasyon: [], stres: new Map(), zaman: 0, gecmis: [], odaOkumalari: new Map(), odaSiniflamalari: new Map(), icSesTahminleri: [] };
+  return { durum, deliller: delilUret(vaka, durum.dagilim), gosterilen: new Map(), kontaminasyon: [], stres: new Map(), zaman: 0, gecmis: [], odaOkumalari: new Map(), odaSiniflamalari: new Map(), icSesTahminleri: [], soruSayaci: new Map() };
 }
 
 function rng(sorgu: Sorgu, kisi: KisiId, etiket: string): Rastgele {
@@ -112,10 +122,15 @@ function gosterilmisKonumDelili(sorgu: Sorgu, kisi: KisiId, dilim: number): Deli
 /**
  * Soru sormak. Strateji katmanının cevabını alır; kişiye daha önce o dilim için delil gösterildiyse ve
  * doğal cevabı yalan olacaksa, hikâyesini delile uydurur (kaçamak). Defterdeki eski cevap varsa o kalır.
+ * Aynı soru ikinci kez sorulunca cevap aynı kalır ama gözlemler yeni bir akışla (`tekrarN`) çekilir ve
+ * yalan kayması TEKRAR_CARPANI ile büyür (teknik etiketi verilmişse o akış korunur).
  */
 export function sor(sorgu: Sorgu, kisi: KisiId, soru: Soru, secenekler: { kaymaCarpani?: number; etiket?: string } = {}): SorSonucu {
   const { durum } = sorgu;
   const anahtar = `${kisi}|${soruAnahtari(soru)}`;
+  const tekrar = (sorgu.soruSayaci.get(anahtar) ?? 0) + 1;
+  sorgu.soruSayaci.set(anahtar, tekrar);
+  const tekrarMi = tekrar > 1 && !secenekler.etiket;
   let cevap: Cevap;
   if (durum.defter.has(anahtar)) {
     cevap = durum.defter.get(anahtar)!;
@@ -129,8 +144,12 @@ export function sor(sorgu: Sorgu, kisi: KisiId, soru: Soru, secenekler: { kaymaC
       }
     }
   }
-  const ipuclari = ipucuUret(durum, cevap, { kaymaCarpani: secenekler.kaymaCarpani, ekGerginlik: sorgu.stres.get(kisi) ?? 0, etiket: secenekler.etiket });
-  return { cevap, ipuclari, celisenDeliller: celisenDeliller(sorgu.deliller, cevap) };
+  const ipuclari = ipucuUret(durum, cevap, {
+    kaymaCarpani: (secenekler.kaymaCarpani ?? 1) * (tekrarMi ? TEKRAR_CARPANI : 1),
+    ekGerginlik: sorgu.stres.get(kisi) ?? 0,
+    etiket: secenekler.etiket ?? (tekrarMi ? `tekrar${tekrar}` : undefined),
+  });
+  return { cevap, ipuclari, celisenDeliller: celisenDeliller(sorgu.deliller, cevap), tekrar };
 }
 
 export function teknikUygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: TeknikParametreleri = {}): TeknikSonucu {

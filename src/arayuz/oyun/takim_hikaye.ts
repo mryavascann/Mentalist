@@ -13,7 +13,10 @@ import { Rastgele } from '@ortak/rastgele';
 import { TAKIM, type TakimRolu } from './takim';
 
 /** Sahnenin ihtiyaç duyduğu geçmiş alanları (depo.VakaGecmisi bunu sağlar; döngüsel ithalat olmasın). */
-export interface SahneGecmisi { dogru: boolean; hataEtiketleri: string[] }
+export interface SahneGecmisi { dogru: boolean; hataEtiketleri: string[]; ayna?: { etiket: string; okundu: boolean } }
+
+/** Kaçıncı Ayna karşılaşmasından itibaren takım Ayna'yı açıkça konuşur (ark finali tonu). */
+export const AYNA_SAHNE_ESIGI = 3;
 
 export interface ArkBolumu { metin: string; kilavuz: string }
 
@@ -57,7 +60,19 @@ export interface TakimSahnesiSonucu {
   arkaPlan: { rol: TakimRolu; metin: string };
   /** Sahnenin Kılavuz bağı (arka plan bölümünün maddesi). */
   kilavuz: string;
+  /** Ayna arkı sahnesi oynadıysa: kaçıncı karşılaşma ve şimdiye dek okunma oranı. */
+  ayna?: { karsilasma: number; okunmaOrani: number };
 }
+
+/** Ayna arkı satırları (3. karşılaşmadan itibaren): takım, notları bırakan kişiyi ve oyuncunun kalıbını konuşur. */
+const AYNA_OKUNDU: { rol: TakimRolu; metin: string }[] = [
+  { rol: 'lider', metin: 'Üç dosya, üç not; artık ona Ayna diyoruz. {ad}, Ayna seni okuyor: nereye bakacağını senden önce biliyor. Bu bir sihir değil; senin kalıbın.' },
+  { rol: 'sorgucu', metin: 'Aynı yerden yakalanıyorsun. Kalıbı kır: bir sonraki dosyada ilk şüphelendiğin kişiyi en sona bırak.' },
+];
+const AYNA_KIRDI: { rol: TakimRolu; metin: string }[] = [
+  { rol: 'lider', metin: 'Üçüncü not, ve Ayna bu kez yanıldı. {ad}, seni okuyamadı; demek ki kalıbın değişiyor. Bunu yazıyorum.' },
+  { rol: 'inanan', metin: 'Ayna\'nın notlarında bir şey dikkatimi çekti: her seferinde senin geçmiş hatanı alıntılıyor. Kayıtlarımıza erişimi mi var, yoksa sadece iyi mi tahmin ediyor?' },
+];
 
 const uye = (rol: TakimRolu) => TAKIM.find((u) => u.rol === rol)!;
 const satir = (rol: TakimRolu, metin: string): SahneSatiri => ({ rol, ad: uye(rol).ad, metin });
@@ -132,6 +147,15 @@ export function takimSahnesi(gecmis: readonly SahneGecmisi[], kahramanAdi: strin
     satirlar.push(satir(t.rol, doldur(r.sec(t.metinler), kahramanAdi)));
   }
 
+  // 1b. Ayna arkı: son vaka Ayna vakasıysa ve bu en az AYNA_SAHNE_ESIGI. karşılaşmaysa takım Ayna'yı konuşur.
+  const aynalar = gecmis.filter((g) => g.ayna);
+  let ayna: TakimSahnesiSonucu['ayna'];
+  if (son.ayna && aynalar.length >= AYNA_SAHNE_ESIGI) {
+    const okunma = aynalar.filter((g) => g.ayna!.okundu).length / aynalar.length;
+    for (const s of son.ayna.okundu ? AYNA_OKUNDU : AYNA_KIRDI) satirlar.push(satir(s.rol, doldur(s.metin, kahramanAdi)));
+    ayna = { karsilasma: aynalar.length, okunmaOrani: okunma };
+  }
+
   // 2. Arka plan: üyeler sırayla, bölümler vaka sayısıyla ilerler (bölümler bitince başa döner).
   const anlatici = TAKIM[(n - 1) % TAKIM.length]!.rol;
   const ark = TAKIM_ARKI[anlatici];
@@ -146,5 +170,5 @@ export function takimSahnesi(gecmis: readonly SahneGecmisi[], kahramanAdi: strin
   const kapatan = TAKIM[(n + 2) % TAKIM.length]!.rol;
   satirlar.push(satir(kapatan, doldur(r.sec(KAPANIS[kapatan]), kahramanAdi)));
 
-  return { satirlar, arkaPlan: { rol: anlatici, metin: bolum.metin }, kilavuz: bolum.kilavuz };
+  return { satirlar, arkaPlan: { rol: anlatici, metin: bolum.metin }, kilavuz: bolum.kilavuz, ...(ayna ? { ayna } : {}) };
 }

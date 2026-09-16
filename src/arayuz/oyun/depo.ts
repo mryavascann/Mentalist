@@ -45,6 +45,8 @@ export interface KonusmaKaydi {
   teknikId?: string;
   /** Takım NPC yorumu (varsa). Sosyal kanıt tuzağı: yorum kanıt değildir. */
   takimYorumu?: TakimYorumu;
+  /** Konum cevabında söylenen oda (oda görseli için); "bilmiyorum"da yok. */
+  odaId?: string;
 }
 
 export interface PanoDurumu { gozlem: string[]; cikarim: string[]; hipotez: string[]; olmayan: string[] }
@@ -334,7 +336,9 @@ export class OyunDeposu {
     if (!sorgu || !seciliKisi || puan) return false;
     const s = sor(sorgu, seciliKisi, soru);
     sorgu.zaman += SORU_MALIYETI;
-    const kayit = this.cevapKaydi(seciliKisi, s.cevap, s.ipuclari, soruMetni(soru, sorgu.durum.vaka, seciliKisi));
+    // Tekrar sorulan soru işaretlenir (Swerts: ikinci soruş daha çok sızdırır; cevap aynı kalır).
+    const kayit = this.cevapKaydi(seciliKisi, s.cevap, s.ipuclari, `${soruMetni(soru, sorgu.durum.vaka, seciliKisi)}${s.tekrar > 1 ? ' (tekrar)' : ''}`);
+    if (soru.tur === 'konum' && s.cevap.icerik) kayit.odaId = s.cevap.icerik;
     if (this.durum.takimAcik) { const y = takimYorumu(sorgu, seciliKisi, s); if (y) kayit.takimYorumu = y; }
     this.kayitEkle(seciliKisi, kayit);
     this.durum.zaman = sorgu.zaman;
@@ -598,7 +602,7 @@ export class OyunDeposu {
       sorgu: s ? {
         defter: [...s.durum.defter.entries()], gosterilen: [...s.gosterilen.entries()].map(([k, v]) => [k, [...v]]),
         kontaminasyon: s.kontaminasyon, stres: [...s.stres.entries()], zaman: s.zaman, gecmis: s.gecmis,
-        odaOkumalari: [...s.odaOkumalari.entries()], odaSiniflamalari: [...s.odaSiniflamalari.entries()], icSesTahminleri: s.icSesTahminleri,
+        odaOkumalari: [...s.odaOkumalari.entries()], odaSiniflamalari: [...s.odaSiniflamalari.entries()], icSesTahminleri: s.icSesTahminleri, soruSayaci: [...s.soruSayaci.entries()],
       } : null,
     });
   }
@@ -620,6 +624,7 @@ export class OyunDeposu {
         sorgu.odaOkumalari = new Map((v.sorgu.odaOkumalari ?? []) as [string, OdaOkumasi][]);
         sorgu.odaSiniflamalari = new Map((v.sorgu.odaSiniflamalari ?? []) as [string, EsyaSinifi][]);
         sorgu.icSesTahminleri = (v.sorgu.icSesTahminleri ?? []) as IcSesTahmini[];
+        sorgu.soruSayaci = new Map((v.sorgu.soruSayaci ?? []) as [string, number][]);
         this.kur(sorgu, null);
         this.durum.konusmalar = new Map(((v.konusmalar ?? []) as [string, KonusmaKaydi[]][]).map(([k, liste]) => [k, liste.map((x) => ({ ...x, gozlemler: x.gozlemler ?? [] }))]));
         this.durum.pano = { ...bosPano(), ...(v.pano ?? {}) };
