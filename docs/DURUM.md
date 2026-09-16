@@ -20,7 +20,7 @@
 
 ## Sıradaki 3 iş
 1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
-2. **Higgsfield görselleri:** CLI kurulu (`higgsfield`), skill'ler `.agents/skills/` altında; kullanıcı "üret" deyince `assets/HIGGSFIELD_PROMPTLAR.md` listesinden portre havuzu, `assets/KAYIT.md` güncellemesi.
+2. **Higgsfield görselleri (onaylı, 110 kredi):** CLI deneme kısıtına takıldı (`only_mcp_usage_on_trial_is_available`); MCP sunucusu Claude Code'a eklendi, kullanıcı `/mcp` ile yetkilendirecek. Sonra: plan ve maliyet tablosu `assets/KAYIT.md`'de; adımlar günlüğün son kaydında.
 3. **Geliştirme fikirleri (günlükten):** "ikinci kez sor" mekaniği (Swerts), Ayna 3. karşılaşma finali (takım sahnesi), oda okumada sahnelenmiş eşyayı panoya tek tıkla ekleme.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)

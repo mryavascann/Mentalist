@@ -652,3 +652,10 @@
 **Sıradaki ajan için:** 1) Kullanıcı zor seviye seçeneğini (DURUM açık karar 2) seçerse uygula. 2) Higgsfield görselleri (kullanıcı isteğiyle). 3) Geliştirme fikirleri: "ikinci kez sor" mekaniği; Ayna arkı finali (3. karşılaşmadan sonra takım sahnesinde Ayna'ya dair konuşma).
 
 **Geliştirme fikirleri:** Ayna'nın 3. karşılaşmasında takım hikâyesine özel bölüm; okunma oranı ≥%67 ise Ayna notunun tonu sertleşsin.
+
+## [2026-09-16 17:40] Ajan #1 — Higgsfield üretim denemesi: deneme kısıtına takıldı
+**Görev:** Kullanıcı onayıyla (110 kredi) portre/mekân görsellerini üretmek.
+**Yapılanlar:** Çalışma alanı seçildi (`higgsfield workspace set`), maliyetler ölçüldü (GPT Image 2.5 = 1, Z Image = 0.15, Soul Location = 0.12 kredi; tablo `assets/KAYIT.md`). Deneme üretimleri (gpt_image_2_5, z_image, soul_location, workflow cinematic_studio_soul_location) hepsi `only_mcp_usage_on_trial_is_available` ile reddedildi; kredi harcanmadı. Web araştırması: deneme hesabında CLI kapalı, resmî MCP açık. `claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp` çalıştırıldı; yetkilendirme kullanıcıda (`/mcp` → tarayıcı OAuth), sonra yeni oturum.
+**Değişen dosyalar:** assets/KAYIT.md, docs/AJAN_GUNLUGU.md, docs/DURUM.md (kullanıcı ayarı: ~/.claude.json MCP kaydı).
+**Testler:** 305 (değişiklik yok).
+**Sıradaki ajan için:** MCP yetkilendirilince: 1) p01 ile stil denemesi (GPT Image 2.5, quality medium, 1:1), beğenilirse 24 portre + 4 takım; 2) 8 mekân + sorgu odası Soul Location 16:9; 3) ana görsel; 4) WebP'ye çevir (portre 512², ≤60 KB; mekân 1280×720, ≤150 KB), `assets/portreler/`, `assets/mekanlar/`; 5) `Portre.tsx` gerçek görsel + kişi→portre eşlemesi (cinsiyet/yaş uyumlu, seed'le deterministik), mekân türü→arka plan; KAYIT.md satırları.
