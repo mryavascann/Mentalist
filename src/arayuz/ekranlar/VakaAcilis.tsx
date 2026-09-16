@@ -14,7 +14,7 @@ export function VakaAcilis() {
         {d.rapor && <p className="soluk">Tahmini zorluk: {Math.round(d.rapor.zorluk * 100)}/100</p>}
         {d.ayna && (
           <div className="kart" style={{ marginTop: 10 }}>
-            <p className="soluk" style={{ margin: '0 0 4px' }}>Olay yerinde, delillerin arasında el yazısı bir not:</p>
+            <p className="soluk" style={{ margin: '0 0 4px' }}>Olay yerinde, delillerin arasında el yazısı bir not{d.ayna.karsilasma > 1 ? ` (aynı el yazısı, ${d.ayna.karsilasma}. kez)` : ''}:</p>
             <p className="daktilo" style={{ margin: 0, fontStyle: 'italic' }}>"{d.ayna.not}"</p>
           </div>
         )}

@@ -51,4 +51,4 @@
 - [x] Takım NPC'leri: lider / sorgucu / inanan analist / saha ajanı sorgu odasında yorum yapar; saha ajanı sosyal kanıt tuzağı (<%45 isabet); yorumlar kapatılabilir; 'takımın çoğunluk görüşü' dayanağı yanlış suçlamada `sosyal-kanit` etiketi; 4 test (2026-09-16, Ajan #1)
 - [x] "Watson'a anlat": pano maddelerini sorgucuya anlatma, sınıflama denetimi, 3 test (2026-09-16, Ajan #1)
 - [x] Takım hikâyesi (arka plan, vakalar arası diyalog)
-- [x] "Ayna" ana düşmanı — taslak (kadans, tahmin, imza notu, analiz; ark vakaları henüz özel üretilmiyor)
+- [x] "Ayna" ana düşmanı — taslak (kadans, tahmin, imza notu, analiz) + ark (özel arketip ağırlığı, biriken notlar, okunma oranı; 2026-09-16, Ajan #1)

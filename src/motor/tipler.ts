@@ -110,6 +110,8 @@ export type Zorluk = 'kolay' | 'orta' | 'zor';
 
 export interface VakaAyari {
   zorluk: Zorluk;
+  /** Ayna vakası (TASARIM §14): manipülasyon/sahne arketiplerinin ağırlığı artar; mekân ve kişiler değişmez. */
+  ayna?: boolean;
 }
 
 /** Zorluk seviyesine göre üretim parametreleri (tek yerde; katmanlar buradan okur). */

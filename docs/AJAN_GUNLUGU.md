@@ -628,3 +628,27 @@
 **Testler:** 297 geçti (değişiklik yok).
 **Alınan kararlar:** Yok; seçenekler kullanıcıya sunuldu (a: masuma gürültü izi, b: failin ayrıntıyı fark etmemesi, c: önce oyna).
 **Sıradaki ajan için:** Kullanıcı seçenek seçerse `ZORLUK_PARAMETRELERI` + `delil.ts` tohumunu değiştir; `tests/denge/botlar.test.ts` ve `tests/motor/zorluk.test.ts` eşiklerini (zorda >%65) koru; regresyon seed'leri değişirse günlüğe yaz.
+
+## [2026-09-16 17:00] Ajan #1 — Ayna arkı: özel arketip ağırlığı, biriken notlar, okunma oranı
+**Görev:** Ayna vakalarını sıradan vakalardan farklı üretmek ve ark boyunca biriken bir hikâye kurmak (TASARIM §14; K-013'te "sonraya bırakılan" kısım).
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `tipler.ts`: `VakaAyari.ayna?: boolean`. `gerceklik.ts`: bayrak açıkken `AYNA_ARKETIPLERI` (motel-sahnelenmis, sahte-medyum, karnaval-el-cabuklugu, romantik-dolandiricilik, ofis-sabotaj, tarikat-ici-olum, hastane-yanlis-doz; her mekân için en az biri) ağırlığı ×5. Aynı seed'de mekân, kişiler, kurban aynı kalır; yalnızca arketip akışı değişir. Örüntü testi: Ayna vakasında da tahmin faille şans düzeyinde.
+- `ayna.ts`: `AynaArkOzeti`, `aynaArkOzeti(gecmis)`, `aynaOkunmaOrani(gecmis)`; `aynaNotu(..., ark?)` ilk karşılaşmada tanışma, sonrakilerde "geçen sefer okudum / şaşırttın" cümlesi (deterministik; geriye uyumlu).
+- Depo: Ayna vakasında `ayar.ayna` + hedeflere `sahnelenmis-delil`; `AynaDurumu.karsilasma`; `VakaGecmisi.ayna.not`; `aynaArki()`, `aynaOkunmaOrani()`; içe aktarımda bayrak korunur (aksi hâlde kayıt farklı arketiple açılırdı — test var).
+- Arayüz: vaka açılışında "aynı el yazısı, n. kez"; Analiz'de Ayna bölümünde "Önceki notları" (details), kör nokta bölümünde "Ayna n karşılaşmada seni k kez okudu".
+- Testler: `tests/motor/aynaArki.test.ts` (5), `tests/arayuz/aynaArki.test.ts` (3); `takimHikaye.test.ts` iki `toEqual` → `toMatchObject` (kayda `not` eklendi).
+
+**Değişen dosyalar:** src/motor/{tipler,ayna,gerceklik}.ts, src/arayuz/oyun/depo.ts, src/arayuz/ekranlar/{Analiz,VakaAcilis}.tsx, tests/motor/aynaArki.test.ts, tests/arayuz/aynaArki.test.ts, tests/arayuz/takimHikaye.test.ts, docs.
+
+**Testler:** 305 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dist/index.html (498 kB).
+
+**Alınan kararlar:** K-015 (Ayna vakası ayarla üretilir; ağırlık ×5; kayıt bayrağı taşır).
+
+**Sorunlar / riskler:** Ayna vakası hedefine `sahnelenmis-delil` eklenir; kolay zorlukta sahneleme olasılığı 0 olduğundan hedef sağlanamaz (yalnızca arketip ağırlığı işler). Regresyon seed'leri değişmedi (bayrak yokken ağırlıklar aynı).
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Kullanıcı zor seviye seçeneğini (DURUM açık karar 2) seçerse uygula. 2) Higgsfield görselleri (kullanıcı isteğiyle). 3) Geliştirme fikirleri: "ikinci kez sor" mekaniği; Ayna arkı finali (3. karşılaşmadan sonra takım sahnesinde Ayna'ya dair konuşma).
+
+**Geliştirme fikirleri:** Ayna'nın 3. karşılaşmasında takım hikâyesine özel bölüm; okunma oranı ≥%67 ise Ayna notunun tonu sertleşsin.

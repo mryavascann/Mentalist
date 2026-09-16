@@ -104,7 +104,7 @@ describe('OyunDeposu — Ayna bütünleşmesi', () => {
 
     depo.suclamaYap({ fail: a.tahmin, guven: 0.7 });
     const son = depo.durum.gecmis[depo.durum.gecmis.length - 1]!;
-    expect(son.ayna).toEqual({ etiket: 'othello-hatasi', okundu: true });
+    expect(son.ayna).toMatchObject({ etiket: 'othello-hatasi', okundu: true });
 
     // Başka birini suçlayan oyuncu okunmamış sayılır.
     const depo2 = new OyunDeposu();
@@ -114,7 +114,7 @@ describe('OyunDeposu — Ayna bütünleşmesi', () => {
     const vaka = depo2.durum.sorgu!.durum.vaka;
     const baskasi = vaka.kisiler.find((k) => k.hayatta && k.id !== vaka.olay.kurban && k.id !== depo2.durum.ayna!.tahmin)!;
     depo2.suclamaYap({ fail: baskasi.id, guven: 0.7 });
-    expect(depo2.durum.gecmis[depo2.durum.gecmis.length - 1]!.ayna).toEqual({ etiket: 'othello-hatasi', okundu: false });
+    expect(depo2.durum.gecmis[depo2.durum.gecmis.length - 1]!.ayna).toMatchObject({ etiket: 'othello-hatasi', okundu: false });
 
     // Ayna olmayan vakada kayıt alanı yok.
     const depo3 = new OyunDeposu();

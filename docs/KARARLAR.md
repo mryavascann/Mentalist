@@ -76,3 +76,9 @@
 - **Gerekçe:** Ickes paradigmasında gerçek düşünce hemen açılır; oyunda bu, cevabın gizli etiketini (yalan/koruma/sır) sızdırır ve vakayı çözer. Gosling'in bulgusu kişilik/sır okumadır; suç okuması değil — oyuncu bunu kanıt sayarsa öğrenmesi gereken ders tam olarak budur.
 - **Alternatifler:** Gerçeği anında açmak (sızıntı); iç sesi hiç puanlamamak (öğrenme kaybı); kişilik okumasını gerekçe listesinden çıkarmak (tuzağı kaldırır, dersi de kaldırır).
 - **Geri dönüş koşulu:** Oyuncu testlerinde karneler "geç geldi, unuttum" hissi verirse, tahmin anında yalnızca "kaydedildi" yerine kısa bir güven sorusu eklenebilir.
+
+## K-015 · 2026-09-16 · Ayna vakası üretim ayarıyla ayrışır; kayıt bayrağı taşır
+- **Karar:** Ayna vakası `VakaAyari.ayna = true` ile üretilir: sahne/manipülasyon arketiplerinin ağırlığı ×5, hedeflere sahnelenmiş delil eklenir; mekân, kişiler ve kurban aynı seed'de değişmez. Kayıt dosyası bu bayrağı taşır ve içe aktarımda aynı ayarla yeniden üretir. Not, ark özetinden (karşılaşma sayısı, son sonuç) beslenir.
+- **Gerekçe:** Ayna'nın "sahne kuran manipülatör" kimliği vakanın rengine yansımalı; ama fail seçimine dokunmamalı (örüntü testi). Bayrak kayıtta taşınmazsa aynı seed farklı arketip üretir ve kayıt bozulur.
+- **Alternatifler:** Ayna için ayrı mekân/arketip listesi (kalıp riski, çeşitlilik kaybı); ağırlık yerine zorunlu arketip (her Ayna vakası aynı hikâye).
+- **Geri dönüş koşulu:** Ayna vakalarının %95'inden fazlası aynı arketipe düşerse çarpan düşürülür; oyuncu testlerinde "Ayna vakası hep sahte medyum" hissi oluşursa havuz genişletilir.

@@ -19,7 +19,42 @@ export const AYNA_KADANSI = 3;
 /** Baskın kör nokta sayılması için gereken en az tekrar. */
 const EN_AZ_TEKRAR = 2;
 
+/**
+ * Ayna'nın "imzası" olan arketipler: sahne, manipülasyon, örtbas. Her mekân türü için en az biri bulunur
+ * (test denetler). Ayna vakasında ağırlıkları AYNA_ARKETIP_CARPANI ile çarpılır; fail seçimiyle ilgisi yoktur.
+ */
+export const AYNA_ARKETIPLERI: readonly string[] = ['motel-sahnelenmis', 'sahte-medyum', 'karnaval-el-cabuklugu', 'romantik-dolandiricilik', 'ofis-sabotaj', 'tarikat-ici-olum', 'hastane-yanlis-doz'];
+export const AYNA_ARKETIP_CARPANI = 5;
+
 export interface KorNokta { etiket: string; sayi: number }
+
+/** Ark özeti: geçmiş Ayna vakalarından türer (kaç karşılaşma oldu, sonuncusunda okundu mu, önceki notlar). */
+export interface AynaArkOzeti {
+  /** Bu vakadan ÖNCEKİ Ayna karşılaşması sayısı. */
+  karsilasma: number;
+  /** Son karşılaşmada Ayna oyuncuyu okudu mu; hiç karşılaşma yoksa null. */
+  sonOkundu: boolean | null;
+  /** Önceki imza notları (sırayla). */
+  notlar: string[];
+}
+
+/** Geçmiş kayıtlarının Ayna alanı (depo türünün motor tarafından bilinen kısmı). */
+export interface AynaGecmisKaydi { ayna?: { okundu: boolean; not?: string } }
+
+export function aynaArkOzeti(gecmis: readonly AynaGecmisKaydi[]): AynaArkOzeti {
+  const aynalar = gecmis.filter((g) => g.ayna).map((g) => g.ayna!);
+  return {
+    karsilasma: aynalar.length,
+    sonOkundu: aynalar.length ? aynalar[aynalar.length - 1]!.okundu : null,
+    notlar: aynalar.filter((a) => a.not).map((a) => a.not!),
+  };
+}
+
+/** Ayna kaç karşılaşmanın kaçında oyuncuyu okudu (kör nokta bölümünde gösterilir). */
+export function aynaOkunmaOrani(gecmis: readonly AynaGecmisKaydi[]): { n: number; okundu: number } {
+  const aynalar = gecmis.filter((g) => g.ayna).map((g) => g.ayna!);
+  return { n: aynalar.length, okundu: aynalar.filter((a) => a.okundu).length };
+}
 
 export interface AynaTahmini {
   /** Hedef alınan kör nokta etiketi (hata_etiketleri.json kimliği). */
@@ -102,7 +137,7 @@ const NOT_KALIPLARI: Record<string, string[]> = {
   'tek-ipucu': ['Tek bir bakış yetti sana geçen sefer. Bu kez de bir bakış bırakıyorum; gerisini sen tamamlarsın.'],
   'sosyal-kanit': ['Ekibin ne diyorsa onu dedin. Ekibine bu kez de bir şey söyletecek kadar gürültü var.'],
   'hale-etkisi': ['Gülümseyeni bağışladın, asık suratlıyı astın. Bu odada da gülümseyen biri var.'],
-  'temsil-edicilik': ['Sabıkalı ve borçlu olanı sevdin geçen sefer; hikâyeye uyuyordu. Bu kez de biri hikâyeye tıpatıp uyacak.'],
+  'temsil-edicilik': ['Sabıkalı ve borçlu olanı sevdin geçen dosyada; hikâyeye uyuyordu. Bu kez de biri hikâyeye tıpatıp uyacak.'],
   'yalan-yanliligi': ['Herkesi yalancı saydın; bu kez de sayacaksın. Sadece doğrusunu bulman zor.'],
   'dogrulama-yanliligi': ['İlk konuştuğun kişiden sonra kimseyi dinlemedin. İlk kapıyı ben seçtim.'],
   capalama: ['Sana söylenen ilk saat kafana çakılı kaldı. Bu kez de biri sana bir saat söyleyecek.'],
@@ -112,14 +147,23 @@ const NOT_KALIPLARI: Record<string, string[]> = {
 
 /**
  * Olay yerine bırakılan imza notu. Kahramanın adını ve geçmiş hatasını ima eder; tahmin edilen kişinin adı
- * geçmez. Deterministik (seed + etiket).
+ * geçmez. Deterministik (seed + etiket + karşılaşma). Ark özeti verilirse ilk karşılaşma tanışma tonunda,
+ * sonrakiler önceki sonucu alıntılar: okunduysa "yine", yanıldıysa "şaşırttın" (ark boyunca biriken hikâye).
  */
-export function aynaNotu(vaka: Vaka, kahramanAdi: string, tahmin: AynaTahmini): string {
+export function aynaNotu(vaka: Vaka, kahramanAdi: string, tahmin: AynaTahmini, ark?: AynaArkOzeti): string {
   const r = new Rastgele(`${vaka.seed}/ayna-not/${tahmin.etiket}`);
   const govde = r.sec(NOT_KALIPLARI[tahmin.etiket] ?? ['Nasıl baktığını biliyorum. Aynı yere bakacaksın.']);
   const acilis = r.sec([`${kahramanAdi},`, `Sevgili ${kahramanAdi},`, `${kahramanAdi}, yine karşılaştık.`]);
   const kapanis = r.sec(['Aynaya bak.', 'Seni okuyorum.', 'Bu kez de aynı yere bakarsan şaşırmam.']);
-  return `${acilis} ${govde} ${kapanis} — A.`;
+  let ara = '';
+  if (ark && ark.karsilasma > 0) {
+    const r2 = new Rastgele(`${vaka.seed}/ayna-ark/${ark.karsilasma}/${ark.sonOkundu}`);
+    ara = ark.sonOkundu
+      ? r2.sec(['Geçen sefer de seni okudum; tam beklediğim yere baktın.', 'Geçen sefer tahminim tuttu. Kalıbın hâlâ aynı mı, bakalım.'])
+      : r2.sec(['Geçen sefer beni şaşırttın; kalıbından çıktın. Bu kez daha dikkatli hazırlandım.', 'Geçen sefer yanıldım; beklediğim yere bakmadın. Bir kez olur.']);
+    ara = ` ${ara}`;
+  }
+  return `${acilis}${ara} ${govde} ${kapanis} — A.`;
 }
 
 /** Suçlama Ayna'nın beklediğiyle örtüştü mü? (null = "suç yok" beyanı da tahmin olabilir.) */

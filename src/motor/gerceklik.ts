@@ -17,6 +17,7 @@ import {
   TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI,
 } from './havuzlar';
 import { mekanaUygunArketipler, type Arketip } from './arketipler';
+import { AYNA_ARKETIPLERI, AYNA_ARKETIP_CARPANI } from './ayna';
 
 /** Akşam 19:00'dan itibaren 30 dakikalık 8 dilim (19:00–23:00). */
 export const DILIM_SAYISI = 8;
@@ -178,7 +179,9 @@ export function vakaUret(seed: number | string, ayar: VakaAyari = { zorluk: 'ort
   const { iliskiler, borclar } = iliskileriUret(kok.altUret('iliskiler'), kisiler, kurban);
   // Arketip mekâna göre, ağırlıklı ve düzgün karıştırılır; olay türü/yöntemi buradan gelir (TASARIM §15).
   const arketipR = kok.altUret('arketip');
-  const arketip = arketipR.agirlikliSec(mekanaUygunArketipler(mekan.tur).map((a) => ({ deger: a, agirlik: a.agirlik })));
+  // Ayna vakasında (TASARIM §14) sahne/manipülasyon arketipleri ağır basar; aynı seed'de mekân ve kişiler aynı kalır.
+  const carpan = (id: string) => (ayar.ayna && AYNA_ARKETIPLERI.includes(id) ? AYNA_ARKETIP_CARPANI : 1);
+  const arketip = arketipR.agirlikliSec(mekanaUygunArketipler(mekan.tur).map((a) => ({ deger: a, agirlik: a.agirlik * carpan(a.id) })));
   const olay = olayUret(kok.altUret('olay'), kisiler, iliskiler, mekan, kurban, arketip);
   if (olay.tur === 'cinayet') kurban.hayatta = false;
   const zamanCizelgesi = zamanCizelgesiUret(kok.altUret('zaman'), kisiler, mekan, olay);

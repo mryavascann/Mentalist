@@ -1,9 +1,9 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 16:00, Ajan #1.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 17:00, Ajan #1.
 
 ## Aktif aşama
-**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, Ayna taslağı, aralıklı tekrar ve **§7'nin tüm araçları** tamam (Kılavuz 66 madde, 16 teknik). Sıradaki: Ayna arkı, zor seviye ölçümü, Higgsfield görselleri.
+**Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve Higgsfield görselleri.
 
 ## Biten işler
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar, cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
@@ -12,16 +12,16 @@
 - **Adaptif üretim** (`src/motor/adaptif.ts`): kör noktadan en fazla 2 yapısal hedef; seed türevleriyle çözülebilir + hedefli vaka.
 - **Takım NPC'leri** (`takim.ts`), **takım hikâyesi** (`takim_hikaye.ts`), **Watson'a anlat** (`Watson.tsx`), **kanepe molası**, **ifade çizelgesi**, **kalibrasyon özeti**.
 - **Vaka arketip havuzu** (`arketipler.ts`): 14 arketip, mekâna bağlı ağırlık; brifing cümlesi ve "vakanın dersi".
-- **Ayna taslağı** (`ayna.ts`, K-013): her 3. vakada baskın kör nokta ≥2 ise Ayna vakası; tahmin görünür özelliklerden; imza notu; Analiz'de okundu/yanıldı.
+- **Ayna** (`ayna.ts`, K-013 + K-015): her 3. vakada baskın kör nokta ≥2 ise Ayna vakası; tahmin görünür özelliklerden; imza notu; Analiz'de okundu/yanıldı. **Ark:** `ayar.ayna` ile sahne/manipülasyon arketipleri ×5 ve sahnelenmiş delil hedefi; not karşılaşma sayısına ve önceki sonuca göre değişir; geçmiş notu saklar; Analiz'de önceki notlar ve okunma oranı; kayıt bayrağı taşır. 8 + 6 test.
 - **Diğer araçlar** (`src/motor/araclar.ts`, K-014, TASARIM §7 uygulama notu): oda okuma (eşya sınıflama + vaka sonu karnesi), dijital iz (profil; dışadönüklük okunur, kaygı okunmaz), "şu an ne düşünüyor?" (6 kategori, gerçek vaka sonunda; az konuşulan kişide 6 seçenek), kayıt inceleme (küçük etki; temel çizgiyle normali/sapma). Hata etiketi `oda-okuma-suc`; iç seste hep "suç kaygısı" → `yalan-yanliligi`. Sorgu odasında "Kişiyi oku" bloğu; Suçlama'da "Oda okuması / dijital profil" dayanağı. 20 test.
 - **Regresyon seed'leri** (`tests/regresyon/seedler.test.ts`): 6 seed anlık görüntü; üretim bilerek değişince güncellenir ve günlüğe yazılır.
 - **İpucu kataloğu:** 19 ipucu; Navarro saha ipuçları `zayif`. İçerik testi: her bölümde ≥3 madde, ≥12 bölüm, ≥60 madde.
 - **Görsel:** `assets/HIGGSFIELD_PROMPTLAR.md` (24 portre, 4 takım, 8 mekân, ana görsel, sorgu odası), `Portre.tsx` deterministik SVG siluet.
 
 ## Sıradaki 3 iş
-1. **Ayna arkı:** Ayna vakalarına özel arketip ağırlığı ("sahnelenmiş olay"), ark boyunca biriken notlar, "okundu" oranı kör nokta bölümünde.
-2. **Zor seviye ölçümü:** bot denge testleriyle (`tests/denge/botlar.test.ts` altyapısı) zor seviyede yöntem botu / ipucu botu başarımını rakamla çıkar, kullanıcıya sun; gerekirse `ZORLUK_PARAMETRELERI` ayarı.
-3. **Higgsfield görselleri:** CLI kurulu (`higgsfield`), skill'ler `.agents/skills/` altında; kullanıcı "üret" deyince `assets/HIGGSFIELD_PROMPTLAR.md` listesinden portre havuzu, `assets/KAYIT.md` güncellemesi.
+1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
+2. **Higgsfield görselleri:** CLI kurulu (`higgsfield`), skill'ler `.agents/skills/` altında; kullanıcı "üret" deyince `assets/HIGGSFIELD_PROMPTLAR.md` listesinden portre havuzu, `assets/KAYIT.md` güncellemesi.
+3. **Geliştirme fikirleri (günlükten):** "ikinci kez sor" mekaniği (Swerts), Ayna 3. karşılaşma finali (takım sahnesi), oda okumada sahnelenmiş eşyayı panoya tek tıkla ekleme.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
 1. Vaka başına soruşturma saati bütçesi (varsayılan 12; oynayınca "yetmedi / bol" hissine göre).
@@ -33,8 +33,8 @@
 - Yok.
 
 ## Test durumu
-- `npm test`: 35 dosya, 297 test geçti (2026-09-16 16:00). Süre ~90 sn.
-- `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (496 kB).
+- `npm test`: 37 dosya, 305 test geçti (2026-09-16 17:00). Süre ~90 sn.
+- `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (498 kB).
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).

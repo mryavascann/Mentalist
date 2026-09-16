@@ -171,6 +171,17 @@ export function Analiz() {
               {okundu ? ' Tam da o kişiyi suçladın: kör noktan okunabilir bir kalıp olmuş.' : ' Başka yöne gittin: kalıbın kırılıyor.'}
             </p>
             {etiket && <p className="soluk">Hedef alınan kör nokta: <button className="etiket" onClick={() => depo.kilavuzAc(etiket.kilavuzMaddesi)}>{etiket.ad}</button></p>}
+            {(() => {
+              // Ark: önceki karşılaşmaların notları (bu vakanınki hariç; o zaten yukarıda).
+              const onceki = depo.aynaArki().slice(0, -1).filter((a) => a.not);
+              if (onceki.length === 0) return null;
+              return (
+                <details>
+                  <summary className="soluk">Önceki notları ({onceki.length})</summary>
+                  {onceki.map((a, i) => <p key={i} className="daktilo soluk" style={{ fontStyle: 'italic', fontSize: 13 }}>"{a.not}" — {a.okundu ? 'okudu' : 'yanıldı'}</p>)}
+                </details>
+              );
+            })()}
           </section>
         );
       })()}
@@ -199,6 +210,11 @@ export function Analiz() {
               <li key={k.etiket}><span>{ETIKETLER.get(k.etiket)?.ad ?? k.etiket}</span><span className="soluk">{k.sayi} kez</span></li>
             ))}
           </ul>
+          {(() => {
+            const o = depo.aynaOkunmaOrani();
+            if (o.n === 0) return null;
+            return <p className="soluk">Ayna {o.n} karşılaşmada seni {o.okundu} kez okudu. {o.okundu / o.n >= 0.5 ? 'Kalıbın okunabilir; hangi ölçüte yaslandığını değiştir.' : 'Kalıbın kırılıyor.'}</p>;
+          })()}
         </section>
       )}
 

@@ -7,7 +7,7 @@
 import { vakaUret } from '@motor/gerceklik';
 import type { CozulebilirlikRaporu } from '@motor/cozulebilirlik';
 import { hedeflerdenAyar, vakaUretHedefli, type VakaHedefi } from '@motor/adaptif';
-import { aynaVakasiMi, aynaTahmini, aynaNotu, aynaOkuduMu } from '@motor/ayna';
+import { aynaVakasiMi, aynaTahmini, aynaNotu, aynaOkuduMu, aynaArkOzeti, aynaOkunmaOrani } from '@motor/ayna';
 import { betimlemeMetni, cevapMetni, kisiKarti, uslupUret, vakaBrifingi, VaryantBellegi, type KisiUslubu } from '@motor/dil';
 import { puanla, type PuanRaporu, type Suclama } from '@motor/puan';
 import type { Cevap, Soru } from '@motor/strateji';
@@ -68,12 +68,12 @@ export interface TakimNotu { tur: 'delil' | 'dedikodu' | 'bos'; metin: string; z
 
 export interface VakaGecmisi {
   seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number;
-  /** Ayna vakasıysa: hedeflenen kör nokta ve Ayna'nın tahmini tuttu mu ("okundun"). */
-  ayna?: { etiket: string; okundu: boolean };
+  /** Ayna vakasıysa: hedeflenen kör nokta, Ayna'nın tahmini tuttu mu ("okundun") ve bıraktığı not (ark boyunca birikir). */
+  ayna?: { etiket: string; okundu: boolean; not?: string };
 }
 
 /** Aktif vakadaki Ayna durumu (TASARIM §14): tahmin gizli tutulur, not açılışta gösterilir, gerekçe analizde. */
-export interface AynaDurumu { etiket: string; tahmin: KisiId | null; gerekce: string; not: string }
+export interface AynaDurumu { etiket: string; tahmin: KisiId | null; gerekce: string; not: string; /** Kaçıncı karşılaşma (1'den başlar). */ karsilasma: number }
 
 export interface OyunDurumu {
   ekran: Ekran;
@@ -246,17 +246,31 @@ export class OyunDeposu {
   yeniVaka(seed?: string | number) {
     // Adaptif üretim: kör nokta profili → yapısal hedefler (fark ettirmeden; Ericsson 1993 bilinçli pratik).
     const korNoktalar = this.korNoktalar();
-    const hedefler = hedeflerdenAyar(korNoktalar);
-    const { vaka, rapor, saglananHedefler } = vakaUretHedefli(seed ?? `vaka-${Date.now()}`, hedefler, { zorluk: this.durum.zorluk });
+    // Ayna (TASARIM §14): kadans geldiyse vaka Ayna ayarıyla üretilir (sahne arketipleri ağır basar) ve
+    // sahnelenmiş delil hedefi eklenir; oyuncunun şüphesi kör nokta profilinden tahmin edilir, olay yerine not bırakılır.
+    const aynaMi = aynaVakasiMi(this.durum.gecmis.length, korNoktalar);
+    const hedefler = aynaMi ? [...new Set<VakaHedefi>([...hedeflerdenAyar(korNoktalar), 'sahnelenmis-delil'])] : hedeflerdenAyar(korNoktalar);
+    const ayar = aynaMi ? { zorluk: this.durum.zorluk, ayna: true } : { zorluk: this.durum.zorluk };
+    const { vaka, rapor, saglananHedefler } = vakaUretHedefli(seed ?? `vaka-${Date.now()}`, hedefler, ayar);
     this.kur(sorguBaslat(vaka), rapor);
     this.durum.hedefler = saglananHedefler;
-    // Ayna (TASARIM §14): kadans geldiyse oyuncunun şüphesini kör nokta profilinden tahmin et, olay yerine not bırak.
-    if (aynaVakasiMi(this.durum.gecmis.length, korNoktalar)) {
+    if (aynaMi) {
+      const ark = aynaArkOzeti(this.durum.gecmis);
       const tahmin = aynaTahmini(vaka, korNoktalar);
-      this.durum.ayna = { ...tahmin, not: aynaNotu(vaka, this.durum.kahramanAdi, tahmin) };
+      this.durum.ayna = { ...tahmin, not: aynaNotu(vaka, this.durum.kahramanAdi, tahmin, ark), karsilasma: ark.karsilasma + 1 };
     }
     this.durum.ekran = 'vaka-acilis';
     this.bildir();
+  }
+
+  /** Ayna arkı: geçmişteki Ayna karşılaşmaları (etiket, okundu, not). */
+  aynaArki(): { etiket: string; okundu: boolean; not?: string }[] {
+    return this.durum.gecmis.filter((g) => g.ayna).map((g) => g.ayna!);
+  }
+
+  /** Ayna kaç karşılaşmanın kaçında oyuncuyu okudu. */
+  aynaOkunmaOrani(): { n: number; okundu: number } {
+    return aynaOkunmaOrani(this.durum.gecmis);
   }
 
   private kur(sorgu: Sorgu, rapor: CozulebilirlikRaporu | null) {
@@ -415,7 +429,7 @@ export class OyunDeposu {
     const ayna = this.durum.ayna;
     this.durum.gecmis.push({
       seed: sorgu.durum.vaka.seed, dogru: puan.dogru, puan: puan.puan, hataEtiketleri: puan.hataEtiketleri, brier: puan.kalibrasyon.brier,
-      ...(ayna ? { ayna: { etiket: ayna.etiket, okundu: aynaOkuduMu(ayna, suclama.fail) } } : {}),
+      ...(ayna ? { ayna: { etiket: ayna.etiket, okundu: aynaOkuduMu(ayna, suclama.fail), not: ayna.not } } : {}),
     });
     this.durum.ekran = 'analiz';
     this.bildir();
@@ -595,7 +609,8 @@ export class OyunDeposu {
       if (!v || v.kayitSurumu !== KAYIT_SURUMU) return false;
       this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta', tatbikat: { aktif: null, sonuclar: v.tatbikat?.sonuclar ?? {} }, takimAcik: v.takimAcik ?? true };
       if (v.seed && v.sorgu) {
-        const sorgu = sorguBaslat(vakaUret(v.seed, { zorluk: (v.zorluk as Zorluk) ?? 'orta' }));
+        // Ayna bayrağı üretimi etkiler (arketip ağırlığı); kayıtta ayna varsa aynı vaka ancak bayrakla geri gelir.
+        const sorgu = sorguBaslat(vakaUret(v.seed, { zorluk: (v.zorluk as Zorluk) ?? 'orta', ...(v.ayna ? { ayna: true } : {}) }));
         sorgu.durum.defter = new Map(v.sorgu.defter);
         sorgu.gosterilen = new Map((v.sorgu.gosterilen as [string, string[]][]).map(([k, arr]) => [k, new Set(arr)]));
         sorgu.kontaminasyon = v.sorgu.kontaminasyon ?? [];
