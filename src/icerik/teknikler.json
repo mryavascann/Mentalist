@@ -68,8 +68,8 @@
     "id": "sue",
     "ad": "Stratejik delil kullanımı (SUE)",
     "aciklama": "Delili açmadan önce serbest anlatım ve delille ilgili sorular; sonra delili açıp çelişkiyi sormak.",
-    "nasil": "1) Delili söyleme, anlattır. 2) Delilin konusuyla ilgili soruyu delili açmadan sor. 3) Şimdi delili göster, çelişkiyi sor. Erken gösterirsen suçlu hikâyesini delile uydurur.",
-    "sinirlari": "Elde delil yoksa uygulanamaz. Masumun 'bilmiyordum' demesi normaldir; çelişki yoksa suçlama.",
+    "nasil": "1) Delili söyleme, anlattır. 2) Delilin konusuyla ilgili soruyu delili açmadan sor. 3) Şimdi delili göster, çelişkiyi sor. Erken gösterirsen suçlu hikâyesini delile uydurur. Delil başkası hakkındaysa o kişiyi sorar (tanık ifadesi): \"benimleydi\" diyen koruyucu, kamera kaydıyla çelişebilir.",
+    "sinirlari": "Elde delil yoksa uygulanamaz. Masumun 'bilmiyordum' demesi normaldir; çelişki yoksa suçlama. Tanık ifadesine uygulama oyunun genişletmesidir; araştırma şüpheli sorgusuyla sınırlıdır.",
     "kilavuzMaddesi": "sue",
     "kaynak": [
       "Vrij 2010 PSPI"

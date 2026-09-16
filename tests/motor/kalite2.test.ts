@@ -9,6 +9,7 @@ import { sorguBaslat, teknikUygula } from '@motor/teknik';
 import { odaOku } from '@motor/araclar';
 import { anlatimSatirlari, uslupUret, VaryantBellegi } from '@motor/dil';
 import { bulunma } from '@ortak/turkce';
+import { ICERIK } from '@icerik/index';
 
 const yeni = (s: string) => sorguBaslat(vakaUret(s));
 
@@ -112,5 +113,16 @@ describe('anlatım satırları — aynı odada kalınan dilimler kısa devam cü
     }
     expect(devamSayisi).toBeGreaterThan(200);
     expect(tamSayisi).toBeGreaterThan(200);
+  });
+});
+
+describe('SUE içerik metinleri tanık kullanımını dürüst anlatır', () => {
+  it('teknik "nasil" tanık ifadesini söyler; Kılavuz sınırları araştırmanın şüpheli sorgusuyla sınırlı olduğunu belirtir', () => {
+    const teknik = ICERIK.teknikler.find((t) => t.id === 'sue')!;
+    const madde = ICERIK.kilavuz.find((m) => m.id === 'sue')!;
+    expect(teknik.nasil).toMatch(/tanık/i);
+    expect(madde.sinirlari).toMatch(/tanık/i);
+    expect(madde.sinirlari).toMatch(/şüpheli/i);
+    expect(madde.sinirlari).toMatch(/oyun/i);
   });
 });

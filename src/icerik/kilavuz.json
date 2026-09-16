@@ -118,7 +118,7 @@
     "baslik": "Stratejik delil kullanımı (SUE)",
     "ozet": "Delili sona sakla. Suçlu 'kaçınma/inkâr' stratejisiyle delile değmemeye çalışır; delil açılınca hikâyesiyle çelişir. Eğitimsiz %56 → SUE ile %85 doğruluk.",
     "nasilKullanilir": "Serbest anlatım → delilin konusuyla ilgili soru (delili açmadan) → delili aç, çelişkiyi sor. Masum 'masumiyetim görünür' diye açık konuşur.",
-    "sinirlari": "Delil olmadan işlemez. Delil zayıfsa (sızmış bilgi, belirsiz görüntü) çelişki masumda da çıkabilir.",
+    "sinirlari": "Delil olmadan işlemez. Delil zayıfsa (sızmış bilgi, belirsiz görüntü) çelişki masumda da çıkabilir. Araştırma (Hartwig, Granhag ve ark.) şüpheli sorgusuyla sınırlıdır; oyunda tanık ifadesine ('X'i nerede gördün?') uygulanması oyunun genişletmesidir: koruma yalanı delille çelişebilir, ama dürüst tanığın yanılması da çelişki üretir; çelişki = sorulacak konu.",
     "kanitDuzeyi": "guclu",
     "kaynak": [
       "Vrij 2010 PSPI"

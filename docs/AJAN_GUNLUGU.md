@@ -788,3 +788,14 @@
 **Sıradaki ajan için:** 1) Kullanıcı oynayınca DURUM "Açık kararlar". 2) `teknikler.json` SUE "nasil" metnine tanık kullanımını ekle; Kılavuz SUE maddesine not (kaynak kütüğünde Hartwig/Granhag SUE kaydı var mı kontrol et; yoksa "doğrulanmadı" işaretle). 3) Döküm turu devam: Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı. 4) dist 6 MB isteğe bağlı.
 
 **Geliştirme fikirleri:** Takım sahnesinde rol tekilliği (aynı rol art arda konuşmasın); kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sohbet sorusu olarak kullanmak.
+
+## [2026-09-16 22:15] Ajan #2 — SUE metinleri: tanık kullanımı dürüst etiketlendi (DEVİR TESLİM)
+**Görev:** Önceki kaydın sıradaki iş 2'si: `teknikler.json` SUE "nasil/sinirlari" ve Kılavuz SUE maddesi tanık kullanımını anlatmıyordu.
+**Yapılanlar:** Teknik "nasil": delil başkası hakkındaysa o kişiyi sorar ("benimleydi" diyen koruyucu kamera kaydıyla çelişebilir). Teknik ve Kılavuz "sinirlari": araştırma (Hartwig, Granhag ve ark.; kaynak kütüğünde Vrij 2010 PSPI üzerinden) şüpheli sorgusuyla sınırlı; tanık ifadesine uygulama **oyunun genişletmesi**; dürüst tanığın yanılması da çelişki üretir → çelişki = sorulacak konu (§6 bilimsel sadakat). Test: `kalite2.test.ts` +1 (metinler tanık/şüpheli/oyun sözcüklerini içerir).
+**Değişen dosyalar:** src/icerik/{teknikler,kilavuz}.json, tests/motor/kalite2.test.ts, docs.
+**Testler:** 331 geçti / 0 kaldı (45 dosya). typecheck temiz. build 6.0 MB.
+**Alınan kararlar:** Yok.
+**Sorunlar / riskler:** Yok.
+**Yarım kalanlar:** Yok. Çalışma ağacı commit'li.
+**Sıradaki ajan için:** 1) Kullanıcı oynayınca DURUM "Açık kararlar" (zor seviye a/b/c, saat bütçesi). 2) Döküm turu: Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; yöntem: 22:00 kaydı. 3) Takım sahnesinde rol tekilliği (aynı rol art arda konuşmasın). 4) dist 6 MB isteğe bağlı.
+**Geliştirme fikirleri:** Kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde göstermek.

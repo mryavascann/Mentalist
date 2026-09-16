@@ -1,6 +1,6 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 22:00, Ajan #2.
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 22:15, Ajan #2 (devir teslim).
 
 ## Aktif aşama
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
@@ -23,7 +23,7 @@
 ## Sıradaki 3 iş
 1. **Zor seviye kararı:** kullanıcı açık karar 2'deki seçeneklerden birini seçerse uygula (`ZORLUK_PARAMETRELERI` + `delil.ts` tohumu); bot ve zorluk test eşiklerini koru.
 2. **Boyut (isteğe bağlı):** dist 6 MB; gerekirse portre 384² / oda q50 ile ~4 MB. Higgsfield kredisi 0.
-3. **Gözle kalite turu (devam):** Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; geçici döküm testi yaz (günlük 22:00 kaydı yöntemi), oku, düzelt. Ayrıca `teknikler.json` SUE "nasil" metnine ve Kılavuz SUE maddesine tanık kullanımı notu.
+3. **Gözle kalite turu (devam):** Analiz ekranı metinleri (hata etiketi açıklamaları, Ayna notu, kalibrasyon özeti) ve Kılavuz maddeleri gözle okunmadı; geçici döküm testi yaz (günlük 22:00 kaydı yöntemi), oku, düzelt.
 4. **Küçük fikirler:** ilişki notunu sorguda sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ; takım sahnesinde oyuncunun kısa cevap seçmesi.
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
@@ -41,7 +41,8 @@
 - **21:00:** içerik kalitesi — Türkçe ekler (delil/takım metinleri, `turkce.ts` özel ad kuralı), gözlem tekilleştirme/sınır (`depo gozlemOzeti`), rol tekilliği + anne/baba/kardeş soyadı, cevap büyük harf. 4 test.
 - **21:25 (Ajan #2):** temel çizgi betimlemeleri (3 test), yabancı ad ekleri okunuşa göre (+1), kişi kartı ilişki cümlesi (1 test).
 - **22:00 (Ajan #2):** SUE tanık, oda eşyası tekilliği, anlatım devam cümlesi, uygulanamayan teknik zamanı (`kalite2.test.ts`, 4 test); iki eski test yeni kurala uyarlandı.
-- `npm test`: 45 dosya, 330 test geçti (2026-09-16 22:00). Süre ~10 sn (paralel).
+- **22:15:** SUE teknik/Kılavuz metinlerinde tanık kullanımı "oyunun genişletmesi" olarak etiketlendi (+1 test).
+- `npm test`: 45 dosya, 331 test geçti (2026-09-16 22:15). Süre ~10 sn (paralel).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar
