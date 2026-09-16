@@ -1,48 +1,594 @@
 {
   "korSecim": {
-    "kaynak": ["Forer 1949", "Hyman 1977"],
+    "kaynak": [
+      "Forer 1949",
+      "Hyman 1977"
+    ],
     "aciklama": "Beyerstein'ın testi: profilleri anonimleştir, herkes kendini en iyi tanımlayanı seçsin. Barnum profili ile 'tam zıt' profil bile eşit kabul görür (Kanizsa 1953: 23 kişiden 19'u). Kendini bulamamak saflık değil, profillerin bilgi taşımamasıdır.",
     "profiller": [
-      { "id": "barnum", "metin": "Takdir edilmeye ihtiyaç duyar, kendine eleştirel yaklaşır, kullanılmamış bir kapasitesi vardır, bazen dışadönük bazen içe dönüktür, güvenlik ana hedeflerinden biridir." },
-      { "id": "zit", "metin": "Başkalarının onayına aldırmaz, kendine karşı hoşgörülüdür, kapasitesinin tamamını kullanır, her ortamda aynı biçimde davranır, güvenlik onun için önemsizdir." },
-      { "id": "olumlu", "metin": "Sıcak, güvenilir ve zeki biridir; insanlar onun yanında rahat eder, zor anlarda soğukkanlı kalır, gerçek dostluklar kurar." },
-      { "id": "olumsuz", "metin": "Sabırsız ve savunmacıdır; eleştiriye kapalı, ilişkilerinde tutarsız, çoğu zaman kendini haklı görmeye eğilimlidir." }
+      {
+        "id": "barnum",
+        "metin": "Takdir edilmeye ihtiyaç duyar, kendine eleştirel yaklaşır, kullanılmamış bir kapasitesi vardır, bazen dışadönük bazen içe dönüktür, güvenlik ana hedeflerinden biridir."
+      },
+      {
+        "id": "zit",
+        "metin": "Başkalarının onayına aldırmaz, kendine karşı hoşgörülüdür, kapasitesinin tamamını kullanır, her ortamda aynı biçimde davranır, güvenlik onun için önemsizdir."
+      },
+      {
+        "id": "olumlu",
+        "metin": "Sıcak, güvenilir ve zeki biridir; insanlar onun yanında rahat eder, zor anlarda soğukkanlı kalır, gerçek dostluklar kurar."
+      },
+      {
+        "id": "olumsuz",
+        "metin": "Sabırsız ve savunmacıdır; eleştiriye kapalı, ilişkilerinde tutarsız, çoğu zaman kendini haklı görmeye eğilimlidir."
+      }
     ],
     "ifsa": "Dört profil de herkese uyacak biçimde yazıldı. Çoğu insan Barnum ya da olumlu profili seçer; zıt profil bile 'benim' hissi verir. Bir okumanın seni tanımladığını söylemek için, aynı okumanın başkalarını tanımlamadığını göstermen gerekir."
   },
   "sogukOkuma": {
-    "kaynak": ["Rowland", "Hyman 1977", "Wiseman"],
+    "kaynak": [
+      "Rowland",
+      "Hyman 1977",
+      "Wiseman"
+    ],
     "aciklama": "Bir sahne medyumu kaydı. Her cümleyi soğuk okuma öğesiyle etiketle. Aynı cümle birden fazla öğe taşıyabilir; puan, doğru etiket sayısı eksi yanlış etiket sayısıdır.",
     "ogeler": [
-      { "id": "barnum", "ad": "Barnum ifadesi", "aciklama": "Herkese uyan genel ifade." },
-      { "id": "gokkusagi", "ad": "Gökkuşağı hilesi", "aciklama": "Zıt özellikleri birlikte söylemek." },
-      { "id": "olta", "ad": "Olta atma", "aciklama": "İfadeyi soru gibi söyleyip tepkiye göre iddiaya çevirmek." },
-      { "id": "catal", "ad": "Çatallama", "aciklama": "Tutmayınca ifadeyi başka yöne çevirmek." },
-      { "id": "olasilik", "ad": "Yüksek olasılıklı tahmin", "aciklama": "Çoğu insanda doğru olan ayrıntı (sırt ağrısı, eski fotoğraf kutusu)." },
-      { "id": "gelecek", "ad": "Geleceğe erteleme", "aciklama": "Tutmayan ifadeyi 'yakında anlayacaksın' diye ertelemek." },
-      { "id": "iltifat", "ad": "İltifat", "aciklama": "Danışanı öven ifade." },
-      { "id": "sorumluluk", "ad": "Sorumluluğu danışana atma", "aciklama": "'Şu an hatırlamıyor olabilirsin', 'sen kendi hayatına uyarla'." }
+      {
+        "id": "barnum",
+        "ad": "Barnum ifadesi",
+        "aciklama": "Herkese uyan genel ifade."
+      },
+      {
+        "id": "gokkusagi",
+        "ad": "Gökkuşağı hilesi",
+        "aciklama": "Zıt özellikleri birlikte söylemek."
+      },
+      {
+        "id": "olta",
+        "ad": "Olta atma",
+        "aciklama": "İfadeyi soru gibi söyleyip tepkiye göre iddiaya çevirmek."
+      },
+      {
+        "id": "catal",
+        "ad": "Çatallama",
+        "aciklama": "Tutmayınca ifadeyi başka yöne çevirmek."
+      },
+      {
+        "id": "olasilik",
+        "ad": "Yüksek olasılıklı tahmin",
+        "aciklama": "Çoğu insanda doğru olan ayrıntı (sırt ağrısı, eski fotoğraf kutusu)."
+      },
+      {
+        "id": "gelecek",
+        "ad": "Geleceğe erteleme",
+        "aciklama": "Tutmayan ifadeyi 'yakında anlayacaksın' diye ertelemek."
+      },
+      {
+        "id": "iltifat",
+        "ad": "İltifat",
+        "aciklama": "Danışanı öven ifade."
+      },
+      {
+        "id": "sorumluluk",
+        "ad": "Sorumluluğu danışana atma",
+        "aciklama": "'Şu an hatırlamıyor olabilirsin', 'sen kendi hayatına uyarla'."
+      }
     ],
     "kayit": [
-      { "id": "c1", "metin": "Sizde çok güçlü bir enerji var ama içinizde bazen kendinize bile itiraf etmediğiniz bir kırılganlık taşıyorsunuz.", "ogeler": ["gokkusagi", "iltifat", "barnum"] },
-      { "id": "c2", "metin": "Bir 'J' harfi görüyorum… James, Jale, belki de Cem gibi bir isim? Sizin için önemli biri.", "ogeler": ["olta", "olasilik"] },
-      { "id": "c3", "metin": "Hayır mı? O zaman bu kişi sizin değil, size yakın birinin hayatında; yakında ortaya çıkacak.", "ogeler": ["catal", "gelecek"] },
-      { "id": "c4", "metin": "Evde bir kutuda eski fotoğraflar var, uzun süredir açılmamış.", "ogeler": ["olasilik"] },
-      { "id": "c5", "metin": "Bu anlamı siz kendi hayatınıza uyarlayın; ruhlar bazen sembollerle konuşur, şu an hatırlamıyor olabilirsiniz.", "ogeler": ["sorumluluk"] },
-      { "id": "c6", "metin": "Bel ya da sırt bölgesinde bir rahatsızlık hissediyorum; siz ya da yakınınız.", "ogeler": ["olasilik", "catal"] },
-      { "id": "c7", "metin": "Siz kolay kolay kimseye güvenmezsiniz; bu yüzden az ama derin dostluklarınız var. Güvendiğinize de sonuna kadar güvenirsiniz.", "ogeler": ["barnum", "iltifat"] },
-      { "id": "c8", "metin": "Önümüzdeki aylarda para konusunda bir değişim görüyorum; bir kapı kapanacak, başka bir kapı açılacak.", "ogeler": ["gelecek", "barnum"] }
+      {
+        "id": "c1",
+        "metin": "Sizde çok güçlü bir enerji var ama içinizde bazen kendinize bile itiraf etmediğiniz bir kırılganlık taşıyorsunuz.",
+        "ogeler": [
+          "gokkusagi",
+          "iltifat",
+          "barnum"
+        ]
+      },
+      {
+        "id": "c2",
+        "metin": "Bir 'J' harfi görüyorum… James, Jale, belki de Cem gibi bir isim? Sizin için önemli biri.",
+        "ogeler": [
+          "olta",
+          "olasilik"
+        ]
+      },
+      {
+        "id": "c3",
+        "metin": "Hayır mı? O zaman bu kişi sizin değil, size yakın birinin hayatında; yakında ortaya çıkacak.",
+        "ogeler": [
+          "catal",
+          "gelecek"
+        ]
+      },
+      {
+        "id": "c4",
+        "metin": "Evde bir kutuda eski fotoğraflar var, uzun süredir açılmamış.",
+        "ogeler": [
+          "olasilik"
+        ]
+      },
+      {
+        "id": "c5",
+        "metin": "Bu anlamı siz kendi hayatınıza uyarlayın; ruhlar bazen sembollerle konuşur, şu an hatırlamıyor olabilirsiniz.",
+        "ogeler": [
+          "sorumluluk"
+        ]
+      },
+      {
+        "id": "c6",
+        "metin": "Bel ya da sırt bölgesinde bir rahatsızlık hissediyorum; siz ya da yakınınız.",
+        "ogeler": [
+          "olasilik",
+          "catal"
+        ]
+      },
+      {
+        "id": "c7",
+        "metin": "Siz kolay kolay kimseye güvenmezsiniz; bu yüzden az ama derin dostluklarınız var. Güvendiğinize de sonuna kadar güvenirsiniz.",
+        "ogeler": [
+          "barnum",
+          "iltifat"
+        ]
+      },
+      {
+        "id": "c8",
+        "metin": "Önümüzdeki aylarda para konusunda bir değişim görüyorum; bir kapı kapanacak, başka bir kapı açılacak.",
+        "ogeler": [
+          "gelecek",
+          "barnum"
+        ]
+      }
     ]
   },
   "tabanOrani": {
-    "kaynak": ["Tversky & Kahneman 1974", "Derren Brown"],
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Derren Brown"
+    ],
     "aciklama": "Adli test %99 doğru (hem pozitifleri hem negatifleri). Aranan özellik nüfusta 10.000 kişide 1. Şüphelinin testi pozitif çıktı. Gerçekten o özelliği taşıma olasılığı nedir?",
     "secenekler": [
-      { "id": "a", "metin": "Yaklaşık %99", "dogru": false },
-      { "id": "b", "metin": "Yaklaşık %50", "dogru": false },
-      { "id": "c", "metin": "Yaklaşık %1", "dogru": true },
-      { "id": "d", "metin": "Yaklaşık %10", "dogru": false }
+      {
+        "id": "a",
+        "metin": "Yaklaşık %99",
+        "dogru": false
+      },
+      {
+        "id": "b",
+        "metin": "Yaklaşık %50",
+        "dogru": false
+      },
+      {
+        "id": "c",
+        "metin": "Yaklaşık %1",
+        "dogru": true
+      },
+      {
+        "id": "d",
+        "metin": "Yaklaşık %10",
+        "dogru": false
+      }
     ],
     "cozum": "10.000 kişide 1 gerçek pozitif (test onu %99 yakalar: ~1). Kalan 9.999 kişide %1 yanlış pozitif: ~100. Pozitif çıkan ~101 kişiden yalnızca 1'i gerçek: ~%1. Taban oranı ihmali, 'tipik suçlu' profillerinin de tuzağıdır."
+  },
+  "linda": {
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Konnikova"
+    ],
+    "aciklama": "Her çiftte iki iddia var. Hangisi daha OLASI? Not: 'daha inandırıcı' değil, 'daha olası'. Ayrıntı hikâyeyi inandırıcı yapar ama olasılığı düşürür; ayrık ('ya da') iddialar ise sanıldığından daha olasıdır.",
+    "ciftler": [
+      {
+        "id": "c1",
+        "tur": "birlesim",
+        "profil": "Kerem, 34. Eski bir sabıkası var, kumar borcu içinde, çabuk öfkelenir. Cinayet gecesi otelin kasası açılmış.",
+        "secenekler": [
+          {
+            "id": "a",
+            "metin": "Kerem o gece kasadan para aldı.",
+            "dogru": true
+          },
+          {
+            "id": "b",
+            "metin": "Kerem o gece kasadan para aldı ve kurbanı tehdit etti.",
+            "dogru": false
+          }
+        ],
+        "aciklama": "'Para aldı VE tehdit etti' iddiası, 'para aldı' iddiasının bir alt kümesidir; ikisinin birlikte olma olasılığı tek başına birinden büyük olamaz. Profil ('sabıkalı, öfkeli') tehdit ayrıntısını inandırıcı kılar; olası kılmaz."
+      },
+      {
+        "id": "c2",
+        "tur": "birlesim",
+        "profil": "Nazlı, otelin muhasebecisi. Sessiz, düzenli, on iki yıldır aynı yerde çalışıyor. Denetimde hesaplarda bir tutarsızlık bulundu.",
+        "secenekler": [
+          {
+            "id": "a",
+            "metin": "Nazlı tutarsızlığı fark etti ve müdürden gizledi.",
+            "dogru": false
+          },
+          {
+            "id": "b",
+            "metin": "Nazlı tutarsızlığı fark etti.",
+            "dogru": true
+          }
+        ],
+        "aciklama": "Sessiz ve düzenli profil 'gizledi' ayrıntısına ters de düşse, kural aynı: iki koşul birlikte, tek koşuldan daha az olasıdır. Linda deneyinde katılımcıların %85–87'si ayrıntılı seçeneği seçti; açıklama sonrası bile %65 benzeşim mantığında kaldı."
+      },
+      {
+        "id": "c3",
+        "tur": "birlesim",
+        "profil": "Kurbanın odasından gece yarısı kavga sesi geldiği söyleniyor. Kapı zorlanmamış.",
+        "secenekler": [
+          {
+            "id": "a",
+            "metin": "Fail kurbanın tanıdığı biriydi.",
+            "dogru": true
+          },
+          {
+            "id": "b",
+            "metin": "Fail kurbanın tanıdığı biriydi ve kavga eski bir borç yüzünden çıktı.",
+            "dogru": false
+          }
+        ],
+        "aciklama": "'Borç yüzünden' ayrıntısı hikâyeyi tamamlar, o yüzden zihin ona sarılır (iç masalcı). Ama her eklenen 'VE' olasılık çarpanıdır: 1'den küçük iki sayının çarpımı ikisinden de küçüktür."
+      },
+      {
+        "id": "c4",
+        "tur": "ayrik",
+        "profil": "Yedek kart anahtarı resepsiyon tezgâhından kaybolmuş. O saatte tezgâha yaklaşan iki kişi var: resepsiyonist ve temizlik görevlisi.",
+        "secenekler": [
+          {
+            "id": "a",
+            "metin": "Anahtarı resepsiyonist aldı.",
+            "dogru": false
+          },
+          {
+            "id": "b",
+            "metin": "Anahtarı resepsiyonist ya da temizlik görevlisi aldı.",
+            "dogru": true
+          }
+        ],
+        "aciklama": "Bu kez uzun seçenek doğru: 'YA DA' ayrık olaydır, olasılıkları toplar. İnsanlar birleşik ('ve') olayların olasılığını abartır, ayrık ('ya da') olayların olasılığını küçümser. Kural 'kısa olanı seç' değil, 'koşulları say'dır."
+      },
+      {
+        "id": "c5",
+        "tur": "birlesim",
+        "profil": "Hastanede gece vardiyasında bir hasta beklenmedik şekilde öldü. Hemşire Ayla o gece vardiyadaydı ve hastayla önceden tartışmıştı.",
+        "secenekler": [
+          {
+            "id": "a",
+            "metin": "Ayla dozu yanlış verdi ve bunu kayıt defterinden sildi.",
+            "dogru": false
+          },
+          {
+            "id": "b",
+            "metin": "Ayla dozu yanlış verdi.",
+            "dogru": true
+          }
+        ],
+        "aciklama": "'Tipik şüpheli' profili (motivasyon + fırsat) ayrıntılı senaryoyu çekici kılar; temsil edicilik kısayolu budur. Soruşturmada ayrıntılı hipotez yine kurulabilir, ama olasılığı yüksek diye değil, test edilebilir diye."
+      }
+    ]
+  },
+  "offBeat": {
+    "kaynak": [
+      "Kuhn 2008",
+      "Derren Brown",
+      "Macknik 2008"
+    ],
+    "kilavuz": [
+      "off-beat",
+      "yanlis-yonlendirme",
+      "dikkat-boslugu-tanik"
+    ],
+    "aciklama": "Motel resepsiyonundan yedek kart anahtarı kayboldu. Resepsiyonist ve bekleyen bir çift olay boyunca tezgâhın başındaydı. Aşağıdaki anları oku, sonra üç soruyu cevapla.",
+    "anlar": [
+      {
+        "id": "a1",
+        "metin": "Misafir içeri girer, ıslak şemsiyesini silkeler ve resepsiyoniste yüksek sesle bir fıkra anlatır. Resepsiyonist ve bekleyen çift kahkaha atar."
+      },
+      {
+        "id": "a2",
+        "metin": "Kahkaha dinerken resepsiyonist arkasına yaslanır, gözlüğünü siler. Misafir rahat bir tavırla tezgâha yaslanmış, bir eli tezgâhın üstünde, 'ne hava ama' diye söylenir."
+      },
+      {
+        "id": "a3",
+        "metin": "Misafir konaklama formunu doldurur; resepsiyonist kimliği dikkatle inceler, misafirin ellerine ve kaleme bakar."
+      },
+      {
+        "id": "a4",
+        "metin": "Misafir çantasını yere düşürür, içindekiler dağılır; herkes eğilip bakar. Misafir 'pardon' diyerek iki eliyle eşyaları toplar, resepsiyonist onun ellerini izler."
+      },
+      {
+        "id": "a5",
+        "metin": "Misafir 'iyi geceler' deyip kapıya yürür; resepsiyonist bilgisayara döner."
+      }
+    ],
+    "sorular": [
+      {
+        "id": "s1",
+        "metin": "Anahtarın tezgâhtan alınma ihtimali hangi anda en yüksek?",
+        "secenekler": [
+          {
+            "id": "a1",
+            "metin": "Fıkra anlatırken (a1)",
+            "dogru": false
+          },
+          {
+            "id": "a2",
+            "metin": "Kahkaha dinerken, resepsiyonist arkasına yaslandığında (a2)",
+            "dogru": true
+          },
+          {
+            "id": "a3",
+            "metin": "Form doldurulurken (a3)",
+            "dogru": false
+          },
+          {
+            "id": "a4",
+            "metin": "Çanta düştüğünde (a4)",
+            "dogru": false
+          },
+          {
+            "id": "a5",
+            "metin": "Kapıya yürürken (a5)",
+            "dogru": false
+          }
+        ],
+        "aciklama": "Off-beat: her dikkat birimini bir gevşeme izler. Fıkra yüksek ilgi anıdır, kahkahadan sonraki rahatlama dikkatin düştüğü andır; Slydini yöntemi arkasına yaslanıp rahatken yapar. Çanta düşmesi (a4) çekici görünür ama orada herkes misafirin ellerini izliyor; sihirbaz yöntemi izlenen yerde yapmaz."
+      },
+      {
+        "id": "s2",
+        "metin": "Resepsiyonist ısrarla 'gözümü ondan hiç ayırmadım' diyor. Bu ifade ne söyler?",
+        "secenekler": [
+          {
+            "id": "x",
+            "metin": "Anahtarı o almadı; sürekli izleniyordu.",
+            "dogru": false
+          },
+          {
+            "id": "y",
+            "metin": "Bakmak görmek değildir; dikkat gevşediği anda gözün önündeki olay kaçırılır.",
+            "dogru": true
+          },
+          {
+            "id": "z",
+            "metin": "Resepsiyonist yalan söylüyor; anahtarı kendi aldı.",
+            "dogru": false
+          }
+        ],
+        "aciklama": "Çakmak deneyinde sigara 15 cm yukarıdan görünür şekilde düşürüldü; çoğu izleyici görmedi ve tespit nereye bakıldığıyla ilişkisizdi. Samimi tanığın 'hiç ayırmadım' demesi ne onu ne misafiri temize çıkarır; sadece dikkatin sınırını gösterir."
+      },
+      {
+        "id": "s3",
+        "metin": "Bekleyen çiftten kadın: 'Misafir kartı havaya attı, yakaladı, sonra kart yoktu.' Kartı havada nasıl gördü?",
+        "secenekler": [
+          {
+            "id": "x",
+            "metin": "Kart gerçekten havaya atıldı; kadın doğru gördü.",
+            "dogru": false
+          },
+          {
+            "id": "y",
+            "metin": "Misafirin bakışı yukarı gitti; beyin tahmine uyan hareketi 'gördü' (kaybolan top yanılsaması).",
+            "dogru": true
+          },
+          {
+            "id": "z",
+            "metin": "Kadın uyduruyor; misafiri korumak istiyor.",
+            "dogru": false
+          }
+        ],
+        "aciklama": "Kaybolan top: sihirbaz hayali topa bakınca izleyicilerin %68'i topu yukarıda 'gördü', eline bakınca %32. Yaklaşık 100 ms sinirsel gecikme yüzünden beyin 'şimdi'yi tahmin eder; tahmine uyan kanıt varsa olmayan olay görülür. Tanık yalancı değil, algısı tamamlanmış."
+      }
+    ]
+  },
+  "inceDilim": {
+    "kaynak": [
+      "Ambady & Rosenthal 1992",
+      "Naumann 2009"
+    ],
+    "aciklama": "Her kişiyi 30 saniye izlediğini varsay. Üç yargı ver. Ders: ince dilim kişilerarası özelliklerde şaşırtıcı ölçüde iyidir; yalan sorusunda değil.",
+    "kisiler": [
+      {
+        "id": "k1",
+        "ad": "Selim",
+        "betimleme": "Bekleme odasında Selim: içeri giren herkese ayağa kalkıp elini uzatıyor, adlarını tekrar ediyor. Konuşurken öne eğiliyor, sık ve geniş gülümsüyor. Sorulara kısa, kesin cevaplar veriyor; konuyu çoğu zaman kendisi belirliyor; sözü kesildiğinde sesini yükseltmeden kaldığı yerden devam ediyor. Ellerini kullanıyor, oturuşu açık.",
+        "boyutlar": [
+          {
+            "id": "sicaklik",
+            "soru": "Sıcaklık",
+            "dogru": "sicak",
+            "secenekler": [
+              {
+                "id": "sicak",
+                "metin": "Sıcak"
+              },
+              {
+                "id": "soguk",
+                "metin": "Mesafeli"
+              }
+            ],
+            "aciklama": "Ayağa kalkma, isim tekrarı, öne eğilme, gülümseme: iş arkadaşları da onu sıcak buluyor. Bu tür kişilerarası boyutlarda 30 saniyelik yargı r≈.4 ile isabetlidir."
+          },
+          {
+            "id": "baskinlik",
+            "soru": "Baskınlık",
+            "dogru": "baskin",
+            "secenekler": [
+              {
+                "id": "baskin",
+                "metin": "Baskın"
+              },
+              {
+                "id": "cekingen",
+                "metin": "Çekingen"
+              }
+            ],
+            "aciklama": "Konuyu belirleme, kesin cevap, kesilince sakin devam: baskınlık ince dilimden iyi okunan özelliklerdendir."
+          },
+          {
+            "id": "yalan",
+            "soru": "İfadesinde yalan var mı?",
+            "dogru": "bilinemez",
+            "secenekler": [
+              {
+                "id": "evet",
+                "metin": "Evet"
+              },
+              {
+                "id": "hayir",
+                "metin": "Hayır"
+              },
+              {
+                "id": "bilinemez",
+                "metin": "Bu betimlemeden bilinemez"
+              }
+            ],
+            "aciklama": "Aldatma için ince dilim doğruluğu .31'dir ve süre uzasa da artmaz. Rahat ve sıcak görünmek dürüstlük kanıtı değildir; bazı insanlar doğal olarak dürüst görünür (demeanor bias)."
+          }
+        ]
+      },
+      {
+        "id": "k2",
+        "ad": "Hale",
+        "betimleme": "Kantinde Hale: kollarını kavuşturmuş, göz temasını çabuk kesiyor, cevapları tek kelime. Kendine soru gelince başkasına yönlendiriyor, sık sık telefonuna bakıyor. Masasına oturan tanıdığına bile sadece başıyla selam veriyor; sesi alçak, cümleleri yarım. Çayını iki eliyle tutuyor.",
+        "boyutlar": [
+          {
+            "id": "sicaklik",
+            "soru": "Sıcaklık",
+            "dogru": "soguk",
+            "secenekler": [
+              {
+                "id": "sicak",
+                "metin": "Sıcak"
+              },
+              {
+                "id": "soguk",
+                "metin": "Mesafeli"
+              }
+            ],
+            "aciklama": "Kavuşturulmuş kollar, kesik göz teması, tek kelimelik cevaplar: gözlemciler onu mesafeli bulur ve iş arkadaşları da öyle tanımlıyor. Bu bir kişilik okumasıdır, suç okuması değil."
+          },
+          {
+            "id": "baskinlik",
+            "soru": "Baskınlık",
+            "dogru": "cekingen",
+            "secenekler": [
+              {
+                "id": "baskin",
+                "metin": "Baskın"
+              },
+              {
+                "id": "cekingen",
+                "metin": "Çekingen"
+              }
+            ],
+            "aciklama": "Soruyu başkasına yönlendirme, alçak ses, yarım cümle: çekingenlik ince dilimde iyi okunur."
+          },
+          {
+            "id": "yalan",
+            "soru": "İfadesinde yalan var mı?",
+            "dogru": "bilinemez",
+            "secenekler": [
+              {
+                "id": "evet",
+                "metin": "Evet"
+              },
+              {
+                "id": "hayir",
+                "metin": "Hayır"
+              },
+              {
+                "id": "bilinemez",
+                "metin": "Bu betimlemeden bilinemez"
+              }
+            ],
+            "aciklama": "Kavuşturulmuş kollar ve kaçan bakış 'yalancı' klişesidir; bilimsel desteği yoktur (mit). Aynı davranış utangaçlık, yorgunluk ya da kişilik olabilir. Yalan sorusu temel çizgi, delil ve çelişkiyle cevaplanır, 30 saniyelik izlenimle değil."
+          }
+        ]
+      }
+    ]
+  },
+  "ciftKor": {
+    "kaynak": [
+      "Derren Brown",
+      "Wiseman",
+      "French 2024"
+    ],
+    "aciklama": "Sahil kasabasında 'enerji şifacısı' Rıfat Bey elini değdirmeden ağrıyı geçirdiğini söylüyor; kasaba halkı yemin ediyor. Dolandırıcılık şüphesi var. İddiayı adil ama sızdırmaz biçimde sınayacak protokolü kur: hangi maddeleri koyarsın?",
+    "maddeler": [
+      {
+        "id": "g1",
+        "tur": "gerekli",
+        "metin": "Hastalar rastgele iki gruba ayrılır: gerçek seans ve sahte seans (perde arkasında şifacı yok).",
+        "aciklama": "Rastgele atama ve kontrol grubu olmadan hastalık dalgalanması, plasebo ve ortalamaya gerileme 'şifa' gibi görünür."
+      },
+      {
+        "id": "g2",
+        "tur": "gerekli",
+        "metin": "Hasta hangi grupta olduğunu bilmez.",
+        "aciklama": "Birinci körlük: beklenti plasebo etkisi üretir; hastanın bilmemesi bunu iki grupta eşitler."
+      },
+      {
+        "id": "g3",
+        "tur": "gerekli",
+        "metin": "Ağrıyı ölçen ve kaydeden kişi de hangi hastanın hangi grupta olduğunu bilmez.",
+        "aciklama": "İkinci körlük: ölçen kişinin beklentisi sızar (Rosenthal etkisi). 'Çift kör' tam da bu iki körlüktür."
+      },
+      {
+        "id": "g4",
+        "tur": "gerekli",
+        "metin": "Başarı ölçütü (ne kadar ağrı azalması, kaç hastada) deney başlamadan yazılır ve şifacıyla birlikte imzalanır.",
+        "aciklama": "Ön kayıtlı ölçüt sonradan 'aslında şunu iyileştiriyor' kaydırmasını engeller; uygulayıcının önceden onayı 'bilim bana uymaz' bahanesini kapatır."
+      },
+      {
+        "id": "g5",
+        "tur": "gerekli",
+        "metin": "Deneme sayısı önceden belirlenir; tek bir 'mucize' değil, tüm denemeler sayılır.",
+        "aciklama": "Yeterli tekrar şansı eler; küçük örneklem uç sonuç üretir (küçük sayılar yasası)."
+      },
+      {
+        "id": "g6",
+        "tur": "gerekli",
+        "metin": "Ağrı seans öncesi ve sonrası aynı standart ölçekle ölçülür; sahte grubun iyileşmesi taban alınır.",
+        "aciklama": "Etki = gerçek grup − sahte grup. Kendi başına 'iyileşti' anlamsızdır; hastalık zaten dalgalanır, dipte başlanan her tedavi iyileşmeye atfedilir."
+      },
+      {
+        "id": "t1",
+        "tur": "tuzak",
+        "metin": "Şifacı hangi hastaları alacağını kendisi seçer; 'en açık' olanlar en iyi cevap verir.",
+        "aciklama": "Seçim yanlılığı: uygulayıcı inananları ve kendiliğinden iyileşecekleri seçer. Rastgele atamanın tam tersi."
+      },
+      {
+        "id": "t2",
+        "tur": "tuzak",
+        "metin": "Sonuçlar iyi görünmeye başlayınca deney durdurulur.",
+        "aciklama": "İsteğe bağlı durdurma: rastgele dalgalanmanın uygun anında kesmek şansı kanıta çevirir."
+      },
+      {
+        "id": "t3",
+        "tur": "tuzak",
+        "metin": "Şifacı seans sırasında hastayla konuşabilir ve hastanın hangi gruba düştüğünü görebilir.",
+        "aciklama": "Körlük bozulur; şifacı soğuk okuma ve telkinle beklenti üretir, sonuçları da bilir."
+      },
+      {
+        "id": "t4",
+        "tur": "tuzak",
+        "metin": "İyileşen hastaların video tanıklıkları kanıt olarak sayılır.",
+        "aciklama": "Tanıklık ölçüm değildir: iyileşmeyenler kamera önüne çıkmaz (hayatta kalan yanlılığı); anlatı sonradan düzenlenir."
+      },
+      {
+        "id": "t5",
+        "tur": "tuzak",
+        "metin": "Başarısız denemeler 'odadaki şüpheci enerjiyi bozdu' gerekçesiyle sayım dışı bırakılır.",
+        "aciklama": "Sonradan uydurulan istisna iddiayı yanlışlanamaz kılar; yanlışlanamayan iddia test edilmiş sayılmaz."
+      },
+      {
+        "id": "t6",
+        "tur": "tuzak",
+        "metin": "Ölçümü şifacının asistanı yapar.",
+        "aciklama": "Çıkar çatışması ve körlük ihlali; ölçen kişi bağımsız ve kör olmalıdır. Uygulamalı kinezyolojide bağımsız çift kör glikoz/fruktoz testi hiç ilişki bulmadı."
+      }
+    ]
   }
 }

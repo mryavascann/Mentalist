@@ -527,3 +527,27 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** kalan tatbikatlar, takım hikâyesi + Ayna taslağı, diğer araçlar (DURUM.md).
+
+## [2026-09-16 12:30] Ajan #1 — Kalan tatbikatlar: Linda, off-beat, ince dilim, çift kör
+**Görev:** TASARIM §13'teki son dört tatbikatı kurmak; kaynaklı ve Kılavuz'a bağlı.
+
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- `mini_oyunlar.json` + `.ts`: `linda` (5 çift: 4 birleşim + 1 ayrık; `lindaPuanla`), `offBeat` (5 an, 3 soru; `offBeatPuanla`), `inceDilim` (2 kişi × sıcaklık/baskınlık/yalan; `inceDilimPuanla`, yalan≠bilinemez → aşırı genelleme), `ciftKor` (6 gerekli + 6 tuzak; `ciftKorPuanla`).
+- `kilavuz.json`: `birlesim-yanilgisi` (bilişsel yanlılıklar, güçlü; Tversky & Kahneman 1974, Konnikova) ve `cift-kor-test` (inanç/paranormal, güçlü; Derren Brown, Wiseman, French 2024). Toplam 64 madde.
+- Depo: `TatbikatId` genişledi; `lindaBitir/offBeatBitir/inceDilimBitir/ciftKorBitir`; sonuçlar kayıtla taşınır.
+- `Tatbikat.tsx`: dört yeni bileşen, sonuç sonrası seçenek renklendirme ve madde başına açıklama; `KILAVUZ_BAGI` haritası. `Baslik.tsx`: dört düğme + `puanEki`.
+- Test: `tests/arayuz/miniOyunlar2.test.ts` (9): içerik bütünlüğü (kaynaklar kütükte, tek doğru, birleşimde kısa / ayrıkta uzun seçenek doğru, yalan boyutu 'bilinemez', ≥5 gerekli/≥5 tuzak), puanlama sınırları, depo akışı ve dışa/içe aktarım.
+
+**Değişen dosyalar:** src/icerik/{mini_oyunlar.json,mini_oyunlar.ts,kilavuz.json}, src/arayuz/oyun/depo.ts, src/arayuz/ekranlar/{Tatbikat,Baslik}.tsx, tests/arayuz/miniOyunlar2.test.ts, docs.
+
+**Testler:** 262 geçti / 0 kaldı (komut: `npm test`). `npm run typecheck` temiz. `npm run build` tek dist/index.html (456 kB).
+
+**Alınan kararlar:** Linda tatbikatına ayrık çift eklendi (kalıp kırıcı); Kılavuz'a iki madde eklendi (kaynaklar NOTLAR başlıklarıyla eşleşiyor, yeni kaynak kaydı gerekmedi).
+
+**Sorunlar / riskler:** İnce dilim 'gerçek' değerleri kurgusal iş arkadaşı yargısıdır; metinde bunun kişilik okuması olduğu, suç okuması olmadığı açıkça yazıldı. Tatbikatlar için aralıklı tekrar önerisi (Analiz'den tatbikata yönlendirme) henüz yok.
+
+**Yarım kalanlar:** Yok.
+
+**Sıradaki ajan için:** 1) Takım arka plan hikâyesi + Ayna ark taslağı (TASARIM §14). 2) Diğer araçlar (§7): oda okuma, dijital iz, "şu an ne düşünüyor?", kayıt inceleme. 3) Analiz ekranından hata etiketine uygun tatbikat önerisi (aralıklı tekrar).
+
+**Geliştirme fikirleri:** Off-beat tatbikatını vaka üreticisine bağlamak: zaman çizelgesinde gerçek bir "gevşeme anı"na delil yerleştirme (sahnelenmiş delil ile birleşir).

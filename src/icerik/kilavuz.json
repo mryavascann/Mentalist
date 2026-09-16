@@ -853,5 +853,32 @@
       "Konnikova",
       "Tversky & Kahneman 1974"
     ]
+  },
+  {
+    "id": "birlesim-yanilgisi",
+    "bolum": "bilissel-yanliliklar",
+    "baslik": "Birleşim yanılgısı: ayrıntılı profil daha az olasıdır",
+    "ozet": "Linda/Bill deneyleri: 'banka memuru VE feminist' seçeneği 'banka memuru'ndan daha olası sanıldı (%85–87; açıklamadan sonra bile %65 benzeşim mantığında kaldı). Oysa iki koşulun birlikte olma olasılığı tek koşuldan büyük olamaz. Ayrıntı inandırıcılık verir, olasılık vermez. Tersine, ayrık ('ya A ya B') olayların olasılığı küçümsenir.",
+    "nasilKullanilir": "Şüpheli profilini ve senaryoyu koşullara ayır: her 'VE' bir çarpan, her 'YA DA' bir toplamdır. 'Her şey uyuyor' hissi geldiğinde kaç koşul saydığını kontrol et. Ayrıntılı hipotezi test etmek için kur, olası diye değil.",
+    "sinirlari": "Hikâyenin tutarlılığı ile olasılığı ayırmak zordur; tutarlı ve ayrıntılı senaryo yine araştırma yönü verir. Kural 'kısa olanı seç' değil, 'koşulları say'dır.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Tversky & Kahneman 1974",
+      "Konnikova"
+    ]
+  },
+  {
+    "id": "cift-kor-test",
+    "bolum": "inanc-paranormal",
+    "baslik": "Çift kör test: iddiayı tanıklıkla değil protokolle sına",
+    "ozet": "Hasta da ölçen de kimin gerçek uygulama aldığını bilmez; rastgele atama, ön kayıtlı başarı ölçütü ve deneme sayısı, uygulayıcının protokolü önceden onaylaması. Uygulamalı kinezyolojide çift kör glikoz/fruktoz testi hiç ilişki göstermedi ('işte bu yüzden çift kör test yapmıyoruz'). Randi'nin ödülü hiç alınmadı; pelerin ve kar maskeli 10 gönüllünün hiçbiri kendi okumasını tanıyamadı.",
+    "nasilKullanilir": "Sahte medyum ya da şifacı vakasında iddiayı inanç tartışmasına çevirme; test tasarla: kontrol grubu, çift körlük, önceden yazılmış ölçüt, tanıklık yerine ölçüm. Başarısız denemeleri sonradan 'enerji bozuldu' diye elemeyi kabul etme.",
+    "sinirlari": "Testin başarısızlığı dolandırıcılık niyetini kanıtlamaz; uygulayıcı samimi inanan olabilir (öz-aldatma, seçici anlatım). Niyet, delil ve para akışıyla gösterilir.",
+    "kanitDuzeyi": "guclu",
+    "kaynak": [
+      "Derren Brown",
+      "Wiseman",
+      "French 2024"
+    ]
   }
 ]

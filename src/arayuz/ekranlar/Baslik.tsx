@@ -1,6 +1,12 @@
 // Başlık ekranı: kahraman adı girişi (K-007), yeni vaka, kayıt dışa/içe aktarma (K-011).
 import { useRef, useState } from 'react';
 import { depo, kaydiSil, useOyun } from '../oyun/kullan';
+import type { TatbikatSonucu } from '../oyun/depo';
+
+/** Tatbikat düğmesi eki: tamamlandıysa ✓, puanı varsa puan. */
+function puanEki(s: TatbikatSonucu | undefined): string {
+  return s?.tamamlandi ? (s.puan === null ? ' ✓' : ` ✓ ${s.puan}`) : '';
+}
 
 export function Baslik() {
   const d = useOyun();
@@ -63,6 +69,10 @@ export function Baslik() {
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('kor-secim'); }}>Kör seçim{d.tatbikat.sonuclar['kor-secim']?.tamamlandi ? ' ✓' : ''}</button>
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('soguk-okuma'); }}>Soğuk okuma dedektörü{d.tatbikat.sonuclar['soguk-okuma']?.tamamlandi ? ` ✓ ${d.tatbikat.sonuclar['soguk-okuma']!.puan}` : ''}</button>
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('taban-orani'); }}>Taban oranı{d.tatbikat.sonuclar['taban-orani']?.tamamlandi ? (d.tatbikat.sonuclar['taban-orani']!.puan ? ' ✓' : ' ✗') : ''}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('linda'); }}>Linda tuzağı{puanEki(d.tatbikat.sonuclar['linda'])}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('off-beat'); }}>Kaybolan top / off-beat{puanEki(d.tatbikat.sonuclar['off-beat'])}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('ince-dilim'); }}>İnce dilim{puanEki(d.tatbikat.sonuclar['ince-dilim'])}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('cift-kor'); }}>Çift kör test tasarla{puanEki(d.tatbikat.sonuclar['cift-kor'])}</button>
           {d.sorgu && <button onClick={() => depo.ekranaGit(d.puan ? 'analiz' : 'vaka-acilis')}>Devam et</button>}
           <button onClick={disaAktar} disabled={!d.sorgu && d.gecmis.length === 0}>Kaydı dışa aktar</button>
           <button onClick={() => dosya.current?.click()}>Kaydı içe aktar</button>

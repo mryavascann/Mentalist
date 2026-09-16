@@ -17,7 +17,7 @@ import { bulunma } from '@ortak/turkce';
 import { PROJE } from '@ortak/surum';
 import { Rastgele } from '@ortak/rastgele';
 import { FORER } from '@icerik/forer';
-import { MINI_OYUNLAR, sogukOkumaPuanla } from '@icerik/mini_oyunlar';
+import { MINI_OYUNLAR, sogukOkumaPuanla, lindaPuanla, offBeatPuanla, inceDilimPuanla, ciftKorPuanla } from '@icerik/mini_oyunlar';
 import { soruMetni, teknikSonucMetni } from './metinler';
 import { takimYorumu, watsonSorusu, type TakimYorumu } from './takim';
 
@@ -25,7 +25,7 @@ export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 
 
 export interface WatsonAdimi { tur: PanoTuru; metin: string; soru: string; cevap?: { sinif: 'gozlem' | 'cikarim' | 'hipotez'; testEdildi: boolean } }
 export interface WatsonDurumu { adimlar: WatsonAdimi[]; indeks: number; bitti: boolean; celiskiler: string[]; testEdilmemisCikarim: string[] }
-export type TatbikatId = 'kor-secim' | 'soguk-okuma' | 'taban-orani';
+export type TatbikatId = 'kor-secim' | 'soguk-okuma' | 'taban-orani' | 'linda' | 'off-beat' | 'ince-dilim' | 'cift-kor';
 
 export interface TatbikatSonucu { tamamlandi: boolean; puan: number | null; secim?: string }
 
@@ -507,6 +507,34 @@ export class OyunDeposu {
     const dogru = MINI_OYUNLAR.tabanOrani.secenekler.find((s) => s.id === secenekId)?.dogru === true;
     this.tatbikatSonuc('taban-orani', { tamamlandi: true, puan: dogru ? 1 : 0, secim: secenekId });
     return dogru;
+  }
+
+  /** Linda tuzağı: çift başına doğru +1 (birleşim yanılgısı). */
+  lindaBitir(secimler: Record<string, string>) {
+    const r = lindaPuanla(secimler);
+    this.tatbikatSonuc('linda', { tamamlandi: true, puan: r.puan });
+    return r;
+  }
+
+  /** Kaybolan top / off-beat: üç soru, doğru +1. */
+  offBeatBitir(secimler: Record<string, string>) {
+    const r = offBeatPuanla(secimler);
+    this.tatbikatSonuc('off-beat', { tamamlandi: true, puan: r.puan });
+    return r;
+  }
+
+  /** İnce dilim: kişilik boyutları puanlanır; yalan sorusunda 'bilinemez' dışındaki cevap aşırı genellemedir. */
+  inceDilimBitir(secimler: Record<string, Record<string, string>>) {
+    const r = inceDilimPuanla(secimler);
+    this.tatbikatSonuc('ince-dilim', { tamamlandi: true, puan: r.puan });
+    return r;
+  }
+
+  /** Çift kör test tasarla: gerekli madde +1, tuzak −1. */
+  ciftKorBitir(secilen: string[]) {
+    const r = ciftKorPuanla(secilen);
+    this.tatbikatSonuc('cift-kor', { tamamlandi: true, puan: r.puan });
+    return r;
   }
 
   // ---------------------------------------------------------------------------------------------
