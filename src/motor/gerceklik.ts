@@ -14,7 +14,7 @@ import { tamlayan } from '@ortak/turkce';
 import type { Borc, Iliski, IliskiTuru, Kisi, Konum, Mekan, OlayCekirdegi, Vaka, VakaAyari, ZamanDilimi } from './tipler';
 import {
   EYLEMLER, ILISKI_SABLONLARI, MEKAN_SABLONLARI, MOTIVASYONLAR,
-  TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI,
+  TR_ERKEK_ADLARI, TR_KADIN_ADLARI, TR_SOYADLARI, YABANCI_ERKEK_ADLARI, YABANCI_KADIN_ADLARI, YABANCI_SOYADLARI, uygunRoller,
 } from './havuzlar';
 import { mekanaUygunArketipler, type Arketip } from './arketipler';
 import { AYNA_ARKETIPLERI, AYNA_ARKETIP_CARPANI } from './ayna';
@@ -88,7 +88,8 @@ function iliskileriUret(r: Rastgele, kisiler: Kisi[], kurban: Kisi): { iliskiler
     let sablon = r.agirlikliSec(ILISKI_SABLONLARI.map((s) => ({ deger: s, agirlik: s.agirlik })));
     if (sablon.tur === 'es' && esVar) sablon = ILISKI_SABLONLARI.find((s) => s.tur === 'aile')!;
     if (sablon.tur === 'es') esVar = true;
-    k.rol = `${tamlayan(kurban.ad.split(' ')[0]!)} ${r.sec(sablon.roller)}`; // "Nazlı'nın kardeşi"
+    // Rol, kişinin yaşı/cinsiyetiyle tutarlı seçilir (havuzlar.ts ROL_KOSULLARI); RNG tüketimi değişmez.
+    k.rol = `${tamlayan(kurban.ad.split(' ')[0]!)} ${r.sec(uygunRoller(sablon, k, kurban))}`; // "Nazlı'nın kardeşi"
     iliskiler.push({ a: k.id, b: kurban.id, tur: sablon.tur, sicaklik: sicaklikUret(r, sablon.tur) });
   }
   // Yan bağlar: kurban dışı çiftler arasında %30 olasılıkla.

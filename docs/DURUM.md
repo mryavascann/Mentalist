@@ -34,14 +34,15 @@
 
 ## Test durumu
 - **Son eklemeler (19:40):** "ikinci kez sor" (K-016, `TEKRAR_CARPANI`), konuşma kaydında oda küçük resmi, delil türü ikonları, Ayna 3. karşılaşma takım sahnesi (`AYNA_SAHNE_ESIGI`), oda eşyası → Pano düğmesi. 4 test.
-- `npm test`: 40 dosya, 315 test geçti (2026-09-16 19:40). Süre ~90 sn.
+- **20:20:** tarayıcı ekran kontrolü (Playwright Chromium kurulu) temiz; iç ses seçicisi taşması düzeltildi; rol tutarlılığı kuralları (`havuzlar.ts uygunRoller`: anne/baba, meslek yaşı, üvey çocuk/yeğen). 2 test.
+- `npm test`: 41 dosya, 317 test geçti (2026-09-16 20:20). Süre ~90 sn.
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
 - Bash heredoc'ta uzun Python/Markdown kırılıyor; yamaları scratchpad `.py` olarak yaz ve çalıştır (`PYTHONIOENCODING=utf-8`). JSON yaması dosyayı indent=2 ile yeniden biçimler.
 - Higgsfield CLI global kurulu (`higgsfield --version`), giriş tarayıcıdan (`higgsfield auth login`); skill'ler proje içinde `.agents/skills/` (git dışı).
-- Depo tekildir; testler `depo.sifirla()` ile izole edilir. Playwright'ta rol tabanlı seçici.
+- Depo tekildir; testler `depo.sifirla()` ile izole edilir. Playwright Chromium kurulu; ekran görüntüsü için `dist/index.html`'i file:// ile aç (betik örneği günlükte 20:20 kaydı).
 - Sahnelenmiş delil oyuncuya bayrakla gösterilmez; fizik tutarsızlığı ile bulunur. Sahnelenmiş oda eşyası da öyle (toz izi, kırılmamış kitap sırtı).
 - İpucu sadakat testi zayıf ipuçlarında gürültüye duyarlı; yeni ipucu eklerken `betimlemeYonu` ve kişilik temel çizgisini (`ipucu.ts KISILIK_TEMELI`) birlikte ekle.
 - Gizli bilgi (ifade türü, iç ses gerçeği, eşya türü) oyun sırasında metne yazılmaz; Analiz'de açılır. Yeni araç eklerken sızma testi yaz.

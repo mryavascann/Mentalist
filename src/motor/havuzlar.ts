@@ -69,6 +69,31 @@ export const ILISKI_SABLONLARI: IliskiSablonu[] = [
   { tur: 'tanidik', agirlik: 14, roller: ['misafiri', 'kiracısı', 'bahçıvanı', 'şoförü', 'terapisti'] },
 ];
 
+/**
+ * Rol kuralları: rol, kişinin yaşı/cinsiyetiyle ve kurbanın yaşıyla çelişmemeli ("25 yaşında erkek, annesi" olmaz).
+ * Kural yoksa rol serbesttir. Meslek rolleri için alt yaş; ebeveyn/çocuk için yön ve en az 16 yıl fark.
+ */
+const ROL_KOSULLARI: Record<string, (kisi: { yas: number; cinsiyet: 'kadin' | 'erkek' }, kurban: { yas: number }) => boolean> = {
+  annesi: (k, v) => k.cinsiyet === 'kadin' && k.yas - v.yas >= 16,
+  babası: (k, v) => k.cinsiyet === 'erkek' && k.yas - v.yas >= 16,
+  'üvey çocuğu': (k, v) => v.yas - k.yas >= 16,
+  yeğeni: (k, v) => v.yas - k.yas >= 10,
+  kardeşi: (k, v) => Math.abs(k.yas - v.yas) <= 25,
+  kuzeni: (k, v) => Math.abs(k.yas - v.yas) <= 25,
+  'çocukluk arkadaşı': (k, v) => Math.abs(k.yas - v.yas) <= 8,
+  avukatı: (k) => k.yas >= 27,
+  muhasebecisi: (k) => k.yas >= 27,
+  terapisti: (k) => k.yas >= 27,
+  'iş ortağı': (k) => k.yas >= 23,
+  'eski ortağı': (k) => k.yas >= 25,
+};
+
+/** Şablonun bu kişi için uygun rolleri; hiçbiri uymazsa nötr "yakını". */
+export function uygunRoller(sablon: { roller: string[] }, kisi: { yas: number; cinsiyet: 'kadin' | 'erkek' }, kurban: { yas: number }): string[] {
+  const uygun = sablon.roller.filter((rol) => ROL_KOSULLARI[rol]?.(kisi, kurban) ?? true);
+  return uygun.length ? uygun : ['yakını'];
+}
+
 export interface OlaySablonu {
   tur: OlayTuru;
   agirlik: number;

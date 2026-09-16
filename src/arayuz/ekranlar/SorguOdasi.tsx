@@ -159,7 +159,7 @@ export function SorguOdasi() {
             </div>
             <div className="satirici">
               <button title={teknik('ic-ses').nasil} onClick={() => depo.teknik('ic-ses', { tahmin })}>{teknik('ic-ses').ad} · {teknik('ic-ses').maliyet.zaman}s</button>
-              <select aria-label="İç ses tahmini" value={tahmin} onChange={(e) => setTahmin(e.target.value as IcSesKategori)}>
+              <select aria-label="İç ses tahmini" value={tahmin} onChange={(e) => setTahmin(e.target.value as IcSesKategori)} style={{ maxWidth: '100%', width: '100%' }}>
                 {IC_SES_KATEGORILERI.map((k) => <option key={k} value={k}>{IC_SES_SECENEKLERI[k]}</option>)}
               </select>
             </div>

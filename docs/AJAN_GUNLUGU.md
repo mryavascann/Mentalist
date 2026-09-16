@@ -704,3 +704,10 @@
 **Yarım kalanlar:** Yok.
 
 **Sıradaki ajan için:** 1) Kullanıcı oynayınca açık kararlar (zor seviye seçenekleri a/b/c, saat bütçesi). 2) dist 6 MB rahatsız ederse portre 384² / oda q50. 3) Fikir: Kılavuz 'kayit-inceleme' maddesine "ikinci kez sor" için oyun içi bağ (teknik listesi değil, sorgu ipucu metni).
+
+## [2026-09-16 20:20] Ajan #1 — Tarayıcı ekran kontrolü, seçici taşması, rol tutarlılığı (yaş/cinsiyet)
+**Görev:** Görsellerin gerçek tarayıcıda yerleşimini doğrulamak; bulunanları düzeltmek.
+**Yapılanlar:** Playwright Chromium kuruldu (`npx playwright install chromium`); scratchpad betiği `dist/index.html`'i file:// ile açıp 7 ekranın görüntüsünü aldı (konsol hatası 0). Bulgular: (1) Sorgu panelinde iç ses seçicisi taşıyordu → `width: 100%`. (2) **Gerçekçilik hatası:** roller yaş/cinsiyete bakmıyordu ("25 yaşında erkek, kurbanın annesi"; "21 yaşında terapist"). `havuzlar.ts` `ROL_KOSULLARI` + `uygunRoller` (anne/baba cinsiyet ve ≥16 yaş fark; üvey çocuk ≤−16; yeğen ≤−10; kardeş/kuzen |fark|≤25; çocukluk arkadaşı ≤8; avukat/muhasebeci/terapist ≥27; iş ortağı ≥23; eski ortağı ≥25; hiçbiri uymazsa "yakını"). RNG tüketimi aynı → regresyon seed'leri değişmedi. Test `tests/motor/roller.test.ts` (2).
+**Değişen dosyalar:** src/motor/{havuzlar,gerceklik}.ts, src/arayuz/ekranlar/SorguOdasi.tsx, tests/motor/roller.test.ts, docs.
+**Testler:** 317 geçti / 0 kaldı. Typecheck temiz. Build 5.98 MB.
+**Sıradaki ajan için:** Ekran kontrolü tekrar gerekirse: scratchpad'de `ekran.mjs` yoktur (oturumluk); Playwright + `chromium.launch()` ile `dist/index.html`'i aç, `.kisi-listesi button`, `.panel .dugmeler button`, `input[name=fail]`, `.birincil` seçicileri iş görür. Chromium `~/AppData/Local/ms-playwright` altında kurulu.
