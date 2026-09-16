@@ -620,3 +620,11 @@
 **Sıradaki ajan için:** 1) Ayna arkı: Ayna vakalarına özel arketip ağırlığı, ark boyunca biriken notlar, "okundu" oranı kör nokta bölümünde. 2) Zor seviye ölçümü: bot denge testleriyle zor seviyede başarım rakamları çıkarıp kullanıcıya sun (kullanıcı henüz oynamadı; açık kararlar oynayınca). 3) Higgsfield görselleri (kullanıcı "üret" deyince).
 
 **Geliştirme fikirleri:** "İkinci kez sor" mekaniği (Swerts: tekrar sorulan yalan daha çok sızdırır) — defter aynı cevabı verir, ipucu çekimi `tekrar` etiketiyle 1.2 çarpan. Oda okumada oyuncunun sınıfladığı "sahnelenmiş" eşyayı panoya tek tıkla "olmayan/tutarsız" olarak eklemek.
+
+## [2026-09-16 16:30] Ajan #1 — Zor seviye bot ölçümü (rapor; kod değişmedi)
+**Görev:** Kullanıcının "zor yeterince zor mu?" sorusuna rakam vermek (kullanıcı henüz oynamadı).
+**Yapılanlar:** Geçici ölçüm testi (commit edilmedi, silindi): 300 vaka × 3 zorluk × 3 bot; ardından tanı (tanık/delil/kaçamak oranları). Sonuçlar DURUM.md "Açık kararlar" 2'de. Özet: yöntem botu her zorlukta %97; zorluk parametreleri tanık ve delil çelişkisini azaltıyor (zorda %23 vakada ikisi de yok) ama fail "olay anında iz bırakan tek kişi + geçerli CIT" yolundan hâlâ bulunuyor.
+**Değişen dosyalar:** docs/DURUM.md, docs/AJAN_GUNLUGU.md.
+**Testler:** 297 geçti (değişiklik yok).
+**Alınan kararlar:** Yok; seçenekler kullanıcıya sunuldu (a: masuma gürültü izi, b: failin ayrıntıyı fark etmemesi, c: önce oyna).
+**Sıradaki ajan için:** Kullanıcı seçenek seçerse `ZORLUK_PARAMETRELERI` + `delil.ts` tohumunu değiştir; `tests/denge/botlar.test.ts` ve `tests/motor/zorluk.test.ts` eşiklerini (zorda >%65) koru; regresyon seed'leri değişirse günlüğe yaz.

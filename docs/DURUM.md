@@ -25,7 +25,7 @@
 
 ## Açık kararlar (kullanıcı henüz oynamadı; oynayınca cevaplanacak — 16.09.2026)
 1. Vaka başına soruşturma saati bütçesi (varsayılan 12; oynayınca "yetmedi / bol" hissine göre).
-2. Zor seviye yeterince zor mu (ajan bot ölçümü sunacak; son karar oyuncuda; tek ayar noktası `ZORLUK_PARAMETRELERI`).
+2. **Zor seviye yeterince zor mu? Bot ölçümü (2026-09-16, 300 vaka/zorluk):** yöntem botu kolay/orta/zor = %97/%97/%97 doğruluk (masum suçlama %3); ipucu botu %32/%31/%30; şüpheci %20/%20/%18. Zorluk parametreleri bot için fark yaratmıyor. Tanı (suç vakalarında): tanık faili söyledi %44/%38/%30, delil çelişkisi %96/%89/%60, ikisi de yok %1/%5/%23, fail kaçamak %4/%11/%40. Zorda tanık ve delil azalıyor ama bot "olay anında izi olan tek kişi + geçerli CIT" yolundan buluyor (çözülebilirlik tohumu: fail her zaman olay odasında iz bırakır). **Seçenekler (karar oyuncuda):** (a) zorda masumlara da olay dilimi/odasında gürültü izi (şüpheli kümesi büyür), (b) zorda CIT'te failin ayrıntıyı "fark etmemiş" olma olasılığı, (c) hiç dokunma; insan oyuncu botun prosedürünü uygulamaz, önce oyna. Tek ayar noktası `ZORLUK_PARAMETRELERI` + `delil.ts` çözülebilirlik tohumu.
 3. "The Mentalist" adının telif riski (K-007) — yalnızca not; yayın öncesi hatırlatılacak.
 4. Higgsfield görselleri: görselsiz de oynanıyor; üretim kullanıcı isteğiyle.
 
