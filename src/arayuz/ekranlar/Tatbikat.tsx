@@ -66,7 +66,7 @@ function SogukOkuma() {
               {sogukOkuma.ogeler.map((o) => {
                 const secili = (secimler[c.id] ?? []).includes(o.id);
                 const gercek = c.ogeler.includes(o.id);
-                const stil = sonuc ? (gercek ? { background: '#dfeedd' } : secili ? { background: '#f3d6d3' } : {}) : {};
+                const stil = sonuc ? (gercek ? { background: 'var(--vurgu-dogru)' } : secili ? { background: 'var(--vurgu-yanlis)' } : {}) : {};
                 return <button key={o.id} className={secili ? 'secili' : ''} style={stil} disabled={!!sonuc} onClick={() => degistir(c.id, o.id)}>{o.ad}</button>;
               })}
             </div>
@@ -104,8 +104,8 @@ function TabanOrani() {
 /** Seçilen seçeneğe göre düğme rengi: sonuç açıklandıysa doğru yeşil, yanlış seçim kırmızı. */
 function secenekStili(aciklandi: boolean, dogru: boolean, secili: boolean) {
   if (!aciklandi) return {};
-  if (dogru) return { background: '#dfeedd' };
-  if (secili) return { background: '#f3d6d3' };
+  if (dogru) return { background: 'var(--vurgu-dogru)' };
+  if (secili) return { background: 'var(--vurgu-yanlis)' };
   return {};
 }
 
@@ -230,7 +230,7 @@ function CiftKor() {
       <p className="soluk">{ciftKor.aciklama}</p>
       {ciftKor.maddeler.map((m) => {
         const secili = secilen.includes(m.id);
-        const stil = sonuc ? (m.tur === 'gerekli' ? { background: secili ? '#dfeedd' : '#fbf3d5' } : secili ? { background: '#f3d6d3' } : {}) : {};
+        const stil = sonuc ? (m.tur === 'gerekli' ? { background: secili ? 'var(--vurgu-dogru)' : 'var(--vurgu-notr)' } : secili ? { background: 'var(--vurgu-yanlis)' } : {}) : {};
         return (
           <div key={m.id} className="kart" style={{ marginBottom: 6, ...stil }}>
             <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start', cursor: sonuc ? 'default' : 'pointer' }}>

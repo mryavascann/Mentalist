@@ -2,6 +2,7 @@
 import type { ReactNode } from 'react';
 import { depo, useOyun } from '../oyun/kullan';
 import type { Ekran } from '../oyun/depo';
+import { useTema } from '../tema';
 
 const SEKMELER: { ekran: Ekran; ad: string }[] = [
   { ekran: 'vaka-acilis', ad: 'Dosya' },
@@ -13,6 +14,7 @@ const SEKMELER: { ekran: Ekran; ad: string }[] = [
 
 export function Kabuk({ children }: { children: ReactNode }) {
   const d = useOyun();
+  const [tema, temaDegistir] = useTema();
   const vakaVar = d.sorgu !== null;
   const asim = d.zaman > d.zamanButcesi;
   return (
@@ -25,6 +27,15 @@ export function Kabuk({ children }: { children: ReactNode }) {
             ⏱ {d.zaman.toFixed(1)} / {d.zamanButcesi} saat
           </span>
         )}
+        <button
+          type="button"
+          className="tema-anahtari"
+          onClick={temaDegistir}
+          title={tema === 'acik' ? 'Karanlık moda geç' : 'Aydınlık moda geç'}
+          aria-label={tema === 'acik' ? 'Karanlık moda geç' : 'Aydınlık moda geç'}
+        >
+          {tema === 'acik' ? '🌙 Karanlık' : '☀️ Aydınlık'}
+        </button>
         <nav aria-label="Ekranlar">
           {SEKMELER.map((s) => (
             <button
