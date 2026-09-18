@@ -14,7 +14,7 @@ export function KanepeMolasi() {
         <img src={kanepeGif} alt="Kanepede kollarını kavuşturup uyuklayan dedektif" style={{ display: 'block', width: '100%', height: 'auto', border: '1px solid var(--cizgi)' }} />
         <figcaption className="daktilo" style={{ textAlign: 'center', padding: '12px 4px 14px', fontSize: 14 }}>Rahatsız etmeyin: düşünüyor.</figcaption>
       </figure>
-      <p className="soluk">Bir saat geçti. Sen gözlerini dinlendirirken takım çalıştı; bütün notlar Pano'da.</p>
+      <p className="soluk">Bir saat geçti. Sen kanepede pineklerken takım çalıştı; bütün notlar Pano'da.</p>
       {son && <div className="kart"><span className="daktilo">{son.metin}</span></div>}
       <div className="dugmeler" style={{ marginTop: 12 }}>
         <button onClick={() => depo.ekranaGit('sorgu')}>Uyan, işe dön</button>
