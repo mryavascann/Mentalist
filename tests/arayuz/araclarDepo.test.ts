@@ -26,7 +26,8 @@ describe('OyunDeposu — oda okuma', () => {
     const kayit = depo.durum.konusmalar.get(kisi.id)!.find((k) => k.teknikId === 'oda-okuma')!;
     expect(kayit.cevap).toContain(okuma.esyalar[0]!.betimleme);
     // Metin gizli türü sızdırmaz.
-    expect(kayit.cevap).not.toMatch(/sahnelenmi|kimlik iddias|kalıntı/i);
+    // Oyun sırasında eşyanın gerçek türü yazılmaz (ESYA_TURU_ADLARI yalnızca vaka sonunda görünür).
+    expect(kayit.cevap).not.toMatch(/sahnelenmi|kimlik iddias|kalıntı|verdiği mesaj|alışkanlık izi|hayatının izi|göstermelik düzen/i);
     for (const e of okuma.esyalar) depo.esyaSinifla(e.id, ESYA_SINIFI[e.tur]);
     expect(depo.durum.sorgu!.odaSiniflamalari.size).toBe(okuma.esyalar.length);
     depo.suclamaYap({ fail: null, guven: 0.5 });

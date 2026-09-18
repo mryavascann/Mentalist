@@ -75,7 +75,7 @@ function SogukOkuma() {
         );
       })}
       {!sonuc && <button className="birincil" onClick={() => setSonuc(depo.sogukOkumaBitir(secimler))}>Puanla</button>}
-      {sonuc && <p className="uyari">Puan: {sonuc.puan} / {sonuc.enYuksek}. Yeşil = gerçek öğe, kırmızı = yanlış etiket. Medyum bir cümlede birden fazla öğeyi üst üste bindirir.</p>}
+      {sonuc && <p className="uyari">Puan: {sonuc.puan} / {sonuc.enYuksek}. Yeşil gerçek öğeleri, kırmızı yanlış etiketlerini gösteriyor. Medyumlar bir cümlede birden fazla öğeyi üst üste bindirir.</p>}
       {bitmis && !sonuc && <p className="soluk">Daha önce tamamladın: {d.tatbikat.sonuclar['soguk-okuma']?.puan} puan.</p>}
     </>
   );
@@ -149,7 +149,7 @@ function OffBeat() {
   const hepsiSecildi = offBeat.sorular.every((s) => secimler[s.id] !== undefined);
   return (
     <>
-      <h2>Kaybolan top / off-beat</h2>
+      <h2>Kaybolan top ve gevşeme anı</h2>
       <p className="soluk">{offBeat.aciklama}</p>
       <ol style={{ paddingLeft: 20 }}>
         {offBeat.anlar.map((a) => <li key={a.id} style={{ marginBottom: 4 }}><b>{a.id}.</b> {a.metin}</li>)}
@@ -208,7 +208,7 @@ function InceDilim() {
       {sonuc && (
         <p className="uyari">
           Puan: {sonuc.puan} / {sonuc.enYuksek}.
-          {sonuc.asiriGenelleme > 0 ? ` ${sonuc.asiriGenelleme} kez ince dilimden yalan hükmü verdin: kişilik için iyi olan araç yalan için çalışmaz (aldatma doğruluğu .31).` : ' Yalan sorusunda "bilinemez" demek doğru araçla doğru soruyu eşleştirmektir.'}
+          {sonuc.asiriGenelleme > 0 ? ` ${sonuc.asiriGenelleme} kez kısa bir izlenime bakıp yalan hükmü verdin. Kişilik için işe yarayan bu araç yalan için çalışmaz (aldatmada doğruluk .31).` : ' Yalan sorusunda "bilinemez" demek doğru araçla doğru soruyu eşleştirmektir.'}
         </p>
       )}
       {onceki?.tamamlandi && !sonuc && <p className="soluk">Daha önce tamamladın: {onceki.puan} puan.</p>}

@@ -2,7 +2,7 @@
   {
     "id": "othello-hatasi",
     "ad": "Othello hatası",
-    "aciklama": "Gerginliği/korkuyu doğru gördün, nedenini yalan sandın; kişi masumdu ve inanılmamaktan korkuyordu ya da alakasız bir sır saklıyordu.",
+    "aciklama": "Gerginliği doğru fark ettin ama nedenini yalana bağladın. Kişi masumdu; ya inanılmamaktan korkuyordu ya da olayla ilgisi olmayan bir sır saklıyordu.",
     "kilavuzMaddesi": "othello-hatasi",
     "kaynak": [
       "Ekman — Emotions Revealed",
@@ -13,7 +13,7 @@
   {
     "id": "hale-etkisi",
     "ad": "Hale etkisi",
-    "aciklama": "Sempatik, çekici ya da yardımsever görünen kişiyi otomatik olarak güvenilir saydın.",
+    "aciklama": "Sempatik, çekici ya da yardımsever görünen birini sırf bu yüzden güvenilir saydın.",
     "kilavuzMaddesi": "hale-etkisi",
     "kaynak": [
       "Cialdini",
@@ -23,8 +23,8 @@
   },
   {
     "id": "capalama",
-    "ad": "Çapalama",
-    "aciklama": "İlk şüphelin, ilk verilen saat ya da ilk rakam sonraki yargılarını yapıştırdı; karşıt hipotezi hiç yazmadın.",
+    "ad": "Çıpalama etkisi",
+    "aciklama": "İlk şüphelin, ilk duyduğun saat ya da ilk sayı sonraki yargılarını kendine çekti; karşıt hipotezi hiç yazmadın.",
     "kilavuzMaddesi": "capalama",
     "kaynak": [
       "Tversky & Kahneman 1974",
@@ -35,7 +35,7 @@
   {
     "id": "dogrulama-yanliligi",
     "ad": "Doğrulama yanlılığı",
-    "aciklama": "Hipotezini destekleyen ipuçlarını topladın, çürütecek soruyu sormadın; tünel görüşü.",
+    "aciklama": "Hipotezini destekleyen ipuçlarını topladın ama onu çürütebilecek soruyu sormadın. Buna tünel görüşü denir.",
     "kilavuzMaddesi": "dogrulama-yanliligi",
     "kaynak": [
       "Konnikova",
@@ -45,8 +45,8 @@
   },
   {
     "id": "sosyal-kanit",
-    "ad": "Sosyal kanıt / çoğunluğa uyma",
-    "aciklama": "Takımın çoğunluk görüşüne ya da tanıkların birbirine uyan anlatısına, kendi gözleminden çok güvendin.",
+    "ad": "Sosyal kanıt",
+    "aciklama": "Takımın çoğunluk görüşüne ya da birbirini tutan tanık anlatılarına kendi gözleminden çok güvendin.",
     "kilavuzMaddesi": "sosyal-kanit",
     "kaynak": [
       "Cialdini",
@@ -57,7 +57,7 @@
   {
     "id": "dogruluk-yanliligi",
     "ad": "Doğruluk yanlılığı",
-    "aciklama": "Delil olmadan 'doğru söylüyor' varsaydın; özellikle tanıdık ya da sempatik kişide.",
+    "aciklama": "Delil olmadan 'doğru söylüyor' diye varsaydın; özellikle tanıdık ya da sempatik gelen kişilerde.",
     "kilavuzMaddesi": "dogruluk-yanliligi",
     "kaynak": [
       "Bond & DePaulo 2006"
@@ -67,7 +67,7 @@
   {
     "id": "yalan-yanliligi",
     "ad": "Yalan yanlılığı",
-    "aciklama": "Sadece davranışa (görüntüye) bakıp herkese 'yalancı' dedin; sözü dinlemedin.",
+    "aciklama": "Yalnızca görüntüye, yani davranışa bakıp herkesi yalancı saydın; söylediklerini dinlemedin.",
     "kilavuzMaddesi": "dogruluk-yanliligi",
     "kaynak": [
       "Bond & DePaulo 2006",
@@ -78,7 +78,7 @@
   {
     "id": "tek-ipucu",
     "ad": "Tek ipucuna dayanma",
-    "aciklama": "Tek bir davranışı (göz kaçırma, terleme, duraksama) kanıt saydın; küme, bağlam ve temel çizgi yok.",
+    "aciklama": "Göz kaçırma, terleme ya da duraksama gibi tek bir davranışı kanıt saydın. Başka ipuçlarının eşlik edip etmediğine, bağlama ve kişinin normaline bakmadın.",
     "kilavuzMaddesi": "ipuclari-zayiftir",
     "kaynak": [
       "DePaulo 2003",
@@ -89,8 +89,8 @@
   },
   {
     "id": "sorgulama-heuristigi",
-    "ad": "Sorgulama heuristiği",
-    "aciklama": "Sorguladın, iz bulamadın ve bu yüzden daha çok inandın; oysa iyi hazırlanmış yalan iz bırakmaz.",
+    "ad": "Sorgulama kısayolu",
+    "aciklama": "Sorguladın, bir iz bulamadın ve bu yüzden daha çok inandın. Oysa iyi hazırlanmış bir yalan iz bırakmaz.",
     "kilavuzMaddesi": "sorgu-heuristikleri",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -99,8 +99,8 @@
   },
   {
     "id": "tutarlilik-heuristigi",
-    "ad": "Tutarlılık heuristiği",
-    "aciklama": "Tutarlı hikâyeyi doğru sandın; prova edilmiş grup alibisi beklenen sorularda tutarlıdır.",
+    "ad": "Tutarlılık kısayolu",
+    "aciklama": "Hikâye tutarlı diye doğru saydın. Prova edilmiş bir grup alibisi de beklenen sorularda tutarlıdır.",
     "kilavuzMaddesi": "sorgu-heuristikleri",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -110,7 +110,7 @@
   {
     "id": "beklenti-ihlali",
     "ad": "Beklenti ihlali",
-    "aciklama": "Tuhaf, 'uygunsuz' tepkiyi (yas tutmayan, gülen, sakin) yalan sandın; kültür, kişilik ve şok bunu açıklar.",
+    "aciklama": "Yas tutmayan, gülen ya da fazla sakin görünen birinin 'uygunsuz' tepkisini yalan sandın. Kültür, kişilik ve şok da bunu açıklayabilir.",
     "kilavuzMaddesi": "sorgu-heuristikleri",
     "kaynak": [
       "Vrij 2010 PSPI",
@@ -120,8 +120,8 @@
   },
   {
     "id": "temsil-edicilik",
-    "ad": "Temsil edicilik (tipik suçlu)",
-    "aciklama": "Profile 'benzeyen' kişiyi suçladın; taban oranını ve ayrıntılı profilin daha az olası olduğunu (birleşim yanılgısı) hesaba katmadın.",
+    "ad": "Tipik suçlu yanılgısı",
+    "aciklama": "Profile 'benzeyen' kişiyi suçladın. Taban oranını ve ayrıntılı bir profilin daha az olası olduğunu (birleşim yanılgısı) hesaba katmadın.",
     "kilavuzMaddesi": "sorgu-heuristikleri",
     "kaynak": [
       "Tversky & Kahneman 1974",
@@ -132,7 +132,7 @@
   {
     "id": "asiri-ozguven",
     "ad": "Aşırı özgüven",
-    "aciklama": "Beyan ettiğin güven, gerçek doğruluğunun çok üstündeydi; ipucu sayısı arttıkça emin oldun ama isabet artmadı.",
+    "aciklama": "Beyan ettiğin güven, gerçek isabetinin çok üstündeydi. İpucu biriktikçe emin oldun ama isabetin artmadı.",
     "kilavuzMaddesi": "asiri-ozguven",
     "kaynak": [
       "Tversky & Kahneman 1974",
@@ -142,8 +142,8 @@
   },
   {
     "id": "ic-masalci",
-    "ad": "İç masalcı",
-    "aciklama": "Bir tutarsızlığı test etmeden akla yatkın bir açıklamayla kapattın.",
+    "ad": "Boşluğu hikâyeyle doldurma",
+    "aciklama": "Bir tutarsızlığı test etmeden, akla yatkın bir açıklamayla kapattın.",
     "kilavuzMaddesi": "ic-masalci",
     "kaynak": [
       "Konnikova",
@@ -153,8 +153,8 @@
   },
   {
     "id": "tanik-kirletme",
-    "ad": "Tanık kirletme",
-    "aciklama": "Yönlendirici sorularınla ya da tekrar sorgularınla tanığın anısını değiştirdin; sonra kendi yerleştirdiğin ayrıntıyı kanıt sandın.",
+    "ad": "Tanığı yönlendirme",
+    "aciklama": "Yönlendirici sorularınla ya da aynı tanığı tekrar tekrar sorgulayarak anısını değiştirdin; sonra kendi yerleştirdiğin ayrıntıyı kanıt sandın.",
     "kilavuzMaddesi": "yonlendirici-soru-riski",
     "kaynak": [
       "Loftus & Pickrell 1995",
@@ -164,8 +164,8 @@
   },
   {
     "id": "erken-delil",
-    "ad": "Erken delil gösterme",
-    "aciklama": "Delili anlatımdan önce açtın; şüpheli hikâyesini delile uydurdu ve çelişki fırsatı kayboldu.",
+    "ad": "Delili erken gösterme",
+    "aciklama": "Delili, kişi anlatmadan önce gösterdin. Şüpheli hikâyesini delile uydurdu ve çelişkiyi yakalama fırsatı kayboldu.",
     "kilavuzMaddesi": "sue",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -174,8 +174,8 @@
   },
   {
     "id": "ipucu-erisilemez",
-    "ad": "İpucu önünde değildi",
-    "aciklama": "Belirleyici bilgi sormadığın soruda, gitmediğin odada ya da açmadığın kayıttaydı (Funder RAM 2. halka).",
+    "ad": "Ulaşılmayan ipucu",
+    "aciklama": "Belirleyici bilgi, sormadığın bir soruda, girmediğin bir odada ya da açmadığın bir kayıttaydı.",
     "kilavuzMaddesi": "ram-dort-katman",
     "kaynak": [
       "Funder 1995"
@@ -184,8 +184,8 @@
   },
   {
     "id": "fark-etmedin",
-    "ad": "Fark etmedin",
-    "aciklama": "İpucu önündeydi ama dikkatin başka yerdeydi; 'beklenen ama olmayan' ipucu (köpek havlamadı) da buna girer (Funder RAM 3. halka).",
+    "ad": "Gözden kaçan ipucu",
+    "aciklama": "İpucu önündeydi ama dikkatin başka yerdeydi. 'Beklenen ama olmayan' ipuçları da (havlamayan köpek gibi) bu gruba girer.",
     "kilavuzMaddesi": "ram-dort-katman",
     "kaynak": [
       "Funder 1995",
@@ -197,7 +197,7 @@
   {
     "id": "sahte-itiraf-kabulu",
     "ad": "Sahte itirafı kabul etme",
-    "aciklama": "Baskı altında verilen itirafı bağımsız delille doğrulamadan kanıt saydın; itiraf eden masumdu.",
+    "aciklama": "Baskı altında verilen itirafı bağımsız bir delille doğrulamadan kanıt saydın; itiraf eden masumdu.",
     "kilavuzMaddesi": "suclayici-ton",
     "kaynak": [
       "Navarro",
@@ -208,7 +208,7 @@
   {
     "id": "gecersiz-gizli-bilgi-testi",
     "ad": "Geçersiz gizli bilgi testi",
-    "aciklama": "Basına sızmış ya da dedikoduyla yayılmış ayrıntıyla gizli bilgi testi yaptın; masum da tanıma tepkisi verir.",
+    "aciklama": "Basına sızmış ya da dedikoduyla yayılmış bir ayrıntıyla gizli bilgi testi yaptın. O ayrıntıyı duymuş bir masum da tanıma tepkisi verir.",
     "kilavuzMaddesi": "gizli-bilgi-testi",
     "kaynak": [
       "Vrij & Verschuere 2014"
@@ -217,7 +217,7 @@
   },
   {
     "id": "delil-sorgulanmadi",
-    "ad": "Delili sorgulamadın (sahnelenmiş delil)",
+    "ad": "Sahnelenmiş delile güvenme",
     "aciklama": "Aynı kişiyi aynı saatte iki farklı yerde gösteren deliller vardı; biri yerleştirilmiş olmalıydı. 'Bu delili kim üretmiş olabilir?' diye sormadın.",
     "kilavuzMaddesi": "sahnelenmis-suc",
     "kaynak": [
@@ -227,8 +227,8 @@
   },
   {
     "id": "oda-okuma-suc",
-    "ad": "Kişilik okumasını suç kanıtı saydın",
-    "aciklama": "Oda okuması ya da dijital profil kişiliği ve sırrı okur; suçu okumaz. Sevimsiz oda, soğuk profil ya da saklanan bir sır seni faile götürmez; sorulacak konu verir.",
+    "ad": "Kişilik okumasını suç kanıtı sayma",
+    "aciklama": "Oda ya da dijital profil kişiliği ve sırları okur, suçu okumaz. Sevimsiz bir oda, soğuk bir profil ya da saklanan bir sır seni faile götürmez; yalnızca sorulacak bir konu verir.",
     "kilavuzMaddesi": "oda-ipuclari",
     "kaynak": [
       "Gosling 2002",

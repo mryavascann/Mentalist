@@ -7,6 +7,9 @@ import { PORTRELER, TAKIM_PORTRELERI, odaGorseli, portreUrl } from '../gorseller
 import { IpucuKarti } from './IpucuKarti';
 import { Portre } from './Portre';
 
+/** Teknik maliyeti saat olarak: "1 sa", "0,5 sa" ("s" saniye diye okunur; USLUP §3). */
+const sure = (saat: number) => `${String(saat).replace('.', ',')} sa`;
+
 export function SorguOdasi() {
   const d = useOyun();
   const [hedef, setHedef] = useState<string>('');
@@ -42,7 +45,7 @@ export function SorguOdasi() {
       <main className="dosya">
         <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{secili && <Portre id={secili.id} ad={secili.ad} boyut={40} src={portreUrl(vaka, secili.id)} />}{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
-        <label className="soluk" style={{ display: 'block' }}><input type="checkbox" checked={d.takimAcik} onChange={(e) => depo.takimAcKapat(e.target.checked)} /> Takım yorumları (kanıt değildir; çoğunluk sık yanılır)</label>
+        <label className="soluk" style={{ display: 'block' }}><input type="checkbox" checked={d.takimAcik} onChange={(e) => depo.takimAcKapat(e.target.checked)} /> Takım yorumları (kanıt değildir; çoğunluk sık sık yanılır)</label>
         {secili && d.temelCizgiNotlari.get(secili.id) && <p className="soluk" style={{ borderLeft: '3px solid var(--mantar)', paddingLeft: 8 }}>{d.temelCizgiNotlari.get(secili.id)}</p>}
         {acikIpucu && <IpucuKarti id={acikIpucu} kapat={() => setAcikIpucu(null)} />}
         {odaOkumasi && (
@@ -58,21 +61,21 @@ export function SorguOdasi() {
                       <option value="">sınıfla…</option>
                       {(Object.keys(ESYA_SINIF_ADLARI) as EsyaSinifi[]).map((s) => <option key={s} value={s}>{ESYA_SINIF_ADLARI[s]}</option>)}
                     </select>
-                    <button title="Panoya gözlem olarak ekle" disabled={kapali} onClick={() => depo.panoEkle('gozlem', `${secili?.ad.split(' ')[0]} · oda: ${e.betimleme}`)}>→ Pano</button>
+                    <button title="Panoya gözlem olarak ekle" disabled={kapali} onClick={() => depo.panoEkle('gozlem', `${secili?.ad.split(' ')[0]} · oda: ${e.betimleme}`)}>Panoya</button>
                   </span>
                 </li>
               ))}
             </ul>
-            <span className="soluk">Kalıntı: tekrarlanan davranışın izi. İddia: nasıl görünmek istediği. Sahnelenmiş: fizik tutarsızlığı olan düzen. Oda kişiliği okur, suçu değil.</span>
+            <span className="soluk">Davranış izi, tekrar tekrar yapılan bir şeyin bıraktığı izdir. Kimlik mesajı, kişinin nasıl görünmek istediğini söyler. Göstermelik düzen izlenim bırakmak için kurulmuştur; çoğu zaman küçük bir tutarsızlık onu ele verir. Oda kişiliği okur, suçu değil.</span>
           </div>
         )}
         <div className="akis">
-          {konusma.length === 0 && secili && <p className="soluk">Henüz soru sormadın. Önce tarafsız sohbetle temel çizgi kur (Kılavuz: Temel çizgi).</p>}
+          {konusma.length === 0 && secili && <p className="soluk">Henüz soru sormadın. Önce tarafsız bir sohbetle kişinin normalini öğren (Kılavuz: Temel çizgi).</p>}
           {konusma.map((k, i) => (
             <div className={`satir ${k.tur}`} key={i}>
               <div className="soru">{k.tur === 'teknik' ? `▸ ${k.soru}` : `Sen: ${k.soru}`}</div>
               <div className="cevap" style={k.odaId ? { display: 'flex', gap: 10, alignItems: 'flex-start' } : undefined}>
-                {k.odaId && odaGorseli(vaka, k.odaId) && <img src={odaGorseli(vaka, k.odaId)} alt={vaka.mekan.odalar.find((o) => o.id === k.odaId)?.ad ?? ''} title="Söylediği yer (iddia; gerçek değil)" width={96} height={54} style={{ objectFit: 'cover', border: '1px solid var(--cizgi)', flex: 'none', borderRadius: 3 }} />}
+                {k.odaId && odaGorseli(vaka, k.odaId) && <img src={odaGorseli(vaka, k.odaId)} alt={vaka.mekan.odalar.find((o) => o.id === k.odaId)?.ad ?? ''} title="Söylediği yer (gerçek olmayabilir)" width={96} height={54} style={{ objectFit: 'cover', border: '1px solid var(--cizgi)', flex: 'none', borderRadius: 3 }} />}
                 <span>{k.cevap}</span>
               </div>
               {k.takimYorumu && (
@@ -125,7 +128,7 @@ export function SorguOdasi() {
             <div className="dugmeler">
               {['temel-cizgi', 'acik-uclu-anlatim', 'bilissel-yuk-ters-sira', 'seytanin-avukati', 'suclayici-ton'].map((id) => (
                 // Şeytanın avukatı v0'da uygulanamaz (görüş/niyet soruları yok); düğme kapalı, Kılavuz maddesi okunabilir.
-                <button key={id} disabled={id === 'seytanin-avukati'} title={id === 'seytanin-avukati' ? `${teknik(id).nasil} (Bu sürümde uygulanamaz: görüş/niyet soruları yok. Kılavuz'da oku.)` : teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {teknik(id).maliyet.zaman}s</button>
+                <button key={id} disabled={id === 'seytanin-avukati'} title={id === 'seytanin-avukati' ? `${teknik(id).nasil} (Bu sürümde kullanılamaz; oyunda henüz görüş ve niyet soruları yok. Kılavuz'da okuyabilirsin.)` : teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {sure(teknik(id).maliyet.zaman)}</button>
               ))}
             </div>
             <div className="satirici">
@@ -155,11 +158,11 @@ export function SorguOdasi() {
             <h3>Kişiyi oku</h3>
             <div className="dugmeler">
               {['oda-okuma', 'dijital-iz', 'kayit-inceleme'].map((id) => (
-                <button key={id} title={teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {teknik(id).maliyet.zaman}s</button>
+                <button key={id} title={teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {sure(teknik(id).maliyet.zaman)}</button>
               ))}
             </div>
             <div className="satirici">
-              <button title={teknik('ic-ses').nasil} onClick={() => depo.teknik('ic-ses', { tahmin })}>{teknik('ic-ses').ad} · {teknik('ic-ses').maliyet.zaman}s</button>
+              <button title={teknik('ic-ses').nasil} onClick={() => depo.teknik('ic-ses', { tahmin })}>{teknik('ic-ses').ad} · {sure(teknik('ic-ses').maliyet.zaman)}</button>
               <select aria-label="İç ses tahmini" value={tahmin} onChange={(e) => setTahmin(e.target.value as IcSesKategori)} style={{ maxWidth: '100%', width: '100%' }}>
                 {IC_SES_KATEGORILERI.map((k) => <option key={k} value={k}>{IC_SES_SECENEKLERI[k]}</option>)}
               </select>

@@ -8,7 +8,7 @@ import { DIGER } from '../gorseller';
 const SUTUNLAR: { tur: PanoTuru; baslik: string; ipucu: string }[] = [
   { tur: 'gozlem', baslik: 'Gözlem (ham)', ipucu: 'Ne gördün, ne duydun; yorum katma.' },
   { tur: 'cikarim', baslik: 'Çıkarım (yorum)', ipucu: 'Gözlemden ne sonuç çıkardın; test ettin mi?' },
-  { tur: 'hipotez', baslik: 'Hipotezler (en fazla 7)', ipucu: 'Karşıt hipotezi de yaz (çapalama kırıcı).' },
+  { tur: 'hipotez', baslik: 'Hipotezler (en fazla 7)', ipucu: 'Karşıt hipotezini de yaz; ilk fikrine takılıp kalmamanı sağlar (çıpalama etkisi).' },
   { tur: 'olmayan', baslik: 'Beklenen ama olmayan', ipucu: 'Köpek havlamadı, kapı zorlanmadı…' },
 ];
 

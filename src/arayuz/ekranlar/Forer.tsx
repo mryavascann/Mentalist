@@ -39,12 +39,12 @@ export function Forer() {
       {asama === 'ifsa' && (
         <>
           <h2>İfşa</h2>
-          <p>Senin puanın: <b>{d.forer.puan}/5</b>. 1949'daki öğrencilerin ortalaması: <b>{FORER.ortalama1949}/5</b>.</p>
+          <p>Senin puanın: <b>{d.forer.puan}/5</b>. 1949'daki öğrencilerin ortalaması: <b>{String(FORER.ortalama1949).replace('.', ',')}/5</b>.</p>
           <p>{FORER.ifsa}</p>
           <p className="soluk">{FORER.aciklama}</p>
           <div className="dugmeler">
             <button className="birincil" onClick={() => depo.forerBitir()}>Anladım, dosyaya geç</button>
-            <button onClick={() => depo.kilavuzAc('forer-barnum')}>Kılavuz: Forer/Barnum</button>
+            <button onClick={() => depo.kilavuzAc('forer-barnum')}>Kılavuz: Barnum etkisi</button>
           </div>
         </>
       )}

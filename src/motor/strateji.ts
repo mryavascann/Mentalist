@@ -95,19 +95,19 @@ function konumCevabi(durum: VakaDurumu, kisi: KisiId, soru: Extract<Soru, { tur:
       const bulundugu = [...new Set(vaka.zamanCizelgesi.filter((z) => z.kisi === kisi && z.oda !== olay.oda).map((z) => z.oda))];
       // Kaçamak eşiği zorluğa bağlı (zor vakada daha çok fail yeri kabul eder → delil çelişkisi yok).
       if (beceri > ZORLUK_PARAMETRELERI[vaka.ayar.zorluk].kacamakEsigi || bulundugu.length === 0) {
-        return { ...temel, ifadeTuru: 'kacamak', icerik: gercek, dogru: true, not: 'fail: olay odasında olduğunu kabul eder, eylemi saklar' };
+        return { ...temel, ifadeTuru: 'kacamak', icerik: gercek, dogru: true, not: 'olay odasında olduğunu kabul etti ama ne yaptığını sakladı' };
       }
       // Gömülü yalan: o akşam gerçekten bulunduğu başka bir oda (ayrıntılar gerçek, tek kritik ayrıntı değişik).
-      return { ...temel, ifadeTuru: 'gomulu-yalan', icerik: r.sec(bulundugu), dogru: false, not: 'fail: olay anındaki konumunu gömülü yalanla saklar' };
+      return { ...temel, ifadeTuru: 'gomulu-yalan', icerik: r.sec(bulundugu), dogru: false, not: 'gerçek bir anıyı başka bir saate taşıyarak nerede olduğunu sakladı (gömülü yalan)' };
     }
     const sir = sirri(durum, kisi, soru.dilim);
     if (sir) {
       if (odaYalaniGerektirir(sir.tur)) {
-        return { ...temel, ifadeTuru: 'alakasiz-sir', icerik: baskaOda(durum, gercek, r), dogru: false, not: `alakasız sır (${sir.tur}): konumunu saklar` };
+        return { ...temel, ifadeTuru: 'alakasiz-sir', icerik: baskaOda(durum, gercek, r), dogru: false, not: 'olayla ilgisi olmayan bir sırrı yüzünden nerede olduğunu sakladı' };
       }
-      return { ...temel, ifadeTuru: 'gizleme', icerik: gercek, dogru: true, not: `alakasız sır (${sir.tur}): yerini söyler, ne yaptığını saklar` };
+      return { ...temel, ifadeTuru: 'gizleme', icerik: gercek, dogru: true, not: 'olayla ilgisi olmayan bir sırrı yüzünden yerini söyledi ama ne yaptığını sakladı' };
     }
-    return { ...temel, ifadeTuru: 'dogru', icerik: gercek, dogru: true, not: 'kendi konumu, saklayacak şey yok' };
+    return { ...temel, ifadeTuru: 'dogru', icerik: gercek, dogru: true, not: 'doğruyu söyledi; saklayacak bir şeyi yoktu' };
   }
 
   // --- Başkasının konumu ---

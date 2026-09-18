@@ -35,9 +35,9 @@ export interface KalibrasyonKovasi { kova: string; sayi: number; beyanOrt: numbe
  */
 export function kalibrasyonOzeti(gecmis: VakaGecmisi[]): KalibrasyonKovasi[] {
   const kovalar: { ad: string; alt: number; ust: number }[] = [
-    { ad: '0.50–0.65', alt: 0.5, ust: 0.65 },
-    { ad: '0.65–0.85', alt: 0.65, ust: 0.85 },
-    { ad: '0.85–1.00', alt: 0.85, ust: 1.0001 },
+    { ad: '%50–65', alt: 0.5, ust: 0.65 },
+    { ad: '%65–85', alt: 0.65, ust: 0.85 },
+    { ad: '%85–100', alt: 0.85, ust: 1.0001 },
   ];
   const toplam = kovalar.map(() => ({ sayi: 0, beyan: 0, dogru: 0 }));
   for (const g of gecmis) {

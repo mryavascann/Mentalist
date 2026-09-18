@@ -53,7 +53,7 @@ export function Kilavuz() {
         {!secili && korNoktalar.length > 0 && (
           <section style={{ marginBottom: 16 }}>
             <h2>Senin kör noktan</h2>
-            <p className="soluk">Vakalar arasında tekrarlayan hataların. Sonraki vakalar, söylemeden, bunları çalıştıracak biçimde üretilir.</p>
+            <p className="soluk">Vakadan vakaya tekrarladığın hatalar. Sonraki vakalar, sana söylemeden, bu konuları çalıştıracak biçimde üretilir.</p>
             <ul className="liste-temiz">
               {korNoktalar.map((k) => {
                 const h = etiketAdi(k.etiket);
@@ -70,8 +70,8 @@ export function Kilavuz() {
         {!secili && (
           <>
             <h2>Nasıl kullanılır</h2>
-            <p>Her madde: kısa açıklama → nasıl kullanılır → sınırları → kaynak → kanıt düzeyi rozeti. Rozetler: <span className="rozet guclu">Güçlü</span> tekrarlanmış meta-analiz bulgusu; <span className="rozet orta">Orta</span> iyi ama sınırlı kanıt; <span className="rozet zayif">Zayıf</span> az çalışma ya da saha deneyimi; <span className="rozet mit">Mit</span> araştırma bunun tersini gösteriyor.</p>
-            <p className="soluk">Tek bir davranış yalanın kanıtı değildir. Davranış "sorulacak konu" sinyalidir; kesinlik delille gelir.</p>
+            <p>Her maddede önce kısa bir açıklama, sonra nasıl kullanılacağı, sınırları, kaynakları ve kanıt düzeyi yer alır. Rozetlerin anlamı: <span className="rozet guclu">Güçlü</span> tekrarlanmış ve meta-analizle desteklenmiş bulgu; <span className="rozet orta">Orta</span> iyi ama sınırlı kanıt; <span className="rozet zayif">Zayıf</span> az sayıda çalışma ya da saha deneyimi; <span className="rozet mit">Mit</span> araştırmalar bunun tersini gösteriyor.</p>
+            <p className="soluk">Tek bir davranış yalanın kanıtı değildir. Davranış, "bu konuyu sor" diyen bir işarettir; kesinlik delille gelir.</p>
           </>
         )}
         {secili && (

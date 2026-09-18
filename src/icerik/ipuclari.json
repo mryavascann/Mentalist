@@ -1,13 +1,13 @@
 [
   {
     "id": "sozel-vokal-yakinlik-azligi",
-    "ad": "Sözel/vokal yakınlığın azalması (mesafeli, dolaylı anlatım)",
+    "ad": "Anlatımın mesafeli ve dolaylı hale gelmesi",
     "kanal": "sozel",
     "betimlemeler": [
       "Anlatımı bir anda mesafeli ve dolaylı bir hal aldı; sanki başkasının hikâyesini aktarıyordu.",
       "Kendinden çok 'insan', 'kişi' gibi genel öznelerle konuşmaya başladı.",
       "Cümleleri kısaldı, ses tonu düzleşti; anlattığı şeyle arasına mesafe koyuyor gibiydi.",
-      "Sizinle değil, masanın üstündeki bir noktayla konuşuyormuş gibi soğuk ve edilgen anlattı."
+      "Seninle değil, masanın üstündeki bir noktayla konuşuyormuş gibi soğuk ve edilgen anlattı."
     ],
     "temelBetimlemeler": [
       "Havadan sudan konuşurken bile mesafeli ve dolaylı; sanki başkasının gününü aktarıyor.",
@@ -21,7 +21,7 @@
     "kaynak": [
       "DePaulo 2003"
     ],
-    "not": "DePaulo 2003'teki en büyük etki (d=-.55) ama yine de olasılıksal; utangaç ya da resmî konuşan kişilerde temel çizgi budur. Hartwig & Bond 2011: insanlar zaten 'mesafeli/beceriksiz' izlenimini yalanla ilişkilendirir."
+    "not": "DePaulo 2003'teki en büyük etki (d = -.55), ama yine de olasılığa dayanır; utangaç ya da resmî konuşan birinin normali zaten budur. Hartwig & Bond 2011: insanlar 'mesafeli, beceriksiz' izlenimini zaten yalanla ilişkilendirir."
   },
   {
     "id": "detay-azligi",
@@ -49,7 +49,7 @@
       "DePaulo 2003",
       "Hartwig & Bond 2011"
     ],
-    "not": "Konuya göre değişir: sıkıcı bir olay dürüst anlatılsa da kısa olur. 'Karşılaştırılabilir doğru' gerekir (aynı görüşme, benzer konu)."
+    "not": "Konuya göre değişir: sıkıcı bir olay dürüstçe anlatılsa da kısa olur. Kıyas için benzer bir doğru anlatım gerekir (aynı görüşme, benzer konu)."
   },
   {
     "id": "tutarsizlik-ambivalans",
@@ -74,7 +74,7 @@
       "DePaulo 2003",
       "Hartwig & Bond 2011"
     ],
-    "not": "Gerçek kararsızlık (ambivalans) da aynı görünür: yakınını kaybetmiş biri gerçekten karışık duygular içindedir."
+    "not": "Gerçek kararsızlık da aynı görünür: yakınını kaybetmiş biri gerçekten karışık duygular yaşar."
   },
   {
     "id": "goz-bebegi-buyume",
@@ -97,7 +97,7 @@
     "kaynak": [
       "DePaulo 2003"
     ],
-    "not": "Bilişsel çaba ve uyarılma göstergesi; ışık, ilaç, ilgi ve korku da büyütür. Çıplak gözle güvenilir gözlenmesi zordur; oyunda 'kayıt inceleme' aracıyla görülür."
+    "not": "Zihinsel çabanın ve uyarılmanın göstergesidir; ışık, ilaç, ilgi ve korku da göz bebeğini büyütür. Çıplak gözle güvenilir biçimde görmek zordur; oyunda 'Kaydı incele' aracıyla görülür."
   },
   {
     "id": "ses-perdesi-yukselme",
@@ -125,7 +125,7 @@
       "DePaulo 2003",
       "Ekman & O'Sullivan 1991"
     ],
-    "not": "Kimlik/itibar motivasyonu yüksekken belirginleşir (d=.67). Heyecan, öfke ve korku da perdeyi yükseltir (Othello hatası)."
+    "not": "Kişi kimliğini ya da itibarını korumaya çok istekliyken belirginleşir (d = .67). Heyecan, öfke ve korku da sesi inceltir (Othello hatası)."
   },
   {
     "id": "kendiliginden-duzeltme",
@@ -150,7 +150,7 @@
       "DePaulo 2003",
       "Derren Brown"
     ],
-    "not": "Doğru söyleyenler anılarını 'düzeltir'; hazırlanmış yalan fazla pürüzsüzdür. Ama CBCA'yı öğrenen yalancı bunu taklit edebilir (Vrij & Verschuere 2014)."
+    "not": "Doğruyu söyleyenler anılarını kendiliğinden 'düzeltir'; hazırlanmış bir yalan fazla pürüzsüzdür. Ama içerik analizi ölçütlerini (CBCA) öğrenen bir yalancı bunu taklit edebilir (Vrij & Verschuere 2014)."
   },
   {
     "id": "hatirlamiyorum-kabulu",
@@ -173,7 +173,7 @@
     "kaynak": [
       "DePaulo 2003"
     ],
-    "not": "Doğrudan suç sorusuna 'hatırlamıyorum' demek farklıdır (Symptom Validity Test ile sınanabilir). Buradaki bulgu, ikincil ayrıntılarda hatırlamamayı kabul etmedir."
+    "not": "Doğrudan suç sorusuna 'hatırlamıyorum' demek başka bir durumdur; iki seçenekli testle sınanabilir. Buradaki bulgu, ikincil ayrıntılarda hatırlamadığını kabul etmekle ilgilidir."
   },
   {
     "id": "isbirligi-azligi",
@@ -196,7 +196,7 @@
     "kaynak": [
       "DePaulo 2003"
     ],
-    "not": "Az sayıda çalışmaya dayanır (DePaulo 2003). Avukatının uyarısıyla susan masum ya da polise güvenmeyen kişi de iş birliği yapmaz."
+    "not": "Az sayıda çalışmaya dayanır (DePaulo 2003). Avukatının uyarısıyla susan bir masum ya da polise güvenmeyen biri de iş birliği yapmaz."
   },
   {
     "id": "genel-gerginlik",
@@ -225,11 +225,11 @@
       "Ekman — Emotions Revealed",
       "Vrij 2010 PSPI"
     ],
-    "not": "Othello hatasının ana kaynağı: masum ama inanılmamaktan korkan kişi de gerilir (Ekman). Gerginlik 'yalan' değil 'hangi konu rahatsız ediyor' bilgisi verir (Navarro)."
+    "not": "Othello hatasının ana kaynağıdır: masum olup inanılmamaktan korkan kişi de gerilir (Ekman). Gerginlik 'yalan söylüyor' bilgisi değil, 'hangi konu onu rahatsız ediyor' bilgisi verir (Navarro)."
   },
   {
     "id": "illustrator-azalmasi",
-    "ad": "El-kol vurgu hareketlerinin azalması",
+    "ad": "El hareketlerinin azalması",
     "kanal": "beden",
     "betimlemeler": [
       "Normalde konuşurken elleriyle çizen biri, bu konuda ellerini kucağında tuttu.",
@@ -250,11 +250,11 @@
       "Vrij 2010 PSPI",
       "Ekman & Friesen 1969"
     ],
-    "not": "Reid ipuçları arasında geçerli olan tek sözsüz ipucu (Vrij 2010). Etki küçük; temel çizgi şart. Kontrol çabası ('donma') ile ilgili; masum da kendini kontrol eder."
+    "not": "Reid'in listesindeki tek geçerli sözsüz ipucu (Vrij 2010). Etkisi küçüktür; kişinin normalini bilmek şarttır. Kendini kontrol etme çabasıyla ('donma') ilgilidir; masum da kendini kontrol eder."
   },
   {
     "id": "sahte-gulumseme",
-    "ad": "Sahte (Duchenne olmayan) gülümseme",
+    "ad": "Gözlere ulaşmayan gülümseme",
     "kanal": "yuz",
     "betimlemeler": [
       "Gülümsedi ama gözleri katılmadı; dudak köşeleri yana gerildi, göz çevresi düz kaldı.",
@@ -275,7 +275,7 @@
       "Ekman & O'Sullivan 1991",
       "Zloteanu 2020"
     ],
-    "not": "Az örnek (DePaulo 2003). Duchenne gülümsemesi istemli de yapılabilir; nezaket gülümsemesi kültürel norm (Barrett 2019, Zloteanu 2020). Kibar gülümseme ≠ yalan."
+    "not": "Az örneğe dayanır (DePaulo 2003). Gözleri de kapsayan (Duchenne) gülümseme istenerek de yapılabilir; nezaket gülümsemesi kültürel bir normdur (Barrett 2019, Zloteanu 2020). Kibar bir gülümseme yalan işareti değildir."
   },
   {
     "id": "goz-temasi",
@@ -283,7 +283,7 @@
     "kanal": "yuz",
     "betimlemeler": [
       "Cevap verirken gözlerini kaçırdı, masaya baktı.",
-      "Bakışlarını pencereye çevirdi, sizinle göz göze gelmedi.",
+      "Bakışlarını pencereye çevirdi, seninle göz göze gelmedi.",
       "Yere bakarak konuştu."
     ],
     "temelBetimlemeler": [
@@ -303,7 +303,7 @@
       "Bond & DePaulo 2006",
       "Vrij 2010 PSPI"
     ],
-    "not": "32 tahminde d=.01: işe yaramaz. Motive yalancı göz temasını KORUR. Kültür ve utangaçlık temel çizgiyi belirler; bazı kültürlerde aşağı bakmak saygıdır. En yaygın halk inancı → Mitler Müzesi."
+    "not": "32 ölçümde d = .01: işe yaramaz. İnandırmaya çalışan yalancı göz temasını korur. Kişinin normalini kültür ve utangaçlık belirler; bazı kültürlerde aşağı bakmak saygıdır. En yaygın halk inancıdır; Mitler Müzesi'nde."
   },
   {
     "id": "duraksama",
@@ -330,11 +330,11 @@
     "kaynak": [
       "DePaulo 2003"
     ],
-    "not": "Genelde ~.00; sadece plansız ve kimlik-motivasyonlu yalanlarda sessiz duraksama artar (+.38). Düşünen dürüst kişi de duraksar."
+    "not": "Genelde etkisi sıfıra yakındır; yalnızca plansız ve kişinin kendini korumaya çalıştığı yalanlarda sessiz duraksama artar (+.38). Düşünen dürüst kişi de duraksar."
   },
   {
     "id": "cevap-gecikmesi",
-    "ad": "Cevap gecikmesi (tepki süresi)",
+    "ad": "Cevap gecikmesi",
     "kanal": "vokal",
     "betimlemeler": [
       "Soru ile cevap arasında bir-iki saniyelik boşluk oldu.",
@@ -358,7 +358,7 @@
       "DePaulo 2003",
       "Vrij & Verschuere 2014"
     ],
-    "not": "'1.7 saniye gecikme = yalan' türü kurallar meta-analizle uyuşmaz (genel d=.02). Sadece motivasyonlu/ihlal yalanlarında artar; planlı yalanda cevap hızlı gelir."
+    "not": "'1,7 saniye gecikme yalan demektir' türü kurallar meta-analizlerle uyuşmaz (genel etki d = .02). Gecikme yalnızca kişinin inandırmaya çok istekli olduğu ya da bir kuralı çiğnediği yalanlarda artar; planlı yalanda cevap hızlı gelir."
   },
   {
     "id": "ayak-el-kipirdanma",
@@ -386,11 +386,11 @@
       "Navarro",
       "Vrij 2010 PSPI"
     ],
-    "not": "El .00, ayak -.09: net ilişki yok. Navarro 'ayaklar en dürüst' der; bilimsel desteği sınırlı. İhlal yalanlarında ayak hareketi AZALIR (donma), artmaz."
+    "not": "El için .00, ayak için -.09: net bir ilişki yok. Navarro 'en dürüst uzuv ayaklardır' der; bilimsel desteği sınırlıdır. Bir kural çiğnemeyi saklayan yalanlarda ayak hareketi azalır (donma), artmaz."
   },
   {
     "id": "mikroifade",
-    "ad": "Mikroifade (kısa süreli yüz sızıntısı)",
+    "ad": "Mikroifade (anlık yüz ifadesi)",
     "kanal": "yuz",
     "betimlemeler": [
       "Yüzünden bir anlık, yakalanması güç bir ifade geçti ve kayboldu.",
@@ -411,11 +411,11 @@
       "Vrij 2010 PSPI",
       "Barrett 2019"
     ],
-    "not": "Sızıntı gerçek ama nadir; doğru anlatımlarda da olur (Porter & ten Brinke: olayların ~%2'si). Mikroifade eğitimi tanımayı artırır, yalan tespitini artırdığına dair nedensel kanıt yok. 'Mikroifade = yalan' → Mitler Müzesi. Oyunda yüz ipuçları daima bağlam + temel çizgi ile."
+    "not": "Sızıntı gerçektir ama seyrektir ve doğru anlatımlarda da görülür (Porter & ten Brinke: olayların yaklaşık %2'si). Mikroifade eğitimi ifadeleri tanımayı geliştirir; yalanı yakalamayı geliştirdiğine dair nedensel kanıt yok. 'Mikroifade yalan demektir' inancı Mitler Müzesi'nde. Oyunda yüz ipuçları her zaman bağlam ve kişinin normaliyle birlikte değerlendirilir."
   },
   {
     "id": "yatistirici-dokunma",
-    "ad": "Yatıştırıcı davranış: boyun/yüz dokunma (saha gözlemi)",
+    "ad": "Kendini yatıştırma: boyna ya da yüze dokunma (saha gözlemi)",
     "kanal": "beden",
     "betimlemeler": [
       "Eli boynuna gitti, yakasını düzeltir gibi yaptı.",
@@ -436,11 +436,11 @@
       "Navarro",
       "DePaulo 2003"
     ],
-    "not": "Navarro'nun saha iddiası: stres sonrası 'yatıştırma'. DePaulo 2003'te kendine dokunma d≈-.01 (ilişkisiz); burada küçük pozitif değer 'stres konusu' sinyali olarak kullanılır, yalan kanıtı olarak değil. 'Hangi soruda?' sorusu için değerli; 100 masuma 1 yalancı."
+    "not": "Navarro'nun saha iddiası: stresten sonra kişi kendini 'yatıştırır'. DePaulo 2003'te kendine dokunmanın yalanla ilişkisi yok (d ≈ -.01); oyundaki küçük pozitif değer yalan kanıtı olarak değil, yalnızca 'stres konusu' sinyali olarak kullanılır. 'Hangi soruda?' sorusu için değerlidir; ama 100 masuma 1 yalancı düşer."
   },
   {
     "id": "ayak-yonu-cikis",
-    "ad": "Ayakların çıkışa dönmesi / gitme niyeti (saha gözlemi)",
+    "ad": "Ayakların kapıya dönmesi (saha gözlemi)",
     "kanal": "beden",
     "betimlemeler": [
       "Ayakları kapıya doğru döndü, gövdesi hâlâ sana bakıyordu.",
@@ -448,7 +448,7 @@
       "Bir ayağı kapıya doğru uzandı, konuşmayı bitirmek ister gibiydi."
     ],
     "temelBetimlemeler": [
-      "Otururken ayakları hep kapıya dönük; gövdesi size bakıyor.",
+      "Otururken ayakları hep kapıya dönük; gövdesi sana bakıyor.",
       "Sandalyenin ucunda oturan biri; elleri dizlerinde.",
       "Bir ayağı kapıya doğru uzanmış hâlde oturuyor; sohbette de öyle."
     ],
@@ -460,11 +460,11 @@
       "Navarro",
       "DePaulo 2003"
     ],
-    "not": "Niyet ve rahatsızlık ipucu olabilir; yalanla ilişkisi gösterilmemiştir. Navarro kendisi 'bilimsel araştırma yok' diyor."
+    "not": "Gitme isteğinin ya da rahatsızlığın ipucu olabilir; yalanla ilişkisi gösterilmemiştir. Navarro kendisi de 'bilimsel araştırma yok' der."
   },
   {
     "id": "kas-vurgusu-azalmasi",
-    "ad": "Anlatımda vurgunun (kaş/el) kaybolması (saha gözlemi)",
+    "ad": "Anlatımda vurgunun kaybolması (saha gözlemi)",
     "kanal": "yuz",
     "betimlemeler": [
       "Hikâyenin bu bölümünde kaşları hiç hareket etmedi; anlatım düz aktı.",
@@ -484,6 +484,6 @@
       "Navarro",
       "DePaulo 2003"
     ],
-    "not": "Navarro: dürüstler vurgular, yalancılar vurgu yapmaz ya da gecikmeli vurgular. DePaulo'nun illüstratör azalması (d=-.14) ile örtüşür; etki küçük, temel çizgi şart."
+    "not": "Navarro'ya göre dürüst kişi sözünü vurgular; yalancı vurgu yapmaz ya da gecikmeli vurgular. DePaulo'daki el hareketlerinin azalması bulgusuyla (d = -.14) örtüşür; etki küçüktür, kişinin normalini bilmek şarttır."
   }
 ]

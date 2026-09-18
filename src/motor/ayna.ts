@@ -123,7 +123,7 @@ export function aynaTahmini(vaka: Vaka, korNoktalar: readonly KorNokta[]): AynaT
     case 'dogrulama-yanliligi':
     case 'capalama':
     case 'erken-delil':
-      return { etiket, tahmin: liste[0]!.id, gerekce: 'Ayna, ilk konuştuğun kişi hakkındaki ilk hipotezine yapışacağını bekledi (çapalama / doğrulama yanlılığı).' };
+      return { etiket, tahmin: liste[0]!.id, gerekce: 'Ayna, ilk konuştuğun kişi hakkındaki ilk hipotezine yapışacağını bekledi (çıpalama etkisi ve doğrulama yanlılığı).' };
     case 'sosyal-kanit':
       return { etiket, tahmin: enYuksek(liste, (k) => k.kisilik.kaygi + (1 - k.kisilik.ozIzleme) * 0.5, r).id, gerekce: 'Ayna, takımın "bak nasıl kıvranıyor" dediği kişiye yöneleceğini bekledi (sosyal kanıt).' };
     default:
@@ -135,12 +135,12 @@ export function aynaTahmini(vaka: Vaka, korNoktalar: readonly KorNokta[]): AynaT
 const NOT_KALIPLARI: Record<string, string[]> = {
   'othello-hatasi': ['Geçen dosyada en çok titreyeni seçtin. Bu kez de titreyen biri olacak; bakalım yine ona mı gidersin.', 'Terleyen eller seni hep çekti. Birinin ellerini bu kez de terlettim.'],
   'tek-ipucu': ['Tek bir bakış yetti sana geçen sefer. Bu kez de bir bakış bırakıyorum; gerisini sen tamamlarsın.'],
-  'sosyal-kanit': ['Ekibin ne diyorsa onu dedin. Ekibine bu kez de bir şey söyletecek kadar gürültü var.'],
+  'sosyal-kanit': ['Ekibin ne dediyse sen de onu dedin. Bu kez de ekibine bir şey söyletecek kadar gürültü bıraktım.'],
   'hale-etkisi': ['Gülümseyeni bağışladın, asık suratlıyı astın. Bu odada da gülümseyen biri var.'],
-  'temsil-edicilik': ['Sabıkalı ve borçlu olanı sevdin geçen dosyada; hikâyeye uyuyordu. Bu kez de biri hikâyeye tıpatıp uyacak.'],
+  'temsil-edicilik': ['Geçen dosyada hemen sabıkalı ve borçlu olanı seçtin; hikâyeye uyuyordu. Bu kez de biri hikâyeye tıpatıp uyacak.'],
   'yalan-yanliligi': ['Herkesi yalancı saydın; bu kez de sayacaksın. Sadece doğrusunu bulman zor.'],
   'dogrulama-yanliligi': ['İlk konuştuğun kişiden sonra kimseyi dinlemedin. İlk kapıyı ben seçtim.'],
-  capalama: ['Sana söylenen ilk saat kafana çakılı kaldı. Bu kez de biri sana bir saat söyleyecek.'],
+  capalama: ['Sana söylenen ilk saat aklına çakılıp kaldı. Bu kez de biri sana bir saat söyleyecek.'],
   'erken-delil': ['Delili elinde tutamadın, hemen masaya koydun. Masaya koyacağın bir şey daha bıraktım.'],
   'dogruluk-yanliligi': ['Herkese inandın ve "kaza" dedin. Bu kez de kaza gibi görünmesi için uğraştım.'],
 };

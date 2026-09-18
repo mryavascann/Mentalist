@@ -41,17 +41,17 @@ export function takimYorumu(sorgu: Sorgu, kisiId: KisiId, sonuc: SorSonucu): Tak
   switch (uye.rol) {
     case 'saha': {
       // Hızlı hüküm: ipucu görünce "bu adam yalan söylüyor"; ipucu yoksa "temiz". Delile bakmaz.
-      if (gerginlik >= 1) return { rol: 'saha', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bence yalan söylüyor. Gördün mü, ${gerginlik > 1 ? 'her şeyi' : 'sesini'}? Bu iş bitti.`, `Bak, ${ad} kıvranıyor. Ekipte herkes aynı fikirde: bu o.`, `Ben olsam ${belirtme(ad)} şimdi alırdım. Herkes görüyor işte.`]) };
+      if (gerginlik >= 1) return { rol: 'saha', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} yalan söylüyor bence. ${gerginlik > 1 ? 'Hâline baksana.' : 'Sesi titriyor, duydun mu?'} Bu iş bitti.`, `Bak, ${ad} kıvranıyor. Ekipte herkes aynı fikirde: bu o.`, `Ben olsam ${belirtme(ad)} hemen içeri alırdım. Herkes görüyor işte.`]) };
       return { rol: 'saha', ad: uye.ad, hukum: 'temiz', metin: r.sec([`${ad} temiz görünüyor, sakin. Bir sonrakine geçelim.`, `Bu kadar rahat biri yalan söylemez. ${ad} bizim adam değil.`]) };
     }
     case 'inanan':
-      if (ipucuSayisi > 0) return { rol: 'inanan', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bir şey saklıyor, içime doğdu. Enerjisi değişti.`, `O bakış… ${ad} gözlerini kaçırdı, ben bunu bilirim.`, `Bir işaret bu. ${ad} anlatırken bir şey döndü.`]) };
-      return { rol: 'inanan', ad: uye.ad, hukum: 'yok', metin: r.sec([`Hmm. ${ad} hakkında henüz bir his yok.`, `Bir şey hissetmedim ama sezgim genelde geç uyanır.`]) };
+      if (ipucuSayisi > 0) return { rol: 'inanan', ad: uye.ad, hukum: 'supheli', metin: r.sec([`${ad} bir şey saklıyor, içime doğdu. Enerjisi değişti.`, `O bakış… ${ad} gözlerini kaçırdı, ben bunu bilirim.`, `Bu bir işaret. ${ad} anlatırken bir şey değişti, hissettim.`]) };
+      return { rol: 'inanan', ad: uye.ad, hukum: 'yok', metin: r.sec([`Hmm. ${ad} hakkında henüz içime bir şey doğmadı.`, `Bir şey hissetmedim ama sezgim genelde geç uyanır.`]) };
     case 'lider':
-      if (celiski) return { rol: 'lider', ad: uye.ad, hukum: 'yok', metin: r.sec([`Elimizde delil var ve anlattığıyla uyuşmuyor. Ama çelişki tek başına hüküm değil; kaynağını sor.`, `Delil ile ifade çelişiyor. Bunu savcıya nasıl anlatırsın? Önce delilin kaynağına bak.`]) };
-      return { rol: 'lider', ad: uye.ad, hukum: 'yok', metin: r.sec([`Gerginlik kanıt değil. Elinde delil var mı? Yoksa geç.`, `"Bence" ile gelme bana. Hangi delil, hangi çelişki?`, `İyi. Şimdi bunu doğrulayacak bir kaynak bul; tek ifadeyle yürümeyiz.`]) };
+      if (celiski) return { rol: 'lider', ad: uye.ad, hukum: 'yok', metin: r.sec([`Elimizde delil var ve anlattığıyla uyuşmuyor. Ama çelişki tek başına hüküm değil; kaynağını sor.`, `Delille ifadesi çelişiyor. Bunu savcıya nasıl anlatırsın? Önce delilin kaynağına bak.`]) };
+      return { rol: 'lider', ad: uye.ad, hukum: 'yok', metin: r.sec([`Gerginlik kanıt değil. Elinde delil var mı? Yoksa bunu geç.`, `"Bence" ile gelme bana. Hangi delil, hangi çelişki?`, `İyi. Şimdi bunu doğrulayacak bir kaynak bul; tek ifadeyle yürümeyiz.`]) };
     case 'sorgucu':
-      if (bilmiyor) return { rol: 'sorgucu', ad: uye.ad, hukum: 'yok', metin: r.sec([`"Bilmiyorum." İki seçenekli sor. Bilen kaçınır.`, `Hatırlamıyorsa zorlama. Ters sırayla anlattır.`]) };
+      if (bilmiyor) return { rol: 'sorgucu', ad: uye.ad, hukum: 'yok', metin: r.sec([`"Bilmiyorum" diyor. İki seçenekli sor; bilen, doğru cevaptan kaçar.`, `Hatırlamıyorsa zorlama. Sondan başa anlattır.`]) };
       return { rol: 'sorgucu', ad: uye.ad, hukum: 'yok', metin: r.sec([`Delili henüz gösterme. Önce anlattır.`, `Aynı soruyu başka biçimde sor. Beklemediği yerden.`, `Temel çizgi kurdun mu? Kurmadıysan bu ipuçları boş.`]) };
   }
 }
@@ -66,7 +66,7 @@ export function watsonSorusu(tur: 'gozlem' | 'cikarim' | 'hipotez' | 'olmayan', 
     gozlem: [`"${metin}." Bunu gördün mü, yoksa öyle olduğunu mu düşünüyorsun?`, `"${metin}." Kaynağı ne: kendi gözün mü, biri mi söyledi?`, `"${metin}." Bunu bir yabancıya kanıtlayabilir misin?`],
     cikarim: [`"${metin}." Bu bir gözlem mi, yoksa senin yorumun mu?`, `"${metin}." Hangi gözlemden çıkardın? Test ettin mi?`, `"${metin}." Bunun tersi de gözlemlerle uyuşur mu?`],
     hipotez: [`"${metin}." Bunu çürütecek bir şey aradın mı?`, `"${metin}." Karşıt hipotezin ne?`, `"${metin}." Şu ana kadar bunu destekleyen mi, çürüten mi bulgu daha çok?`],
-    olmayan: [`"${metin}." Beklenen ama olmayan; bunu gerçekten kontrol ettin mi, yoksa varsayım mı?`, `"${metin}." Yokluk delili: başka açıklaması olabilir mi?`],
+    olmayan: [`"${metin}." Beklenen ama olmayan; bunu gerçekten kontrol ettin mi, yoksa varsayım mı?`, `"${metin}." Bir şeyin olmaması da delildir; ama başka bir açıklaması olabilir mi?`],
   };
   return r.sec(sorular[tur]);
 }

@@ -101,14 +101,14 @@ export function puanla(sorgu: Sorgu, suclama: Suclama, secenekler: PuanSecenekle
 
   // --- Süreç cezaları ---
   const erken = sorgu.gecmis.filter((g) => g.teknik === 'sue' && g.ozet === 'erken gösterildi').length;
-  if (erken > 0) { etiket('erken-delil'); cezalar.push({ neden: 'erken-delil', miktar: -10 * erken, aciklama: `${erken} kez delili anlatımdan önce gösterdin; şüpheli hikâyesini delile uydurdu.` }); }
+  if (erken > 0) { etiket('erken-delil'); cezalar.push({ neden: 'erken-delil', miktar: -10 * erken, aciklama: `${erken} kez delili, kişi anlatmadan önce gösterdin; şüpheli hikâyesini delile uydurdu.` }); }
   if (sorgu.kontaminasyon.length > 0) { etiket('tanik-kirletme'); cezalar.push({ neden: 'tanik-kirletme', miktar: -5 * sorgu.kontaminasyon.length, aciklama: `${sorgu.kontaminasyon.length} tanık ifadesine kendi ayrıntını yerleştirdin.` }); }
   const gecersizCit = sorgu.gecmis.filter((g) => g.teknik === 'gizli-bilgi-testi' && g.ozet.startsWith('GEÇERSİZ')).length;
-  if (gecersizCit > 0) { etiket('gecersiz-gizli-bilgi-testi'); cezalar.push({ neden: 'gecersiz-cit', miktar: -5 * gecersizCit, aciklama: 'Sızmış ayrıntıyla gizli bilgi testi yaptın; masum da tanır.' }); }
+  if (gecersizCit > 0) { etiket('gecersiz-gizli-bilgi-testi'); cezalar.push({ neden: 'gecersiz-cit', miktar: -5 * gecersizCit, aciklama: 'Sızmış bir ayrıntıyla gizli bilgi testi yaptın; o ayrıntıyı duymuş bir masum da tanır.' }); }
   const baski = sorgu.gecmis.filter((g) => g.teknik === 'suclayici-ton').length;
-  if (baski > 0) cezalar.push({ neden: 'baski', miktar: -3 * baski, aciklama: `${baski} kez suçlayıcı ton kullandın; sahte itiraf riski.` });
+  if (baski > 0) cezalar.push({ neden: 'baski', miktar: -3 * baski, aciklama: `${baski} kez suçlayıcı tona başvurdun; bu, sahte itiraf riskini artırır.` });
   const butce = secenekler.zamanButcesi ?? 12;
-  if (sorgu.zaman > butce) cezalar.push({ neden: 'zaman-asimi', miktar: -2 * Math.ceil(sorgu.zaman - butce), aciklama: `Soruşturma bütçesini ${(sorgu.zaman - butce).toFixed(1)} saat aştın.` });
+  if (sorgu.zaman > butce) cezalar.push({ neden: 'zaman-asimi', miktar: -2 * Math.ceil(sorgu.zaman - butce), aciklama: `Soruşturma için ayrılan süreyi ${(sorgu.zaman - butce).toFixed(1).replace('.', ',')} saat aştın.` });
 
   // --- Bonuslar (yalnızca doğru sonuçta) ---
   if (dogru && olay.fail) {

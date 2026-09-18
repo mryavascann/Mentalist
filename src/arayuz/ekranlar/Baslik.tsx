@@ -59,7 +59,7 @@ export function Baslik() {
           <select value={d.zorluk} onChange={(e) => depo.zorlukSec(e.target.value as 'kolay' | 'orta' | 'zor')}>
             <option value="kolay">Kolay — sızıntı az, sahnelenmiş delil yok</option>
             <option value="orta">Orta — dengeli</option>
-            <option value="zor">Zor — gerçek hayat gibi: olay yerinde birden çok iz, kaçamak fail, korkan tanık, sahnelenmiş delil, tanımayan CIT</option>
+            <option value="zor">Zor — gerçek hayattaki gibi: olay yerinde birden çok iz, kaçamak cevap veren fail, korkan tanık, sahnelenmiş delil, gizli bilgi testinde tepki vermeyen fail</option>
           </select>
         </label>
         <div className="dugmeler" style={{ marginTop: 12 }}>
@@ -72,7 +72,7 @@ export function Baslik() {
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('soguk-okuma'); }}>Soğuk okuma dedektörü{d.tatbikat.sonuclar['soguk-okuma']?.tamamlandi ? ` ✓ ${d.tatbikat.sonuclar['soguk-okuma']!.puan}` : ''}</button>
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('taban-orani'); }}>Taban oranı{d.tatbikat.sonuclar['taban-orani']?.tamamlandi ? (d.tatbikat.sonuclar['taban-orani']!.puan ? ' ✓' : ' ✗') : ''}</button>
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('linda'); }}>Linda tuzağı{puanEki(d.tatbikat.sonuclar['linda'])}</button>
-          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('off-beat'); }}>Kaybolan top / off-beat{puanEki(d.tatbikat.sonuclar['off-beat'])}</button>
+          <button onClick={() => { depo.basla(ad); depo.tatbikatAc('off-beat'); }}>Kaybolan top ve gevşeme anı{puanEki(d.tatbikat.sonuclar['off-beat'])}</button>
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('ince-dilim'); }}>İnce dilim{puanEki(d.tatbikat.sonuclar['ince-dilim'])}</button>
           <button onClick={() => { depo.basla(ad); depo.tatbikatAc('cift-kor'); }}>Çift kör test tasarla{puanEki(d.tatbikat.sonuclar['cift-kor'])}</button>
           {d.sorgu && <button onClick={() => depo.ekranaGit(d.puan ? 'analiz' : 'vaka-acilis')}>Devam et</button>}

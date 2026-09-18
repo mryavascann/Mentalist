@@ -79,7 +79,7 @@ describe('kalibrasyonOzeti', () => {
       expect(k.sayi).toBeGreaterThan(0);
     }
     // Brier'dan güven geri türetilir: dogru=true, brier=.01 → güven .9; dogru=false, brier=.81 → güven .9
-    const yuksek = o.find((k) => k.kova === '0.85–1.00')!;
+    const yuksek = o.find((k) => k.kova === '%85–100')!;
     expect(yuksek.sayi).toBe(2);
     expect(yuksek.dogrulukOrani).toBe(0.5);
   });

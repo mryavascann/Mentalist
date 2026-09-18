@@ -38,6 +38,7 @@ Sonra kullanıcıya: "Kaldığımız yer: … Sıradaki iş: … Başlayayım m�
 | `YOL_HARITASI.md` | Aşamalar ve onay kutuları |
 | `TASARIM.md` | Yaşayan oyun tasarım belgesi (tohumdan büyür) |
 | `brand.md` | Görsel dil ve UI/UX kararları |
+| `USLUP.md` | Türkçe üslup kılavuzu ve terim sözlüğü; oyuncuya görünen her metin buna göre yazılır (K-018) |
 | `kaynaklar/NOTLAR.md` | Önceki ajanların ~1230 satırlık okuma notları (kaynak kısaltmaları buradaki başlıklarla eşleşir) |
 | `kaynaklar/KAYNAK_INDEKSI.md` | PDF dosya adı → kaynak eşlemesi |
 | `kaynaklar/mentaldocs/` | 7 kitap + 59 makale PDF (git'e alınmaz, bkz. KARARLAR K-002) |
@@ -54,6 +55,7 @@ npm run build     # tip denetimi + üretim derlemesi
 
 ## Kod kuralları (kısa)
 
+- Oyuncuya görünen metin `docs/USLUP.md`'ye uyar (terim sözlüğü, sembolsüz düz metin, havuz boyutu sabit).
 - Türkçe isimlendirme ve bol Türkçe yorum: her modülün başında ne işe yaradığı, her önemli fonksiyonun üstünde ne yaptığı ve neden.
 - İthalat takma adları: `@motor/*`, `@icerik/*`, `@arayuz/*`, `@ortak/*`.
 - `src/motor` ve `src/ortak` asla `src/arayuz`'u ithal etmez.

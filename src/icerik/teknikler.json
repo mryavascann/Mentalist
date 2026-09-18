@@ -2,9 +2,9 @@
   {
     "id": "temel-cizgi",
     "ad": "Sohbet / temel çizgi",
-    "aciklama": "Tarafsız konularla kişinin 'normalini' öğrenmek: konuşma hızı, jest sıklığı, göz teması, dolgu sözcükleri.",
-    "nasil": "Suç sorusundan önce 3–4 tarafsız soru sor. Sonra sapmaları değil, HANGİ konuda sapma olduğunu not et.",
-    "sinirlari": "Küçük sohbet temel çizgisi ≠ suç sorusu temel çizgisi. 'Karşılaştırılabilir doğru' ara: aynı görüşme, benzer önem, yakın zaman.",
+    "aciklama": "Tarafsız konularda sohbet ederek kişinin normalini öğrenmek: konuşma hızı, el kol hareketleri, göz teması, dolgu sözcükleri.",
+    "nasil": "Suçla ilgili sorulardan önce üç dört tarafsız soru sor. Sonra yalnızca sapmaları değil, sapmanın HANGİ konuda ortaya çıktığını not et.",
+    "sinirlari": "Gündelik sohbetteki normal, suç sorusundaki normalle aynı olmayabilir. Kıyas için benzer bir doğru anlatım bul: aynı görüşmede, benzer önemde ve yakın zamanda geçen bir konu.",
     "kilavuzMaddesi": "temel-cizgi",
     "kaynak": [
       "Vrij 2010 PSPI",
@@ -23,10 +23,10 @@
   },
   {
     "id": "acik-uclu-anlatim",
-    "ad": "Açık uçlu serbest anlatım",
-    "aciklama": "'Baştan sona anlat' — kişi kendi sözcükleriyle, kesilmeden anlatır.",
-    "nasil": "Soru sorma, dinle. Bittiğinde 'Atladığın bir şey var mı?' de. Ayrıntı, düzeltme ve 'hatırlamıyorum' kabullerini not et.",
-    "sinirlari": "Çok konuşmak doğruluk değildir; doğrulanamayan uzun ifadeye güvenme. Sözel ipuçları CBCA'yı bilen yalancı tarafından taklit edilebilir.",
+    "ad": "Serbest anlatım",
+    "aciklama": "'Baştan sona anlat.' Kişi olayı kendi sözcükleriyle, sözü kesilmeden anlatır.",
+    "nasil": "Soru sorma, dinle. Bitince 'Atladığın bir şey var mı?' diye sor. Ayrıntıları, kendi yaptığı düzeltmeleri ve 'hatırlamıyorum' dediği yerleri not et.",
+    "sinirlari": "Çok konuşmak doğru söylemek demek değildir; doğrulanamayan uzun bir anlatıma güvenme. İçerik analizi ölçütlerini (CBCA) bilen bir yalancı bu sözel ipuçlarını taklit edebilir.",
     "kilavuzMaddesi": "ipuclari-zayiftir",
     "kaynak": [
       "Vrij 2010 PSPI",
@@ -46,8 +46,8 @@
     "id": "yonlendirici-soru",
     "ad": "Yönlendirici soru",
     "aciklama": "Cevabı içinde taşıyan soru: 'Mavi arabayı ne zaman gördün?' Hızlı bilgi getirir ama tanığın anısını değiştirir.",
-    "nasil": "Kullanırsan bil: motor bu ayrıntıyı 'ilk kimin söylediğini' kaydeder; sonradan tanık aynı ayrıntıyı söylerse kaynağı sen olabilirsin.",
-    "sinirlari": "Loftus fiil etkisi: 'çarptı' vs 'değdi' hız tahminini ve sonraki anıyı değiştirir. Çocuk ve telkine yatkın tanıklarda daha tehlikeli.",
+    "nasil": "Kullanacaksan bil: oyun bu ayrıntıyı ilk kimin söylediğini kaydeder. Tanık sonradan aynı ayrıntıyı tekrarlarsa kaynağı sen olabilirsin.",
+    "sinirlari": "Loftus'un deneyinde tek bir fiil ('çarptı' ya da 'değdi') hız tahminini ve sonraki anıyı değiştirdi. Çocuklarda ve telkine yatkın tanıklarda daha tehlikelidir.",
     "kilavuzMaddesi": "yonlendirici-soru-riski",
     "kaynak": [
       "Loftus & Pickrell 1995",
@@ -67,9 +67,9 @@
   {
     "id": "sue",
     "ad": "Stratejik delil kullanımı (SUE)",
-    "aciklama": "Delili açmadan önce serbest anlatım ve delille ilgili sorular; sonra delili açıp çelişkiyi sormak.",
-    "nasil": "1) Delili söyleme, anlattır. 2) Delilin konusuyla ilgili soruyu delili açmadan sor. 3) Şimdi delili göster, çelişkiyi sor. Erken gösterirsen suçlu hikâyesini delile uydurur. Delil başkası hakkındaysa o kişiyi sorar (tanık ifadesi): \"benimleydi\" diyen koruyucu, kamera kaydıyla çelişebilir.",
-    "sinirlari": "Elde delil yoksa uygulanamaz. Masumun 'bilmiyordum' demesi normaldir; çelişki yoksa suçlama. Tanık ifadesine uygulama oyunun genişletmesidir; araştırma şüpheli sorgusuyla sınırlıdır.",
+    "aciklama": "Delili göstermeden önce kişiyi anlattırmak ve delille ilgili sorular sormak; sonra delili gösterip çelişkiyi sormak.",
+    "nasil": "1) Delilden söz etme, anlattır. 2) Delilin konusuyla ilgili soruyu delili göstermeden sor. 3) Sonra delili göster ve çelişkiyi sor. Delili erken gösterirsen suçlu hikâyesini ona uydurur. Delil başka biri hakkındaysa o kişiyi sorarsın (tanık ifadesi): \"benimleydi\" diyen koruyucu, kamera kaydıyla çelişebilir.",
+    "sinirlari": "Elinde delil yoksa uygulanamaz. Masumun 'bilmiyordum' demesi normaldir; çelişki yoksa suçlama. Tekniği tanık ifadesine uygulamak oyunun bir genişletmesidir; araştırmalar şüpheli sorgusuyla sınırlıdır.",
     "kilavuzMaddesi": "sue",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -86,10 +86,10 @@
   },
   {
     "id": "bilissel-yuk-ters-sira",
-    "ad": "Bilişsel yük: ters sırayla anlattırma",
-    "aciklama": "Olayı sondan başa anlattırmak; yalancının zihinsel yükü artar, ipuçları belirginleşir.",
-    "nasil": "'Şimdi aynı akşamı en sondan başlayarak anlat.' Tutarsızlık, ayrıntı kaybı ve duraksamaları ilk anlatımla karşılaştır.",
-    "sinirlari": "Herkes için zordur; temel çizgiyle kıyasla. Yaşlı ve yorgun tanıklarda doğrucu da zorlanır.",
+    "ad": "Sondan başa anlattırma",
+    "aciklama": "Olayı sondan başa anlattırmak. Yalancının zihinsel yükü artar, ipuçları belirginleşir.",
+    "nasil": "'Şimdi aynı akşamı en sondan başlayarak anlat.' Çelişkileri, kaybolan ayrıntıları ve duraksamaları ilk anlatımla karşılaştır.",
+    "sinirlari": "Herkes zorlanır; kişinin normaliyle kıyasla. Yaşlı ve yorgun tanıklarda doğruyu söyleyen de zorlanır.",
     "kilavuzMaddesi": "bilissel-yuk",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -106,10 +106,10 @@
   },
   {
     "id": "beklenmedik-soru",
-    "ad": "Beklenmedik soru (mekânsal / zamansal / çizim)",
-    "aciklama": "Prova edilmemiş ayrıntı sormak: 'En yakın masa neredeydi?', 'Kim önce çıktı?', 'Odayı çiz.'",
-    "nasil": "Alibinin beklenen kısmını değil, çevresini sor. Grup alibisinde iki kişiye ayrı ayrı sor ve karşılaştır.",
-    "sinirlari": "Dürüst kişi de ayrıntıyı unutmuş olabilir; 'bilmiyorum' demesi normaldir. Yalancı ise bilmiyorum diyemeyip uydurma eğilimindedir.",
+    "ad": "Beklenmedik soru",
+    "aciklama": "Prova edilmemiş ayrıntıyı sormak: 'En yakın masa neredeydi?', 'Kim önce çıktı?', 'Odayı çizer misin?'",
+    "nasil": "Alibinin beklenen kısmını değil, çevresini sor. Grup alibisinde iki kişiye ayrı ayrı sor ve cevapları karşılaştır.",
+    "sinirlari": "Doğruyu söyleyen de ayrıntıyı unutmuş olabilir; 'bilmiyorum' demesi normaldir. Yalancı ise 'bilmiyorum' diyemeyip uydurmaya yatkındır.",
     "kilavuzMaddesi": "beklenmedik-soru",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -126,10 +126,10 @@
   },
   {
     "id": "gizli-bilgi-testi",
-    "ad": "Gizli bilgi testi (CIT/GKT)",
-    "aciklama": "Sadece failin bilebileceği ayrıntıyı benzer seçenekler arasında sunmak; tanıma tepkisini izlemek.",
-    "nasil": "'Silah bıçak mıydı, buz kıracağı mı, çekiç mi?' Ayrıntı basına sızmadıysa geçerlidir. Tepki 'korku' değil 'tanıma'dır (dikkat).",
-    "sinirlari": "Ayrıntı medyada/ dedikoduda yayıldıysa masum da tepki verir; fail ayrıntıyı fark etmemiş olabilir. Hot reading riskiyle aynı hata: bilgi başka kanaldan sızmış olabilir.",
+    "ad": "Gizli bilgi testi",
+    "aciklama": "Yalnızca failin bilebileceği ayrıntıyı benzer seçeneklerin arasında sunmak ve tanıma tepkisini izlemek.",
+    "nasil": "'Silah bıçak mıydı, buz kıracağı mı, çekiç mi?' Ayrıntı basına sızmadıysa test geçerlidir. Aradığın tepki korku değil, tanımadır: dikkatin kilitlenmesi.",
+    "sinirlari": "Ayrıntı basında ya da dedikoduda yayıldıysa masum da tepki verir; fail de ayrıntıyı fark etmemiş olabilir. Sıcak okumadaki hatanın aynısı: bilgi başka bir yoldan sızmış olabilir.",
     "kilavuzMaddesi": "gizli-bilgi-testi",
     "kaynak": [
       "Vrij & Verschuere 2014",
@@ -147,10 +147,10 @@
   },
   {
     "id": "zorunlu-iki-secenek",
-    "ad": "Zorunlu iki seçenek (Symptom Validity Test)",
-    "aciklama": "'Hatırlamıyorum' diyene iki seçenekli sorular; şans altı skor kasıtlı kaçınma demektir.",
-    "nasil": "En az 10–15 iki seçenekli soru sor. Gerçekten hatırlamayan ~%50 tutturur; sürekli yanlış seçen doğruyu bilip kaçınıyordur.",
-    "sinirlari": "Az soruyla sonuç şansa açıktır. Doğrudan suç sorusuna 'hatırlamıyorum' diyen için geçerli; ikincil ayrıntıları hatırlamamak normaldir.",
+    "ad": "İki seçenekli test",
+    "aciklama": "'Hatırlamıyorum' diyen kişiye iki seçenekli sorular sormak. Şansın altında kalan bir skor, doğru cevaptan bilerek kaçındığını gösterir.",
+    "nasil": "En az 10–15 iki seçenekli soru sor. Gerçekten hatırlamayan kişi yaklaşık yarısını tutturur; sürekli yanlış seçen, doğruyu bilip ondan kaçınıyordur.",
+    "sinirlari": "Az soruyla sonuç şansa açıktır. Test, doğrudan suçla ilgili bir soruya 'hatırlamıyorum' diyen için geçerlidir; ikincil ayrıntıları hatırlamamak normaldir.",
     "kilavuzMaddesi": "symptom-validity-test",
     "kaynak": [
       "Vrij & Verschuere 2014"
@@ -168,9 +168,9 @@
   {
     "id": "saskinlik-testi",
     "ad": "Şaşkınlık testi",
-    "aciklama": "Bilmemesi gereken bilgiyi açıklayınca şaşırmıyorsa zaten biliyordu; bildiğini iddia ettiği şeye şaşırıyorsa bilmiyordu.",
-    "nasil": "Açıklamayı ani ve beklenmedik yap. Şaşkınlık en kısa duygudur; hemen başka duyguya dönüşür.",
-    "sinirlari": "Şaşkınlık bastırılabilir, 'şaşırmış rolü' yapılabilir; irkilme refleksi ise kontrol edilemez ama bilgiyle ilgili değildir. Tek başına kanıt değil.",
+    "aciklama": "Bilmemesi gereken bir bilgiyi duyunca şaşırmıyorsa zaten biliyordu; bildiğini iddia ettiği bir şeye şaşırıyorsa aslında bilmiyordu.",
+    "nasil": "Bilgiyi aniden, beklenmedik bir anda ver. Şaşkınlık en kısa duygudur; hemen başka bir duyguya dönüşür.",
+    "sinirlari": "Şaşkınlık bastırılabilir ya da oynanabilir. İrkilme ise bir reflekstir, kontrol edilemez ama bilgiyle ilgili değildir. Tek başına kanıt sayılmaz.",
     "kilavuzMaddesi": "saskinlik-testi",
     "kaynak": [
       "Ekman — Emotions Revealed"
@@ -187,10 +187,10 @@
   },
   {
     "id": "sahte-bilgi-yemi",
-    "ad": "Sahte bilgi yemi (psychic baiting)",
-    "aciklama": "Var olmayan bir kişi/olay hakkında soru sormak; 'doğrulayan' uyduruyordur.",
-    "nasil": "'Cemil'in o gece aradığını söylediler, ne konuştunuz?' (Cemil yok.) Onaylayıp büyüten kişinin anlatısı güvenilmezdir.",
-    "sinirlari": "Masuma yanlış bilgi yerleştirme riski (kontaminasyon). Telkine yatkın kişi 'hatırlar' gibi yapabilir. Nadir ve dikkatli kullan.",
+    "ad": "Sahte bilgi yemi",
+    "aciklama": "Var olmayan bir kişi ya da olay hakkında soru sormak. Bunu 'doğrulayan' kişi uyduruyordur.",
+    "nasil": "'Cemil'in o gece aradığını söylediler, ne konuştunuz?' (Cemil diye biri yok.) Onaylayıp üstüne ayrıntı ekleyen kişinin anlatısına güvenilmez.",
+    "sinirlari": "Masumun anısına yanlış bilgi yerleştirme riski vardır. Telkine yatkın biri hatırlıyormuş gibi davranabilir. Seyrek ve dikkatle kullan.",
     "kilavuzMaddesi": "sahte-bilgi-yemi",
     "kaynak": [
       "Rowland",
@@ -209,9 +209,9 @@
   {
     "id": "seytanin-avukati",
     "ad": "Şeytanın avukatı",
-    "aciklama": "Kişinin görüşünü/anlatısını önce lehinde, sonra aleyhinde savunmasını istemek.",
-    "nasil": "Doğru söyleyenin lehte cevabı uzun ve zengin, aleyhte cevabı kısa olur; yalancıda fark azdır.",
-    "sinirlari": "Görüş ve niyet yalanlarında çalışır; olay anlatımında sınırlı. Sözel becerisi düşük kişide ayrım zayıflar.",
+    "aciklama": "Kişiden görüşünü önce savunmasını, sonra karşı tarafı savunmasını istemek.",
+    "nasil": "Doğruyu söyleyenin lehte cevabı uzun ve zengin, aleyhte cevabı kısa olur; yalancıda bu fark azdır.",
+    "sinirlari": "Görüş ve niyetle ilgili yalanlarda işe yarar; olay anlatımında sınırlıdır. Sözel becerisi zayıf kişide ayrım belirsizleşir.",
     "kilavuzMaddesi": "seytanin-avukati",
     "kaynak": [
       "Vrij 2010 PSPI"
@@ -228,10 +228,10 @@
   },
   {
     "id": "suclayici-ton",
-    "ad": "Suçlayıcı ton / baskı",
-    "aciklama": "Doğrudan suçlamak, sesi yükseltmek, ardı ardına soru yağdırmak.",
-    "nasil": "Kullanırsan sonucunu bil: masum da gerilir, yalancı 'bana inanmıyorsunuz, konuşmam' kaçışı bulur; sahte itiraf riski artar.",
-    "sinirlari": "Reid tarzı baskı sahte itiraf üretir (Central Park vakası). Bilgi toplama tarzı hem daha çok bilgi hem daha doğru ayrım verir.",
+    "ad": "Suçlayıcı ton",
+    "aciklama": "Doğrudan suçlamak, sesi yükseltmek, art arda soru yağdırmak.",
+    "nasil": "Kullanacaksan sonucunu bil: masum da gerilir, yalancı 'bana inanmıyorsunuz, konuşmayacağım' diye bir kaçış bulur; sahte itiraf riski artar.",
+    "sinirlari": "Reid tarzı baskı sahte itiraf üretir (Central Park vakası). Bilgi toplamaya dayalı bir görüşme hem daha çok bilgi getirir hem de doğruyla yalanı daha iyi ayırır.",
     "kilavuzMaddesi": "suclayici-ton",
     "kaynak": [
       "Vrij 2010 PSPI",
@@ -251,9 +251,9 @@
   {
     "id": "oda-okuma",
     "ad": "Odasını oku",
-    "aciklama": "Kişinin odasına/masasına bakmak: her eşya kimlik iddiası mı (kendine ya da başkalarına), davranış kalıntısı mı, sahnelenmiş mi?",
-    "nasil": "Eşyaları listele, her birini sınıfla. Kalıntılar tekrarlanan davranışın birikimidir; iddialar kişinin nasıl görünmek istediğidir. Sır kalıntı bırakır: sorulacak konu çıkarır, suç kanıtı değil.",
-    "sinirlari": "Odadan kişilik ve sır okunur, suç okunmaz. 'Hoş oda = hoş insan' geçersizdir. Kişi odayı izlenim için düzenlemiş olabilir (yüksek öz-izleme).",
+    "aciklama": "Kişinin odasına ya da masasına bakmak: her eşya bir kimlik mesajı mı, bir davranış izi mi, yoksa göstermelik mi?",
+    "nasil": "Eşyaları tek tek sınıfla. Davranış izleri, tekrar tekrar yapılan şeylerin birikimidir; kimlik mesajları kişinin nasıl görünmek istediğini gösterir. Sırlar da iz bırakır: sorulacak bir konu çıkarır ama suç kanıtı değildir.",
+    "sinirlari": "Odadan kişilik ve sır okunur, suç okunmaz. 'Hoş oda, hoş insan' inancı geçersizdir. Kişi odasını izlenim bırakmak için düzenlemiş olabilir (yüksek öz-izleme).",
     "kilavuzMaddesi": "oda-ipuclari",
     "kaynak": [
       "Gosling 2002"
@@ -271,9 +271,9 @@
   {
     "id": "dijital-iz",
     "ad": "Dijital iz",
-    "aciklama": "Sosyal medya profili: arkadaş sayısı, paylaşım sıklığı, beğeniler, kurbana dair son paylaşımın tonu.",
-    "nasil": "Dışadönüklüğü buradan oku (arkadaş ve paylaşım sayısı geçerli ipucu); kaygıyı okumaya kalkma (görünmez). Kurbana dair tonu ilişkinin sıcaklığıyla kıyasla; izlenim yöneten kişi soğukluğu saklar.",
-    "sinirlari": "Tahmin olasılıksaldır, bireyde yanılır. 'Çok paylaşım = kaygılı' halk inancı geçersiz. Bir medyumun 'nasıl bildi?'sinin cevabı çoğu zaman budur (sıcak okuma).",
+    "aciklama": "Sosyal medya profiline bakmak: arkadaş sayısı, paylaşım sıklığı, beğeniler ve kurban hakkındaki son paylaşımın tonu.",
+    "nasil": "Dışadönüklüğü buradan okuyabilirsin; arkadaş ve paylaşım sayısı geçerli ipuçlarıdır. Kaygıyı okumaya kalkma, profilde görünmez. Kurban hakkındaki paylaşımın tonunu ikisinin ilişkisiyle karşılaştır; izlenimini yöneten biri soğukluğu gizler.",
+    "sinirlari": "Tahmin olasılığa dayanır, tek bir kişide yanılabilir. 'Çok paylaşan kaygılıdır' inancı geçersizdir. Bir medyumun 'nasıl bildi?' sorusunun cevabı çoğu zaman budur: sıcak okuma.",
     "kilavuzMaddesi": "dijital-iz",
     "kaynak": [
       "Kosinski 2013",
@@ -292,9 +292,9 @@
   {
     "id": "ic-ses",
     "ad": "Şu an ne düşünüyor?",
-    "aciklama": "Son cevabı verirken kişinin iç sesini tahmin et; gerçek iç ses vaka sonunda açılır ve isabetin puanlanır.",
-    "nasil": "Önce konuş ve soru sor; az konuşulan kişi okunmaz (seçenekler çoğalır). Tahminini seç; sonucu vaka sonunda 'İç ses karnesi'nde gör. Ortalama insan %22 tutturur.",
-    "sinirlari": "Ickes 1990: içerik isabeti %22, olumlu/olumsuz ayrımı şans düzeyi. 'Okudum' hissi kanıt değildir; hep 'suçu düşünüyor' demek yalan yanlılığıdır.",
+    "aciklama": "Kişi son cevabını verirken içinden ne geçirdiğini tahmin et; gerçek iç ses vaka sonunda açılır ve isabetin puanlanır.",
+    "nasil": "Önce konuş ve soru sor; az konuştuğun kişiyi okuyamazsın (seçenekler çoğalır). Tahminini seç, sonucu vaka sonunda 'İç ses karnesi'nde gör. Ortalama bir insan %22 isabet tutturur.",
+    "sinirlari": "Ickes 1990: içerik isabeti %22; düşüncenin olumlu mu olumsuz mu olduğu bile şans düzeyinde tahmin edildi. 'Okudum' hissi kanıt değildir; herkes için 'suçu düşünüyor' demek yalan yanlılığıdır.",
     "kilavuzMaddesi": "empatik-dogruluk",
     "kaynak": [
       "Ickes 1990"
@@ -312,9 +312,9 @@
   {
     "id": "kayit-inceleme",
     "ad": "Kaydı incele",
-    "aciklama": "Son cevabın kaydını yavaşlatıp yüzün bir bölümünü kapatarak yeniden izlemek; temel çizgi varsa gözlemleri 'onun normali' ve 'sapma' diye ayırmak.",
-    "nasil": "Önce temel çizgi kur, sonra kaydı incele; yoksa ilk izlediğini 'normal' sanırsın (sıra yanlılığı). Sapmalar sorulacak konudur, kanıt değil.",
-    "sinirlari": "Etkisi küçüktür (%49 → %53). Tek bir ipucu yoktur; kişiye özgü karışım vardır. Aynı cevabı ikinci kez sordurmak daha çok iz verir.",
+    "aciklama": "Son cevabın kaydını yavaşlatıp yüzün bir bölümünü kapatarak yeniden izlemek. Kişinin normalini biliyorsan gözlemleri 'onun normali' ve 'sapma' diye ayırmak.",
+    "nasil": "Önce temel çizgiyi kur, sonra kaydı incele; yoksa ilk izlediğini 'normal' sanırsın (sıra yanlılığı). Sapmalar sorulacak konudur, kanıt değildir.",
+    "sinirlari": "Etkisi küçüktür (%49'dan %53'e). Yalanı ele veren tek bir ipucu yoktur; her kişide farklı bir karışım vardır. Aynı soruyu ikinci kez sormak daha çok iz bırakır.",
     "kilavuzMaddesi": "kayit-inceleme",
     "kaynak": [
       "Swerts 2013"

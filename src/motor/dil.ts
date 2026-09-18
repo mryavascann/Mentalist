@@ -81,7 +81,7 @@ const SABLONLAR: Record<string, string[]> = {
     'Kabul, {odaB}. Ama görülecek bir şey yoktu.',
 ],
   'kendi-gomulu': [
-    '{saat} civarı {odaB}. Aynı akşam, aynı yer; biraz oturdum.',
+    '{saat} civarı {odaB}. Her zamanki yerimde biraz oturdum.',
     '{OdaB}. Bunu net hatırlıyorum, çünkü oraya daha önce de geçmiştim.',
     'O saatte {odaB}. Kimseyle konuşmadım.',
       '{saat} gibi {odaB}. Aynı sandalyede oturdum.',
@@ -134,11 +134,11 @@ const SABLONLAR: Record<string, string[]> = {
   'yontem-dogru': ['Duyduğum kadarıyla {yontem}.', 'Herkes "{yontem}" diyor.', 'Söylenen şu: {yontem}. Ben de öyle duydum.', '{yontem} diyorlar; ben de öyle biliyorum.', 'Koridorda konuşulan şu: {yontem}.'],
   'yontem-null-dogru': ['Bilmiyorum.', 'Kimse bana bir şey söylemedi.', 'Hiçbir fikrim yok, gerçekten.', 'Bana söylenmedi.', 'Duymadım.'],
   'yontem-gizleme': ['Hiçbir fikrim yok. Bana kimse bir şey söylemedi.', 'Ne olduğunu bilmiyorum.', 'Bunu benden değil polisten öğrenmelisiniz.', 'Bilmem. Size söylemişlerdir.', 'Bunu ben nereden bileyim?'],
-  'fail-dogru': ['{failB} gördüm. {failAd} oradaydı.', 'Oradaki kişi {failAd}. Kendi gözlerimle gördüm.', '{failAd}. Söylemek istemezdim ama gördüm.', '{failAd}. Evet, oradaydı.', 'Gördüm: {failAd}.'],
+  'fail-dogru': ['{failB} gördüm. {failAd} oradaydı.', 'Oradaki {failAd} idi. Kendi gözlerimle gördüm.', '{failAd}. Söylemek istemezdim ama gördüm.', '{failAd}. Evet, oradaydı.', 'Gördüm: {failAd}.'],
   'fail-null-dogru': ['Bilmiyorum.', 'Keşke bilseydim.', 'Kimseyi görmedim.', 'Görmedim.', 'Bir şey görmedim.'],
   'fail-gizleme': ['Keşke bilseydim.', 'Hiçbir fikrim yok.', 'Ben de sizin kadar şaşkınım.', 'Kimseyi görmedim.', 'Bilmiyorum.'],
   'fail-koruma': ['Kimseyi görmedim.', 'Görmedim, sadece sesler duydum.', 'Orada kimse yoktu.', 'Karanlıktı, kimseyi seçemedim.', 'Ben oradayken kimse yoktu.'],
-  'fail-itiraf': ['Tamam… ben yaptım. Yazın: {kendiAd}.', 'Ben yaptım. {kendiAd}. Artık bırakın.', 'Evet, bendim. {kendiAd}.', 'Bendim. {kendiAd}. Bitirin şunu.', 'Ben yaptım. {kendiAd} yaptı.'],
+  'fail-itiraf': ['Tamam… ben yaptım. Yazın: {kendiAd}.', 'Ben yaptım. {kendiAd}. Artık bırakın.', 'Evet, bendim. {kendiAd}.', 'Bendim. {kendiAd}. Bitirin şunu.', 'Ben yaptım. Adımı yazın: {kendiAd}.'],
 };
 
 const UZUN_EKLER = ['Hepsi bu.', 'Dediğim gibi.', 'Başka bir şey yok.', 'Hatırladığım bu kadar.', 'Bu kadar.', 'Başka ne diyeyim.'];
@@ -252,7 +252,7 @@ export function vakaBrifingi(vaka: Vaka): string {
   const gorusulebilir = vaka.kisiler.filter((k) => k.hayatta && k.id !== kurban.id).length;
   const arketip = ARKETIPLER.find((a) => a.id === vaka.arketip);
   const ek = arketip ? ` ${arketip.brifingEki}` : '';
-  return `${vaka.mekan.ad}. Akşam ${ilk}–${son} arası. ${kurban.ad} ${OLAY_METNI[vaka.olay.tur]}; olay yeri ${bulunma(oda)}, saat ${saat} civarı.${ek} ${gorusulebilir} kişiyle görüşülebilir. Herkes o akşam oradaydı.`;
+  return `${vaka.mekan.ad}. Akşam ${ilk}–${son} arası. ${kurban.ad} ${OLAY_METNI[vaka.olay.tur]}; olay yeri ${bulunma(oda)}, saat ${saat} civarı.${ek} ${gorusulebilir} kişiyle görüşebilirsin. Hepsi o akşam oradaydı.`;
 }
 
 /** Ardışık aynı oda + aynı kategori dilimlerinde kullanılan kısa devam kalıpları (anlatım tekrarını kırar). */

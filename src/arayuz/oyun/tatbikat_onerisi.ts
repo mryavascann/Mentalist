@@ -12,7 +12,7 @@ export const TATBIKAT_ADLARI: Record<TatbikatId, string> = {
   'soguk-okuma': 'Soğuk okuma dedektörü',
   'taban-orani': 'Taban oranı',
   linda: 'Linda tuzağı',
-  'off-beat': 'Kaybolan top / off-beat',
+  'off-beat': 'Kaybolan top ve gevşeme anı',
   'ince-dilim': 'İnce dilim',
   'cift-kor': 'Çift kör test tasarla',
 };

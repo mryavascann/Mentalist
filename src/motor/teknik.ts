@@ -139,7 +139,7 @@ export function sor(sorgu: Sorgu, kisi: KisiId, soru: Soru, secenekler: { kaymaC
     if (soru.tur === 'konum' && soru.hedef === kisi && YALAN_IFADE_TURLERI.has(cevap.ifadeTuru)) {
       const delil = gosterilmisKonumDelili(sorgu, kisi, soru.dilim);
       if (delil && delil.gosterir.tur === 'konum') {
-        cevap = { ...cevap, ifadeTuru: 'kacamak', icerik: delil.gosterir.oda, dogru: true, not: `delil önce gösterildi (${delil.id}); hikâyesini delile uydurdu` };
+        cevap = { ...cevap, ifadeTuru: 'kacamak', icerik: delil.gosterir.oda, dogru: true, not: 'delil ona erken gösterildi; hikâyesini delile uydurdu' };
         durum.defter.set(anahtar, cevap);
       }
     }
@@ -212,7 +212,7 @@ function uygula(sorgu: Sorgu, kisi: KisiId, teknikId: string, p: TeknikParametre
       let kontamineOldu = false;
       if (bilgisiz && !fail && kayit.kisilik.telkineYatkinlik > 0.65) {
         const gercek = vaka.zamanCizelgesi.find((z) => z.kisi === hedef && z.dilim === dilim)!.oda;
-        const yeni: Cevap = { ...dogal, ifadeTuru: 'sahte-ani', icerik: oneri, dogru: oneri === gercek, not: `yönlendirici soru: "${oneri}" önerisini benimsedi (telkine yatkın, bilgisiz)` };
+        const yeni: Cevap = { ...dogal, ifadeTuru: 'sahte-ani', icerik: oneri, dogru: oneri === gercek, not: 'yönlendirici sorundaki öneriyi benimsedi; telkine yatkındı ve aslında bilmiyordu' };
         durum.defter.set(anahtar, yeni);
         sorgu.kontaminasyon.push({ kisi, ayrinti: `${hedef} @ dilim ${dilim} → ${oneri}`, kaynak: 'oyuncu', teknik: 'yonlendirici-soru' });
         kontamineOldu = true;

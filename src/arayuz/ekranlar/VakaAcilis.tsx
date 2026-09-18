@@ -55,11 +55,11 @@ export function VakaAcilis() {
                 <span><span className="daktilo">{delil.id}</span> · {delil.aciklama}</span>
                 {delil.sizmis && <span className="rozet sizmis">basına sızdı</span>}
               </span>
-              <span className="soluk">{delil.tur} · güç {Math.round(delil.gucu * 100)}%</span>
+              <span className="soluk">{delil.tur} · güç %{Math.round(delil.gucu * 100)}</span>
             </li>
           ))}
         </ul>
-        <p className="soluk">Delilleri sorgu odasında kişiye gösterebilirsin. Ne zaman gösterdiğin önemlidir (Kılavuz: SUE).</p>
+        <p className="soluk">Delilleri sorgu odasında kişiye gösterebilirsin. Ne zaman gösterdiğin önemlidir (Kılavuz: Stratejik delil kullanımı).</p>
       </section>
     </div>
   );

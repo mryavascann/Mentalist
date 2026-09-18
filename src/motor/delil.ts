@@ -143,7 +143,7 @@ export function delilUret(vaka: Vaka, dagilim: BilgiDagilimi): Delil[] {
   if (olay.fail) {
     deliller.push({
       id: yeniId(), tur: 'fiziksel', oda: olay.oda,
-      aciklama: `${odaAdi(vaka, olay.oda)}: olayın "${olay.yontem}" ile gerçekleştiğini gösteren iz.`,
+      aciklama: `${odaAdi(vaka, olay.oda)}: olayın nasıl gerçekleştiğini gösteren bir iz (${olay.yontem}).`,
       gosterir: { tur: 'yontem', yontem: olay.yontem }, gucu: 0.8,
       sizmis: dagilim.medyayaSizanKonular.includes('olay-yontemi'),
       sahnelenmis: false,

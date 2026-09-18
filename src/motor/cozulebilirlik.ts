@@ -46,7 +46,7 @@ export function cozulebilirlikDenetle(orijinal: Sorgu): CozulebilirlikRaporu {
   const notlar: string[] = [];
 
   if (!olay.fail) {
-    return { sucVar: false, supheliler: [], sinyaller: [], cozulebilir: true, tekCozum: true, zorluk: 0.35, notlar: ['Suç delili yok (yöntem delili ve yokluk delili üretilmedi); "suç yok" sonucuna ulaşılabilir.'] };
+    return { sucVar: false, supheliler: [], sinyaller: [], cozulebilir: true, tekCozum: true, zorluk: 0.35, notlar: ['Suçu gösteren bir delil yoktu; "suç yok" sonucuna ulaşmak mümkündü.'] };
   }
 
   const canlilar = vaka.kisiler.filter((k) => k.hayatta && k.id !== olay.kurban);
@@ -89,20 +89,20 @@ export function cozulebilirlikDenetle(orijinal: Sorgu): CozulebilirlikRaporu {
   const failPuani = puanlar.get(olay.fail) ?? 0;
   const digerMax = Math.max(0, ...[...puanlar.entries()].filter(([k]) => k !== olay.fail).map(([, p]) => p));
   const cozulebilir = supheliler.includes(olay.fail) && failPuani >= COZUM_ESIGI && failPuani > digerMax;
-  if (!cozulebilir) notlar.push(`Fail puanı ${failPuani}, en yakın rakip ${digerMax}; meşru sinyaller faili ayırt etmiyor.`);
+  if (!cozulebilir) notlar.push(`Geçerli işaretler faili ötekilerden ayırmıyordu (fail ${failPuani}, en yakın aday ${digerMax} puan).`);
 
   // Zorluk
   const fail = vaka.kisiler.find((k) => k.id === olay.fail)!;
   let zorluk = 0.3;
   const kacamak = !sinyaller.some((s) => s.tur === 'delil-celiskisi' && s.hedef === olay.fail);
-  if (kacamak) { zorluk += 0.2; notlar.push('Fail olay yerinde olduğunu kabul ediyor (kaçamak); delil çelişkisi yok.'); }
-  if (!citGecerli) { zorluk += 0.15; notlar.push('Yöntem ayrıntısı sızmış; gizli bilgi testi geçersiz.'); }
-  if (sorgu.durum.sirKatmani.korumalar.some((c) => c.korunan === olay.fail)) { zorluk += 0.15; notlar.push('Faili koruyan biri var.'); }
-  if (sinyaller.some((s) => s.tur === 'gorgu-tanigi')) { zorluk -= 0.2; notlar.push('Koruması olmayan görgü tanığı var.'); }
-  if (supheliler.length > 1) { zorluk += 0.1; notlar.push(`Olay odasında izi olan ${supheliler.length} kişi var.`); }
+  if (kacamak) { zorluk += 0.2; notlar.push('Fail olay yerinde olduğunu kabul etti (kaçamak cevap); delille çelişen bir ifadesi yoktu.'); }
+  if (!citGecerli) { zorluk += 0.15; notlar.push('Yöntem ayrıntısı basına sızmıştı; gizli bilgi testi geçersizdi.'); }
+  if (sorgu.durum.sirKatmani.korumalar.some((c) => c.korunan === olay.fail)) { zorluk += 0.15; notlar.push('Faili koruyan biri vardı.'); }
+  if (sinyaller.some((s) => s.tur === 'gorgu-tanigi')) { zorluk -= 0.2; notlar.push('Kimseyi korumayan bir görgü tanığı vardı.'); }
+  if (supheliler.length > 1) { zorluk += 0.1; notlar.push(`Olay odasında ${supheliler.length} kişinin izi vardı.`); }
   if (fail.yalanBecerisi > 0.7) zorluk += 0.1;
-  if (sorgu.deliller.some((d) => d.sahnelenmis)) { zorluk += 0.15; notlar.push('Olay yerinde sahnelenmiş bir delil var (fizik tutarsızlığı ile bulunur).'); }
-  if (sorgu.durum.sirKatmani.korumalar.some((c) => c.neden === 'korku')) { zorluk += 0.1; notlar.push('Bir görgü tanığı korkudan susuyor.'); }
+  if (sorgu.deliller.some((d) => d.sahnelenmis)) { zorluk += 0.15; notlar.push('Olay yerinde sahnelenmiş bir delil vardı; fiziksel bir tutarsızlık onu ele veriyordu.'); }
+  if (sorgu.durum.sirKatmani.korumalar.some((c) => c.neden === 'korku')) { zorluk += 0.1; notlar.push('Bir görgü tanığı korkudan susuyordu.'); }
   if (sorgu.deliller.some((d) => d.tur === 'dijital' && d.gosterir.tur === 'konum' && d.gosterir.kisi === olay.fail && d.gosterir.dilim === olay.dilim)) zorluk -= 0.1;
   zorluk = Math.min(0.95, Math.max(0.05, Math.round(zorluk * 100) / 100));
 

@@ -23,18 +23,18 @@ export interface ArkBolumu { metin: string; kilavuz: string }
 /** Üye başına arka plan bölümleri; her biri bir Kılavuz maddesinin hikâyeleşmiş hali. */
 export const TAKIM_ARKI: Record<TakimRolu, ArkBolumu[]> = {
   lider: [
-    { metin: 'İlk yılımda bir itiraf aldım; on iki saat sorgudan sonra. Çocuk masumdu, üç yıl sonra anlaşıldı. O günden beri "itiraf" kelimesinde durur, nasıl alındığını sorarım.', kilavuz: 'suclayici-ton' },
+    { metin: 'İlk yılımda, on iki saatlik bir sorgunun sonunda bir itiraf aldım. Çocuk masummuş; üç yıl sonra anlaşıldı. O günden beri "itiraf" kelimesinde durur, nasıl alındığını sorarım.', kilavuz: 'suclayici-ton' },
     { metin: 'Babam savcıydı. "Dosyayı bir de tersine oku" derdi: fail masumsa hangi kanıt açıklanamaz kalır? Çoğu zaman hiçbiri. Hikâye her şeyi açıklıyorsa hikâyeden şüphelen.', kilavuz: 'dogrulama-yanliligi' },
     { metin: 'Bir kere yüzde doksan emindim; yanıldım. O gün karar günlüğü tutmaya başladım: ne kadar emindim, ne çıktı. Emin olmak doğru olmak değil.', kilavuz: 'guven-dogruluk-iliskisi' },
     { metin: 'Sahnelenmiş bir hırsızlık gördüm: her şey fazla açıktı, sanki bize gösteriliyordu. Fazla açık delil, sorulmadan kabul edilmez; kim, ne zaman, nasıl koydu?', kilavuz: 'sahnelenmis-suc' },
-    { metin: 'Akademide "iyi polis" bendim. Sonra öğrendim ki iyi polis/kötü polis bir karşıtlık ve karşılıklılık numarası; şüpheli bana "borçlu" hissediyordu. O borcu artık ben ödemiyorum.', kilavuz: 'karsiliklilik' },
+    { metin: 'Akademide "iyi polis" bendim. Sonra öğrendim ki iyi polis-kötü polis, karşıtlıkla karşılıklılığı birleştiren bir numara; şüpheli kendini bana borçlu hissediyordu. Artık o borç duygusunu kullanmıyorum.', kilavuz: 'karsiliklilik' },
   ],
   sorgucu: [
     { metin: 'Beni eski usul eğittiler: göz kaçıran, kıpırdanan yalancıdır dediler. O listeyle bir masumu yaktım. Listeyi çöpe attım; masumun adını atamadım.', kilavuz: 'mit-reid-ipuclari' },
     { metin: 'Delili önce gösterirdim. Şüpheli hikâyesini delile uydururdu, ben de "tutarlı" derdim. Şimdi önce anlattırıyorum; delil en sona kalıyor.', kilavuz: 'sue' },
     { metin: 'Ters sırayla anlattırmayı bir çocuk tanıkta denedim. Ezber hikâye dağıldı; yaşanmış olan dağılmadı. Yalan söylemek zaten zordur; biraz daha zorlaştır.', kilavuz: 'bilissel-yuk' },
     { metin: 'Karımla ilk tanıştığımda hiç soru sormadım, sadece izledim. Temel çizgi. Birinin rahatken nasıl olduğunu bilmeden gerginliğini okuyamazsın.', kilavuz: 'temel-cizgi' },
-    { metin: '"Restoranda masalar nasıl diziliydi?" Hazırlanmış yalancı orada durur; hazırlanmadığı soruyu uydurmak zamandır. Bunu bir sihirbaz tanıktan öğrendim.', kilavuz: 'beklenmedik-soru' },
+    { metin: '"Restoranda masalar nasıl diziliydi?" Hazırlanmış yalancı orada duraksar; hazırlanmadığı bir soruya cevap uydurmak zaman alır. Bunu bir sihirbaz tanıktan öğrendim.', kilavuz: 'beklenmedik-soru' },
   ],
   inanan: [
     { metin: 'Babam öldüğünde halam medyuma gitti. Medyum "H harfi" dedi; halam "Hasan" diye ağladı. Ben de inanmak istedim. Hâlâ bazen istiyorum; o yüzden tekniği ezberledim.', kilavuz: 'soguk-okuma-teknikleri' },
@@ -44,7 +44,7 @@ export const TAKIM_ARKI: Record<TakimRolu, ArkBolumu[]> = {
     { metin: 'Bir gece odamda biri vardı, yemin ederim. Uyku felci diyorlar. Belki. O yüzden böyle bir tanığa "yalan söylüyorsun" demem; "yanılıyor olabilirsin" derim.', kilavuz: 'anomalistik-psikoloji' },
   ],
   saha: [
-    { metin: 'Panayırda büyüdüm; üç kâğıt masasında kalabalığın yarısı bizim adamdı. Herkes kazanıyor gibi görünürse sen de oynarsın. Bunu bilirim; yine de kalabalığa kapılırım.', kilavuz: 'sosyal-kanit' },
+    { metin: 'Panayırda büyüdüm; üç kâğıt masasının başındaki kalabalığın yarısı bizdendi. Herkes kazanıyor gibi görünürse sen de oynarsın. Bunu bilirim; yine de kalabalığa kapılırım.', kilavuz: 'sosyal-kanit' },
     { metin: 'Yakışıklı bir dolandırıcıyı üç kez saldım. Üçünde de "bu adam yapmaz" dedim. Yüze bakıp karar vermek benim hastalığım; tedavisi delil.', kilavuz: 'hale-etkisi' },
     { metin: 'İlk otuz saniyede insanları tartarım; sıcak mı soğuk mu, çoğunlukla tuttururum. Ama yalan söylüyor mu? Orada yazı tura kadar iyiyim.', kilavuz: 'ince-dilimler' },
     { metin: 'Panayırda abim dikkat dağıtırdı, ben cüzdanı alırdım. Herkes abimin baktığı yere bakardı. Sonra polis oldum; hâlâ kimin nereye baktığına bakarım.', kilavuz: 'yanlis-yonlendirme' },
@@ -84,13 +84,13 @@ const HATA_TEPKISI: Record<string, { rol: TakimRolu; metinler: string[] }> = {
   'beklenti-ihlali': { rol: 'sorgucu', metinler: ['Tuhaf davrandı diye şüphelendin, {ad}. Tuhaflık kişiliktir; yalan değil.'] },
   'sorgulama-heuristigi': { rol: 'sorgucu', metinler: ['Sorguladın, iz bulamadın, daha çok inandın, {ad}. Sorgulamak doğrulamak değildir.'] },
   'tutarlilik-heuristigi': { rol: 'sorgucu', metinler: ['Hikâye tutarlıydı diye inandın, {ad}. Prova edilen hikâye de tutarlıdır.'] },
-  'capalama': { rol: 'sorgucu', metinler: ['İlk söylenen saat kafana çakıldı, {ad}. Çapayı fark etmek, çapadan kurtulmanın yarısıdır.'] },
-  'dogrulama-yanliligi': { rol: 'sorgucu', metinler: ['İlk hipotezinden sonra yalnızca onu destekleyen şeyleri aradın, {ad}. Çürütmeye çalış; çürüyemezse inan.'] },
+  'capalama': { rol: 'sorgucu', metinler: ['İlk duyduğun saat aklına çakılıp kaldı, {ad}. Onu fark etmek, ondan kurtulmanın yarısıdır.'] },
+  'dogrulama-yanliligi': { rol: 'sorgucu', metinler: ['İlk hipotezinden sonra yalnızca onu destekleyen şeyleri aradın, {ad}. Çürütmeye çalış; çürütemezsen inan.'] },
   'erken-delil': { rol: 'sorgucu', metinler: ['Delili erken gösterdin, {ad}. Hikâyesini delile uydurdu ve sen "tutarlı" dedin.'] },
-  'tanik-kirletme': { rol: 'sorgucu', metinler: ['Tanığa ne söylersen onu hatırlar, {ad}. Yönlendirici soru anıyı değiştirir.'] },
-  'sosyal-kanit': { rol: 'saha', metinler: ['Tamam, benim yüzümden. Herkes öyle diyordu, ben de bağırdım. Sen dinlemesen daha iyiydi, {ad}.', 'Ekip "bu o" dedi, sen de dedin. Bir dahakine bana inanma, {ad}; delile inan.'] },
+  'tanik-kirletme': { rol: 'sorgucu', metinler: ['Tanığa ne söylersen onu hatırlar, {ad}. Soruyu nasıl sorarsan anı da öyle şekillenir.'] },
+  'sosyal-kanit': { rol: 'saha', metinler: ['Tamam, benim yüzümden. Herkes öyle diyordu, ben de bağırdım. Beni dinlemeseydin daha iyiydi, {ad}.', 'Ekip "bu o" dedi, sen de dedin. Bir dahakine bana inanma, {ad}; delile inan.'] },
   'fark-etmedin': { rol: 'saha', metinler: ['Ben de görmedim, {ad}. İkimiz de aynı yere bakıyorduk; yanlış yere.'] },
-  'ipucu-erisilemez': { rol: 'saha', metinler: ['Orada olmayanı göremezsin, {ad}. Ben de göremezdim; kendine bunu yükleme.'] },
+  'ipucu-erisilemez': { rol: 'saha', metinler: ['Önüne hiç gelmeyen bir şeyi göremezdin, {ad}. Ben de göremezdim; bunu kendine yükleme.'] },
   'delil-sorgulanmadi': { rol: 'saha', metinler: ['Delil fazla güzeldi ve ikimiz de sevindik, {ad}. Kim koymuş diye sormadık.'] },
   'hale-etkisi': { rol: 'lider', metinler: ['Sempatik olanı bağışladın, {ad}. Sempati dosyaya girmez.'] },
   'temsil-edicilik': { rol: 'lider', metinler: ['"Tipik suçlu"ya benziyordu, {ad}. Profil hüküm değildir; taban oranını unuttun.'] },
@@ -104,7 +104,7 @@ const HATA_TEPKISI: Record<string, { rol: TakimRolu; metinler: string[] }> = {
 
 const DOGRU_TEPKISI: { rol: TakimRolu; metinler: string[] }[] = [
   { rol: 'lider', metinler: ['Delille geldin, {ad}. Savcı bunu sever; ben de.', 'Bu kez "bence" demedin, {ad}. Çelişkiyi ve kaynağı gösterdin.'] },
-  { rol: 'sorgucu', metinler: ['İyi iş, {ad}. Önce anlattırdın, sonra delil. Böyle.', 'Temiz, {ad}. Kısa cümle: doğru.'] },
+  { rol: 'sorgucu', metinler: ['İyi iş, {ad}. Önce anlattırdın, sonra delil. Böyle.', 'Temiz iş, {ad}. Tek kelime: doğru.'] },
   { rol: 'saha', metinler: ['Ben yanılmıştım, sen tutturdun, {ad}. Yemek benden.', 'Bak, {ad} işi çözdü ve ben hâlâ yanlış adama bakıyordum.'] },
   { rol: 'inanan', metinler: ['İçime doğmuştu, {ad}... tamam, doğmamıştı. Sen delille buldun.', 'Bir işaret vardı diyecektim ama sen zaten delili göstermiştin, {ad}.'] },
 ];

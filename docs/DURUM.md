@@ -1,11 +1,13 @@
 # DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-16 23:45, Ajan #2 (devir teslim).
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-18 17:30, Ajan #3 (MTPE turu, `dev` dalı).
 
 ## Aktif aşama
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
 
 ## Biten işler
+- **Türkçe MTPE turu (18.09, K-018):** tüm oyuncuya görünen metin doğal Türkçeye göre düzeltildi; ortak dil kararları `docs/USLUP.md`'de (ses, biçim, terim sözlüğü). Yeni metin eklerken önce oraya bak.
+- **Karanlık mod (17.09, `dev`):** yalnızca görsel katman; `src/arayuz/tema.ts`, `stil.css` `:root[data-tema="karanlik"]`.
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar, cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
 - **Kılavuz:** 12 bölüm, 66 madde; her madde kaynaklı ve rozetli. Kaynak kütüğü 49 kayıt (son eklenen: Ickes 1990).
 - **Tatbikatlar** (`src/icerik/mini_oyunlar.{json,ts}`, `Tatbikat.tsx`): kör seçim, soğuk okuma dedektörü, taban oranı, Linda tuzağı, kaybolan top / off-beat, ince dilim, çift kör test. Analiz'den hata etiketine göre öneri (`tatbikat_onerisi.ts`, 14 etiket → 6 tatbikat).
@@ -24,9 +26,10 @@
 - **Görseller (Higgsfield, 2026-09-16):** 122 WebP `assets/` altında (56 portre + 4 takım, 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer); `src/arayuz/gorseller.ts` kütük + seed'li portre eşlemesi (cinsiyet/yaş uyumlu, faille ilişkisiz); ekranlara bağlı (başlık, vaka açılışı, sorgu, Kılavuz, tatbikat, Analiz, Pano, suçlama, Forer, Watson). `Portre.tsx` görsel yoksa siluete düşer. Kayıt: `assets/KAYIT.md`. 6 test.
 
 ## Sıradaki 3 iş
-1. **Oyuncu geri bildirimi:** kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulu (çözülemez hissi, masum suçlama) ve genel his; ayrıca dist boyutu rahatsız ediyorsa portre 384² / oda q50.
-2. **Küçük fikirler:** kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sorguda sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ.
-3. **Kaynak doğrulama:** CIT'te suçlu tanıma oranı (K-017b, şu an tasarım varsayımı 0.7) için kaynak; bulunursa `citTanimaOlasiligi` ve Kılavuz maddesi güncellenir.
+1. **Kullanıcı okuması:** MTPE turundaki terim kararlarını (USLUP §4) kullanıcı gözden geçirsin; beğenilmeyen terim yalnızca sözlükte ve `ad`/`baslik` alanında değişir. Ardından `dev` → `main`.
+2. **Oyuncu geri bildirimi:** kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulu (çözülemez hissi, masum suçlama) ve genel his; ayrıca dist boyutu rahatsız ediyorsa portre 384² / oda q50.
+3. **Küçük fikirler:** kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sorguda sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ.
+4. **Kaynak doğrulama:** CIT'te suçlu tanıma oranı (K-017b, şu an tasarım varsayımı 0.7) için kaynak; bulunursa `citTanimaOlasiligi` ve Kılavuz maddesi güncellenir.
 
 ## Açık kararlar
 1. ~~Saat bütçesi~~ → 12 kalır (K-017): aşım ceza (saat başına −2 puan), başarısızlık değil.
@@ -47,7 +50,8 @@
 - **22:45:** K-017 zor seviye (`zorlukZor.test.ts`, 4 test).
 - **23:15:** takım sahnesi rol tekilliği (`takimRol.test.ts`, 2 test).
 - **23:45:** rol karşı-cins (+1), suçlama render testi (+1).
-- `npm test`: 48 dosya, 339 test geçti (2026-09-16 23:45). Süre ~10 sn (paralel).
+- **18.09 (Ajan #3):** MTPE turu; üç testte yalnızca görünen ad güncellendi (depo, cila3, araclarDepo).
+- `npm test`: 48 dosya, 339 test geçti (2026-09-18 17:30). Süre ~10 sn (paralel).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar

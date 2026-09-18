@@ -137,7 +137,7 @@ describe('OyunDeposu — akış', () => {
     depo.suclamaYap({ fail: f, guven: 0.8 });
     const satir = depo.durum.ifadeKarsilastirma.find((r) => r.kisi === f)!;
     expect(satir.soruldu).toBe(true);
-    expect(['Gömülü yalan', 'Kaçamak / teknik olarak doğru']).toContain(satir.etiket);
+    expect(['Gömülü yalan', 'Kaçamak cevap']).toContain(satir.etiket);
     const json = depo.disaAktar();
     const yeni = new OyunDeposu();
     yeni.iceAktar(json);

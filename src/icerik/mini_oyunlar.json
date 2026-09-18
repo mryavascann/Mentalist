@@ -4,7 +4,7 @@
       "Forer 1949",
       "Hyman 1977"
     ],
-    "aciklama": "Beyerstein'ın testi: profilleri anonimleştir, herkes kendini en iyi tanımlayanı seçsin. Barnum profili ile 'tam zıt' profil bile eşit kabul görür (Kanizsa 1953: 23 kişiden 19'u). Kendini bulamamak saflık değil, profillerin bilgi taşımamasıdır.",
+    "aciklama": "Beyerstein'ın önerdiği test: profilleri adsız hale getir ve herkes kendini en iyi anlatanı seçsin. Barnum profili ile tam zıttı bile aynı ölçüde kabul görür (Kanizsa 1953: 23 kişiden 19'u). Kendini bulamamak saflık değildir; profiller zaten bilgi taşımaz.",
     "profiller": [
       {
         "id": "barnum",
@@ -31,7 +31,7 @@
       "Hyman 1977",
       "Wiseman"
     ],
-    "aciklama": "Bir sahne medyumu kaydı. Her cümleyi soğuk okuma öğesiyle etiketle. Aynı cümle birden fazla öğe taşıyabilir; puan, doğru etiket sayısı eksi yanlış etiket sayısıdır.",
+    "aciklama": "Bir sahne medyumunun konuşma kaydı. Her cümleyi içerdiği soğuk okuma öğeleriyle etiketle; bir cümlede birden fazla öğe olabilir. Puanın, doğru etiketlerin sayısından yanlış etiketlerin sayısı çıkarılarak bulunur.",
     "ogeler": [
       {
         "id": "barnum",
@@ -145,7 +145,7 @@
       "Tversky & Kahneman 1974",
       "Derren Brown"
     ],
-    "aciklama": "Adli test %99 doğru (hem pozitifleri hem negatifleri). Aranan özellik nüfusta 10.000 kişide 1. Şüphelinin testi pozitif çıktı. Gerçekten o özelliği taşıma olasılığı nedir?",
+    "aciklama": "Bir adli test %99 doğru sonuç veriyor (hem pozitiflerde hem negatiflerde). Aranan özellik 10.000 kişiden yalnızca 1'inde var. Şüphelinin testi pozitif çıktı. Bu özelliği gerçekten taşıma olasılığı nedir?",
     "secenekler": [
       {
         "id": "a",
@@ -168,14 +168,14 @@
         "dogru": false
       }
     ],
-    "cozum": "10.000 kişide 1 gerçek pozitif (test onu %99 yakalar: ~1). Kalan 9.999 kişide %1 yanlış pozitif: ~100. Pozitif çıkan ~101 kişiden yalnızca 1'i gerçek: ~%1. Taban oranı ihmali, 'tipik suçlu' profillerinin de tuzağıdır."
+    "cozum": "10.000 kişide 1 gerçek taşıyıcı var; test onu %99 olasılıkla yakalar, yani yaklaşık 1 doğru pozitif. Kalan 9.999 kişinin %1'i yanlışlıkla pozitif çıkar: yaklaşık 100 kişi. Pozitif çıkan yaklaşık 101 kişiden yalnızca 1'i gerçekten taşıyıcıdır; olasılık %1 civarındadır. Taban oranını görmezden gelmek, 'tipik suçlu' profillerinin de tuzağıdır."
   },
   "linda": {
     "kaynak": [
       "Tversky & Kahneman 1974",
       "Konnikova"
     ],
-    "aciklama": "Her çiftte iki iddia var. Hangisi daha OLASI? Not: 'daha inandırıcı' değil, 'daha olası'. Ayrıntı hikâyeyi inandırıcı yapar ama olasılığı düşürür; ayrık ('ya da') iddialar ise sanıldığından daha olasıdır.",
+    "aciklama": "Her çiftte iki iddia var. Hangisi daha olası? Dikkat: soru 'hangisi daha inandırıcı' değil, 'hangisi daha olası'. Ayrıntı hikâyeyi inandırıcı yapar ama olasılığını düşürür; 'ya da' ile kurulan iddialar ise sanıldığından daha olasıdır.",
     "ciftler": [
       {
         "id": "c1",
@@ -229,7 +229,7 @@
             "dogru": false
           }
         ],
-        "aciklama": "'Borç yüzünden' ayrıntısı hikâyeyi tamamlar, o yüzden zihin ona sarılır (iç masalcı). Ama her eklenen 'VE' olasılık çarpanıdır: 1'den küçük iki sayının çarpımı ikisinden de küçüktür."
+        "aciklama": "'Borç yüzünden' ayrıntısı hikâyeyi tamamlar, o yüzden zihin ona sarılır (içimizdeki hikâyeci). Ama eklenen her 'VE' olasılığı bir çarpanla küçültür: 1'den küçük iki sayının çarpımı ikisinden de küçüktür."
       },
       {
         "id": "c4",
@@ -265,7 +265,7 @@
             "dogru": true
           }
         ],
-        "aciklama": "'Tipik şüpheli' profili (motivasyon + fırsat) ayrıntılı senaryoyu çekici kılar; temsil edicilik kısayolu budur. Soruşturmada ayrıntılı hipotez yine kurulabilir, ama olasılığı yüksek diye değil, test edilebilir diye."
+        "aciklama": "'Tipik şüpheli' profili (sebep ve fırsat) ayrıntılı senaryoyu çekici kılar; tipik suçlu yanılgısı (temsil edicilik) budur. Soruşturmada ayrıntılı bir hipotez yine kurulabilir; ama olasılığı yüksek olduğu için değil, test edilebildiği için."
       }
     ]
   },
@@ -334,7 +334,7 @@
             "dogru": false
           }
         ],
-        "aciklama": "Off-beat: her dikkat birimini bir gevşeme izler. Fıkra yüksek ilgi anıdır, kahkahadan sonraki rahatlama dikkatin düştüğü andır; Slydini yöntemi arkasına yaslanıp rahatken yapar. Çanta düşmesi (a4) çekici görünür ama orada herkes misafirin ellerini izliyor; sihirbaz yöntemi izlenen yerde yapmaz."
+        "aciklama": "Gevşeme anı (off-beat): her yoğun dikkat anını bir gevşeme izler. Fıkra, ilginin en yüksek olduğu andır; kahkahanın ardından gelen rahatlama ise dikkatin düştüğü an. Sihirbaz Slydini hileyi arkasına yaslanıp rahatladığı anda yapardı. Çantanın düşmesi (a4) cazip görünür ama o anda herkes misafirin ellerini izliyor; sihirbaz hileyi izlenen yerde yapmaz."
       },
       {
         "id": "s2",
@@ -356,7 +356,7 @@
             "dogru": false
           }
         ],
-        "aciklama": "Çakmak deneyinde sigara 15 cm yukarıdan görünür şekilde düşürüldü; çoğu izleyici görmedi ve tespit nereye bakıldığıyla ilişkisizdi. Samimi tanığın 'hiç ayırmadım' demesi ne onu ne misafiri temize çıkarır; sadece dikkatin sınırını gösterir."
+        "aciklama": "Bir sihir deneyinde sigara 15 cm yukarıdan, açıkça görülecek biçimde düşürüldü; izleyicilerin çoğu fark etmedi ve fark edip etmemeleri nereye baktıklarıyla ilgili değildi. Samimi bir tanığın 'gözümü hiç ayırmadım' demesi ne onu ne de misafiri temize çıkarır; yalnızca dikkatin sınırını gösterir."
       },
       {
         "id": "s3",
@@ -378,7 +378,7 @@
             "dogru": false
           }
         ],
-        "aciklama": "Kaybolan top: sihirbaz hayali topa bakınca izleyicilerin %68'i topu yukarıda 'gördü', eline bakınca %32. Yaklaşık 100 ms sinirsel gecikme yüzünden beyin 'şimdi'yi tahmin eder; tahmine uyan kanıt varsa olmayan olay görülür. Tanık yalancı değil, algısı tamamlanmış."
+        "aciklama": "Kaybolan top yanılsaması: sihirbaz havadaki hayali topa baktığında izleyicilerin %68'i topu yukarıda 'gördü'; eline baktığında bu oran %32'ydi. Sinir sistemindeki yaklaşık 100 milisaniyelik gecikme yüzünden beyin 'şimdi'yi tahmin eder; tahmine uyan bir işaret varsa olmayan bir olayı görür. Tanık yalan söylemiyor; beyni gördüğünü tamamlamış."
       }
     ]
   },
@@ -387,7 +387,7 @@
       "Ambady & Rosenthal 1992",
       "Naumann 2009"
     ],
-    "aciklama": "Her kişiyi 30 saniye izlediğini varsay. Üç yargı ver. Ders: ince dilim kişilerarası özelliklerde şaşırtıcı ölçüde iyidir; yalan sorusunda değil.",
+    "aciklama": "Her kişiyi 30 saniye izlediğini düşün ve üç yargı ver. Buradaki ders: kısa bir izlenim, sıcaklık gibi kişilerarası özelliklerde şaşırtıcı derecede isabetlidir; yalan sorusunda değil.",
     "kisiler": [
       {
         "id": "k1",
@@ -408,7 +408,7 @@
                 "metin": "Mesafeli"
               }
             ],
-            "aciklama": "Ayağa kalkma, isim tekrarı, öne eğilme, gülümseme: iş arkadaşları da onu sıcak buluyor. Bu tür kişilerarası boyutlarda 30 saniyelik yargı r≈.4 ile isabetlidir."
+            "aciklama": "Ayağa kalkması, adları tekrarlaması, öne eğilmesi ve gülümsemesi: iş arkadaşları da onu sıcak buluyor. Bu tür kişilerarası özelliklerde 30 saniyelik bir yargı oldukça isabetlidir (r ≈ .4)."
           },
           {
             "id": "baskinlik",
@@ -424,7 +424,7 @@
                 "metin": "Çekingen"
               }
             ],
-            "aciklama": "Konuyu belirleme, kesin cevap, kesilince sakin devam: baskınlık ince dilimden iyi okunan özelliklerdendir."
+            "aciklama": "Konuyu kendisi belirliyor, kesin cevaplar veriyor, sözü kesilince sakince devam ediyor: baskınlık kısa bir izlenimden iyi okunan özelliklerdendir."
           },
           {
             "id": "yalan",
@@ -444,7 +444,7 @@
                 "metin": "Bu betimlemeden bilinemez"
               }
             ],
-            "aciklama": "Aldatma için ince dilim doğruluğu .31'dir ve süre uzasa da artmaz. Rahat ve sıcak görünmek dürüstlük kanıtı değildir; bazı insanlar doğal olarak dürüst görünür (demeanor bias)."
+            "aciklama": "Aldatmada kısa izlenimin doğruluğu .31'dir ve süre uzasa da artmaz. Rahat ve sıcak görünmek dürüstlük kanıtı değildir; bazı insanlar doğuştan dürüst görünür (görünüş yanlılığı)."
           }
         ]
       },
@@ -483,7 +483,7 @@
                 "metin": "Çekingen"
               }
             ],
-            "aciklama": "Soruyu başkasına yönlendirme, alçak ses, yarım cümle: çekingenlik ince dilimde iyi okunur."
+            "aciklama": "Soruyu başkasına yöneltiyor, alçak sesle ve yarım cümlelerle konuşuyor: çekingenlik kısa bir izlenimden iyi okunur."
           },
           {
             "id": "yalan",
@@ -515,7 +515,7 @@
       "Wiseman",
       "French 2024"
     ],
-    "aciklama": "Sahil kasabasında 'enerji şifacısı' Rıfat Bey elini değdirmeden ağrıyı geçirdiğini söylüyor; kasaba halkı yemin ediyor. Dolandırıcılık şüphesi var. İddiayı adil ama sızdırmaz biçimde sınayacak protokolü kur: hangi maddeleri koyarsın?",
+    "aciklama": "Sahil kasabasında 'enerji şifacısı' Rıfat Bey, elini değdirmeden ağrıları geçirdiğini söylüyor; kasaba halkı buna yemin ediyor. Dolandırıcılık şüphesi var. İddiayı adil ama açık kapı bırakmadan sınayacak bir protokol kur. Hangi maddeleri eklersin?",
     "maddeler": [
       {
         "id": "g1",
@@ -551,7 +551,7 @@
         "id": "g6",
         "tur": "gerekli",
         "metin": "Ağrı seans öncesi ve sonrası aynı standart ölçekle ölçülür; sahte grubun iyileşmesi taban alınır.",
-        "aciklama": "Etki = gerçek grup − sahte grup. Kendi başına 'iyileşti' anlamsızdır; hastalık zaten dalgalanır, dipte başlanan her tedavi iyileşmeye atfedilir."
+        "aciklama": "Etki, gerçek grupla sahte grup arasındaki farktır. Tek başına 'iyileşti' demek anlamsızdır; hastalık zaten dalgalanır ve en kötü anında başlanan her tedavi iyileşmeyi kendine mal eder."
       },
       {
         "id": "t1",

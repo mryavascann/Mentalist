@@ -835,3 +835,18 @@
 **Sorunlar / riskler:** Yok.
 **Yarım kalanlar:** Yok. Commit'li ve push'lu.
 **Sıradaki ajan için:** 1) Kullanıcının sonraki geri bildirimleri. 2) Küçük fikirler (DURUM). 3) CIT tanıma oranı kaynağı.
+
+## [2026-09-18 17:30] Ajan #3 — Türkçe metinlerde MTPE turu (K-018) ve üslup kılavuzu; önceki iş: karanlık mod
+**Görev:** Kullanıcı: metinler anlamca doğru ama çeviri gibi okunuyor; MTPE yaklaşımıyla doğal, tutarlı Türkçe. (Aynı `dev` dalında önceki commit 89a01ad: karanlık mod, yalnızca görsel katman; günlüğe burada not edildi.)
+**Yöntem:** (1) Envanter: ~16 bin sözcük (JSON ~9,8 bin, TS ~6 bin). (2) Teşhis: sorun büyük ölçüde etiket/başlık/geri bildirim katmanında (sembollü telgraf üslubu, iki nokta zinciri, yarı çevrilmiş terimler, "RAM 2. halka" gibi kodlar, ham id sızıntıları); anlatı ve diyalog şablonları zaten doğaldı. (3) Önce `docs/USLUP.md` (ses, biçim kuralları, terim sözlüğü), sonra görünürlüğe göre düzeltme: etiketler → oyun içi geri bildirim → Kılavuz'un 66 maddesi → anlatıda noktasal dokunuş. İngilizce kaynaklar terim doğrulaması için kullanıldı (PDF'lerin çoğu taranmış; NOTLAR.md ve bilinen literatür terimleri esas alındı).
+**Yapılanlar:**
+- İçerik: `hata_etiketleri` (kavram adları; RAM atıfları metinden çıktı), `ifade_turleri`, `teknikler` (ad/açıklama/nasıl/sınırlar), `ipuclari` (adlar, notlar; anlatıcı hitabı "sen"), `kilavuz` (66 madde; sayılar/kaynaklar/rozetler aynı), `mini_oyunlar`, `forer`.
+- Motor/arayüz metinleri: oda okuma etiketleri ve yorumları (`araclar.ts`), teknik sonuç cümleleri (`metinler.ts`), vaka sonu notları (`strateji.ts`/`teknik.ts`: "fail: …" gibi hata ayıklama notları ve `(gizli-iliski)`, `(d3)` gibi ham id'ler oyuncuya gösteriliyordu), çözülebilirlik notları, puan açıklamaları, takım/Ayna replikleri, birkaç diyalog şablonu, ilişki notlarındaki tekrarlar, motivasyon havuzunda eğik çizgiler.
+- Ekranlar: Analiz ("→ Çalış:", "Bu vakanın dersi: …: …", "RAM n" yerine cümle; Funder aşaması adıyla), Suçlama (dayanaklarda ham teknik id'leri → teknik adları), Sorgu odası (maliyet "1s" → "1 sa"), yüzde ve ondalık yazımı (%70, 0,09, 9,0 saat), Kılavuz tanıtımı, İpucu kartı, Watson, Forer, Tatbikat, Pano.
+- Tarayıcıda uçtan uca oynandı (reg-2): Forer → dosya → sorgu (tüm teknikler) → suçlama → Analiz → Kılavuz; görülen kalıntılar düzeltildi.
+**Değişen dosyalar:** docs/USLUP.md (yeni), docs/{KARARLAR,AJAN_GUNLUGU,DURUM,00_BASLA_BURADAN}.md, src/icerik/*.json (7), src/motor/{araclar,ayna,cozulebilirlik,delil,dil,gerceklik,havuzlar,iliski_notu,puan,strateji,teknik}.ts, src/arayuz/oyun/{cizelge,depo,metinler,takim,takim_hikaye,tatbikat_onerisi}.ts, src/arayuz/ekranlar/*.tsx (13), tests/arayuz/{araclarDepo,cila3,depo}.test.ts.
+**Testler:** 339 geçti / 0 kaldı (48 dosya; `npx vitest run`). typecheck temiz. build 6.0 MB. Üç test yalnızca görünen ad değiştiği için güncellendi (amaç aynı): `depo` ("Kaçamak cevap"), `cila3` (kova etiketi "%85–100"), `araclarDepo` (sızma koruması yeni eşya türü adlarını da kapsıyor).
+**Alınan kararlar:** K-018.
+**Sorunlar / riskler:** Havuz boyutları ve id'ler değişmedi; regresyon anlık görüntüleri aynen geçti. `teknik.ts` özet dizeleri (`'erken gösterildi'` vb.) `puan.ts`'de karşılaştırıldığı için bilerek değiştirilmedi.
+**Yarım kalanlar:** Yok. Commit kullanıcı onayı bekliyor.
+**Sıradaki ajan için:** 1) Yeni metin eklerken önce `docs/USLUP.md`. 2) Kullanıcı okuyup bir terimi beğenmezse yalnızca sözlük ve ilgili `ad`/`baslik` alanı değişir. 3) DURUM'daki küçük fikirler.

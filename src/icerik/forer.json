@@ -1,6 +1,6 @@
 {
   "kaynak": ["Forer 1949", "Hyman 1977"],
-  "aciklama": "Forer 1949: 39 öğrenciye kişilik testi verildi; herkes gazete astroloji kitabından derlenmiş AYNI 13 maddelik profili aldı ve 'sana özel' sanıp ortalama 4.26/5 isabet puanı verdi. Soğuk okumanın çekirdeği budur: herkese uyan ifadeler, sana özelmiş gibi.",
+  "aciklama": "Forer 1949'da 39 öğrenciye bir kişilik testi uyguladı. Herkes, gazete bayilerinde satılan bir astroloji kitabından derlenmiş aynı 13 maddelik profili aldı; öğrenciler profili kendilerine özel sandı ve isabetine 5 üzerinden ortalama 4,26 puan verdi. Soğuk okumanın özü budur: herkese uyan ifadeleri sana özelmiş gibi sunmak.",
   "sorular": [
     "Kalabalık bir odada kendini nasıl hissedersin?",
     "Bir karar verirken daha çok neye güvenirsin: sezgi mi, liste mi?",
@@ -26,6 +26,6 @@
     "Güvende olmak hayatındaki ana hedeflerden biri.",
     "Cinsel uyum konusunda bazı zorluklar yaşadın."
   ],
-  "ifsa": "Bu profil sana özel değildi. 1949'dan beri herkes aynı 13 maddeyi okuyor ve ortalama 4.26/5 veriyor. Maddeler herkese uyan, iki başlı (\"bazen dışadönük, bazen içe dönük\") ve iltifat eden ifadelerdir. Bir medyum, bir manipülatör ya da bir şüpheli sana böyle konuştuğunda hatırla: isabet hissi, doğruluğun kanıtı değildir.",
+  "ifsa": "Bu profil sana özel değildi. 1949'dan beri herkes aynı 13 maddeyi okuyor ve 5 üzerinden ortalama 4,26 puan veriyor. Maddeler herkese uyan, bir şeyi ve tersini aynı anda söyleyen (\"bazen dışadönük, bazen içe dönük\") ve iltifat eden ifadelerdir. Bir medyum, bir manipülatör ya da bir şüpheli sana böyle konuştuğunda hatırla: isabet hissi, doğruluğun kanıtı değildir.",
   "ortalama1949": 4.26
 }

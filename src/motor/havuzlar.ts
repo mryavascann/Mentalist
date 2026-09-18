@@ -126,8 +126,8 @@ export const MOTIVASYONLAR: Record<IliskiTuru, string[]> = {
   aile: ['miras payı', 'aile sırrının açığa çıkma tehdidi', 'yıllardır biriken kırgınlık'],
   es: ['aldatılma öfkesi', 'boşanma ve mal paylaşımı', 'sigorta parası'],
   sevgili: ['terk edilme', 'ilişkinin ifşa edilme tehdidi', 'kıskançlık'],
-  is: ['zimmetin açığa çıkması', 'ortaklıktan atılma', 'patent/sözleşme kavgası'],
+  is: ['zimmetin açığa çıkması', 'ortaklıktan atılma', 'patent ve sözleşme kavgası'],
   arkadas: ['borç ve ihanet', 'eski bir sırrın ortaya çıkması', 'kıskançlık'],
-  rakip: ['rekabette kaybetme', 'intikam', 'ihale/hile ifşası'],
+  rakip: ['rekabette kaybetme', 'intikam', 'ihaledeki hilenin ortaya çıkması'],
   tanidik: ['şantaj', 'bir suçun tanığı olması', 'para'],
 };

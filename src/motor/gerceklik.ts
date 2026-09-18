@@ -169,7 +169,7 @@ function zamanCizelgesiUret(r: Rastgele, kisiler: Kisi[], mekan: Mekan, olay: Ol
     kayit.eylem = eylem;
   };
   sabitle(olay.kurban, olay.dilim, olay.oda, olay.tur === 'kaza' ? 'kazaya uğradı' : 'olayın kurbanı oldu');
-  if (olay.fail) sabitle(olay.fail, olay.dilim, olay.oda, `${olay.yontem} — olayı gerçekleştirdi`);
+  if (olay.fail) sabitle(olay.fail, olay.dilim, olay.oda, `olayı gerçekleştirdi (${olay.yontem})`);
   if (olay.tur === 'cinayet') {
     for (let d = olay.dilim + 1; d < DILIM_SAYISI; d++) sabitle(olay.kurban, d, olay.oda, 'cansız bedeni orada kaldı');
   }

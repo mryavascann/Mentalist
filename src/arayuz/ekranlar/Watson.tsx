@@ -14,7 +14,7 @@ export function Watson() {
   return (
     <div className="dosya" style={{ maxWidth: 720, margin: '20px auto' }}>
       <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{SORGUCU_PORTRE && <img src={SORGUCU_PORTRE} alt="" aria-hidden="true" width={40} height={40} style={{ borderRadius: 6, objectFit: 'cover' }} />}{SORGUCU.ad} dinliyor</h2>
-      <p className="soluk">Vakayı adım adım anlat. Her madde için: gözlem mi, çıkarım mı, hipotez mi? Test ettin mi? (Öğreterek öğrenme; Priory Okulu.)</p>
+      <p className="soluk">Vakayı adım adım anlat. Her madde gözlem mi, çıkarım mı, hipotez mi? Test ettin mi? (Öğreterek öğrenmek; Holmes'un Priory Okulu vakası.)</p>
       {!w.bitti && adim && (
         <>
           <p className="soluk">Adım {w.indeks + 1} / {w.adimlar.length} · pano: {adim.tur}</p>
@@ -37,7 +37,7 @@ export function Watson() {
           {w.testEdilmemisCikarim.length > 0 && <p className="soluk">Test edilmemiş çıkarımlar: {w.testEdilmemisCikarim.join('; ')}. Her biri için "hangi bulgu bunu çürütür?" sorusunu yaz.</p>}
           <div className="dugmeler">
             <button className="birincil" onClick={() => depo.watsonKapat()}>Panoya dön</button>
-            <button onClick={() => depo.kilavuzAc('gozlem-cikarim-ayrimi')}>Kılavuz: Gözlem ≠ çıkarım</button>
+            <button onClick={() => depo.kilavuzAc('gozlem-cikarim-ayrimi')}>Kılavuz: Gözlem ve çıkarım</button>
           </div>
         </>
       )}

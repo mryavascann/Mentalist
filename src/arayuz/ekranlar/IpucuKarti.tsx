@@ -19,7 +19,7 @@ export function IpucuKarti({ id, kapat }: { id: string; kapat: () => void }) {
         {ipucu.betimlemeYonu === 'iliskisiz' ? 'yalanla ilişkisiz' : ipucu.betimlemeYonu === 'artar' ? 'yalanda biraz artar' : 'yalanda biraz azalır'}
       </p>
       {ipucu.not && <p style={{ fontSize: 14 }}>{ipucu.not}</p>}
-      <p className="uyari">Bu bir kanıt değil, "bu konuyu kurcala" sinyalidir. Masumlar da üretir. Kesinlik delil ve çelişkiyle gelir.</p>
+      <p className="uyari">Bu bir kanıt değil, "bu konunun üstüne git" diyen bir işarettir. Masumlarda da görülür. Kesinlik delil ve çelişkiyle gelir.</p>
       <p className="soluk">Kaynak: {ipucu.kaynak.map(kaynak).join(' · ')}</p>
     </div>
   );

@@ -24,7 +24,7 @@ export function Kabuk({ children }: { children: ReactNode }) {
         {d.kahramanAdi && <span className="kahraman">{d.kahramanAdi}</span>}
         {vakaVar && (
           <span className={`zaman${asim ? ' asim' : ''}`} title="Harcanan soruşturma saati / bütçe">
-            ⏱ {d.zaman.toFixed(1)} / {d.zamanButcesi} saat
+            ⏱ {d.zaman.toFixed(1).replace('.', ',')} / {d.zamanButcesi} saat
           </span>
         )}
         <button

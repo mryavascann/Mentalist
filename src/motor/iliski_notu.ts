@@ -92,7 +92,7 @@ export function iliskiNotuUret(r: Rastgele, kisi: Kim, kurban: { yas: number }):
       not = `${basHarfBuyut(sayiSoz(r.tamsayi(3, 36)))} aydır haftada bir seans yapıyorlar.`;
       break;
     case 'asistanı':
-      not = `${basHarfBuyut(sayiSoz(r.tamsayi(2, 36)))} aydır asistanı.`;
+      not = `${basHarfBuyut(sayiSoz(r.tamsayi(2, 36)))} aydır onun yanında çalışıyor.`;
       break;
     case 'yakın arkadaşı': {
       const n = yil(r, Math.min(kisi.yas, kurban.yas) - 16, 30);
@@ -104,7 +104,7 @@ export function iliskiNotuUret(r: Rastgele, kisi: Kim, kurban: { yas: number }):
       break;
     case 'komşusu': {
       const n = yil(r, kisi.yas - 18, 20);
-      not = n ? `${basHarfBuyut(sayiSoz(n))} yıldır kapı komşusu.` : 'Yeni taşınmış.';
+      not = n ? `${basHarfBuyut(sayiSoz(n))} yıldır kapı kapıya oturuyorlar.` : 'Yeni taşınmış.';
       break;
     }
     case 'iş rakibi':
@@ -123,7 +123,7 @@ export function iliskiNotuUret(r: Rastgele, kisi: Kim, kurban: { yas: number }):
       break;
     case 'kiracısı': {
       const n = yil(r, kisi.yas - 18, 15);
-      not = n ? `${basHarfBuyut(sayiSoz(n))} yıldır kiracısı.` : 'Yeni taşınmış.';
+      not = n ? `${basHarfBuyut(sayiSoz(n))} yıldır onun evinde kirada oturuyor.` : 'Yeni taşınmış.';
       break;
     }
     case 'bahçıvanı': {

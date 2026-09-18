@@ -241,9 +241,9 @@ export class OyunDeposu {
       const hedef = vaka.kisiler.find((k) => k.id === b.hedefKisi)!.ad.split(' ')[0];
       const oda = vaka.mekan.odalar.find((o) => o.id === b.icerik)!.ad;
       const saat = vaka.dilimler[b.hedefDilim!]!.baslangic;
-      not_ = { tur: 'dedikodu', metin: `Koridorda konuşulan: ${kim}, ${hedef} için "${saat} civarı ${oda} tarafındaydı" demiş. Duyum; doğrula.`, zaman: sorgu.zaman };
+      not_ = { tur: 'dedikodu', metin: `Koridorda bir söylenti var: ${kim}, ${hedef} için "${saat} civarı ${oda} tarafındaydı" demiş. Bu bir duyum; doğrulaman gerek.`, zaman: sorgu.zaman };
     } else {
-      not_ = { tur: 'bos', metin: 'Takım yeni bir şey getirmedi. Panoyu dağıt, hipotezleri yeniden sırala.', zaman: sorgu.zaman };
+      not_ = { tur: 'bos', metin: 'Takım yeni bir şey bulamadı. Panoyu dağıt, hipotezlerini yeniden sırala.', zaman: sorgu.zaman };
     }
     this.durum.takimNotlari = [...this.durum.takimNotlari, not_];
     this.durum.zaman = sorgu.zaman;
@@ -395,7 +395,7 @@ export class OyunDeposu {
       kayit.gozlemler = hepsi.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
     } else if (sonuc.teknik === 'temel-cizgi') {
       const ozet = gozlemOzeti(sonuc.gozlemler, TEMEL_CIZGI_SINIRI);
-      kayit.cevap = ozet.length === 0 ? 'Tarafsız sohbet (hava, yol, işi): sakin ve akıcı. Dikkat çeken bir şey yok; bu onun normali.' : `Tarafsız sohbet (hava, yol, işi). Bu onun normali: ${ozet.map((g) => g.betimleme).join(' ')}`;
+      kayit.cevap = ozet.length === 0 ? 'Havadan, yoldan, işinden konuştunuz. Sakin ve akıcı; dikkat çeken bir şey yok. Bu onun normali.' : `Havadan, yoldan, işinden konuştunuz. Onun normali şöyle: ${ozet.map((g) => g.betimleme).join(' ')}`;
       kayit.gozlemler = ozet.map((g) => ({ ipucuId: g.ipucuId, betimleme: g.betimleme }));
       this.durum.temelCizgiNotlari.set(seciliKisi, ozet.length === 0 ? 'Normali: sakin, akıcı.' : `Normali: ${ozet.map((g) => g.betimleme).join(' ')}`);
     } else if (sonuc.teknik === 'yonlendirici-soru') {
@@ -473,7 +473,7 @@ export class OyunDeposu {
     if (!olay.fail) parcalar.push(`Suç yoktu. ${kurban.ad} ${saat} civarı ${bulunma(odaAd)} bir kaza geçirdi (${olay.yontem}).`);
     else {
       const fail = vaka.kisiler.find((k) => k.id === olay.fail)!;
-      parcalar.push(`Fail: ${fail.ad}. ${saat} civarı ${bulunma(odaAd)}, yöntem: ${olay.yontem}. Motivasyon: ${olay.motivasyon}.`);
+      parcalar.push(`Fail: ${fail.ad}. ${saat} civarı ${bulunma(odaAd)}; yöntem: ${olay.yontem}. Nedeni: ${olay.motivasyon}.`);
     }
     for (const k of vaka.kisiler) {
       if (!k.hayatta || k.id === olay.kurban) continue;
@@ -487,7 +487,7 @@ export class OyunDeposu {
       if (cevap) notlar.push(`Sana verdiği cevabın aslı: ${cevap.not}.`);
       parcalar.push(notlar.join(' '));
     }
-    if (sorgu.kontaminasyon.length) parcalar.push(`Kirlettiğin ifadeler: ${sorgu.kontaminasyon.map((c) => `${vaka.kisiler.find((k) => k.id === c.kisi)!.ad.split(' ')[0]} (${c.teknik})`).join(', ')}.`);
+    if (sorgu.kontaminasyon.length) parcalar.push(`Anısını etkilediğin tanıklar: ${sorgu.kontaminasyon.map((c) => `${vaka.kisiler.find((k) => k.id === c.kisi)!.ad.split(' ')[0]} (${ICERIK.teknikler.find((t) => t.id === c.teknik)?.ad ?? c.teknik})`).join(', ')}.`);
     return parcalar.join('\n');
   }
 
