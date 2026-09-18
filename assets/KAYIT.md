@@ -15,6 +15,8 @@
 | `delil/` | 4 | GPT Image 2.5 (1:1) | 384² | 31 KB | Delil türü kartları (fiziksel, dijital, belge, olmayan). Henüz ekranda kullanılmıyor |
 | `diger/` | 12 | GPT Image 2.5 | çeşitli | 717 KB | `ana` (başlık), `ana-dikey`/`ana-kare`/`ana-pencere`/`ana-pano` (yedek/tanıtım), `ofis` (Analiz "Ofis · sonra"), `kanepe` (Pano takım notları), `forer` (açılış dersi), `watson`, `mantar` (pano dokusu), `suclama`, `ayna-not` (Ayna notu yanı) |
 
+| `diger/kanepe-mola.gif` | 1 | Kullanıcının verdiği GIF (dizi sahnesi), ffmpeg ile özgün boyut, 64 renk | 498×281 | 2.2 MB | Kanepe Molası sekmesi (`KanepeMolasi.tsx`), polaroid çerçeve |
+
 Toplam: 122 WebP, ~4.0 MB; derleme `dist/index.html` 5.98 MB (gzip 4.3 MB).
 
 ## Ortak stil (tüm promptlarda)

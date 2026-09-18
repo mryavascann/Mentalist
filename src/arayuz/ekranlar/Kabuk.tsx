@@ -48,7 +48,7 @@ export function Kabuk({ children }: { children: ReactNode }) {
             </button>
           ))}
           {d.puan && <button onClick={() => depo.ekranaGit('analiz')} className={d.ekran === 'analiz' ? 'secili' : ''}>Analiz</button>}
-          {vakaVar && !d.puan && <button title="Zaman 1 saat ilerler; takım yeni bilgi getirir" onClick={() => depo.kanepeMolasi()}>☕ Kanepe molası</button>}
+          {vakaVar && !d.puan && <button title="Zaman 1 saat ilerler; takım yeni bilgi getirir" className={d.ekran === 'kanepe' ? 'secili' : ''} onClick={() => { if (depo.kanepeMolasi()) depo.ekranaGit('kanepe'); }}>☕ Kanepe molası</button>}
           <button onClick={() => depo.ekranaGit('baslik')}>Başlık</button>
         </nav>
       </header>

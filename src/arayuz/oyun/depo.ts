@@ -23,7 +23,7 @@ import { MINI_OYUNLAR, sogukOkumaPuanla, lindaPuanla, offBeatPuanla, inceDilimPu
 import { soruMetni, teknikSonucMetni } from './metinler';
 import { takimYorumu, watsonSorusu, type TakimYorumu } from './takim';
 
-export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'watson' | 'suclama' | 'analiz' | 'kilavuz';
+export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'watson' | 'suclama' | 'analiz' | 'kilavuz' | 'kanepe';
 
 export interface WatsonAdimi { tur: PanoTuru; metin: string; soru: string; cevap?: { sinif: 'gozlem' | 'cikarim' | 'hipotez'; testEdildi: boolean } }
 export interface WatsonDurumu { adimlar: WatsonAdimi[]; indeks: number; bitti: boolean; celiskiler: string[]; testEdilmemisCikarim: string[] }

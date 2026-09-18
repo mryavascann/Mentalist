@@ -12,6 +12,7 @@ import { Kilavuz } from './ekranlar/Kilavuz';
 import { Forer } from './ekranlar/Forer';
 import { Tatbikat } from './ekranlar/Tatbikat';
 import { Watson } from './ekranlar/Watson';
+import { KanepeMolasi } from './ekranlar/KanepeMolasi';
 
 export function App() {
   const d = useOyun();
@@ -32,6 +33,7 @@ export function App() {
     case 'suclama': ekran = <Suclama />; break;
     case 'analiz': ekran = <Analiz />; break;
     case 'kilavuz': ekran = <Kilavuz />; break;
+    case 'kanepe': ekran = <KanepeMolasi />; break;
   }
   return <Kabuk>{ekran}</Kabuk>;
 }
