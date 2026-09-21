@@ -889,3 +889,12 @@
 **Testler:** Kod değişmedi (346 / 0).
 **Sorunlar / riskler:** `assets/diger/kanepe-mola.gif` kullanıcının verdiği dizi sahnesi (telifli görüntü); hem açık repoda hem canlı sitede. Oyun adındaki telif riski K-019 ile kapanmıştı, bu dosya aynı türden tek kalan risk. "Cold Read" marka kontrolü yapılmadı.
 **Sıradaki ajan için:** Kullanıcı isterse GIF yerine özgün (Higgsfield) kanepe görseli/animasyonu; `KanepeMolasi.tsx` ve `assets/KAYIT.md` güncellenir.
+## [2026-09-21] Ajan #6 — Sekiz çalışma masası özelliği
+**Görev:** Kullanıcı önerilen sekiz özelliğin tamamını eklememizi istedi; konuşmada her yanıta “kanka” ile başlama tercihini ayrıca açıkça belirtti.
+**Yapılanlar:** Kaynaklı not defteri ve ifade/delil alıntıları; iki kişiyi saate veya tüm görüşmelere göre karşılaştırma; notları saate yerleştirme/taşıma ve oyuncu dayanağı ekleme; tamamlanma anı kopyasıyla vaka arşivi; kayıt dönüş özeti; ayrı seviyeli yağmur/şehir/kâğıt/fincan sesleri; yazı ölçeği/satır aralığı/sorgu odağı; kalibrasyon ve karar alışkanlıklarıyla gelişim sayfası. Eski kayıtlarla uyum; bozuk içe aktarımda geri alma ve vakasız kayıtta eski oyunun temizlenmesi. Sıcak kahve görsel dili korundu.
+**Değişen dosyalar:** src/arayuz/App.tsx, ekranlar/{Kabuk,SorguOdasi,VakaAcilis,NotDefteri,CalismaEkranlari,RahatlikAyarlari}.tsx, oyun/{depo,masa,ortamSesi}.ts, stil.css, tests/arayuz/calismaMasasi.test.ts, scripts/workspace-check.mjs, docs.
+**Testler:** 351 geçti / 0 kaldı (51 dosya, npm.cmd test). npm.cmd run build: tip kontrolü temiz, tek HTML 8,87 MB. Önce kırmızı depo davranış testleri, ardından uygulama. scripts/ui-check.mjs eski akışı dört genişlikte geçti. scripts/workspace-check.mjs sekiz özelliği Chromium'da uçtan uca doğruladı; 320/768/1440 px yeni ekranlarda taşma yok, JS hatası yok. Sesin kullanıcı tıklamasıyla running, kapatmayla closed olması; yeniden yüklemede kapalı başlaması doğrulandı. Büyük yazı tercihi yeniden yüklemede korundu. Arşiv ve gelişim ekran görüntüleri incelendi.
+**Alınan kararlar:** K-022.
+**Sorunlar / riskler:** Eski tamamlanmış vakalarda detaylı arşiv kopyası yok; arayüz bunu açıklar. Sesler Web Audio ile yerel sentezdir, kayıtlı saha sesleri değildir. Kayıtlar tarayıcı kotasına tabidir; JSON dışa aktarma mevcut. Canlı yayın yapılmadı.
+**Yarım kalanlar:** Yok.
+**Sıradaki ajan için:** Kullanıcının deneyim geri bildirimini al; kahve paletini koru. Kontrol: npm.cmd test; npm.cmd run build; node scripts/ui-check.mjs; node scripts/workspace-check.mjs.

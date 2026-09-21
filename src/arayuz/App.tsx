@@ -13,6 +13,7 @@ import { Forer } from './ekranlar/Forer';
 import { Tatbikat } from './ekranlar/Tatbikat';
 import { Watson } from './ekranlar/Watson';
 import { KanepeMolasi } from './ekranlar/KanepeMolasi';
+import { Karsilastirma, OlayCizelgesi, VakaArsivi, Gelisim } from './ekranlar/CalismaEkranlari';
 
 export function App() {
   const d = useOyun();
@@ -23,6 +24,10 @@ export function App() {
 
   let ekran;
   switch (d.ekran) {
+    case 'karsilastirma': ekran = <Karsilastirma key={d.sorgu?.durum.vaka.seed} />; break;
+    case 'cizelge': ekran = <OlayCizelgesi key={d.sorgu?.durum.vaka.seed} />; break;
+    case 'arsiv': ekran = <VakaArsivi />; break;
+    case 'gelisim': ekran = <Gelisim />; break;
     case 'baslik': ekran = <Baslik />; break;
     case 'forer': ekran = <Forer />; break;
     case 'tatbikat': ekran = <Tatbikat />; break;

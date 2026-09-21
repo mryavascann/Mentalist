@@ -71,3 +71,12 @@ Bu bölüm eski taslağın renk, tipografi ve ekran düzeni kararlarının yerin
 - **Erişilebilirlik:** görünür klavye odağı, etiketli alanlar, yerel radyo grubu, azaltılmış hareket tercihi, kaydırılabilir ve klavye erişimli analiz tabloları. Renk tek başına anlam taşımaz.
 - **Görseller:** mevcut yerel WebP arşivi yeniden kullanılır. Yeni görsel hizmeti veya font indirmesi yok; tek HTML dağıtımı sürer.
 - **Kontrol:** `npm.cmd test`, `npm.cmd run build`, ardından `node scripts/ui-check.mjs`. Betik 320/768/1024/1440 px genişlikte yedi ana ekranı, uçtan uca bir vakayı, oda okumasını ve kılavuz aramasını kontrol eder. Görüntüler `artifacts/ui/` altında, git dışında.
+
+## 9. Çalışma araçları (K-022)
+- Üst araç şeridindeki **Defter** her ekrandan açılır. İfadelerde ve olay yeri delillerinde kaynaklı **Deftere ekle** bulunur. Yerel dialog Escape ile kapanır ve odağı tetikleyiciye döndürür.
+- **Karşılaştır:** iki kişi, tüm görüşmeler veya seçilen saat; söyledikleri karşılaştırılır, gizli etiketler gösterilmez.
+- **Zaman çizelgesi:** notu saate yerleştir, saati değiştir, dayanak yaz, çizelgeden kaldır. Doğrulanmamış ifade ile oyuncunun doğrulama beyanı metinle ayrılır.
+- **Vaka arşivi:** tamamlanan dosyaların rafı, mekân/kod araması, karar, gerçek, öğrenme bağlantıları ve kaynaklı notlar. Yeni aktif dosyaya müdahale etmez.
+- **Dönüş özeti:** kayıt açılışında son görüşülen kişi, son not, harcanan saat, sorulmamış konum eşleşmeleri ve beklenen/olmayan notlar.
+- **Aa · Ses:** standart/büyük/çok büyük metin, sık/rahat/geniş satır aralığı; sorguda odak görünümü. Yağmur, şehir uğultusu, kâğıt, fincan kanalları ayrı ayarlanır. Sentetik ortam sesleri varsayılan kapalıdır.
+- **Gelişim:** tamamlanan vaka, doğruluk, Brier, güven/isabet aralıkları ve karar alışkanlıkları. Grafikler sıcak kahve renklerini kullanır.

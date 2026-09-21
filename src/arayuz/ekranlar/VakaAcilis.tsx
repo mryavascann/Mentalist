@@ -2,6 +2,7 @@
 import { depo, useOyun } from '../oyun/kullan';
 import { DELIL_GORSELLERI, DIGER, mekanGorseli, portreUrl } from '../gorseller';
 import { Portre } from './Portre';
+import { DeftereEkle } from './NotDefteri';
 import { Ikon } from './Ikon';
 
 export function VakaAcilis() {
@@ -62,7 +63,7 @@ export function VakaAcilis() {
                 <span><span className="daktilo">{delil.id}</span> · {delil.aciklama}</span>
                 {delil.sizmis && <span className="rozet sizmis">basına sızdı</span>}
               </span>
-              <span className="soluk">{delil.tur} · güç %{Math.round(delil.gucu * 100)}</span>
+              <span><span className="soluk">{delil.tur} · güç %{Math.round(delil.gucu * 100)}</span><DeftereEkle metin={delil.aciklama} kaynak={`Olay yeri · ${delil.id}`} tur="delil" /></span>
             </li>
           ))}
         </ul>

@@ -6,6 +6,7 @@ import { depo, useOyun } from '../oyun/kullan';
 import { PORTRELER, TAKIM_PORTRELERI, odaGorseli, portreUrl } from '../gorseller';
 import { IpucuKarti } from './IpucuKarti';
 import { Portre } from './Portre';
+import { DeftereEkle } from './NotDefteri';
 
 /** Teknik maliyeti saat olarak: "1 sa", "0,5 sa" ("s" saniye diye okunur; USLUP §3). */
 const sure = (saat: number) => `${String(saat).replace('.', ',')} sa`;
@@ -75,6 +76,7 @@ export function SorguOdasi() {
           {konusma.map((k, i) => (
             <div className={`satir ${k.tur}`} key={i}>
               <div className="soru">{k.tur === 'teknik' ? `▸ ${k.soru}` : `Sen: ${k.soru}`}</div>
+              <DeftereEkle metin={k.cevap} kaynak={`${secili?.ad} · ${k.soru}`} />
               <div className="cevap" style={k.odaId ? { display: 'flex', gap: 10, alignItems: 'flex-start' } : undefined}>
                 {k.odaId && odaGorseli(vaka, k.odaId) && <img src={odaGorseli(vaka, k.odaId)} alt={vaka.mekan.odalar.find((o) => o.id === k.odaId)?.ad ?? ''} title="Söylediği yer (gerçek olmayabilir)" width={96} height={54} style={{ objectFit: 'cover', border: '1px solid var(--cizgi)', flex: 'none', borderRadius: 3 }} />}
                 <span>{k.cevap}</span>

@@ -1,5 +1,8 @@
 # DURUM
 
+> **21.09.2026 — Sekiz çalışma masası özelliği tamam (Ajan #6, K-022).** Kaynaklı defter, karşılaştırma, olay çizelgesi, vaka arşivi, dönüş özeti, ortam sesleri, okuma/odak ayarları ve gelişim ekranı eklendi. 351 test / 51 dosya geçti; tip kontrolü/build temiz. Yeni uçtan uca kontrol: `node scripts/workspace-check.mjs`. Ayrıntılar brand.md §9 ve günlüğün son kaydında. Canlı yayına gönderilmedi. Kullanıcının açık tercihi: yanıtlara “kanka” ile başla.
+
+
 > **21.09.2026 — Ön yüz yenilendi (Ajan #5, K-020).** Açık/koyu sıcak kahve temaları, yeni dedektif masası, yan menü, vaka brifingi, gruplandırılmış sorgu araçları, kılavuz araması ve güvenli kayıt yönetimi tamam. Kullanıcı parlak beyaz ve yeşil yerine rahat Nescafe/kâğıt tonlarını istedi. 346 test / 50 dosya geçti; tip kontrolü ve build temiz. Chromium'da 320/768/1024/1440 px ve yedi ana ekran doğrulandı. Güncel görsel kararlar: brand.md §8. Öncelikli sıradaki iş: yeni arayüz için kullanıcı geri bildirimi. Eski işlerin ayrıntıları aşağıda korunmuştur.
 
 
@@ -75,4 +78,3 @@
 - Sahnelenmiş delil oyuncuya bayrakla gösterilmez; fizik tutarsızlığı ile bulunur. Sahnelenmiş oda eşyası da öyle (toz izi, kırılmamış kitap sırtı).
 - İpucu sadakat testi zayıf ipuçlarında gürültüye duyarlı; yeni ipucu eklerken `betimlemeYonu` ve kişilik temel çizgisini (`ipucu.ts KISILIK_TEMELI`) birlikte ekle.
 - Gizli bilgi (ifade türü, iç ses gerçeği, eşya türü) oyun sırasında metne yazılmaz; Analiz'de açılır. Yeni araç eklerken sızma testi yaz.
-

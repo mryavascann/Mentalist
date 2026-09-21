@@ -122,3 +122,9 @@
 - **Gerekçe:** Kullanıcı oyunu bağlantıyla paylaşmak istedi. Kullanıcı adreste tire istemiyor; `coldread.vercel.app` başkasında olduğu için `coldreadgame` alındı (yedek: `playcoldread.vercel.app`).
 - **Uygulama:** `.vercelignore` yalnızca derleme girdilerini gönderir; `docs/` (kaynak PDF/zip, telif + 240 MB, Vercel dosya sınırı 100 MB) asla yüklenmez. `vite.config.ts` geliştirme izleyicisi `docs/kaynaklar/`'ı yok sayar (zip kilitlenince EBUSY ile sunucu düşüyordu).
 - **Geri dönüş koşulu:** Yayın kapatılacaksa Vercel projesi silinir; kod tarafında bağımlılık yok.
+## K-022 · 2026-09-21 · Sekiz çalışma masası özelliği
+- **Karar:** Kullanıcı önerilen sekiz özelliğin tamamını istedi: kaynaklı dedektif defteri, ifade karşılaştırma, etkileşimli olay çizelgesi, vaka arşivi, dönüş özeti, ayrı seviyeli ortam sesleri, okuma/odak ayarları ve kişisel gelişim.
+- **Veri sınırı:** Karşılaştırma ve çizelge yalnızca oyuncuya görünen ifadeleri, delilleri ve kişisel notları kullanır. Doğrulama dayanağı oyuncunun beyanıdır; gizli gerçeğe bakılarak işaretlenmez. Arşiv gerçeği yalnızca tamamlanan dosyalarda gösterir.
+- **Kayıt:** `masa` alanı aktif vakaya aittir, yeni vakada temizlenir. `gecmis[].dosya` tamamlanma anındaki bağımsız kopyadır. Eski kayıtlar uyumludur; eski vakalarda bulunmayan arşiv ayrıntıları uydurulmaz. Bozuk içe aktarım mevcut duruma geri döner; vakasız kayıt eski dosyayı bırakmaz.
+- **Ses ve okuma:** Yazı ölçeği, satır aralığı ve kanal seviyeleri cihazda `cold-read:rahatlik` altında tutulur. Ses her açılışta kapalıdır, kullanıcı eylemiyle Web Audio üzerinden yerel sentezlenir. Gizli sekmede duraklar; kapatma kaynakları bırakır. Dış ses/font servisi yoktur.
+- **Ölçüm:** Gelişim ekranı oyun kayıtlarını betimler; kişilik testi veya kesin erken hüküm teşhisi yapmaz. Görüşme kapsamı, karardaki delil sayısı, temel çizgi kullanımı, oyuncunun doğrulama notları ve güven/isabet gösterilir.

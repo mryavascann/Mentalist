@@ -298,3 +298,6 @@ Yeni açık sorular (henüz karar yok):
 ## 20. Ön yüz uygulama notu (21.09.2026)
 
 K-020 ile görsel dil ve navigasyon yeniden tasarlandı; ayrıntılar `brand.md` §8. Açık ve koyu temalar kullanıcının tercihiyle sıcak kahve tonlarında. Sorgu araçları dört gruptan açılır; kılavuz araması tüm maddeleri baştan erişilebilir tutar. Kayıt sıfırlama açık onay ister. Oyun kuralları, teknik maliyetleri, bilimsel rozetler ve seed davranışı değişmedi.
+
+## 21. Çalışma masası araçları (21.09.2026, K-022)
+Sekiz yeni özellik uygulandı: kaynaklı defter; ifade karşılaştırma; oyuncunun düzenlediği olay çizelgesi; tamamlanan dosyaların arşivi; kayıt dönüş özeti; yerel ortam sesleri; okuma ve sorgu odağı; kişisel gelişim. Oyuncunun bir notu doğrulaması kendi dayanağını yazması anlamına gelir, motor doğruluğu değildir. Gerçek anlatımı yalnızca suçlama sonrası arşivlenir. Eski kayıtlarda özet sonuçlar korunur, yeni arşiv ayrıntıları geriye dönük üretilmez. `brand.md` §9 kullanım düzenini açıklar.

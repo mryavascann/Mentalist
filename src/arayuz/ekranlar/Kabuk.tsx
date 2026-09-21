@@ -1,5 +1,7 @@
-﻿// Kalıcı çalışma alanı: ana gezinti, vaka durumu, tema ve erişilebilir içerik geçişi.
-import { useEffect, useRef, type ReactNode } from 'react';
+// Kalıcı çalışma alanı: ana gezinti, vaka durumu, tema ve erişilebilir içerik geçişi.
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { NotDefteri, DonusOzeti } from './NotDefteri';
+import { RahatlikAyarlari } from './RahatlikAyarlari';
 import { depo, useOyun } from '../oyun/kullan';
 import type { Ekran } from '../oyun/depo';
 import { useTema } from '../tema';
@@ -9,9 +11,12 @@ const SEKMELER: { ekran: Ekran; ad: string; ikon: IkonAdi }[] = [
   { ekran: 'vaka-acilis', ad: 'Dosya', ikon: 'dosya' },
   { ekran: 'sorgu', ad: 'Sorgu', ikon: 'sorgu' },
   { ekran: 'pano', ad: 'Pano', ikon: 'pano' },
+  { ekran: 'karsilastirma', ad: 'Karşılaştır', ikon: 'sorgu' },
+  { ekran: 'cizelge', ad: 'Zaman çizelgesi', ikon: 'saat' },
   { ekran: 'suclama', ad: 'Suçlama', ikon: 'terazi' },
 ];
 const BASLIKLAR: Record<Ekran, string> = {
+  karsilastirma: 'İfadeleri karşılaştır', cizelge: 'Olay çizelgesi', arsiv: 'Vaka arşivi', gelisim: 'Dedektif olarak gelişimin',
   baslik: 'Dedektif masası', 'vaka-acilis': 'Vaka dosyası', sorgu: 'Sorgu odası', pano: 'Soruşturma panosu',
   suclama: 'Karar zamanı', analiz: 'Vaka analizi', kilavuz: 'Saha kılavuzu', forer: 'İlk izlenimin ötesi',
   tatbikat: 'Zihin antrenmanı', watson: 'Sesli düşün', kanepe: 'Kanepe molası',
@@ -19,6 +24,7 @@ const BASLIKLAR: Record<Ekran, string> = {
 
 export function Kabuk({ children }: { children: ReactNode }) {
   const d = useOyun();
+  const [odak, setOdak] = useState(false);
   const [tema, temaDegistir] = useTema();
   const vakaVar = d.sorgu !== null;
   const asim = d.zaman > d.zamanButcesi;
@@ -34,7 +40,7 @@ export function Kabuk({ children }: { children: ReactNode }) {
   }, [d.ekran]);
 
   return (
-    <div className="kabuk">
+    <div className={`kabuk${odak && d.ekran === 'sorgu' ? ' odak-modu' : ''}`}>
       <a href="#ana-icerik" className="atla">İçeriğe geç</a>
       <aside className="kenar-cubugu">
         <button className="marka" onClick={() => depo.ekranaGit('baslik')} aria-label="Cold Read ana sayfa">
@@ -51,6 +57,8 @@ export function Kabuk({ children }: { children: ReactNode }) {
           </button>)}
           {d.puan && <button className={d.ekran === 'analiz' ? 'secili' : ''} onClick={() => depo.ekranaGit('analiz')}><Ikon ad="hedef" />Analiz</button>}
           <span className="nav-etiket">BİR ADIM DAHA DERİNE</span>
+          <button className={d.ekran === 'arsiv' ? 'secili' : ''} onClick={() => depo.ekranaGit('arsiv')}><Ikon ad="dosya" />Vaka arşivi</button>
+          <button className={d.ekran === 'gelisim' ? 'secili' : ''} onClick={() => depo.ekranaGit('gelisim')}><Ikon ad="hedef" />Gelişim</button>
           <button className={d.ekran === 'kilavuz' ? 'secili' : ''} aria-current={d.ekran === 'kilavuz' ? 'page' : undefined} onClick={() => depo.kilavuzAc(null)}><Ikon ad="kitap" />Kılavuz</button>
           {vakaVar && !d.puan && <button title="Zaman 1 saat ilerler; takım yeni bilgi getirir" className={d.ekran === 'kanepe' ? 'secili' : ''} onClick={() => { if (depo.kanepeMolasi()) depo.ekranaGit('kanepe'); }}><Ikon ad="cay" />Kanepe molası</button>}
         </nav>
@@ -65,8 +73,10 @@ export function Kabuk({ children }: { children: ReactNode }) {
             <span className="dedektif-kimligi"><span className="avatar-harf">{(d.kahramanAdi || 'D').slice(0, 1).toLocaleUpperCase('tr-TR')}</span><span>{d.kahramanAdi || 'Dedektif'}<small>{d.gecmis.length} tamamlanan vaka</small></span></span>
           </div>
         </header>
+        <div className="masa-arac-cubugu"><NotDefteri /><RahatlikAyarlari odak={odak} odakDegistir={() => setOdak(v => !v)} sorguda={d.ekran === 'sorgu'} /></div>
         <main id="ana-icerik" className={`ana-icerik ekran-${d.ekran}`} ref={icerik} tabIndex={-1}>
-          {d.ekran !== 'baslik' && <div className="ekran-basligi"><span className="ust-etiket">COLD READ / {d.sorgu && !['kilavuz', 'tatbikat', 'forer'].includes(d.ekran) ? d.sorgu.durum.vaka.mekan.ad : 'SAHA NOTLARI'}</span><h1>{BASLIKLAR[d.ekran]}</h1></div>}
+          <DonusOzeti />
+          {d.ekran !== 'baslik' && <div className="ekran-basligi"><span className="ust-etiket">COLD READ / {d.sorgu && !['kilavuz', 'tatbikat', 'forer', 'arsiv', 'gelisim'].includes(d.ekran) ? d.sorgu.durum.vaka.mekan.ad : 'SAHA NOTLARI'}</span><h1>{BASLIKLAR[d.ekran]}</h1></div>}
           {children}
         </main>
         <footer className="alt-bant"><span>COLD READ <span className="ayirici">/</span> Bir dedektifin en güçlü aracı, doğru sorudur.</span><span>Bilime dayalı. Merakla oynanır.</span></footer>

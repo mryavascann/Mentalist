@@ -22,8 +22,9 @@ import { FORER } from '@icerik/forer';
 import { MINI_OYUNLAR, sogukOkumaPuanla, lindaPuanla, offBeatPuanla, inceDilimPuanla, ciftKorPuanla } from '@icerik/mini_oyunlar';
 import { soruMetni, teknikSonucMetni } from './metinler';
 import { takimYorumu, watsonSorusu, type TakimYorumu } from './takim';
+import { bosMasa, masaOku, type Masa, type DefterNotu, type ArsivDosyasi } from './masa';
 
-export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'watson' | 'suclama' | 'analiz' | 'kilavuz' | 'kanepe';
+export type Ekran = 'baslik' | 'forer' | 'tatbikat' | 'vaka-acilis' | 'sorgu' | 'pano' | 'watson' | 'suclama' | 'analiz' | 'kilavuz' | 'kanepe' | 'karsilastirma' | 'cizelge' | 'arsiv' | 'gelisim';
 
 export interface WatsonAdimi { tur: PanoTuru; metin: string; soru: string; cevap?: { sinif: 'gozlem' | 'cikarim' | 'hipotez'; testEdildi: boolean } }
 export interface WatsonDurumu { adimlar: WatsonAdimi[]; indeks: number; bitti: boolean; celiskiler: string[]; testEdilmemisCikarim: string[] }
@@ -69,6 +70,7 @@ export interface IfadeKarsilastirma {
 export interface TakimNotu { tur: 'delil' | 'dedikodu' | 'bos'; metin: string; zaman: number }
 
 export interface VakaGecmisi {
+  dosya?: ArsivDosyasi;
   seed: string; dogru: boolean; puan: number; hataEtiketleri: string[]; brier: number;
   /** Ayna vakasıysa: hedeflenen kör nokta, Ayna'nın tahmini tuttu mu ("okundun") ve bıraktığı not (ark boyunca birikir). */
   ayna?: { etiket: string; okundu: boolean; not?: string };
@@ -78,6 +80,8 @@ export interface VakaGecmisi {
 export interface AynaDurumu { etiket: string; tahmin: KisiId | null; gerekce: string; not: string; /** Kaçıncı karşılaşma (1'den başlar). */ karsilasma: number }
 
 export interface OyunDurumu {
+  masa: Masa;
+  donusOzeti: boolean;
   ekran: Ekran;
   kahramanAdi: string;
   sorgu: Sorgu | null;
@@ -139,6 +143,7 @@ function bosPano(): PanoDurumu { return { gozlem: [], cikarim: [], hipotez: [], 
 
 function baslangicDurumu(): OyunDurumu {
   return {
+    masa: bosMasa(), donusOzeti: false,
     ekran: 'baslik', kahramanAdi: '', sorgu: null, rapor: null, hedefler: [], brifing: '', kisiKartlari: [], seciliKisi: null,
     konusmalar: new Map(), pano: bosPano(), zaman: 0, zamanButcesi: VARSAYILAN_BUTCE, suclama: null, puan: null,
     gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), gecmis: [], kilavuzMaddesi: null, forer: { tamamlandi: false, puan: null, asama: 'sorular' }, tatbikat: { aktif: null, sonuclar: {} }, takimAcik: true, watson: { adimlar: [], indeks: 0, bitti: false, celiskiler: [], testEdilmemisCikarim: [] }, takimNotlari: [], zorluk: 'orta', ayna: null, surum: 0,
@@ -298,6 +303,7 @@ export class OyunDeposu {
     this.cevapMetinleri = new Map();
     this.durum = {
       ...this.durum, sorgu, rapor, brifing: vakaBrifingi(vaka),
+      masa: bosMasa(), donusOzeti: false,
       kisiKartlari: vaka.kisiler.map((k) => ({ id: k.id, metin: kisiKarti(vaka, k.id) })),
       seciliKisi: null, konusmalar: new Map(), pano: bosPano(), zaman: sorgu.zaman, suclama: null, puan: null, gercekAnlatimi: '', ifadeKarsilastirma: [], temelCizgiNotlari: new Map(), takimNotlari: [], kilavuzMaddesi: null, ayna: null,
     };
@@ -307,6 +313,29 @@ export class OyunDeposu {
     this.durum.ekran = ekran;
     this.bildir();
   }
+
+  /** Aynı alıntı ikinci kez eklenmez; notlar kendi kaynaklarını taşır. */
+  notEkle(metin: string, kaynak = 'Dedektif notu', tur: DefterNotu['tur'] = 'not') {
+    if (!this.durum.sorgu || !metin.trim()) return;
+    if (this.durum.masa.notlar.some(n => n.metin === metin.trim() && n.kaynak === kaynak)) return;
+    this.durum.masa.notlar.push({ id: `n-${Date.now()}-${this.durum.surum}`, metin: metin.trim().slice(0, 8000), kaynak, tur, saat: this.durum.zaman }); this.bildir();
+  }
+  notSil(id: string) {
+    this.durum.masa.notlar = this.durum.masa.notlar.filter(n => n.id !== id);
+    this.durum.masa.cizelge = this.durum.masa.cizelge.filter(c => c.notId !== id); this.bildir();
+  }
+  cizelgeEkle(notId: string, dilim: number) {
+    if (!this.durum.masa.notlar.some(n => n.id === notId) || !this.vaka?.dilimler.some(d => d.index === dilim)) return;
+    if (this.durum.masa.cizelge.some(c => c.notId === notId && c.dilim === dilim)) return;
+    this.durum.masa.cizelge.push({ id: `c-${Date.now()}-${this.durum.surum}`, notId, dilim, dayanak: '' }); this.bildir();
+  }
+  cizelgeDuzenle(id: string, dilim: number, dayanak: string) {
+    const c = this.durum.masa.cizelge.find(c => c.id === id);
+    if (!c || !this.vaka?.dilimler.some(d => d.index === dilim)) return;
+    c.dilim = dilim; c.dayanak = dayanak.slice(0, 2000); this.bildir();
+  }
+  cizelgeSil(id: string) { this.durum.masa.cizelge = this.durum.masa.cizelge.filter(c => c.id !== id); this.bildir(); }
+  ozetiKapat() { this.durum.donusOzeti = false; this.bildir(); }
 
   kilavuzAc(maddeId: string | null) {
     this.durum.kilavuzMaddesi = maddeId;
@@ -327,6 +356,7 @@ export class OyunDeposu {
   }
 
   private kayitEkle(kisiId: KisiId, kayit: KonusmaKaydi) {
+    this.durum.masa.sonGorusulen = kisiId;
     const liste = this.durum.konusmalar.get(kisiId) ?? [];
     liste.push(kayit);
     this.durum.konusmalar.set(kisiId, liste);
@@ -454,6 +484,15 @@ export class OyunDeposu {
     this.durum.ifadeKarsilastirma = this.ifadeleriKarsilastir();
     const ayna = this.durum.ayna;
     this.durum.gecmis.push({
+      dosya: {
+        mekan: sorgu.durum.vaka.mekan.ad, tarih: new Date().toISOString(), brifing: this.durum.brifing,
+        karar: suclama.fail ? sorgu.durum.vaka.kisiler.find(k => k.id === suclama.fail)?.ad ?? suclama.fail : 'Suç yok',
+        gercek: this.durum.gercekAnlatimi,
+        notlar: this.durum.masa.notlar.map(n => ({ ...n })), cizelge: this.durum.masa.cizelge.map(c => ({ ...c })),
+        gorusulen: this.durum.konusmalar.size, kisiSayisi: this.gorusulebilirler().length,
+        teknikler: [...new Set(sorgu.gecmis.map(g => g.teknik))], zaman: this.durum.zaman,
+        dayanakSayisi: (suclama.gerekce ?? []).filter(g => g.startsWith('delil:')).length,
+      },
       seed: sorgu.durum.vaka.seed, dogru: puan.dogru, puan: puan.puan, hataEtiketleri: puan.hataEtiketleri, brier: puan.kalibrasyon.brier,
       ...(ayna ? { ayna: { etiket: ayna.etiket, okundu: aynaOkuduMu(ayna, suclama.fail), not: ayna.not } } : {}),
     });
@@ -618,6 +657,7 @@ export class OyunDeposu {
     const d = this.durum;
     const s = d.sorgu;
     return JSON.stringify({
+      masa: d.masa,
       kayitSurumu: KAYIT_SURUMU, oyun: PROJE.surum, kahramanAdi: d.kahramanAdi, ekran: d.ekran, zamanButcesi: d.zamanButcesi, forer: d.forer, zorluk: d.zorluk, takimAcik: d.takimAcik, tatbikat: { aktif: null, sonuclar: d.tatbikat.sonuclar },
       seed: s?.durum.vaka.seed ?? null, seciliKisi: d.seciliKisi,
       konusmalar: [...d.konusmalar.entries()], pano: d.pano, suclama: d.suclama, puan: d.puan, gercekAnlatimi: d.gercekAnlatimi, ifadeKarsilastirma: d.ifadeKarsilastirma, temelCizgiNotlari: [...d.temelCizgiNotlari.entries()], takimNotlari: d.takimNotlari, gecmis: d.gecmis, ayna: d.ayna,
@@ -630,9 +670,12 @@ export class OyunDeposu {
   }
 
   iceAktar(json: string): boolean {
+    // İçe aktarım yarıda kalırsa mevcut dosya ve diyalog bellekleri korunur.
+    const onceki = { durum: this.durum, usluplar: this.usluplar, bellek: this.bellek, cevaplar: this.cevapMetinleri };
     try {
       const v = JSON.parse(json);
       if (!v || v.kayitSurumu !== KAYIT_SURUMU) return false;
+      this.durum = baslangicDurumu();
       this.durum = { ...this.durum, kahramanAdi: String(v.kahramanAdi ?? 'Okuyucu'), zamanButcesi: Number(v.zamanButcesi ?? VARSAYILAN_BUTCE), gecmis: Array.isArray(v.gecmis) ? v.gecmis : [], forer: v.forer ?? { tamamlandi: false, puan: null, asama: 'sorular' }, zorluk: (v.zorluk as Zorluk) ?? 'orta', tatbikat: { aktif: null, sonuclar: v.tatbikat?.sonuclar ?? {} }, takimAcik: v.takimAcik ?? true };
       if (v.seed && v.sorgu) {
         // Ayna bayrağı üretimi etkiler (arketip ağırlığı); kayıtta ayna varsa aynı vaka ancak bayrakla geri gelir.
@@ -660,10 +703,13 @@ export class OyunDeposu {
         this.durum.seciliKisi = v.seciliKisi ?? null;
         this.durum.zaman = sorgu.zaman;
       }
+      this.durum.masa = masaOku(v.masa);
+      this.durum.donusOzeti = !!this.durum.sorgu && !this.durum.puan;
       this.durum.ekran = v.ekran === 'forer' || v.ekran === 'tatbikat' ? 'baslik' : v.ekran === 'watson' ? 'pano' : ((v.ekran as Ekran) ?? (this.durum.sorgu ? 'vaka-acilis' : 'baslik'));
       this.bildir();
       return true;
     } catch {
+      this.durum = onceki.durum; this.usluplar = onceki.usluplar; this.bellek = onceki.bellek; this.cevapMetinleri = onceki.cevaplar;
       return false;
     }
   }
