@@ -9,6 +9,7 @@
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
 
 ## Biten işler
+- **Vercel yayını (21.09, K-021):** https://coldreadgame.vercel.app (proje `yavascan/coldread`, GitHub'a bağlı; **`main`'e push = canlı yayın**). `.vercelignore` `docs/`'u dışarıda tutar. Dev sunucusu `docs/kaynaklar/`'ı izlemez (EBUSY düzeltmesi).
 - **Oyun adı Cold Read (21.09, K-019):** başlık, üst şerit, sayfa başlığı, paket adı, kayıt/tema anahtarları (`cold-read:*`); eski `the-mentalist:kayit` ilk yüklemede taşınır.
 - **Kanepe molası sekmesi (48cf710, 0cc2d05):** `KanepeMolasi.tsx`, polaroid çerçeveli GIF, takımın son notu. MTPE ve karanlık mod `main`'de.
 - **Türkçe MTPE turu (18.09, K-018):** tüm oyuncuya görünen metin doğal Türkçeye göre düzeltildi; ortak dil kararları `docs/USLUP.md`'de (ses, biçim, terim sözlüğü). Yeni metin eklerken önce oraya bak.

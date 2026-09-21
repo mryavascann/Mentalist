@@ -20,6 +20,11 @@ export default defineConfig({
     chunkSizeWarningLimit: 4000,
     sourcemap: false,
   },
+  server: {
+    // Kaynak PDF/zip klasörü oyunun parçası değil; başka bir süreç dosyayı kilitlediğinde
+    // izleyici EBUSY ile geliştirme sunucusunu düşürüyordu (mentaldocs.zip).
+    watch: { ignored: ['**/docs/kaynaklar/**'] },
+  },
   resolve: {
     alias: {
       '@motor': kok('./src/motor'),

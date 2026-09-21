@@ -1,0 +1,19 @@
+# Vercel'e yalnızca derleme için gerekenler gider (src, assets, index.html, yapılandırma).
+# Bu dosya varken .gitignore okunmaz; o yüzden oradaki girdiler de burada tekrarlanır.
+# docs/: kaynak PDF'ler ve zip (telif + 240 MB; Vercel dosya sınırı 100 MB), oyunun parçası değil.
+docs/
+tests/
+scripts/
+artifacts/
+node_modules/
+dist/
+.vite/
+coverage/
+.agents/
+.claude/
+.vscode/
+skills-lock.json
+*.log
+*.zip
+*.pdf
+.env*

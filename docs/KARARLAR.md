@@ -116,3 +116,9 @@
 - **Uygulama:** Kalıcı gezinti, görsel giriş, yeni vaka formu ve zorluk kartları, görselli tatbikatlar, brifing düzeni, gruplandırılmış sorgu araçları, Türkçe kılavuz araması, kayıt silme onayı, mobil ve klavye düzenlemeleri. Ayrıntılar `brand.md` §8.
 - **Sınırlar:** Motor, seed üretimi, bilimsel içerik ve kayıt şeması değiştirilmedi. Mevcut Cold Read adlandırması ve kayıt taşıma çalışması korundu. Çevrimdışı tek HTML devam ediyor (~8,84 MB; mevcut GIF dahil).
 - **Geri dönüş koşulu:** Kullanıcı okunurluk veya akış sorunu bildirirse renk değişkenleri ve ilgili ekran düzeni bağımsız olarak revize edilir.
+
+## K-021 · 2026-09-21 · Web yayını: Vercel (kullanıcı kararı; K-010'a ek kanal)
+- **Karar:** Oyun Vercel'de yayınlanır: **https://coldreadgame.vercel.app** (proje `yavascan/coldread`, GitHub deposuna bağlı; `main`'e her push üretim yayınını tetikler). K-010 (tek HTML, çevrimdışı) geçerli kalır; Vercel aynı `dist/index.html`'i sunar.
+- **Gerekçe:** Kullanıcı oyunu bağlantıyla paylaşmak istedi. Kullanıcı adreste tire istemiyor; `coldread.vercel.app` başkasında olduğu için `coldreadgame` alındı (yedek: `playcoldread.vercel.app`).
+- **Uygulama:** `.vercelignore` yalnızca derleme girdilerini gönderir; `docs/` (kaynak PDF/zip, telif + 240 MB, Vercel dosya sınırı 100 MB) asla yüklenmez. `vite.config.ts` geliştirme izleyicisi `docs/kaynaklar/`'ı yok sayar (zip kilitlenince EBUSY ile sunucu düşüyordu).
+- **Geri dönüş koşulu:** Yayın kapatılacaksa Vercel projesi silinir; kod tarafında bağımlılık yok.

@@ -9,6 +9,7 @@ artifacts/ui/
 # kaynak PDF'ler ve zip: telif + boyut (120 MB) nedeniyle depoya alınmaz.
 # İçerik listesi docs/kaynaklar/KAYNAK_INDEKSI.md'de tutulur. (bkz. KARARLAR.md #2)
 docs/mentaldocs.zip
+docs/kaynaklar/*.zip
 docs/kaynaklar/mentaldocs/**/*.pdf
 
 # işletim sistemi / editör
@@ -21,3 +22,6 @@ Thumbs.db
 .agents/
 .claude/skills/
 skills-lock.json
+
+.vercel
+.env*

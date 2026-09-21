@@ -873,3 +873,13 @@
 **Sorunlar / riskler:** Tek HTML yaklaşık 8,84 MB; mevcut 2 MB GIF dahil, 10 MB hedefinin altında. Görüntüler artifacts/ui altında git dışında. Önceki bilimsel doğrulama açık maddeleri bu işin kapsamında değil.
 **Yarım kalanlar:** Yok.
 **Sıradaki ajan için:** Kullanıcının yeni arayüz geri bildirimlerini uygula; sıcak kahve paletini koru. Tarayıcı kontrolü için önce build, sonra node scripts/ui-check.mjs.
+
+## [2026-09-21 14:00] Ajan #4 — Vercel yayını (K-021) ve geliştirme sunucusu EBUSY düzeltmesi
+**Görev:** Kullanıcı: Vercel'e yayınlayalım; adreste tire olmasın.
+**Yapılanlar:** `vercel link` + `vercel deploy --prod` (proje `coldread`, GitHub'a bağlı). İlk deneme `docs/` yüzünden 250 MB yükleyip 100 MB dosya sınırına takıldı → `.vercelignore` eklendi. Adres: https://coldreadgame.vercel.app (200, başlık "Cold Read"; `playcoldread.vercel.app` da aynı yayına bağlı). İlk denemede açılan boş `cold-read` projesi silindi. `vite.config.ts`: `server.watch.ignored` ile `docs/kaynaklar/` izlenmez (mentaldocs.zip kilitlenince dev sunucusu EBUSY ile düşmüştü).
+**Değişen dosyalar:** .vercelignore (yeni), vite.config.ts, .gitignore (Vercel CLI `.vercel`, `.env*` ekledi), docs/{KARARLAR,AJAN_GUNLUGU,DURUM}.md.
+**Testler:** 346 geçti / 0 kaldı (50 dosya). typecheck ve build temiz.
+**Alınan kararlar:** K-021.
+**Sorunlar / riskler:** Başarısız ilk denemede kaynak PDF/zip Vercel'e yüklendi ama yayın oluşmadı (dağıtım reddedildi); yayındaki sitede bu dosyalar yok. Site herkese açık; "Cold Read" marka kontrolü hâlâ yapılmadı.
+**Yarım kalanlar:** Yok.
+**Sıradaki ajan için:** `main`'e push = canlı yayın; kırmızı testle push etme.
