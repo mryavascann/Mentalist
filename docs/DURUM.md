@@ -1,4 +1,4 @@
-﻿# DURUM
+# DURUM
 
 > **21.09.2026 — Ön yüz yenilendi (Ajan #5, K-020).** Açık/koyu sıcak kahve temaları, yeni dedektif masası, yan menü, vaka brifingi, gruplandırılmış sorgu araçları, kılavuz araması ve güvenli kayıt yönetimi tamam. Kullanıcı parlak beyaz ve yeşil yerine rahat Nescafe/kâğıt tonlarını istedi. 346 test / 50 dosya geçti; tip kontrolü ve build temiz. Chromium'da 320/768/1024/1440 px ve yedi ana ekran doğrulandı. Güncel görsel kararlar: brand.md §8. Öncelikli sıradaki iş: yeni arayüz için kullanıcı geri bildirimi. Eski işlerin ayrıntıları aşağıda korunmuştur.
 
@@ -27,7 +27,7 @@
 - **Metin kalitesi 2 (21:25):** ipuçlarında `temelBetimlemeler` (temel çizgi sohbeti alışkanlık dilinde; `ipucuUret baglam`), yabancı adlarda ek okunuşa göre (`turkce.ts OKUNUS`), kişi kartında rolle uyumlu ilişki cümlesi (`iliski_notu.ts`, `Kisi.iliskiNotu`; ayrı RNG akışı, regresyon seed'leri korunur).
 - **Oyuncu geri bildirimi 1 (23:45):** eş/sevgili rolleri karşı cins (`havuzlar.ts`), suçlama dayanak cümleleri tam, seçim kutuları taşmıyor (`stil.css max-width`). Kullanıcı: zorluk iyi.
 - **Takım sahnesi rol tekilliği (23:15):** aynı üye art arda konuşmaz (`takim_hikaye.ts`, karşılık satırı yüzer). Kılavuz 66 madde ve Analiz metinleri gözle okundu; düzeltme gerekmedi.
-- **K-017 zor seviye (22:45):** olay odasındaki masumlar da iz bırakır (şüpheli kümesi büyür), CIT'te tanımama payı; ayrı RNG akışı, regresyon korunur. Repo GitHub'da: https://github.com/mryavascann/Mentalist (özel).
+- **K-017 zor seviye (22:45):** olay odasındaki masumlar da iz bırakır (şüpheli kümesi büyür), CIT'te tanımama payı; ayrı RNG akışı, regresyon korunur. Repo GitHub'da: https://github.com/mryavascann/Mentalist (herkese açık, 21.09.2026).
 - **Teknik çıktıları kalite turu (22:00):** SUE tanık ifadesine de uygulanır (koruma yalanı delille çelişir); oda eşyaları vaka içinde tekil (havuzlar 8–12, `temelEsyalar` + kaydırma); serbest anlatımda aynı odada kalınan ardışık dilimler kısa devam cümlesi (`dil.ts anlatimSatirlari`); uygulanamayan teknik zaman düşmez, şeytanın avukatı düğmesi kapalı.
 - **Görseller (Higgsfield, 2026-09-16):** 122 WebP `assets/` altında (56 portre + 4 takım, 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer); `src/arayuz/gorseller.ts` kütük + seed'li portre eşlemesi (cinsiyet/yaş uyumlu, faille ilişkisiz); ekranlara bağlı (başlık, vaka açılışı, sorgu, Kılavuz, tatbikat, Analiz, Pano, suçlama, Forer, Watson). `Portre.tsx` görsel yoksa siluete düşer. Kayıt: `assets/KAYIT.md`. 6 test.
 
@@ -40,7 +40,7 @@
 ## Açık kararlar
 1. ~~Saat bütçesi~~ → 12 kalır (K-017): aşım ceza (saat başına −2 puan), başarısızlık değil.
 2. ~~Zor seviye~~ → K-017 uygulandı (masum izi + CIT tanımama). Oyuncu zorda oynayınca geri dönüş koşulu kontrol edilecek.
-3. ~~"The Mentalist" adının telif riski (K-007)~~ → ad Cold Read oldu (K-019). Yayın öncesi "Cold Read" için kısa marka kontrolü. Repo şu an özel.
+3. ~~"The Mentalist" adının telif riski (K-007)~~ → ad Cold Read oldu (K-019). Yayın öncesi "Cold Read" için kısa marka kontrolü. Repo 21.09.2026'da herkese açıldı; `assets/diger/kanepe-mola.gif` dizi sahnesi (telifli), yayın büyürse özgün görselle değiştirilmeli.
 4. ~~Higgsfield görselleri~~ → üretildi ve gömüldü (16.09.2026). dist 6 MB; küçültme gerekirse portre 384² / oda q50.
 
 ## Bilinen hatalar
@@ -63,7 +63,7 @@
 
 ## Notlar
 - **Doğrulanmadı:** CIT'te bilen kişinin tanıma oranı (kolay 0.9 / orta 0.85 / zor 0.7) tasarım varsayımı; kaynak kütüğünde suçlu isabet oranı yok (Vrij & Verschuere 2014 yalnızca kodlanma koşulunu vurgular).
-- Git: `origin` = https://github.com/mryavascann/Mentalist (özel). Commit sonrası `git push`.
+- Git: `origin` = https://github.com/mryavascann/Mentalist (herkese açık, 21.09.2026). Commit sonrası `git push`.
 - Kullanıcı: sorun yoksa "devam edeyim mi" sorma, sürekli çalış (16.09.2026).
 - Bash heredoc'ta uzun Python/Markdown kırılıyor (kaçış karakterleri de bozuluyor); yamaları Write aracıyla scratchpad `.py` olarak yaz, sonra çalıştır (`PYTHONIOENCODING=utf-8`). JSON yaması dosyayı indent=2 ile yeniden biçimler (mevcut biçimle aynı).
 - Testlerde JS regex: `\b` Türkçe harfte (ş, ü) sınır değil; `/i` bayrağı İ↔i eşlemez. Sözcük bölme ve açık desen (`/İkiz|ikiz/`) kullan.

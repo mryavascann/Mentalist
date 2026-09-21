@@ -883,3 +883,9 @@
 **Sorunlar / riskler:** Başarısız ilk denemede kaynak PDF/zip Vercel'e yüklendi ama yayın oluşmadı (dağıtım reddedildi); yayındaki sitede bu dosyalar yok. Site herkese açık; "Cold Read" marka kontrolü hâlâ yapılmadı.
 **Yarım kalanlar:** Yok.
 **Sıradaki ajan için:** `main`'e push = canlı yayın; kırmızı testle push etme.
+## [2026-09-21 14:30] Ajan #4 — Repo herkese açıldı
+**Görev:** Kullanıcı: repoyu public yap.
+**Yapılanlar:** Önce geçmiş tarandı: tüm commit'lerde pdf/zip/epub/env yok, gizli anahtar deseni yok, en büyük dosya `kanepe-mola.gif` (2 MB); `docs/kaynaklar` altında yalnızca NOTLAR, KAYNAK_INDEKSI ve tohum izleniyor. Sonra `gh repo edit --visibility public`. DURUM'daki "özel" notları güncellendi.
+**Testler:** Kod değişmedi (346 / 0).
+**Sorunlar / riskler:** `assets/diger/kanepe-mola.gif` kullanıcının verdiği dizi sahnesi (telifli görüntü); hem açık repoda hem canlı sitede. Oyun adındaki telif riski K-019 ile kapanmıştı, bu dosya aynı türden tek kalan risk. "Cold Read" marka kontrolü yapılmadı.
+**Sıradaki ajan için:** Kullanıcı isterse GIF yerine özgün (Higgsfield) kanepe görseli/animasyonu; `KanepeMolasi.tsx` ve `assets/KAYIT.md` güncellenir.
