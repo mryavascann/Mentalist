@@ -3,7 +3,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, cleanup, within } from '@testing-library/react';
 import { App } from '@arayuz/App';
-import { depo, kaydiSil } from '@arayuz/oyun/kullan';
+import { depo, kaydiSil, kaydiYukle } from '@arayuz/oyun/kullan';
 
 beforeEach(() => {
   cleanup();
@@ -14,7 +14,7 @@ beforeEach(() => {
 describe('App duman testi', () => {
   it('bir vaka baştan sona oynanabiliyor', () => {
     render(<App />);
-    expect(screen.getAllByText('THE MENTALIST').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('COLD READ').length).toBeGreaterThan(0);
 
     fireEvent.change(screen.getByPlaceholderText(/Adını yaz/), { target: { value: 'Deniz' } });
     fireEvent.change(screen.getByPlaceholderText(/örn\./), { target: { value: 'duman-1' } });
@@ -80,8 +80,27 @@ describe('App duman testi', () => {
     fireEvent.click(screen.getByText('Puanla'));
     fireEvent.click(screen.getByText('Anladım, dosyaya geç'));
     const seed = depo.durum.sorgu!.durum.vaka.seed;
-    const json = localStorage.getItem('the-mentalist:kayit');
+    const json = localStorage.getItem('cold-read:kayit');
     expect(json).toBeTruthy();
     expect(JSON.parse(json!).seed).toBe(seed);
+  });
+
+  // K-019: oyun adı değişti; eski adla yazılmış kayıt kaybolmamalı.
+  it('eski adla (the-mentalist) yazılmış kayıt yeni anahtara taşınır', () => {
+    render(<App />);
+    fireEvent.change(screen.getByPlaceholderText(/örn\./), { target: { value: 'duman-tasima' } });
+    fireEvent.click(screen.getByText('Yeni vaka'));
+    const eskiKayit = depo.disaAktar();
+    const seed = JSON.parse(eskiKayit).seed;
+
+    // Eski sürümün bıraktığı durum: yalnızca eski anahtar dolu
+    kaydiSil();
+    depo.sifirla();
+    localStorage.removeItem('cold-read:kayit');
+    localStorage.setItem('the-mentalist:kayit', eskiKayit);
+
+    expect(kaydiYukle()).toBe(true);
+    expect(localStorage.getItem('the-mentalist:kayit')).toBeNull();
+    expect(JSON.parse(localStorage.getItem('cold-read:kayit')!).seed).toBe(seed);
   });
 });

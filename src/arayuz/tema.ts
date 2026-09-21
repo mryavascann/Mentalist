@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 
 export type Tema = 'acik' | 'karanlik';
 
-const TEMA_ANAHTARI = 'the-mentalist:tema';
+const TEMA_ANAHTARI = 'cold-read:tema';
+// Oyunun eski adıyla yazılmış tercih (K-019); yeni anahtar boşsa bir kez buradan okunur.
+const ESKI_TEMA_ANAHTARI = 'the-mentalist:tema';
 
 function sistemKaranlikMi(): boolean {
   try {
@@ -15,7 +17,8 @@ function sistemKaranlikMi(): boolean {
 
 function temaOku(): Tema {
   try {
-    const kayitli = globalThis.localStorage?.getItem(TEMA_ANAHTARI);
+    const kayitli =
+      globalThis.localStorage?.getItem(TEMA_ANAHTARI) ?? globalThis.localStorage?.getItem(ESKI_TEMA_ANAHTARI);
     if (kayitli === 'acik' || kayitli === 'karanlik') return kayitli;
   } catch {
     /* depolama yok; sessizce geç */

@@ -19,6 +19,7 @@ export function SorguOdasi() {
   const [uydurmaAd, setUydurmaAd] = useState('Cemil Aktaş');
   const [acikIpucu, setAcikIpucu] = useState<string | null>(null);
   const [tahmin, setTahmin] = useState<IcSesKategori>('sakin');
+  const [aracGrubu, setAracGrubu] = useState('Sorular');
   if (!d.sorgu) return null;
   const odaOkumasi = d.seciliKisi ? d.sorgu.odaOkumalari.get(d.seciliKisi) : undefined;
   const vaka = d.sorgu.durum.vaka;
@@ -35,14 +36,14 @@ export function SorguOdasi() {
         <h2>Kişiler</h2>
         {kisiler.map((k) => (
           <button key={k.id} className={k.id === d.seciliKisi ? 'secili' : ''} onClick={() => depo.kisiSec(k.id)}>
-            {k.ad}
+            <span className="kisi-satiri"><Portre id={k.id} ad={k.ad} boyut={30} src={portreUrl(vaka, k.id)} /><span>{k.ad}</span></span>
             <br />
             <span className="soluk">{k.rol}</span>
           </button>
         ))}
       </aside>
 
-      <main className="dosya">
+      <section className="dosya konusma-paneli">
         <h2 style={{ display: 'flex', gap: 10, alignItems: 'center' }}>{secili && <Portre id={secili.id} ad={secili.ad} boyut={40} src={portreUrl(vaka, secili.id)} />}{secili ? `Görüşme · ${secili.ad}` : 'Bir kişi seç'}</h2>
         {kapali && <p className="uyari">Suçlama yapıldı; sorgu kapandı. Analiz sekmesine bak.</p>}
         <label className="soluk" style={{ display: 'block' }}><input type="checkbox" checked={d.takimAcik} onChange={(e) => depo.takimAcKapat(e.target.checked)} /> Takım yorumları (kanıt değildir; çoğunluk sık sık yanılır)</label>
@@ -94,13 +95,18 @@ export function SorguOdasi() {
             </div>
           ))}
         </div>
-      </main>
+      </section>
 
       <aside className="dosya panel">
-        <h2>Sorular</h2>
+        <h2>Sorgu araçları</h2>
         {!secili && <p className="soluk">Soldan bir kişi seç.</p>}
         {secili && !kapali && (
           <>
+            <div className="arac-gruplari" aria-label="Sorgu aracı grupları">
+              {['Sorular', 'Teknikler', 'Kişiyi oku', 'Deliller'].map((ad) => <button key={ad} aria-pressed={aracGrubu === ad} className={aracGrubu === ad ? 'secili' : ''} onClick={() => setAracGrubu(ad)}>{ad}</button>)}
+            </div>
+            <div className="temel-cizgi-baslat"><p className="soluk">Önce kişinin normalini tanı.</p><button title={teknik('temel-cizgi').nasil} onClick={() => depo.teknik('temel-cizgi')}>{teknik('temel-cizgi').ad} · {sure(teknik('temel-cizgi').maliyet.zaman)}</button></div>
+            {aracGrubu === 'Sorular' && <>
             <h3>Neredeydin?</h3>
             <div className="dugmeler">
               {vaka.dilimler.map((z) => (
@@ -109,11 +115,11 @@ export function SorguOdasi() {
             </div>
             <h3>Kimi gördün?</h3>
             <div className="satirici">
-              <select value={hedef} onChange={(e) => setHedef(e.target.value)}>
+              <select aria-label="Sorulacak kişi" value={hedef} onChange={(e) => setHedef(e.target.value)}>
                 <option value="">kişi…</option>
                 {digerleri.map((k) => <option key={k.id} value={k.id}>{k.ad}</option>)}
               </select>
-              <select value={dilim} onChange={(e) => setDilim(Number(e.target.value))}>
+              <select aria-label="Sorulacak saat" value={dilim} onChange={(e) => setDilim(Number(e.target.value))}>
                 {vaka.dilimler.map((z) => <option key={z.index} value={z.index}>{z.baslangic}</option>)}
               </select>
               <button disabled={!hedef} onClick={() => depo.sor({ tur: 'konum', hedef, dilim })}>Sor</button>
@@ -123,10 +129,11 @@ export function SorguOdasi() {
               <button onClick={() => depo.sor({ tur: 'olay-bilgisi', konu: 'olay-yontemi' })}>Nasıl oldu?</button>
               <button onClick={() => depo.sor({ tur: 'olay-bilgisi', konu: 'fail-kimligi' })}>Kimi gördün?</button>
             </div>
-
+            </>}
+            {aracGrubu === 'Teknikler' && <>
             <h3>Teknikler</h3>
             <div className="dugmeler">
-              {['temel-cizgi', 'acik-uclu-anlatim', 'bilissel-yuk-ters-sira', 'seytanin-avukati', 'suclayici-ton'].map((id) => (
+              {['acik-uclu-anlatim', 'bilissel-yuk-ters-sira', 'seytanin-avukati', 'suclayici-ton'].map((id) => (
                 // Şeytanın avukatı v0'da uygulanamaz (görüş/niyet soruları yok); düğme kapalı, Kılavuz maddesi okunabilir.
                 <button key={id} disabled={id === 'seytanin-avukati'} title={id === 'seytanin-avukati' ? `${teknik(id).nasil} (Bu sürümde kullanılamaz; oyunda henüz görüş ve niyet soruları yok. Kılavuz'da okuyabilirsin.)` : teknik(id).nasil} onClick={() => depo.teknik(id)}>{teknik(id).ad} · {sure(teknik(id).maliyet.zaman)}</button>
               ))}
@@ -134,7 +141,7 @@ export function SorguOdasi() {
             <div className="satirici">
               <button title={teknik('beklenmedik-soru').nasil} onClick={() => depo.teknik('beklenmedik-soru', { dilim })}>Beklenmedik soru</button>
               <span className="soluk">saat:</span>
-              <select value={dilim} onChange={(e) => setDilim(Number(e.target.value))}>
+              <select aria-label="Beklenmedik sorunun saati" value={dilim} onChange={(e) => setDilim(Number(e.target.value))}>
                 {vaka.dilimler.map((z) => <option key={z.index} value={z.index}>{z.baslangic}</option>)}
               </select>
             </div>
@@ -145,16 +152,17 @@ export function SorguOdasi() {
             </div>
             <div className="satirici">
               <button title={teknik('sahte-bilgi-yemi').nasil} onClick={() => depo.teknik('sahte-bilgi-yemi', { uydurmaAd })}>Sahte bilgi yemi</button>
-              <input type="text" value={uydurmaAd} onChange={(e) => setUydurmaAd(e.target.value)} style={{ width: 130 }} />
+              <input aria-label="Yem olarak kullanılacak ad" type="text" value={uydurmaAd} onChange={(e) => setUydurmaAd(e.target.value)} style={{ width: 130 }} />
             </div>
             <div className="satirici">
               <button title={teknik('yonlendirici-soru').nasil} disabled={!oneriOda} onClick={() => depo.teknik('yonlendirici-soru', { dilim, hedef: hedef || secili.id, onerilenOda: oneriOda })}>Yönlendirici soru</button>
-              <select value={oneriOda} onChange={(e) => setOneriOda(e.target.value)}>
+              <select aria-label="Önerilecek oda" value={oneriOda} onChange={(e) => setOneriOda(e.target.value)}>
                 <option value="">oda öner…</option>
                 {vaka.mekan.odalar.map((o) => <option key={o.id} value={o.id}>{o.ad}</option>)}
               </select>
             </div>
-
+            </>}
+            {aracGrubu === 'Kişiyi oku' && <>
             <h3>Kişiyi oku</h3>
             <div className="dugmeler">
               {['oda-okuma', 'dijital-iz', 'kayit-inceleme'].map((id) => (
@@ -167,10 +175,12 @@ export function SorguOdasi() {
                 {IC_SES_KATEGORILERI.map((k) => <option key={k} value={k}>{IC_SES_SECENEKLERI[k]}</option>)}
               </select>
             </div>
-
+            </>}
+            {aracGrubu === 'Deliller' && <>
             <h3>Deliller</h3>
+            <p className="soluk">Ne gösterdiğin kadar, ne zaman gösterdiğin de önemli.</p>
             <div className="satirici">
-              <select value={delilId} onChange={(e) => setDelilId(e.target.value)}>
+              <select aria-label="Gösterilecek delil" value={delilId} onChange={(e) => setDelilId(e.target.value)}>
                 <option value="">delil…</option>
                 {d.sorgu.deliller.map((x) => <option key={x.id} value={x.id}>{d.sorgu!.gosterilen.get(secili.id)?.has(x.id) ? '✓ ' : ''}{x.id} · {x.aciklama.slice(0, 40)}…</option>)}
               </select>
@@ -185,6 +195,7 @@ export function SorguOdasi() {
                 SUE ile sor
               </button>
             </div>
+            </>}
           </>
         )}
       </aside>

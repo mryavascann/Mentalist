@@ -37,7 +37,7 @@ export function Suclama() {
           <input type="radio" name="fail" value="yok" checked={secim === 'yok'} onChange={() => setSecim('yok')} /> Suç yok, kimseyi suçlamıyorum
         </label>
         <h3>Ne kadar eminsin? %{guven}</h3>
-        <input type="range" min={50} max={100} value={guven} onChange={(e) => setGuven(Number(e.target.value))} style={{ width: '100%' }} />
+        <input type="range" aria-label="Kararına güvenin" aria-valuetext={`Yüzde ${guven}`} min={50} max={100} value={guven} onChange={(e) => setGuven(Number(e.target.value))} style={{ width: '100%' }} />
         <p className="soluk">Beyan ettiğin güven, gerçek isabetinle karşılaştırılır (kalibrasyon). Ekman & O'Sullivan 1991: emin olmak, doğru olmak demek değildir.</p>
         <button className="birincil" disabled={!secim || d.puan !== null} onClick={gonder}>Suçlamayı ver</button>
       </section>

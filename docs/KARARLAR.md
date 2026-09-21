@@ -33,7 +33,7 @@
 ## K-006 · 2026-09-16 · Wiseman ve Rowland kitapları özet metin
 - **Karar:** Zip'teki "Paranormality" ve "Full Facts Book of Cold Reading" dosyaları Bookey özetidir, tam kitap değildir. Bu iki kaynağa dayanan Kılavuz maddeleri "özetten alındı" notu taşır; çelişki durumunda birincil makaleler (Hyman 1977, Forer 1949, Wiseman 2012) üstündür.
 
-## K-007 · 2026-09-16 · Oyun adı: "The Mentalist" (kullanıcı kararı)
+## K-007 · 2026-09-16 · Oyun adı: "The Mentalist" (kullanıcı kararı) — ad kısmı K-019 ile değişti
 - **Karar:** Oyunun adı **The Mentalist**. Kahramanın adını oyuncu oyun başında kendisi girer (varsayılan boş; boş bırakılırsa "Okuyucu" kullanılır).
 - **Not (ajan uyarısı):** "The Mentalist" tescilli bir dizi adıdır. Eğitim/eğlence amaçlı ücretsiz dağıtımda risk düşük ama sıfır değil; ticari yayın planı olursa ad yeniden değerlendirilmeli. Dizi karakter adları ve gülen yüz sembolü yine kullanılmaz. Kullanıcı uyarıyı bilerek bu adı seçti.
 - **Uygulama:** `src/ortak/surum.ts` içindeki `PROJE.ad` = "The Mentalist"; `package.json` adı teknik olarak `the-mentalist`.
@@ -103,3 +103,16 @@
 - **Sınırlar:** Sayılar, kaynaklar, kanıt düzeyleri, id'ler ve havuz boyutları değişmedi (seedli üretim ve regresyon anlık görüntüleri aynı). Mantıkta karşılaştırılan dizeler (`teknik.ts` özetleri) korunur.
 - **Alternatifler:** Tüm metni İngilizce kaynaktan yeniden çevirmek (kaynak dosyalar parça parça, oyun metni özgün kurgu içeriyor; hem gereksiz hem riskli); yalnızca kullanıcının örneklerini düzeltmek (kök neden kalır).
 - **Geri dönüş koşulu:** Bir terim oyuncuya yabancı gelirse yalnızca `USLUP.md` tablosu ve ilgili `ad`/`baslik` alanları değişir; id'ler sabit olduğu için geri dönüş ucuzdur.
+
+## K-019 · 2026-09-21 · Oyun adı: "Cold Read" (kullanıcı kararı; K-007'nin ad kısmının yerine geçer)
+- **Karar:** Oyunun adı **Cold Read**. K-007'nin geri kalanı (kahraman adını oyuncu girer, dizi karakter adları ve gülen yüz sembolü kullanılmaz) aynen geçerli. "The Mentalist dizisinden esinlenen" ifadesi belgelerde kalır; bu oyunun adı değil, esin kaynağıdır.
+- **Gerekçe:** "The Mentalist" tescilli bir dizi adıydı (K-007 uyarısı, DURUM açık karar 3). "Cold Read" (soğuk okuma) kahramanın eski sahte medyum mesleğine, Forer açılış dersine ve Kılavuz'daki soğuk okuma bölümüne doğrudan bağlanır; diziyi çağrıştırır ama adını kullanmaz.
+- **Uygulama:** `PROJE.ad` = "Cold Read" (`src/ortak/surum.ts`), başlık ekranı ve üst şerit "COLD READ", `index.html` başlığı, `package.json`/`package-lock.json` adı `cold-read`, dışa aktarılan kayıt dosyası `cold-read-kayit-*.json`. Tarayıcı anahtarları `cold-read:kayit` ve `cold-read:tema`; eski `the-mentalist:kayit` ilk yüklemede yeni anahtara taşınır ve silinir (`kullan.ts eskiKaydiTasi`), eski tema tercihi yeni anahtar boşken okunur. Repo ve klasör adı (`Mentalist`) değişmedi.
+- **Alternatifler:** Soğuk Okuma (Türkçe karşılığı), Kör Nokta, Temel Çizgi, Zihin Okunmaz, Çay Soğumadan. Kullanıcı İngilizce biçimi seçti.
+- **Geri dönüş koşulu:** Ad yeniden değişirse aynı yerler güncellenir; eski anahtar listesine `cold-read:*` eklenir ki kayıtlar yine taşınsın.
+## K-020 · 2026-09-21 · Ön yüz yeniden tasarımı ve sıcak kahve paleti
+- **Karar:** Kullanıcıya görünen arayüz dedektif çalışma masası düzeninde yeniden tasarlandı. Kullanıcının sonraki açık tercihiyle koyu yeşil kaldırıldı; açık tema sütlü kahve/eskitilmiş kâğıt, koyu tema espresso/karamel/açık kahverengi vurgular kullanır. Parlak beyaz ana yüzey kullanılmaz.
+- **Gerekçe:** Ana ekrandaki eşit ağırlıklı düğme yığını, küçük okuma alanı ve sorgudaki uzun araç listesi bilgi hiyerarşisini zayıflatıyordu. Kullanıcı kahve tonlarını rahat ve sakin buluyor.
+- **Uygulama:** Kalıcı gezinti, görsel giriş, yeni vaka formu ve zorluk kartları, görselli tatbikatlar, brifing düzeni, gruplandırılmış sorgu araçları, Türkçe kılavuz araması, kayıt silme onayı, mobil ve klavye düzenlemeleri. Ayrıntılar `brand.md` §8.
+- **Sınırlar:** Motor, seed üretimi, bilimsel içerik ve kayıt şeması değiştirilmedi. Mevcut Cold Read adlandırması ve kayıt taşıma çalışması korundu. Çevrimdışı tek HTML devam ediyor (~8,84 MB; mevcut GIF dahil).
+- **Geri dönüş koşulu:** Kullanıcı okunurluk veya akış sorunu bildirirse renk değişkenleri ve ilgili ekran düzeni bağımsız olarak revize edilir.

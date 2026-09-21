@@ -1,11 +1,16 @@
-# DURUM
+﻿# DURUM
 
-> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-18 17:30, Ajan #3 (MTPE turu, `dev` dalı).
+> **21.09.2026 — Ön yüz yenilendi (Ajan #5, K-020).** Açık/koyu sıcak kahve temaları, yeni dedektif masası, yan menü, vaka brifingi, gruplandırılmış sorgu araçları, kılavuz araması ve güvenli kayıt yönetimi tamam. Kullanıcı parlak beyaz ve yeşil yerine rahat Nescafe/kâğıt tonlarını istedi. 346 test / 50 dosya geçti; tip kontrolü ve build temiz. Chromium'da 320/768/1024/1440 px ve yedi ana ekran doğrulandı. Güncel görsel kararlar: brand.md §8. Öncelikli sıradaki iş: yeni arayüz için kullanıcı geri bildirimi. Eski işlerin ayrıntıları aşağıda korunmuştur.
+
+
+> Her ajan üzerine yazar; kısa tutulur. Son güncelleme: 2026-09-21 13:00, Ajan #4 (oyun adı Cold Read, K-019).
 
 ## Aktif aşama
 **Aşama 3 — Genişleme.** Zorluk, cila, Kılavuz genişletmesi, yedi tatbikat, adaptif üretim, takım NPC'leri, şablon havuzu, arketip havuzu, kanepe molası, ifade çizelgesi, kalibrasyon günlüğü, regresyon seed'leri, takım hikâyesi, aralıklı tekrar, **§7'nin tüm araçları** ve **Ayna arkı** tamam (Kılavuz 66 madde, 16 teknik). Yol haritasındaki Aşama 3 maddeleri ve Higgsfield görselleri bitti; kalan: kullanıcı kararları (zor seviye, bütçe) ve cila.
 
 ## Biten işler
+- **Oyun adı Cold Read (21.09, K-019):** başlık, üst şerit, sayfa başlığı, paket adı, kayıt/tema anahtarları (`cold-read:*`); eski `the-mentalist:kayit` ilk yüklemede taşınır.
+- **Kanepe molası sekmesi (48cf710, 0cc2d05):** `KanepeMolasi.tsx`, polaroid çerçeveli GIF, takımın son notu. MTPE ve karanlık mod `main`'de.
 - **Türkçe MTPE turu (18.09, K-018):** tüm oyuncuya görünen metin doğal Türkçeye göre düzeltildi; ortak dil kararları `docs/USLUP.md`'de (ses, biçim, terim sözlüğü). Yeni metin eklerken önce oraya bak.
 - **Karanlık mod (17.09, `dev`):** yalnızca görsel katman; `src/arayuz/tema.ts`, `stil.css` `:root[data-tema="karanlik"]`.
 - Aşama 0–2 tamam; Aşama 3'te: zorluk seçici + zorlaştırıcılar, cila (ifade-gerçek tablosu, temel çizgi notu, gösterilen delil işareti).
@@ -26,7 +31,7 @@
 - **Görseller (Higgsfield, 2026-09-16):** 122 WebP `assets/` altında (56 portre + 4 takım, 9 mekân, 18 oda, 12 Kılavuz bölümü, 7 tatbikat, 4 delil türü, 12 diğer); `src/arayuz/gorseller.ts` kütük + seed'li portre eşlemesi (cinsiyet/yaş uyumlu, faille ilişkisiz); ekranlara bağlı (başlık, vaka açılışı, sorgu, Kılavuz, tatbikat, Analiz, Pano, suçlama, Forer, Watson). `Portre.tsx` görsel yoksa siluete düşer. Kayıt: `assets/KAYIT.md`. 6 test.
 
 ## Sıradaki 3 iş
-1. **Kullanıcı okuması:** MTPE turundaki terim kararlarını (USLUP §4) kullanıcı gözden geçirsin; beğenilmeyen terim yalnızca sözlükte ve `ad`/`baslik` alanında değişir. Ardından `dev` → `main`.
+1. **Kullanıcı okuması:** MTPE turundaki terim kararlarını (USLUP §4) kullanıcı gözden geçirsin; beğenilmeyen terim yalnızca sözlükte ve `ad`/`baslik` alanında değişir.
 2. **Oyuncu geri bildirimi:** kullanıcı zor seviyeyi oynayınca K-017 geri dönüş koşulu (çözülemez hissi, masum suçlama) ve genel his; ayrıca dist boyutu rahatsız ediyorsa portre 384² / oda q50.
 3. **Küçük fikirler:** kanepe delil notu için "→ Pano" düğmesi; ilişki notunu sorguda sohbet sorusu olarak kullanmak; oda görsellerini ifade çizelgesinde de göstermek; Kılavuz 'kayit-inceleme' maddesinden "tekrar sor" ipucuna oyun içi bağ.
 4. **Kaynak doğrulama:** CIT'te suçlu tanıma oranı (K-017b, şu an tasarım varsayımı 0.7) için kaynak; bulunursa `citTanimaOlasiligi` ve Kılavuz maddesi güncellenir.
@@ -34,7 +39,7 @@
 ## Açık kararlar
 1. ~~Saat bütçesi~~ → 12 kalır (K-017): aşım ceza (saat başına −2 puan), başarısızlık değil.
 2. ~~Zor seviye~~ → K-017 uygulandı (masum izi + CIT tanımama). Oyuncu zorda oynayınca geri dönüş koşulu kontrol edilecek.
-3. "The Mentalist" adının telif riski (K-007) — yalnızca not; yayın öncesi hatırlatılacak. Repo şu an özel.
+3. ~~"The Mentalist" adının telif riski (K-007)~~ → ad Cold Read oldu (K-019). Yayın öncesi "Cold Read" için kısa marka kontrolü. Repo şu an özel.
 4. ~~Higgsfield görselleri~~ → üretildi ve gömüldü (16.09.2026). dist 6 MB; küçültme gerekirse portre 384² / oda q50.
 
 ## Bilinen hatalar
@@ -51,7 +56,8 @@
 - **23:15:** takım sahnesi rol tekilliği (`takimRol.test.ts`, 2 test).
 - **23:45:** rol karşı-cins (+1), suçlama render testi (+1).
 - **18.09 (Ajan #3):** MTPE turu; üç testte yalnızca görünen ad güncellendi (depo, cila3, araclarDepo).
-- `npm test`: 48 dosya, 339 test geçti (2026-09-18 17:30). Süre ~10 sn (paralel).
+- **21.09 (Ajan #4):** ad değişimi; eski kayıt taşıma testi (+1). Kanepe molası ekranı (+2, Ajan #3 sonrası).
+- `npm test`: 49 dosya, 342 test geçti (2026-09-21 13:00). Süre ~8 sn (paralel).
 - `npm run typecheck`: temiz. `npm run build`: tek `dist/index.html` (5.98 MB; 122 görsel gömülü, gzip 4.3 MB).
 
 ## Notlar
@@ -68,3 +74,4 @@
 - Sahnelenmiş delil oyuncuya bayrakla gösterilmez; fizik tutarsızlığı ile bulunur. Sahnelenmiş oda eşyası da öyle (toz izi, kırılmamış kitap sırtı).
 - İpucu sadakat testi zayıf ipuçlarında gürültüye duyarlı; yeni ipucu eklerken `betimlemeYonu` ve kişilik temel çizgisini (`ipucu.ts KISILIK_TEMELI`) birlikte ekle.
 - Gizli bilgi (ifade türü, iç ses gerçeği, eşya türü) oyun sırasında metne yazılmaz; Analiz'de açılır. Yeni araç eklerken sızma testi yaz.
+

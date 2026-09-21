@@ -32,7 +32,7 @@ export function Forer() {
           <h2>Kişilik analizin, {d.kahramanAdi}</h2>
           <ol>{FORER.profil.map((m, i) => <li key={i} style={{ margin: '6px 0' }}>{m}</li>)}</ol>
           <h3>Bu analiz seni ne kadar iyi anlatıyor? {puan}/5</h3>
-          <input type="range" min={1} max={5} value={puan} onChange={(e) => setPuan(Number(e.target.value))} style={{ width: '100%' }} />
+          <input type="range" aria-label="Analiz seni ne kadar iyi anlatıyor?" aria-valuetext={`5 üzerinden ${puan}`} min={1} max={5} value={puan} onChange={(e) => setPuan(Number(e.target.value))} style={{ width: '100%' }} />
           <button className="birincil" onClick={() => depo.forerPuanla(puan)}>Puanla</button>
         </>
       )}

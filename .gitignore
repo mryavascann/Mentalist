@@ -3,6 +3,7 @@ node_modules/
 dist/
 .vite/
 coverage/
+artifacts/ui/
 *.log
 
 # kaynak PDF'ler ve zip: telif + boyut (120 MB) nedeniyle depoya alınmaz.

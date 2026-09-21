@@ -4,7 +4,7 @@
 
 ## Proje 10 satırda
 
-1. The Mentalist dizisinden esinlenen, **metin ağırlıklı, görsel olarak sade, içerik olarak güçlü** bir dedektif oyunu. Adı: **The Mentalist** (K-007); kahraman adını oyuncu girer.
+1. The Mentalist dizisinden esinlenen, **metin ağırlıklı, görsel olarak sade, içerik olarak güçlü** bir dedektif oyunu. Adı: **Cold Read** (K-019; eski ad The Mentalist, K-007); kahraman adını oyuncu girer.
 2. Her vakada 5–8 kişi; kimi yalan söyler, kimi birini korur, kimi dürüst ama yanılır, kimi oyuncuyu manipüle eder.
 3. Oyuncu **gerçek bilimsel teknikler** kullanır: temel çizgi, stratejik delil kullanımı (SUE), bilişsel yük, gizli bilgi testi, beklenmedik soru, soğuk okumayı çözme…
 4. **Yanılmak oyunun parçasıdır.** Vaka sonunda oyun nerede, neden yanıldığını ve hangi Kılavuz konusunu çalışması gerektiğini söyler; kör nokta profili tutar.

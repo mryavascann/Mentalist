@@ -2,6 +2,7 @@
 import { depo, useOyun } from '../oyun/kullan';
 import { DELIL_GORSELLERI, DIGER, mekanGorseli, portreUrl } from '../gorseller';
 import { Portre } from './Portre';
+import { Ikon } from './Ikon';
 
 export function VakaAcilis() {
   const d = useOyun();
@@ -10,13 +11,20 @@ export function VakaAcilis() {
   const mekanResmi = mekanGorseli(vaka.mekan.tur);
   return (
     <div>
-      <section className="dosya">
-        <h2>Dosya · {vaka.mekan.ad}</h2>
-        {mekanResmi && <img src={mekanResmi} alt={`${vaka.mekan.ad} — olay yeri`} style={{ width: '100%', maxHeight: 260, objectFit: 'cover', border: '1px solid var(--cizgi)', marginBottom: 8 }} />}
-        <p className="daktilo">{d.brifing}</p>
-        {d.rapor && <p className="soluk">Tahmini zorluk: {Math.round(d.rapor.zorluk * 100)}/100</p>}
+      <section className="dosya vaka-brifingi">
+        <div className="vaka-kapak">
+          {mekanResmi && <img src={mekanResmi} alt={`${vaka.mekan.ad} — olay yeri`} />}
+          <span className="vaka-damga">{d.puan ? 'TAMAMLANDI' : 'SORUŞTURMA AÇIK'}</span>
+        </div>
+        <div className="vaka-ozeti"><span className="ust-etiket">OLAY YERİ BRİFİNGİ</span><h2>{vaka.mekan.ad}</h2>
+        <p className="brifing-anlati">{d.brifing}</p>
+        <div className="vaka-verileri"><span><Ikon ad="sorgu" boyut={16} />{depo.gorusulebilirler().length} kişi</span><span><Ikon ad="dosya" boyut={16} />{d.sorgu.deliller.length} delil</span><span><Ikon ad="saat" boyut={16} />{d.zamanButcesi} saat bütçe</span></div>
+        {d.rapor && <p className="alan-notu">Tahmini zorluk: {Math.round(d.rapor.zorluk * 100)}/100</p>}
+        <button className="metin-dugmesi" onClick={() => depo.ekranaGit('sorgu')}>Sorgu odasına geç <Ikon ad="ok" boyut={18} /></button>
+        </div>
+      </section>
         {d.ayna && (
-          <div className="kart" style={{ marginTop: 10 }}>
+          <div className="kart" style={{ marginBottom: 22 }}>
             <p className="soluk" style={{ margin: '0 0 4px' }}>Olay yerinde, delillerin arasında el yazısı bir not{d.ayna.karsilasma > 1 ? ` (aynı el yazısı, ${d.ayna.karsilasma}. kez)` : ''}:</p>
             <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
               {DIGER['ayna-not'] && <img src={DIGER['ayna-not']} alt="" aria-hidden="true" style={{ width: 120, border: '1px solid var(--cizgi)', flex: 'none' }} />}
@@ -24,22 +32,21 @@ export function VakaAcilis() {
             </div>
           </div>
         )}
-      </section>
-      <section className="dosya">
-        <h2>Kişiler</h2>
+      <section className="dosya vaka-kisileri">
+        <div className="bolum-ust"><h2>Kişiler</h2><span className="soluk">Her ifadenin arkasında bir hikâye var.</span></div>
         <div className="izgara">
           {d.kisiKartlari.map((k) => {
             const kisi = vaka.kisiler.find((x) => x.id === k.id)!;
             const gorusulebilir = kisi.hayatta && kisi.id !== vaka.olay.kurban;
             return (
-              <div className="kart" key={k.id}>
+              <div className="kart kisi-karti" key={k.id}>
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <Portre id={kisi.id} ad={kisi.ad} kurban={kisi.id === vaka.olay.kurban} src={portreUrl(vaka, kisi.id)} />
+                  <Portre id={kisi.id} ad={kisi.ad} boyut={64} kurban={kisi.id === vaka.olay.kurban} src={portreUrl(vaka, kisi.id)} />
                   <div className="ad">{kisi.ad}</div>
                 </div>
                 <div className="soluk">{k.metin}</div>
                 <div className="soluk">Kişilik: bilinmiyor · Alibi: bilinmiyor</div>
-                {gorusulebilir && <button style={{ marginTop: 6 }} onClick={() => depo.kisiSec(k.id)}>Görüş</button>}
+                {gorusulebilir && <button onClick={() => depo.kisiSec(k.id)}>Görüş <Ikon ad="ok" boyut={15} /></button>}
               </div>
             );
           })}

@@ -850,3 +850,26 @@
 **Sorunlar / riskler:** Havuz boyutları ve id'ler değişmedi; regresyon anlık görüntüleri aynen geçti. `teknik.ts` özet dizeleri (`'erken gösterildi'` vb.) `puan.ts`'de karşılaştırıldığı için bilerek değiştirilmedi.
 **Yarım kalanlar:** Yok. Commit kullanıcı onayı bekliyor.
 **Sıradaki ajan için:** 1) Yeni metin eklerken önce `docs/USLUP.md`. 2) Kullanıcı okuyup bir terimi beğenmezse yalnızca sözlük ve ilgili `ad`/`baslik` alanı değişir. 3) DURUM'daki küçük fikirler.
+
+## [2026-09-21 13:00] Ajan #4 — Oyun adı "Cold Read" oldu (K-019); kanepe molası sekmesi günlüğe işlendi
+**Görev:** Kullanıcı: kodda ve sitede "The Mentalist" geçen yerler "Cold Read" olsun. Ayrıca günlükte kaydı olmayan iki commit (48cf710, 0cc2d05) buraya not edildi.
+**Yapılanlar (önce test, kırmızı, sonra kod):**
+- Test: `App.test.tsx` başlıkta "COLD READ" ve `cold-read:kayit` anahtarını bekler; yeni test eski `the-mentalist:kayit` kaydının yeni anahtara taşındığını ve eski anahtarın silindiğini doğrular (3/3 kırmızı görüldü).
+- Kod: `surum.ts` `PROJE.ad`, `Baslik.tsx` ve `Kabuk.tsx` başlıkları, dışa aktarma dosya adı, `index.html` başlığı ve tema betiği, `package.json` + `package-lock.json` adı, `stil.css` üst yorumu. `kullan.ts`'e `eskiKaydiTasi` (yeni anahtar doluysa dokunmaz, eski anahtarı her durumda temizler); `tema.ts` ve `index.html` yeni anahtar boşsa eski tema tercihini okur.
+- Dokunulmayanlar: "The Mentalist dizisinden esinlenen" cümleleri (esin kaynağı), TASARIM §'deki "The Mentalist Project" (ekibin eski sunumunun adı), günlüğün eski kayıtları, repo/klasör adı.
+- **Günlüğe geç not (Ajan #3 sonrası, 48cf710 + 0cc2d05):** kanepe molası kendi sekmesine taşındı (`KanepeMolasi.tsx`, polaroid çerçeveli `assets/diger/kanepe-mola.gif`, takımın son notu; metin "Sen kanepede pineklerken takım çalıştı"); `kanepeEkrani.test.tsx` (+2 test → 341). `dev` dalındaki MTPE ve karanlık mod `main`'e alındı.
+**Değişen dosyalar:** index.html, package.json, package-lock.json, src/ortak/surum.ts, src/arayuz/{tema.ts,stil.css}, src/arayuz/oyun/kullan.ts, src/arayuz/ekranlar/{Baslik,Kabuk}.tsx, tests/arayuz/App.test.tsx, docs/{KARARLAR,DURUM,AJAN_GUNLUGU,00_BASLA_BURADAN,brand,TASARIM}.md.
+**Testler:** 342 geçti / 0 kaldı (49 dosya; `npx vitest run`). typecheck temiz.
+**Alınan kararlar:** K-019.
+**Sorunlar / riskler:** "Cold Read" adının marka taraması yapılmadı; yayın öncesi kısa bir kontrol yeterli.
+**Yarım kalanlar:** Yok.
+**Sıradaki ajan için:** 1) Kullanıcının USLUP §4 terim okuması ve zor seviye geri bildirimi. 2) DURUM'daki küçük fikirler. 3) CIT tanıma oranı kaynağı.
+## [2026-09-21] Ajan #5 — Ön yüzü yeniden tasarlama; kahve paleti
+**Görev:** Kullanıcı AJAN_PROMPTU.md okunduktan sonra sitenin görsel/UI/UX katmanını baştan tasarlamamızı istedi. Devamında koyu yeşil yerine rahat, sıcak açık kahverengi/Nescafe tonlarını açık ve koyu temada tercih etti.
+**Yapılanlar:** Editoryal giriş sahnesi, kalıcı yan menü, dedektif/zaman üst şeridi, açıklamalı zorluk kartları, devam bandı, görselli tatbikat galerisi, bölünmüş vaka brifingi, portreli kişi kartları, dört grupta sorgu araçları, Türkçe kılavuz araması, kayıt yönetimi ve silme onayı. Mobil düzenler, görünür odak, etiketli kontroller, analiz tablolarında klavye erişimli yatay kaydırma. Mevcut görsel arşivi kullanıldı. Kullanıcının önceki kaydedilmemiş değişiklikleri (ad değişimi dahil) korundu; commit/push yapılmadı.
+**Değişen dosyalar:** src/arayuz/stil.css; ekranlar/{Baslik,Kabuk,Ikon,VakaAcilis,SorguOdasi,Kilavuz,Analiz,Suclama,Forer}.tsx; tests/arayuz/yenidenTasarim.test.tsx; scripts/ui-check.mjs; .gitignore; docs/{brand,KARARLAR,TASARIM,DURUM,AJAN_GUNLUGU}.md.
+**Testler:** Yeni davranışlar için önce 4 kırmızı test, sonra uygulama. Tüm paket 346 geçti / 0 kaldı (50 dosya, npm.cmd test). npm.cmd run build tip kontrolüyle temiz. Playwright Chromium: 320/768/1024/1440 px, yedi ana ekran; vaka başlatma, Forer, görüşme, oda okuma, pano notu, suçlama ve analiz, kılavuz araması; yatay sayfa taşması ve JS hatası yok. İlk turda bulunan 320 px Analiz tablosu taşması düzeltildi. Açık/koyu ana sayfa ve oyun içi ekranlar görüntülendi.
+**Alınan kararlar:** K-020; güncel görsel sistem brand.md §8.
+**Sorunlar / riskler:** Tek HTML yaklaşık 8,84 MB; mevcut 2 MB GIF dahil, 10 MB hedefinin altında. Görüntüler artifacts/ui altında git dışında. Önceki bilimsel doğrulama açık maddeleri bu işin kapsamında değil.
+**Yarım kalanlar:** Yok.
+**Sıradaki ajan için:** Kullanıcının yeni arayüz geri bildirimlerini uygula; sıcak kahve paletini koru. Tarayıcı kontrolü için önce build, sonra node scripts/ui-check.mjs.

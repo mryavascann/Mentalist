@@ -80,6 +80,7 @@ export function Analiz() {
       {d.ifadeKarsilastirma.length > 0 && (
         <section className="dosya">
           <h2>Olay anında kim ne dedi, gerçekte ne oldu</h2>
+          <div className="tablo-kaydir" role="region" aria-label="İfadeler ve gerçekler tablosu" tabIndex={0}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
             <thead><tr><th style={{ textAlign: 'left' }}>Kişi</th><th style={{ textAlign: 'left' }}>Sana söylediği</th><th style={{ textAlign: 'left' }}>Gerçek</th><th style={{ textAlign: 'left' }}>İfade türü</th></tr></thead>
             <tbody>
@@ -93,6 +94,7 @@ export function Analiz() {
               ))}
             </tbody>
           </table>
+          </div>
           <p className="soluk">"Sorulmadı" yazan kişilerin cevabı elinde yoktu; o ipucuna hiç ulaşmadın. Odası doğru ama türü "gizleme" olan kişiler yerini söyledi, ne yaptığını sakladı.</p>
         </section>
       )}
@@ -198,6 +200,7 @@ export function Analiz() {
         <section className="dosya">
           <h2>Karar günlüğü · kalibrasyon</h2>
           <p className="soluk">Beyan ettiğin güvenle gerçek isabet oranın. Kalibrasyonu iyi olan birinde ikisi birbirine yakındır (Ekman & O'Sullivan 1991; Tversky & Kahneman 1974).</p>
+          <div className="tablo-kaydir" role="region" aria-label="Kalibrasyon tablosu" tabIndex={0}>
           <table style={{ borderCollapse: 'collapse', fontSize: 14 }}>
             <thead><tr><th style={{ textAlign: 'left', padding: 4 }}>Güven aralığı</th><th style={{ padding: 4 }}>Vaka</th><th style={{ padding: 4 }}>Ortalama beyan</th><th style={{ padding: 4 }}>Gerçek isabet</th></tr></thead>
             <tbody>
@@ -209,6 +212,7 @@ export function Analiz() {
               ))}
             </tbody>
           </table>
+          </div>
         </section>
       )}
       {korNoktalar.length > 0 && (

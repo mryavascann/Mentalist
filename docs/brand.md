@@ -51,6 +51,23 @@ Görsel gelene kadar yer tutucu (SVG siluet) kullanılır. Prompt listesi Aşama
 
 ## 7. Açık tasarım soruları
 
-- ~~Oyun adı~~ → The Mentalist (K-007). Başlık ekranında oyuncu kahraman adını girer.
+- ~~Oyun adı~~ → Cold Read (K-019; önceki ad The Mentalist, K-007). Başlık ekranında oyuncu kahraman adını girer.
 - ~~Mekân~~ → vakadan vakaya değişir (K-008); mekân havuzu ile arka plan görselleri eşlenir.
 - Karanlık tema: varsayılan "gece masası" (koyu yeşil çuha + lamba ışığı) mı, kağıt mı? Aşama 2'de prototiple karar.
+
+## 8. Güncel tasarım sistemi — Kahve ve vaka dosyası (21.09.2026, K-020)
+
+Bu bölüm eski taslağın renk, tipografi ve ekran düzeni kararlarının yerine geçer. Kullanıcı yeni ön yüz istemiş, ardından koyu yeşili açık kahverengiyle değiştirmemizi özellikle belirtmiştir: parlak beyaz yerine sakin, rahat bir Nescafe/dosya hissi.
+
+- **Açık tema:** zemin `#e9ddcb`, kart `#f2e7d6`, sütlü kahve yan menü `#dbc3a2`, ana metin `#493628`, ikincil metin `#68513d`, eylem `#795333`. Parlak beyaz ana yüzey yok.
+- **Koyu tema:** espresso zemin `#241c17`, kahve kart `#3b2d23`, yükseltilmiş yüzey `#4b3829`, karamel eylem `#d2af84`, yumuşak krem metin `#f0dfc5`. Soğuk gri veya yeşil ana yüzey yok.
+- **Tipografi:** büyük editoryal Georgia başlıklar; kontroller ve açıklamalarda Segoe UI/sistem sans; yalnızca kayıt/rapor parçalarında Consolas. Harici font bağımlılığı yok.
+- **Giriş:** mevcut yağmurlu pencere görseli, sıcak kahverengi perde, belirgin ana mesaj; ayrı yeni vaka formu, açıklamalı doğal radyo düğmeli zorluk kartları, saha kılavuzu ve yedi görselli tatbikat kartı. Devam eden dosya ayrı bir bantta görünür.
+- **Gezinti:** masaüstünde kalıcı yan menü; mobilde yatay kaydırılabilen menü. Üst şeritte ekran adı, dedektif ve soruşturma zamanı. İçeriğe atlama bağlantısı ve ekran değişince odak aktarımı.
+- **Vaka dosyası:** görselli brifing ve kişi/delil/saat özeti; portreli kişiler ve ayrı delil listesi.
+- **Sorgu:** portreli kişi listesi, okunaklı konuşma alanı, Sorular / Teknikler / Kişiyi oku / Deliller grupları. Temel çizgi her grupta erişilebilir. Masaüstünde araç paneli sabitlenir, mobilde kişiler ve araçlar konuşmanın önüne gelir.
+- **Kılavuz:** Türkçe büyük/küçük harfe duyarlı yerel arama, sonuç sayısı, boş sonuç açıklaması; kaynak ve bilimsel kanıt rozetleri korunur.
+- **Kayıt:** içe/dışa aktarma ayrı açılır bölüm; sıfırlama iptal edilebilir yerel onay. Hatalar sayfa içinde gösterilir.
+- **Erişilebilirlik:** görünür klavye odağı, etiketli alanlar, yerel radyo grubu, azaltılmış hareket tercihi, kaydırılabilir ve klavye erişimli analiz tabloları. Renk tek başına anlam taşımaz.
+- **Görseller:** mevcut yerel WebP arşivi yeniden kullanılır. Yeni görsel hizmeti veya font indirmesi yok; tek HTML dağıtımı sürer.
+- **Kontrol:** `npm.cmd test`, `npm.cmd run build`, ardından `node scripts/ui-check.mjs`. Betik 320/768/1024/1440 px genişlikte yedi ana ekranı, uçtan uca bir vakayı, oda okumasını ve kılavuz aramasını kontrol eder. Görüntüler `artifacts/ui/` altında, git dışında.

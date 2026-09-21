@@ -1,6 +1,8 @@
 // Kılavuz: bölümler, maddeler, kanıt rozeti, kaynaklar; baştan tamamen açık (K-012).
 // "Karşılaştın" rozeti: vaka analizinde önerilen ya da kullandığın tekniğe bağlı maddeler.
 import { ICERIK } from '@icerik/index';
+import { useState } from 'react';
+import { Ikon } from './Ikon';
 import { depo, useOyun } from '../oyun/kullan';
 import { KILAVUZ_GORSELLERI } from '../gorseller';
 
@@ -22,6 +24,8 @@ const ROZET_ADI: Record<string, string> = { guclu: 'Güçlü', orta: 'Orta', zay
 
 export function Kilavuz() {
   const d = useOyun();
+  const [arama, setArama] = useState('');
+  const bulunanlar = ICERIK.kilavuz.filter((m) => `${m.baslik} ${BOLUM_ADLARI[m.bolum] ?? m.bolum} ${m.ozet}`.toLocaleLowerCase('tr-TR').includes(arama.trim().toLocaleLowerCase('tr-TR')));
   const bolumler = [...new Set(ICERIK.kilavuz.map((m) => m.bolum))];
   const karsilasilan = new Set<string>([
     ...(d.puan?.calisilacakKilavuz ?? []),
@@ -36,11 +40,14 @@ export function Kilavuz() {
     <div className="kilavuz-duzeni">
       <aside className="dosya">
         <h2>Kılavuz</h2>
-        {bolumler.map((b) => (
+        <label className="kilavuz-arama"><Ikon ad="arama" boyut={18} /><input type="search" aria-label="Kılavuzda ara" placeholder="Bir konu veya teknik ara…" value={arama} onChange={(e) => setArama(e.target.value)} /></label>
+        <p className="alan-notu" role="status">{bulunanlar.length} madde · Tümü erişime açık</p>
+        {bulunanlar.length === 0 && <p>Aramana uygun bir madde bulunamadı.</p>}
+        {bolumler.filter((b) => bulunanlar.some((m) => m.bolum === b)).map((b) => (
           <div key={b}>
             <h3 style={{ fontFamily: 'var(--daktilo)', fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase' }}>{BOLUM_ADLARI[b] ?? b}</h3>
-            {ICERIK.kilavuz.filter((m) => m.bolum === b).map((m) => (
-              <button key={m.id} className={`madde${secili?.id === m.id ? ' secili' : ''}`} onClick={() => depo.kilavuzAc(m.id)}>
+            {bulunanlar.filter((m) => m.bolum === b).map((m) => (
+              <button key={m.id} aria-pressed={secili?.id === m.id} className={`madde${secili?.id === m.id ? ' secili' : ''}`} onClick={() => depo.kilavuzAc(m.id)}>
                 {m.baslik}
                 <span className={`rozet ${m.kanitDuzeyi}`}>{ROZET_ADI[m.kanitDuzeyi]}</span>
                 {karsilasilan.has(m.id) && <span className="rozet karsilasildi">karşılaştın</span>}
@@ -49,7 +56,7 @@ export function Kilavuz() {
           </div>
         ))}
       </aside>
-      <main className="dosya">
+      <article className="dosya kilavuz-okuma">
         {!secili && korNoktalar.length > 0 && (
           <section style={{ marginBottom: 16 }}>
             <h2>Senin kör noktan</h2>
@@ -90,7 +97,7 @@ export function Kilavuz() {
             <ul className="soluk">{secili.kaynak.map((k) => <li key={k}>{kaynakAdi(k)}</li>)}</ul>
           </>
         )}
-      </main>
+      </article>
     </div>
   );
 }

@@ -284,7 +284,7 @@ Her üretim `assets/KAYIT.md`'ye yazılır: tarih, amaç, kullanılan prompt, do
 ## 19. Açık karar noktaları (DURUM.md'de takip edilir)
 
 Kullanıcı 16.09.2026'da karara bağladı (ayrıntılar KARARLAR.md K-007…K-012):
-1. **Oyun adı:** The Mentalist (K-007). **Kahraman adı:** oyuncu girer.
+1. **Oyun adı:** Cold Read (K-019; önceki ad The Mentalist, K-007). **Kahraman adı:** oyuncu girer.
 2. **Mekân:** her vakada farklı olabilir; sabit şehir yok (K-008).
 3. **Runtime LLM:** yok. Diyaloglar seedli şablon-gramer motoruyla üretilir (K-009).
 4. **Platform:** tek HTML dosyası, çevrimdışı, kurulumsuz; dosya gönderilir, çift tıkla açılır (K-010).
@@ -294,3 +294,7 @@ Kullanıcı 16.09.2026'da karara bağladı (ayrıntılar KARARLAR.md K-007…K-0
 Yeni açık sorular (henüz karar yok):
 - Vaka başına hedef oyun süresi (öneri: 20–40 dk).
 - Oyuncu sayısı: tek oyuncu (varsayım). "Cam arkası" modu için ikinci oyuncu (sorgucu) düşünülebilir mi?
+
+## 20. Ön yüz uygulama notu (21.09.2026)
+
+K-020 ile görsel dil ve navigasyon yeniden tasarlandı; ayrıntılar `brand.md` §8. Açık ve koyu temalar kullanıcının tercihiyle sıcak kahve tonlarında. Sorgu araçları dört gruptan açılır; kılavuz araması tüm maddeleri baştan erişilebilir tutar. Kayıt sıfırlama açık onay ister. Oyun kuralları, teknik maliyetleri, bilimsel rozetler ve seed davranışı değişmedi.

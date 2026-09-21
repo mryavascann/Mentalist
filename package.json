@@ -1,8 +1,8 @@
 {
-  "name": "the-mentalist",
+  "name": "cold-read",
   "private": true,
   "version": "0.0.1",
-  "description": "Mentalist esinli, bilimsel temelli metin ağırlıklı dedektif oyunu (The Mentalist)",
+  "description": "Mentalist esinli, bilimsel temelli metin ağırlıklı dedektif oyunu (Cold Read)",
   "type": "module",
   "scripts": {
     "dev": "vite",
